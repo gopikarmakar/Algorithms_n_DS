@@ -33,11 +33,11 @@ package com.hyend.logical.algorithms;
  * 	Problem:
  * 	One semester is N days. Given an integer N, generate the number of ways that student get penalty.
  *
- * 	Example 1.
+ * 	Example-1
  * 	Input : 3
  * 	Output : 8
  *
- * 	Example 2.
+ * 	Example-2
  * 	Input : 4
  * 	Output : 38
  * 

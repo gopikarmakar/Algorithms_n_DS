@@ -15,12 +15,14 @@ import com.hyend.data.storage.sort.MergeSort;
 import com.hyend.data.storage.sort.QuickSort;
 import com.hyend.data.storage.sort.SelectionSort;
 import com.hyend.data.storage.sort.ShellSort;
-import com.hyend.data.storage.structures.BinaryTree;
+import com.hyend.data.storage.structures.BalancedBSTres;
+import com.hyend.data.storage.structures.BinarySearchTree;
 import com.hyend.data.storage.structures.DoublyLinkedList;
 import com.hyend.data.storage.structures.SinglyLinkedList;
 import com.hyend.data.storage.structures.LinkedListQueue;
 import com.hyend.data.storage.structures.LinkedListStack;
 import com.hyend.data.storage.structures.LinkedListWithStackAndQueue;
+import com.hyend.data.storage.structures.RedBlackBST;
 import com.hyend.logical.algorithms.Fibonacci;
 import com.hyend.logical.algorithms.FindFirstUniqueChar;
 import com.hyend.logical.algorithms.FindKthElement;
@@ -32,7 +34,7 @@ import com.hyend.logical.algorithms.HasStringAllUniqueChars;
 import com.hyend.logical.algorithms.StudentAttendance;
 import com.hyend.logical.algorithms.AmountInWords;
 
-public class TestDataStructure {
+public class TestDataStructure<K> {
 
 	public static void main(String args[]) {
 				
@@ -82,7 +84,8 @@ public class TestDataStructure {
 		//TestSinglyLinkedList();
 		//TestDoubleyLinkedList();
 		//TestQueueFromStack();
-		TestBinaryTree();
+		//TestBinaryTree();
+		TestBalacedBSTree();
 		//new Fibonacci().recursive(10);
 		//System.out.println(mid);
 		//System.out.println(new StringHasUniqueChars().areAllCharsUnique("system"));
@@ -216,7 +219,7 @@ public class TestDataStructure {
 	}
 	
 	private static void TestBinaryTree() {
-		BinaryTree bt = new BinaryTree();		 
+		BinarySearchTree bt = new BinarySearchTree();		 
 	    bt.put(6, "Hexa");
 	    bt.put(4, "Quadra");
 	    bt.put(8, "Octa");
@@ -228,8 +231,39 @@ public class TestDataStructure {
 	    PrintMSG("Tree Size = " + bt.size());
 	    //PrintMSG("The Value For Deteletd Key 2 = " + bt.delete(2));
 	    //bt.printAllPostOrderNodes();
-	    bt.printAllLevelOrderNodes();
-	    
+	    bt.printAllLevelOrderNodes();	    	    	    	    	    	    	  	   
+	}
+	
+	private static void TestBalacedBSTree() {
+		
+		BalancedBSTres<Character, String> bt = new BalancedBSTres<Character, String>();		
+	    bt.put('S', "Hexa");
+	    bt.put('E', "Quadra");
+	    bt.put('A', "Octa");
+	    bt.put('R', "Tri");
+	    bt.put('C', "Penta");
+	    bt.put('H', "Seven");
+	    bt.put('X', "Nine");
+	    bt.put('M', "Deca");
+	    bt.put('P', "Uno");
+	    bt.put('L', "Duo");
+	    	    
+	    //PrintMSG("Tree Size = " + bt.size());
+	    //PrintMSG("Value For R = " + bt.find('R'));	    
+	    //bt.printAllNodesInOrder();
+	    bt.traverseLevelOrder();
+		/*RedBlackBST<Character, String> bt = new RedBlackBST<>();
+		bt.put('S', "Hexa");
+	    bt.put('E', "Quadra");
+	    bt.put('A', "Octa");
+	    bt.put('R', "Tri");
+	    bt.put('C', "Penta");
+	    bt.put('H', "Seven");
+	    bt.put('X', "Nine");
+	    bt.put('M', "Deca");
+	    bt.put('P', "Uno");
+	    bt.put('L', "Duo");
+	    bt.printAllNodesInOrder();*/
 	}
 	
 	private static void PrintMSG(Object msg) {

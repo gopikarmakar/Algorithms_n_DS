@@ -22,7 +22,7 @@ public class Staircase {
 	}
 	
 	/**
-	 * Inefficient recursive approach.
+	 * Highly inefficient recursive approach.
 	 * By every time calculating the same
 	 * recursive calls. 
 	 * @param n

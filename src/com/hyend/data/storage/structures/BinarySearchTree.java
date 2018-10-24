@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.TreeMap;
 
-import com.hyend.data.storage.structures.BinaryTree.Node;
+import com.hyend.data.storage.structures.BinarySearchTree.Node;
 
-public class BinaryTree {
+public class BinarySearchTree {
 	
 	private int size = 0;	
 	private Node root, parent;
@@ -23,7 +23,7 @@ public class BinaryTree {
 		}				
 	}
 	
-	public BinaryTree() {
+	public BinarySearchTree() {
 		root = null;
 		parent = null;
 	}
@@ -49,7 +49,7 @@ public class BinaryTree {
 		if(node == null) {
 			System.out.println("root = " + node);
 			return null;
-		}
+		}	
 					
 		if(key == node.key)
 			return node;
