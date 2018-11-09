@@ -7,10 +7,6 @@ import java.util.Queue;
  * A Balanced Binary Search Tree typically is a combination of
  * 2-3 + Red-Black + Binary Search tree implementation.
  * 
- * It provides the guaranteed (O)log(n) time complexity
- * implementation for insert, search and delete operations
- * in average cases and (2)log(n) for worst cases.
- * 
  * Red-Black Tree Implementation Rules:
  * 1: The red links should always be left leaning in a Red-Black Tree.
  * 2: If a parent node has both not-null left-&-right child nodes then:
@@ -29,7 +25,16 @@ import java.util.Queue;
  * Balanced Binary search tree with the 
  * parent node and number of child 
  * nodes tracking for every node.
- *  
+ * 
+ * It provides guaranteed log(N) implementations.
+ * Average-case cost (after N random inserts & search):
+ * Insert : 1.00 log(N)
+ * Search : 1.00 log(N)
+ * 
+ * Worst-case cost (after N random inserts & search):
+ * Insert : 2.00 log(N)
+ * Search : 2.00 log(N)
+ * 
  * @author gopi_karmakar
  * @param <V>
  *

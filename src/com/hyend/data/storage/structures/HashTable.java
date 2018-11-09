@@ -3,7 +3,15 @@ package com.hyend.data.storage.structures;
 /**
  * A concrete hashing based symbol table implementation
  * to store only a huge number of key / value pairs.
- * It's a separate chaining implementation for hash collisions. 
+ * It's a separate chaining implementation for hash collisions.
+ * 
+ * Average-case cost (after N random inserts & search):
+ * Insert : O(1)
+ * Search : O(1)
+ * 
+ * Worst-case cost (after N random inserts & search):
+ * Insert : < log(N)
+ * Search : < log(N)
  * 
  * @author gopi_karmakar
  *
@@ -53,13 +61,12 @@ public class HashTable<K, V> {
 			return this.value;
 		}
 		
-		public int getHashIndex() {
+		public int getHash() {
 			return this.hash;
 		}
 	}
 	
-	public HashTable() {		
-	}
+	public HashTable() {}
 
 	public int size() {
 		return totalSize;
@@ -73,12 +80,9 @@ public class HashTable<K, V> {
 		for(Node<K, V> node : mainSymbolTable) {
 			if(node != null) {
 				System.out.println("Key = " + node.key + " Value  = " + node.value);
-				if(node.next != null) {
-					Node<K, V> temp = node.next;
-					while(temp != null ) {
-						System.out.println("Key = " + temp.key + " Value  = " + temp.value);
-						temp = temp.next;
-					}
+				while(node.next != null) {					
+					System.out.println("Key = " + node.next.key + " Value  = " + node.next.value);
+					node = node.next;
 				}
 			}
 		}

@@ -10,6 +10,14 @@ import java.util.LinkedList;
  * insertions, retrievals & traversals. Ascending or Descending Left & Right 
  * Diagonal Traversals.
  * 
+ * Average-case cost (after N random inserts & search):
+ * Insert : 1.39 log(N)
+ * Search : 1.39 log(N)
+ * 
+ * Worst-case cost (after N random inserts & search):
+ * Insert : (N)
+ * Search : (N)
+ * 
  * @author gopi_karmakar
  *
  * @param <K>
