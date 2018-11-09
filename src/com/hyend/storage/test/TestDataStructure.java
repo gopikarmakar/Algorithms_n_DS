@@ -18,6 +18,7 @@ import com.hyend.data.storage.sort.ShellSort;
 import com.hyend.data.storage.structures.BalancedBSTres;
 import com.hyend.data.storage.structures.BinarySearchTree;
 import com.hyend.data.storage.structures.DoublyLinkedList;
+import com.hyend.data.storage.structures.HashTable;
 import com.hyend.data.storage.structures.SinglyLinkedList;
 import com.hyend.data.storage.structures.LinkedListQueue;
 import com.hyend.data.storage.structures.LinkedListStack;
@@ -85,7 +86,8 @@ public class TestDataStructure<K> {
 		//TestDoubleyLinkedList();
 		//TestQueueFromStack();
 		//TestBinaryTree();
-		TestBalacedBSTree();
+		TestHashTable();
+		//TestBalacedBSTree();
 		//new Fibonacci().recursive(10);
 		//System.out.println(mid);
 		//System.out.println(new StringHasUniqueChars().areAllCharsUnique("system"));
@@ -219,23 +221,43 @@ public class TestDataStructure<K> {
 	}
 	
 	private static void TestBinaryTree() {
-		BinarySearchTree bt = new BinarySearchTree();		 
-	    bt.put(6, "Hexa");
-	    bt.put(4, "Quadra");
-	    bt.put(8, "Octa");
-	    bt.put(3, "Tri");
-	    bt.put(5, "Penta");
-	    bt.put(7, "Seven");
-	    bt.put(9, "Nine");
-	    bt.put(2, "Duo");
+		BinarySearchTree<Integer, String> bt = new BinarySearchTree<Integer, String>();	
+		int[][] keyValue = new int[20][1];		
+	    bt.put(11, "Juu");
+	    bt.put(15, "JuIchi");
+	    bt.put(5, "Kyuu");
+	    bt.put(16, "JuuNi");
+	    bt.put(3, "Penta");
+	    bt.put(14, "Seven");
+	    bt.put(8, "Nine");
+	    bt.put(13, "Duo");
+	    bt.put(4, "Uno");
+	    bt.put(18, "Uno");
+	    bt.put(7, "Uno");
+	    bt.put(12, "Uno");
+	    bt.put(2, "Uno");
+	    bt.put(17, "Uno");
+	    bt.put(1, "Uno");
+	    bt.put(19, "Uno");
+	    bt.put(6, "Uno");
+	    bt.put(20, "Uno");	   
+	    bt.put(9, "Uno");
+	    bt.put(21, "twotwo");
 	    PrintMSG("Tree Size = " + bt.size());
-	    //PrintMSG("The Value For Deteletd Key 2 = " + bt.delete(2));
+	    PrintMSG("The Value For Deteletd Key 11 = " + bt.delete(11));
+	    //PrintMSG("The Value For Key 2 = " + bt.contains(2));
 	    //bt.printAllPostOrderNodes();
-	    bt.printAllLevelOrderNodes();	    	    	    	    	    	    	  	   
+	    bt.printAllInOrderNodes(bt.NON_RECURSIVE);
+	    //bt.printAllInOrderNodes(bt.NON_RECURSIVE);
+	    //bt.printNodesInRange(4, 8);
+	    //bt.printAllRightDiagonalNodes();
+	    //bt.convertToDoubleLinkedList();
+	    //bt.printDoubleyLinkedList(bt.DESCENDING);
+	    //bt.printAllBFSNodesFromRoot();	    	    	    	    	    	    	  	   
 	}
 	
 	private static void TestBalacedBSTree() {
-		
+					
 		BalancedBSTres<Character, String> bt = new BalancedBSTres<Character, String>();		
 	    bt.put('S', "Hexa");
 	    bt.put('E', "Quadra");
@@ -250,8 +272,10 @@ public class TestDataStructure<K> {
 	    	    
 	    //PrintMSG("Tree Size = " + bt.size());
 	    //PrintMSG("Value For R = " + bt.find('R'));	    
-	    //bt.printAllNodesInOrder();
-	    bt.traverseLevelOrder();
+	    bt.printAllNodesInOrder();
+	    //bt.delete('L');
+	    //bt.printAllNodesLevelOrder();
+	    //bt.printAllNodesDiagonally();
 		/*RedBlackBST<Character, String> bt = new RedBlackBST<>();
 		bt.put('S', "Hexa");
 	    bt.put('E', "Quadra");
@@ -264,6 +288,16 @@ public class TestDataStructure<K> {
 	    bt.put('P', "Uno");
 	    bt.put('L', "Duo");
 	    bt.printAllNodesInOrder();*/
+	}
+	
+	private static void TestHashTable() {
+		HashTable<String, String> hashTable = new HashTable<>();
+		hashTable.put("apple", "17.172.224.47");
+		hashTable.put("amazon", "176.32.98.166");
+		hashTable.put("facebook", "31.13.95.36");
+		hashTable.put("google", "172.217.25.110");		
+		hashTable.put("microsoft", "40.112.72.205");				
+		PrintMSG("Value for google = " + hashTable.get("apple"));		
 	}
 	
 	private static void PrintMSG(Object msg) {

@@ -61,14 +61,24 @@ public final class BalancedBSTres<K extends Comparable<K>, V> {
 	}
 	
 	public V find(K key) {
-		return contains(root, key).value;
+		return getNode(root, key).value;
 	}
 	
 	public Node put(K key, V value) {
-		root = insertNode(root, key, value);
+		/*root = insertNode(root, key, value);
 		root.color = BLACK;
 		root.parent = root;
-		return root;
+		return root;*/
+		return insertNonRecursive(key, value);
+	}
+	
+	public V delete(K key) {
+		Node node = getNode(root, key);
+		if(node == null)
+			return null;
+		V oldValue = node.value;
+		deleteNode(node);		
+		return oldValue;
 	}
 	
 	public void printAllNodesInOrder() {
@@ -83,7 +93,10 @@ public final class BalancedBSTres<K extends Comparable<K>, V> {
 		traversePostOrder(root);
 	}
 	
-	public void traverseLevelOrder() {
+	/**
+	 * Breadth First Traversal of Tree
+	 */
+	public void printAllNodesLevelOrder() {
 		Queue<Node> nodes = new LinkedList<BalancedBSTres<K,V>.Node>();
 		nodes.add(root);		
 		do {
@@ -99,8 +112,29 @@ public final class BalancedBSTres<K extends Comparable<K>, V> {
 		} while(!nodes.isEmpty());
 	}
 	
-	public void deleteMin() {		
-	}
+	/**
+	 * Diagonal Traversal of Tree
+	 */
+	public void printAllNodesDiagonally() {
+		Queue<Node> nodes = new LinkedList<BalancedBSTres<K,V>.Node>();
+		nodes.add(root);
+		Node node = root;
+		do {			
+			if(node.right != null) {
+				node = node.right;
+				nodes.add(node);
+			}
+			else {
+				node = nodes.remove();
+				System.out.println("Parent = " + node.parent.key + " Child = " + node.key +
+					" Color = " + node.color + " Child Nodes = " + node.childNodes);
+				if(node.left != null) {
+					node = node.left;
+					nodes.add(node);
+				}
+			}			
+		} while(!nodes.isEmpty());
+	}	
 	
 	private int childNodesSize(Node node) {
 		if(node == null) return 0;
@@ -202,9 +236,94 @@ public final class BalancedBSTres<K extends Comparable<K>, V> {
 		return node;
 	}
 	
-	private Node contains(Node node, K key) {
+	/**
+	 * As of now a simple non recursive 
+	 * Binary Tree implementation with
+	 * all nodes are colored RED for
+	 * proper color management need to pass 
+	 * the node properly for color change.  
+	 * 
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	private Node insertNonRecursive(K key, V value) {
+		Node node = root;
+		if(node == null) {
+			root = new Node(key, value, 1, RED);
+			root.color = BLACK;
+			parent = root.parent = root;
+			return root;			
+		}
+		int cmp = 0;
+		do {			
+			parent = node;
+			cmp = key.compareTo(node.key);
+			if(cmp < 0) node = node.left;
+			else if(cmp > 0) node = node.right;
+			else node.value = value;
+		} while(node != null);
+		node = new Node(key, value, 1, RED);
+		if(cmp < 0) {
+			parent.left = node;
+			parent.left.parent = parent;
+		}
+		else if(cmp > 0) {
+			parent.right = node;
+			parent.right.parent = parent;
+		}
+		
+		/*if(isRed(node.right) && !isRed(node.left)) node = rotateLeft(node);		
+		if(isRed(node.left) && isRed(node.left.left)) node = rotateRight(node);		
+		if(isRed(node.left) && isRed(node.right)) flipColors(node);
+		
+		node.childNodes = childNodesSize(node.left) + childNodesSize(node.right) + 1;*/		
+		return node;
+	}
+	
+	private Node getNode(Node node, K key) {
 		if(node.key == key) return node;
 		int cmp = key.compareTo(node.key);
-		return (cmp < 0) ? contains(node.left, key) : contains(node.right, key);		
+		return (cmp < 0) ? getNode(node.left, key) : getNode(node.right, key);		
+	}
+	
+	/**
+	 * As of now if plain Binary Search Tree deletion
+	 * reordering of nodes as per color.
+	 *  
+	 * @param node
+	 */
+	private void deleteNode(Node node) {
+		totalSize -= 1;
+		if (node.left != null && node.right != null) {
+            Node successor = successor(node.right);           
+            node.key = successor.key;
+            node.value = successor.value;
+            node = successor;
+        }
+		Node replacement = (node.left != null) ? node.left : node.right;
+		if(replacement != null) {
+			replacement.parent = node.parent;
+			if(node == node.parent.left)
+				node.parent.left = replacement;
+			else if(node == node.parent.right)
+				node.parent.right = replacement;
+			node.left = node.right = node.parent = null; 
+		}
+		else {
+			if(node.parent != null) {
+				if(node == node.parent.left)
+					node.parent.left = null;
+				else if(node == node.parent.right)
+					node.parent.right = null;
+				node.parent = null;
+			}				
+		}
+	}
+	
+	private Node successor(Node node) {			
+		while(node.left != null) 
+			node = node.left;			
+		return node;		
 	}
 }
