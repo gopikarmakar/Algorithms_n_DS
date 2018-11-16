@@ -1,8 +1,12 @@
 package com.hyend.data.storage.structures;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * A concrete hashing based symbol table implementation
- * to store only a huge number of key / value pairs.
+ * to store a huge number of key / value pairs.
  * It's a separate chaining implementation for hash collisions.
  * 
  * Average-case cost (after N random inserts & search):
@@ -18,7 +22,7 @@ package com.hyend.data.storage.structures;
  * @param <K>
  * @param <V>
  */
-public class HashTable<K, V> {
+public class MyHashTable<K, V> {
 	
 	// 75% of the initial capacity.
 	final float DEFAULT_LOAD_FACTOR = .75f;
@@ -42,7 +46,10 @@ public class HashTable<K, V> {
 	
 	private Node<K, V> mainSymbolTable[];
 	
-	static class Node<K, V> {		
+	public MyHashTable() {}
+	
+	static class Node<K, V> {	
+		
 		K key;
 		V value;
 		Node<K, V> next;
@@ -66,51 +73,94 @@ public class HashTable<K, V> {
 		}
 	}
 	
-	public HashTable() {}
+	private class HashIterator implements Iterator<Node<K, V>> {
+		
+		int index = 0;
+		Node<K, V> next;
+		
+		public HashIterator() {
+			Node<K, V>[] tab = mainSymbolTable;
+			if(tab != null && size() > 0) {
+				do {} while(index < tab.length && ((next = tab[index++]) == null));
+			}
+		}
+
+		@Override
+		public boolean hasNext() {		
+			return (next != null);
+		}
+
+		@Override
+		public Node<K, V> next() {
+			Node<K, V>[] tab;
+			Node<K, V> temp = next;
+			if(temp == null)
+				throw new NoSuchElementException();
+			if((next = temp.next) == null && (tab = mainSymbolTable) != null) {
+				do {} while(index < tab.length && ((next = tab[index++]) == null));
+			}
+			return temp;
+		}		
+	}
+	
+	private class KeyIterator implements Iterator<K> {
+		
+		HashIterator hashIterator = null;
+		
+		public KeyIterator() {
+			hashIterator = new HashIterator();
+		}
+
+		@Override
+		public boolean hasNext() {			
+			return hashIterator.hasNext();
+		}
+
+		@Override
+		public K next() {			
+			return hashIterator.next().key;
+		}		
+	}
+	
+	private class ValueIterator implements Iterator<V> {
+		
+		HashIterator hashIterator = null;
+		
+		public ValueIterator() {
+			hashIterator = new HashIterator();
+		}
+
+		@Override
+		public boolean hasNext() {			
+			return hashIterator.hasNext();
+		}
+
+		@Override
+		public V next() {			
+			return hashIterator.next().value;
+		}		
+	}
 
 	public int size() {
 		return totalSize;
 	}
 	
 	public boolean isEmpty() {
-		return (totalSize == 0);
+		HashMap<String, String> hmap = new HashMap<>();
+		hmap.values();
+		return (totalSize == 0);				
 	}
 	
 	public void printAll() {		
 		for(Node<K, V> node : mainSymbolTable) {
 			if(node != null) {
-				System.out.println("Key = " + node.key + " Value  = " + node.value);
+				//System.out.println("Key = " + node.key + " Value  = " + node.value);
 				while(node.next != null) {					
-					System.out.println("Key = " + node.next.key + " Value  = " + node.next.value);
+					//System.out.println("Key = " + node.next.key + " Value  = " + node.next.value);
 					node = node.next;
 				}
 			}
 		}
-	}
-	
-	public V get(K key) {			
-		if(mainSymbolTable != null && !isEmpty()) {
-			int hash = hash(key);
-			//int hash = modularHash(key);
-			int index = ((mainSymbolTable.length -1) & hash);
-			Node<K, V> node = mainSymbolTable[index];
-			if(node != null) {			
-				if(node.hash == hash && ((node.key == key) || 
-						(key != null && key.equals(node.key)))) {
-					return node.value;
-				}
-				else {
-					while(node.next != null) {
-						node = node.next;
-						if(node.hash == hash && ((node.key == key) || 
-								(key != null && key.equals(node.key)))) {
-							return node.value;
-						}
-					}
-				}
-			}
-		}
-		return null;
 	}
 	
 	public V put(K key, V value) {		
@@ -175,6 +225,81 @@ public class HashTable<K, V> {
 		return null;
 	}
 	
+	public V get(K key) {			
+		if(mainSymbolTable != null && !isEmpty()) {
+			int hash = hash(key);			
+			int index = ((mainSymbolTable.length -1) & hash);
+			Node<K, V> node = mainSymbolTable[index];
+			if(node != null) {			
+				if(node.hash == hash && ((node.key == key) || 
+						(key != null && key.equals(node.key)))) {
+					return node.value;
+				}
+				else {
+					while(node.next != null) {
+						node = node.next;
+						if(node.hash == hash && ((node.key == key) || 
+								(key != null && key.equals(node.key)))) {
+							return node.value;
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	public Iterator<K> getKeySet() {
+		KeyIterator keyIterator = new KeyIterator();
+		return keyIterator;
+	}
+	
+	public Iterator<V> getValueSet() {
+		ValueIterator valueIterator = new ValueIterator();
+		return valueIterator;
+	}
+	
+	/**
+	 * Deleting a key
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public V delete(K key) {
+		
+		if(mainSymbolTable != null && isEmpty()) {
+			int hash = hash(key);
+			int index = ((mainSymbolTable.length -1) & hash);
+			Node<K, V> node = mainSymbolTable[index];
+			if(node != null ) {
+				if((node.hash == hash) && ((node.key == key) || 
+						(key != null) && key.equals(node.key))) {
+					V value = node.value;
+					mainSymbolTable[index] = node.next;
+					totalSize -= 1;
+					return value;
+				}
+			}
+			else {
+				while(node.next != null) {
+					node = node.next;
+					if((node.hash == hash) && ((node.key == key) || 
+							(key != null) && key.equals(node.key))) {
+						V value = node.value;							
+						node.key = node.next.getKey();
+						node.hash = node.next.getHash();
+						node.value = node.next.getValue();
+						node.next = node.next.next;
+						node = node.next;
+						totalSize -= 1;
+						return value;
+					}
+				}					
+			}				
+		}
+		return null;
+	}
+	
 	/**
 	 * Converting a hashCode() to an array index.
 	 * Since our goal is an array index, not a 32-bit integer.
@@ -227,6 +352,9 @@ public class HashTable<K, V> {
 	 * But in our case we're doing mod by threshold since the symbol table
 	 * array is a resizing table an d we can't every time mod by a constant 
 	 * number. It should be mod by the number with in the capacity range.
+	 * 
+	 * In case of modular hashing the average time complexity to 
+	 * insert & search a key would be num_of_key / table_length;
 	 * 
 	 * @param key
 	 * @return
@@ -281,7 +409,7 @@ public class HashTable<K, V> {
 		}
 		
 		currentThreshold = newThreshold;
-		System.out.println("threshold = " + currentThreshold);
+		//System.out.println("threshold = " + currentThreshold);
 		@SuppressWarnings("unchecked")
 		Node<K, V>[] newTable = (Node<K, V>[])new Node[newCapacity];
 		/**

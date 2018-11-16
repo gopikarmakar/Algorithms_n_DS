@@ -3,6 +3,7 @@ package com.hyend.storage.test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.TreeMap;
 
 import com.hyend.data.storage.search.BinarySearch;
@@ -18,12 +19,13 @@ import com.hyend.data.storage.sort.ShellSort;
 import com.hyend.data.storage.structures.BalancedBSTres;
 import com.hyend.data.storage.structures.BinarySearchTree;
 import com.hyend.data.storage.structures.DoublyLinkedList;
-import com.hyend.data.storage.structures.HashTable;
-import com.hyend.data.storage.structures.SinglyLinkedList;
+import com.hyend.data.storage.structures.MyHashTable;
 import com.hyend.data.storage.structures.LinkedListQueue;
 import com.hyend.data.storage.structures.LinkedListStack;
 import com.hyend.data.storage.structures.LinkedListWithStackAndQueue;
+import com.hyend.data.storage.structures.MyLinkedList;
 import com.hyend.data.storage.structures.RedBlackBST;
+import com.hyend.data.storage.structures.UndirectedGraph;
 import com.hyend.logical.algorithms.Fibonacci;
 import com.hyend.logical.algorithms.FindFirstUniqueChar;
 import com.hyend.logical.algorithms.FindKthElement;
@@ -86,8 +88,9 @@ public class TestDataStructure<K> {
 		//TestDoubleyLinkedList();
 		//TestQueueFromStack();
 		//TestBinaryTree();
-		TestHashTable();
 		//TestBalacedBSTree();
+		//TestHashTable();
+		TestUndirectedGraphStructure();
 		//new Fibonacci().recursive(10);
 		//System.out.println(mid);
 		//System.out.println(new StringHasUniqueChars().areAllCharsUnique("system"));
@@ -132,23 +135,28 @@ public class TestDataStructure<K> {
 	}
 	
 	private static void TestSinglyLinkedList() {
-		SinglyLinkedList lList = new SinglyLinkedList();
-		lList.addNode("One");
-		lList.addNode("Two");
-		lList.addNode("Three");
-		lList.addNode("Three");
-		lList.addNode("Four");
-		lList.addNode("Five");
-		lList.addNode("Five");
-		lList.addNode("Six");
-		lList.addNode("Seven");
-		lList.addNode("Eight");
-		lList.addNode("Eight");
-		lList.addNode("Nine");
-		lList.addNode("Ten");
+		MyLinkedList<String> lList = new MyLinkedList<String>();
+		lList.add("One");
+		lList.add("Two");
+		lList.add("Three");
+		lList.add("Three");
+		lList.add("Four");
+		lList.add("Five");
+		lList.add("Five");
+		lList.add("Six");
+		lList.add("Seven");
+		lList.add("Eight");
+		lList.add("Eight");
+		lList.add("Nine");
+		lList.add("Ten");
 		//lList.removeAllDuplicates();
-		lList.delete("two");
-		lList.printAllNodes();
+		PrintMSG("Item Deleted = " + lList.delete("Two"));
+		//PrintMSG("Total Size = " + lList.size());
+		Iterator<String> items = lList.iterator(); 
+		while(items.hasNext()) {
+			PrintMSG(items.next());
+		}		
+		//lList.printAllNodes();
 	}
 	
 	private static void TestDoubleyLinkedList() {
@@ -291,13 +299,22 @@ public class TestDataStructure<K> {
 	}
 	
 	private static void TestHashTable() {
-		HashTable<String, String> hashTable = new HashTable<>();
+		MyHashTable<String, String> hashTable = new MyHashTable<>();
 		hashTable.put("apple", "17.172.224.47");
 		hashTable.put("amazon", "176.32.98.166");
 		hashTable.put("facebook", "31.13.95.36");
 		hashTable.put("google", "172.217.25.110");		
 		hashTable.put("microsoft", "40.112.72.205");				
 		PrintMSG("Value for google = " + hashTable.get("apple"));		
+	}
+	
+	private static void TestUndirectedGraphStructure() {
+		int[][] graph = {{0, 5}, {4, 3}, {0, 1}, {9, 12}, {6, 4},
+						 {5, 4}, {0, 2}, {11, 12}, {9, 10}, {0, 6},
+						 {7, 8}, {9, 11}, {5, 3}, {2, 6, 4}};
+		UndirectedGraph uGraph = new UndirectedGraph(graph, UndirectedGraph.ADJACENCY_HASH_SET);
+		PrintMSG("Total Number of Vertices = " + uGraph.getTotalVertices());
+		PrintMSG("Total Number of Edges = " + uGraph.getTotalEdges(UndirectedGraph.ADJACENCY_HASH_SET)/2);
 	}
 	
 	private static void PrintMSG(Object msg) {
