@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms;
+package com.hyend.logical.algorithms.matrix;
 
 /**
  * @author karmakargopi
@@ -15,7 +15,7 @@ package com.hyend.logical.algorithms;
  *  and add that with 1 and store to cache array. At the end of
  *  addition will return largest number of square of 1's.
  */
-public class FindLargestSquare {
+public class FindLargestSquareInMatrix {
 
 	int matrix[][] = {{1,1,0,1,0}, {0,1,1,1,0}, {1,1,1,1,0}, {0,1,1,1,1}};
 	int cache[][] = matrix.clone();

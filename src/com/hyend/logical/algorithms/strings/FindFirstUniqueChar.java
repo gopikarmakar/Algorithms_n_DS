@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms;
+package com.hyend.logical.algorithms.strings;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

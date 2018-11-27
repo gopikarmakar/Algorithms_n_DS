@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms;
+package com.hyend.logical.algorithms.strings;
 
 public class HasStringAllUniqueChars {
 	

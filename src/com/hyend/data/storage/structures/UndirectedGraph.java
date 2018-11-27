@@ -2,6 +2,18 @@ package com.hyend.data.storage.structures;
 
 import java.util.Iterator;
 
+
+/**
+ * An undirected 2D graph which keeps track of it's all adjacent node/vertex.
+ * The implementation has been done by two ways.
+ * 1) An array of Linked List by taking vertices as an index. In this case vertices
+ *    should be integer only. Every vertex makes a linked list of it's adjacent vertices.
+ * 2) A hash symbol table, for which a vertex not mandatorily need to be an integer only.
+ *    Every vertex key holds a linked list of it's adjacent vertices as value for the key.
+ * 
+ * @author gopi_karmakar
+ *
+ */
 public class UndirectedGraph {
 	
 	public static final int ADJACENCY_LIST = 1;
@@ -45,10 +57,11 @@ public class UndirectedGraph {
 				Iterator<Integer> itr = getAdjList(v).iterator();				 
 				while(itr.hasNext()) {
 					int edge = itr.next(); 
-					System.out.print(edge + ", ");				
-					if((myAdjList[v].contains(edge)) && (myAdjList[edge].contains(v))) {
+					System.out.print(edge + ", ");
+					this.E++;
+					/*if((myAdjList[v].contains(edge)) && (myAdjList[edge].contains(v))) {
 						this.E++;
-					}
+					}*/
 				}
 				System.out.print("\n");
 			}

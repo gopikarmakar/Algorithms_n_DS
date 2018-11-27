@@ -26,15 +26,17 @@ import com.hyend.data.storage.structures.LinkedListWithStackAndQueue;
 import com.hyend.data.storage.structures.MyLinkedList;
 import com.hyend.data.storage.structures.RedBlackBST;
 import com.hyend.data.storage.structures.UndirectedGraph;
-import com.hyend.logical.algorithms.Fibonacci;
-import com.hyend.logical.algorithms.FindFirstUniqueChar;
 import com.hyend.logical.algorithms.FindKthElement;
-import com.hyend.logical.algorithms.FindLargestSquare;
-import com.hyend.logical.algorithms.PalindromeString;
 import com.hyend.logical.algorithms.StackWithMin;
-import com.hyend.logical.algorithms.Staircase;
-import com.hyend.logical.algorithms.HasStringAllUniqueChars;
-import com.hyend.logical.algorithms.StudentAttendance;
+import com.hyend.logical.algorithms.matrix.FindLargestSquareInMatrix;
+import com.hyend.logical.algorithms.matrix.MatrixRotation;
+import com.hyend.logical.algorithms.recursive.Fibonacci;
+import com.hyend.logical.algorithms.recursive.Staircase;
+import com.hyend.logical.algorithms.recursive.StudentAttendance;
+import com.hyend.logical.algorithms.strings.FindFirstUniqueChar;
+import com.hyend.logical.algorithms.strings.HasStringAllUniqueChars;
+import com.hyend.logical.algorithms.strings.PalindromeString;
+import com.hyend.logical.algorithms.strings.RemoveDuplicatesFromString;
 import com.hyend.logical.algorithms.AmountInWords;
 
 public class TestDataStructure<K> {
@@ -46,6 +48,7 @@ public class TestDataStructure<K> {
 		int[] sortedArr = {11,17,30,47,55,69,72,88,96,101};
 		int[] arr1 = {2, 3, 6, 7, 9};
 		int[] arr2 = {1, 4, 8, 10};
+		int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 		//System.out.println(arr.length);
 		/*SelectionSort selectionSort = new SelectionSort();
 		selectionSort.sort(arr);*/
@@ -90,7 +93,8 @@ public class TestDataStructure<K> {
 		//TestBinaryTree();
 		//TestBalacedBSTree();
 		//TestHashTable();
-		TestUndirectedGraphStructure();
+		//TestUndirectedGraphStructure();
+		//new RemoveDuplicatesFromString().removeDuplicates("abcde".toCharArray());
 		//new Fibonacci().recursive(10);
 		//System.out.println(mid);
 		//System.out.println(new StringHasUniqueChars().areAllCharsUnique("system"));
