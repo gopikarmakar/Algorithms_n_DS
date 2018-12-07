@@ -10,10 +10,25 @@ public class TestMatrix {
 						  {3, 2, 6, 9, 8},
 						  {8, 1, 3, 5, 2}};
 		
-		MatrixRotation rotate = new MatrixRotation(matrix);
-		rotate.rotate();
+		int[][] grid = {{1, 3, 1},
+						{1, 5, 1},
+						{4, 2, 1}}; 
 		
-		SetZerosInMatrix zeros = new SetZerosInMatrix(matrix);
-		zeros.setZeros();
+		int[][] grid2 = {{1, 2},
+						 {1, 1}};
+		
+		/*MatrixRotation rotate = new MatrixRotation(matrix);
+		rotate.rotate();*/
+		
+		//SetZerosInMatrix zeros = new SetZerosInMatrix(matrix);
+		//zeros.setZeros();
+		
+		/*MinimumPathSum minSum = new MinimumPathSum();
+		int min_Sum = minSum.minimumPathSum(grid2);
+		System.out.println(min_Sum);*/
+		
+		SpiralMatrixTraversal spiral = new SpiralMatrixTraversal(matrix);
+		spiral.traverseSpiral();
 	}
+	
 }
