@@ -18,21 +18,27 @@ public class SetZerosInMatrix {
 	}
 
 	
+	/**
+	 * The idea is to first mark the row and column
+	 * which has 0 value. Then in second iteration make
+	 * that whole row and column to 0 whose cell is marked.
+	 */
 	public void setZeros() {
 		int[] rows = new int[matrix.length];
 		int[] columns = new int[matrix[0].length];
 		
 		for(int i = 0; i < matrix.length; i++) {
-			for(int j = 0; j < matrix[0].length; j++) {
+			for(int j = 0; j < matrix[i].length; j++) {
 				if(matrix[i][j] == 0) {
 					rows[i] = 1;
-					columns[j] = 1;					
+					columns[j] = 1;
+					break;
 				}
 			}
 		}
 		
 		for(int i = 0; i < matrix.length; i++) {
-			for(int j = 0; j < matrix[0].length; j++) {
+			for(int j = 0; j < matrix[i].length; j++) {
 				if(rows[i] == 1 || columns[j] == 1) {
 					matrix[i][j] = 0;
 				}

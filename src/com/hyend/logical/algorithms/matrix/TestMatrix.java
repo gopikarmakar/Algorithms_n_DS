@@ -20,15 +20,15 @@ public class TestMatrix {
 		/*MatrixRotation rotate = new MatrixRotation(matrix);
 		rotate.rotate();*/
 		
-		//SetZerosInMatrix zeros = new SetZerosInMatrix(matrix);
-		//zeros.setZeros();
+		SetZerosInMatrix zeros = new SetZerosInMatrix(matrix);
+		zeros.setZeros();
 		
 		/*MinimumPathSum minSum = new MinimumPathSum();
 		int min_Sum = minSum.minimumPathSum(grid2);
 		System.out.println(min_Sum);*/
 		
-		SpiralMatrixTraversal spiral = new SpiralMatrixTraversal(matrix);
-		spiral.traverseSpiral();
+		//SpiralMatrixTraversal spiral = new SpiralMatrixTraversal(matrix);
+		//spiral.traverseSpiral();
 	}
 	
 }
