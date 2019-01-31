@@ -1,9 +1,10 @@
-package com.hyend.storage.test;
+package com.hyend.data.storage.structures;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Stack;
 import java.util.TreeMap;
 
 import com.hyend.data.storage.search.BinarySearch;
@@ -93,7 +94,7 @@ public class TestDataStructure<K> {
 		//TestBinaryTree();
 		//TestBalacedBSTree();
 		//TestHashTable();
-		//TestUndirectedGraphStructure();
+		TestUndirectedGraphStructure();
 		//new RemoveDuplicatesFromString().removeDuplicates("abcde".toCharArray());
 		//new Fibonacci().recursive(10);
 		//System.out.println(mid);
@@ -309,19 +310,36 @@ public class TestDataStructure<K> {
 		hashTable.put("facebook", "31.13.95.36");
 		hashTable.put("google", "172.217.25.110");		
 		hashTable.put("microsoft", "40.112.72.205");				
-		PrintMSG("Value for google = " + hashTable.get("apple"));		
+		PrintMSG("Value for google = " + hashTable.get("apple"));
 	}
 	
 	private static void TestUndirectedGraphStructure() {
 		int[][] graph = {{0, 5}, {4, 3}, {0, 1}, {9, 12}, {6, 4},
 						 {5, 4}, {0, 2}, {11, 12}, {9, 10}, {0, 6},
 						 {7, 8}, {9, 11}, {5, 3}, {2, 6, 4}};
-		UndirectedGraph uGraph = new UndirectedGraph(graph, UndirectedGraph.ADJACENCY_HASH_SET);
+		UndirectedGraph uGraph = new UndirectedGraph(graph, UndirectedGraph.ADJACENCY_LIST);
 		PrintMSG("Total Number of Vertices = " + uGraph.getTotalVertices());
-		PrintMSG("Total Number of Edges = " + uGraph.getTotalEdges(UndirectedGraph.ADJACENCY_HASH_SET)/2);
+		PrintMSG("Total Number of Edges = " + uGraph.getTotalEdges(UndirectedGraph.ADJACENCY_LIST)/2);
+		int source = 2;
+		int vertex = 4;
+		int destination = 5;
+		//uGraph.dfsPath(source);
+		uGraph.bfsPath(source);
+		
+		if(uGraph.hasPathTo(destination)) {
+			
+			Iterator<Integer> path = uGraph.pathTo(source, destination).iterator();
+		
+			PrintMSG("\n");
+			while(path.hasNext()) {
+				PrintMSG("" + path.next() + "->");
+			}
+		}
+		PrintMSG("\n\nIs There A Path Between " + source + " to " + destination + " = " + uGraph.hasPathTo(destination));
+		//PrintMSG("\nTotal Number of Vertices Connected to " + vertex + " = " + uGraph.getDFSCount());
 	}
 	
 	private static void PrintMSG(Object msg) {
-		System.out.println(msg);
+		System.out.print(msg);
 	}
 }

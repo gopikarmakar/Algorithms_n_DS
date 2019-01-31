@@ -4,7 +4,7 @@ public class TestAlgorithms {
 	
 	public static void main(String[] args) {
 		
-		int[] arr = {8, 9, 7, 12, 11, 10, 1};
+		int[] arr = {8, 9, 7, 12, 11, 10, 1};		
 		
 		/*FindFirstMissingPositive findMinPositive = 
 				new FindFirstMissingPositive();
@@ -13,12 +13,15 @@ public class TestAlgorithms {
 		
 		System.out.println("First Minimum Positive = " + result);*/
 		
-		Exponent power = new Exponent();
-		printMsg("" + power.myPow(0.00001, 2147483647));
-		//printMsg(""+ 1/4);
+		//Exponent power = new Exponent();
+		//printMsg("" + power.myPow(0.00001, 2147483647));
+		//printMsg(""+ 1/4);			
+		
+		//UniformRandom uRand = new UniformRandom();
+		//printMsg(""+ uRand.uniformRandom(5, 6));				
 	}
 	
-	private static void printMsg(String msg) {
+	private static void printMsg(String msg) {		
 		System.out.println(msg);
 	}
 }

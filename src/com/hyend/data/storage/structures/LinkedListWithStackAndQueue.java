@@ -8,22 +8,22 @@ package com.hyend.data.storage.structures;
  * Have Functionalities of a Stack & a Queue Both.
  * Which means, functionalities like 
  * Push and Enqueue or Pop and Dequeue 
- * all the from the same data structure parallelly.
+ * all the from the same data structure parallely.
  *
  */
-public class LinkedListWithStackAndQueue {
+public class LinkedListWithStackAndQueue<E> {
 	
 	Node head, tail;
 	class Node {
-		Object item;
+		E item;
 		Node next;
 		Node previous;
-		Node(Object item) {
+		Node(E item) {
 			this.item = item;
 		}
 	}
 	
-	public void pushOrEnqueue(Object item) {
+	public void pushOrEnqueue(E item) {
 		Node node = new Node(item);
 		node.next = head;
 		if(tail == null && node.next == null) {
@@ -36,10 +36,11 @@ public class LinkedListWithStackAndQueue {
 		head = node;
 	}
 	
-	public Object dequeue() {
+	public E dequeue() {
 		
 		if(isEmpty()) return null;
-		Object item = tail.item;
+		E item = tail.item;
+		Node node = tail;
 		tail = tail.previous;
 		return item;
 	}
@@ -47,7 +48,7 @@ public class LinkedListWithStackAndQueue {
 	public Object pop() {
 		
 		if(isEmpty()) return null;
-		Object item = head.item;
+		E item = head.item;
 		head = head.next;
 		return item;
 	}

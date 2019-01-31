@@ -2,7 +2,7 @@ package com.hyend.logical.algorithms.matrix;
 
 /**
  * if an element in an MxN matrix is 0, 
- * its entire row and column is set to 0
+ * Then set it's entire row and column to 0.
  * 
  * @author gopi_karmakar
  *

@@ -1,6 +1,6 @@
 package com.hyend.logical.algorithms.matrix;
 
-public class TestMatrix {	
+public class TestMatrix {
 	
 	public static void main(String[] args) {
 		

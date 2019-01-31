@@ -1,6 +1,9 @@
 package com.hyend.data.storage.structures;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 
 /**
@@ -19,8 +22,12 @@ public class UndirectedGraph {
 	public static final int ADJACENCY_LIST = 1;
 	public static final int ADJACENCY_HASH_SET = 2;
 	
-	private final int V;	
 	private int E;
+	private final int V;
+	private int count = 0;
+	
+	private int[] edgeTo;
+	private boolean[] marked;
 	
 	private MyLinkedList<Integer>[] myAdjList;	
 	private MyHashTable<Integer, MyLinkedList<Integer>> myAdjHashSet;
@@ -28,10 +35,12 @@ public class UndirectedGraph {
 	@SuppressWarnings("unchecked")
 	public UndirectedGraph(int V) {
 		this.V = V;
-		this.E = 0;		
-		myAdjList = (MyLinkedList<Integer>[]) new MyLinkedList[V];
+		this.E = 0;
+		edgeTo = new int[this.V];
+		marked = new boolean[this.V];
+		myAdjList = (MyLinkedList<Integer>[]) new MyLinkedList[this.V];
 		myAdjHashSet = new MyHashTable<Integer, MyLinkedList<Integer>>();
-		for(int v = 0; v < V; v++) {
+		for(int v = 0; v < this.V; v++) {
 			myAdjList[v] = new MyLinkedList<Integer>();
 		}		
 	}
@@ -53,7 +62,9 @@ public class UndirectedGraph {
 	 */
 	public int getTotalEdges(int type) {
 		if(type == ADJACENCY_LIST) {
-			for(int v = 0; v < V; v++) {	
+			System.out.print("\n");
+			for(int v = 0; v < V-1; v++) {
+				System.out.print(v + " = ");
 				Iterator<Integer> itr = getAdjList(v).iterator();				 
 				while(itr.hasNext()) {
 					int edge = itr.next(); 
@@ -102,7 +113,7 @@ public class UndirectedGraph {
 		myAdjList[v].add(adjV);
 		myAdjHashSet.put(v, myAdjList[v]);
 		myAdjList[adjV].add(v);
-		myAdjHashSet.put(adjV, myAdjList[adjV]);		
+		myAdjHashSet.put(adjV, myAdjList[adjV]);
 	}
 	
 	public Iterable<Integer> getAdjList(int v) {
@@ -115,6 +126,77 @@ public class UndirectedGraph {
 	
 	public Iterator<MyLinkedList<Integer>> getEdgesSet() {
 		return myAdjHashSet.getValueSet();
+	}
+	
+	/**
+	 * DFS marks all the vertices connected to a given source in time 
+	 * proportional to the sum of their degrees
+	 * @param source
+	 */
+	public void dfsPath(int source) {				
+		count+=1;
+		marked[source] = true;
+		//System.out.print("" + v + "->");
+		for(int e : getAdjList(source)) {
+			if(!marked[e]) {
+				//System.out.print("->" + e);
+				edgeTo[e] = source;
+				dfsPath(e);
+			}
+		}
+	}
+	
+	/**
+	 * Breadth first search short path.
+	 * @param source
+	 */
+	public void bfsPath(int source) {
+		
+		//LinkedListQueue<Integer> queue = new LinkedListQueue<>();
+		Queue<Integer> queue = new LinkedList<Integer>();
+		//LinkedListWithStackAndQueue<Integer> queue = new LinkedListWithStackAndQueue<Integer>();
+		marked[source] = true;		
+		queue.add(source);
+		//queue.pushOrEnqueue(source);
+		
+		while(!queue.isEmpty()) {
+						
+			int v = queue.remove();
+			//int v = queue.dequeue();
+			//System.out.println("\nDQ = " + v + " Size in DQ = " + queue.size);
+			for(int e : getAdjList(v)) {
+				if(!marked(e)) {
+					edgeTo[e] = v;
+					marked[e] = true;
+					queue.add(e);
+					//queue.pushOrEnqueue(e);
+					//System.out.println("\nNQ = " + e + " Size in NQ = " + queue.size);
+				}
+			}
+		}
+	}
+	
+	public Iterable<Integer> pathTo(int source, int v) {
+		
+		if(!hasPathTo(v)) return null;
+		
+		Stack<Integer> paths = new Stack<>();		
+		for(int x = v; x != source; x = edgeTo[x])
+			paths.push(x);
+		paths.push(source);
+		return paths;				
+	}
+	
+	public int getDFSCount() {
+		return count;
+	}
+	
+	public boolean marked(int v) {
+		return marked[v];
+	}
+	
+	public boolean hasPathTo(int v) {
+		return marked(v);
 	}
 	
 	public void printGraph() {}

@@ -29,7 +29,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 	public final int RECURSIVE = 1;
 	public final int ASCENDING = 2;
 	public final int DESCENDING = 3;
-	public final int NON_RECURSIVE = 4;		
+	public final int NON_RECURSIVE = 4;
 	private Node root, head, tail, parent;
 	
 	class Node {
@@ -67,7 +67,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 	 * @return
 	 */
 	public Node put(K key, V value) {
-		return insertNodeNonRecursive(key, value);		
+		return insertNodeNonRecursive(key, value);
 	}
 		
 	/**

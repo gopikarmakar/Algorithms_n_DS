@@ -1,38 +1,45 @@
 package com.hyend.data.storage.structures;
 
-public class LinkedListQueue {
+// Q -> 3 sz = 1;
+// DQ -> 3 sz = 0;
+public class LinkedListQueue<E> {
 
+	int size = 0;
 	private Node rear = null;
 	private Node front = null;
 	
 	class Node {
 		
-		Object item;
+		E item;
 		Node next;
-		public Node(Object item) {
+		public Node(E item) {
 			this.item = item;
 		}
 	}
 	
 	public boolean isEmpty() {
-		return front == null && rear == null;
+		return size == 0;
 	}
 	
-	public void enqueue(Object item) {
-		Node node = new Node(item);
-		node.next = null;
-		if(front == null && rear == null) {
-			front = rear = node;
-			return;
-		}
-		rear.next = node;
-		rear = node;
-	}
-	
-	public Object dequeue() {
+	public void enqueue(E item) {
 		
-		if(isEmpty()) return null;
-		Object item = front.item;
+		Node node = rear;
+		Node newNode = new Node(item);
+		rear = newNode;		
+		if(node == null) {
+			front = newNode;
+		}
+		else
+			node.next = newNode;		
+				
+        size++;
+	}
+	
+	public E dequeue() {
+		
+		//if(!isEmpty()) return null;
+		size-=1;
+		E item = front.item;
 		front = front.next;
 		return item;
 	}

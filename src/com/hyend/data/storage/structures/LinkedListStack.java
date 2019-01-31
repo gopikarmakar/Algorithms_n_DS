@@ -1,5 +1,11 @@
 package com.hyend.data.storage.structures;
 
+/**
+ * A stack with linked list
+ * 
+ * @author gopi_karmakar
+ *
+ */
 public class LinkedListStack {
 	
 	private Node top = null;

@@ -328,13 +328,13 @@ public class MyHashTable<K, V> {
 	 */
 	private int hash(K key) {
 		int hash = key.hashCode();
-		int rHash = (hash >>> 16);
-		//System.out.println("Hash before right shift = " + hash);
-		//System.out.println("Hash after right shift = " + rHash);
 		/**
 		 * Unsigned (hash >>> 16)
 		 * aka: (hash / (2 ^ 16))
 		 */
+		int rHash = (hash >>> 16);
+		//System.out.println("Hash before right shift = " + hash);
+		//System.out.println("Hash after right shift = " + rHash);		
 		return (key == null) ? 0 : (hash) ^ (rHash); 
 	}
 	
