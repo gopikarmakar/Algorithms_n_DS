@@ -17,7 +17,7 @@ import com.hyend.data.storage.sort.MergeSort;
 import com.hyend.data.storage.sort.QuickSort;
 import com.hyend.data.storage.sort.SelectionSort;
 import com.hyend.data.storage.sort.ShellSort;
-import com.hyend.data.storage.structures.BalancedBSTres;
+import com.hyend.data.storage.structures.SelfBalancedBSTres;
 import com.hyend.data.storage.structures.BinarySearchTree;
 import com.hyend.data.storage.structures.DoublyLinkedList;
 import com.hyend.data.storage.structures.MyHashTable;
@@ -26,6 +26,7 @@ import com.hyend.data.storage.structures.LinkedListStack;
 import com.hyend.data.storage.structures.LinkedListWithStackAndQueue;
 import com.hyend.data.storage.structures.MyLinkedList;
 import com.hyend.data.storage.structures.RedBlackBST;
+import com.hyend.data.storage.structures.TrieDictionary.Node;
 import com.hyend.data.storage.structures.UndirectedGraph;
 import com.hyend.logical.algorithms.FindKthElement;
 import com.hyend.logical.algorithms.StackWithMin;
@@ -94,7 +95,7 @@ public class TestDataStructure<K> {
 		//TestBinaryTree();
 		//TestBalacedBSTree();
 		//TestHashTable();
-		TestUndirectedGraphStructure();
+		//
 		//new RemoveDuplicatesFromString().removeDuplicates("abcde".toCharArray());
 		//new Fibonacci().recursive(10);
 		//System.out.println(mid);
@@ -117,7 +118,12 @@ public class TestDataStructure<K> {
 			// TODO: handle exception
 		}*/	
 		//System.out.println();
-		//System.out.println(new PalindromeString().canItBeAPalindrome("geeksogeeks"));		
+		//System.out.println(new PalindromeString().canItBeAPalindrome("geeksogeeks"));
+		
+		
+		//TestUndirectedGraphStructure();
+		TestTrieDictionary();
+		
 	}
 	
 	private static void TestStackWithMin() {
@@ -271,7 +277,7 @@ public class TestDataStructure<K> {
 	
 	private static void TestBalacedBSTree() {
 					
-		BalancedBSTres<Character, String> bt = new BalancedBSTres<Character, String>();		
+		SelfBalancedBSTres<Character, String> bt = new SelfBalancedBSTres<Character, String>();		
 	    bt.put('S', "Hexa");
 	    bt.put('E', "Quadra");
 	    bt.put('A', "Octa");
@@ -339,7 +345,24 @@ public class TestDataStructure<K> {
 		//PrintMSG("\nTotal Number of Vertices Connected to " + vertex + " = " + uGraph.getDFSCount());
 	}
 	
+	private static <E> void TestTrieDictionary() {
+		
+		TernarySearchTrieDict<String> tst = new TernarySearchTrieDict<>();
+		String a = "ram";
+		String b = "ramji";
+		tst.put(a, "one");
+		tst.put(b, "two");
+		PrintMSG("Longest Prefix = " + tst.findLongestPrefix((a+b)));
+		
+		//TrieDictionary<String> trieDict = new TrieDictionary<>();		
+		/*Iterator<TrieDictionary<String>.Node<String>> iterator = trieDict.keysWithPrefix("").iterator();						
+		while(iterator.hasNext()) {
+			TrieDictionary<String>.Node<String> node = iterator.next();
+			PrintMSG(""+ node.prefix + " and value = " + node.value);
+		}*/		
+	}
+	
 	private static void PrintMSG(Object msg) {
-		System.out.print(msg);
+		System.out.println(msg);
 	}
 }

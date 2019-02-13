@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * A Balanced Binary Search Tree typically is a combination of
+ * A Self Balanced Binary Search Tree typically is a combination of
  * 2-3 + Red-Black + Binary Search tree implementation.
  * 
  * Red-Black Tree Implementation Rules:
@@ -39,7 +39,7 @@ import java.util.Queue;
  * @param <V>
  *
  */
-public final class BalancedBSTres<K extends Comparable<K>, V> {
+public final class SelfBalancedBSTres<K extends Comparable<K>, V> {
 	
 	private final boolean RED = true;
 	private final boolean BLACK = false;
@@ -102,7 +102,7 @@ public final class BalancedBSTres<K extends Comparable<K>, V> {
 	 * Breadth First Traversal of Tree
 	 */
 	public void printAllNodesLevelOrder() {
-		Queue<Node> nodes = new LinkedList<BalancedBSTres<K,V>.Node>();
+		Queue<Node> nodes = new LinkedList<SelfBalancedBSTres<K,V>.Node>();
 		nodes.add(root);		
 		do {
 			Node node = nodes.remove();
@@ -121,7 +121,7 @@ public final class BalancedBSTres<K extends Comparable<K>, V> {
 	 * Diagonal Traversal of Tree
 	 */
 	public void printAllNodesDiagonally() {
-		Queue<Node> nodes = new LinkedList<BalancedBSTres<K,V>.Node>();
+		Queue<Node> nodes = new LinkedList<SelfBalancedBSTres<K,V>.Node>();
 		nodes.add(root);
 		Node node = root;
 		do {			
@@ -190,6 +190,25 @@ public final class BalancedBSTres<K extends Comparable<K>, V> {
 		}
 	}
 	
+	/**
+	 * Before Rotate:
+	 * 		 Node (E)
+	 * 		/	 \red
+	 *   Left     temp (x)
+	 *   (<E)     /	  \
+	 *         b/w    right
+	 *         E & X    >X
+	 *        
+	 * After Rotate:
+	 *              temp (X)
+	 *          red/      \
+	 *      Node (E)    right (>X)
+	 *      /    \
+	 *  Left     b/w
+	 *   (<E)
+	 * @param node
+	 * @return
+	 */	
 	private Node rotateLeft(Node node) {
 		Node temp = node.right;		
 		node.right = temp.left;
@@ -205,6 +224,28 @@ public final class BalancedBSTres<K extends Comparable<K>, V> {
 		return temp;
 	}
 	
+	/**
+	 * Before Rotate:
+	 * 		 Node (X)
+	 * 		/red    \
+	 * 	  temp (E)  Right (>X)
+	 *    /	  \        
+	 * Left    b/w
+	 *   <E   (E & X)
+	 *    	  
+	 *  
+	 * After Rotate:
+	 * 	     temp (E)
+	 *       /     \red
+	 *   Left       Node (X)
+	 *   <E         /      \
+	 *            b/w       Right
+	 *           (E & X)      >X
+	 * 
+	 * 
+	 * @param node
+	 * @return
+	 */
 	private Node rotateRight(Node node) {
 		Node temp = node.left;		
 		node.left = temp.right;

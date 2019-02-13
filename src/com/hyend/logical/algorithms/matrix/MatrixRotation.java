@@ -11,6 +11,9 @@ package com.hyend.logical.algorithms.matrix;
  * 8 5 2
  * 9 6 3
  * 
+ * The time complexity is O(n^2). 
+ * Where n is the the matrix.length/2 
+ * 
  * @author gopi_karmakar
  *
  */
@@ -37,7 +40,7 @@ public class MatrixRotation {
 		for(int layer = 0; layer < n/2; ++layer) {
 
 			int first = layer;
-			int last = n - 1 - layer;
+			int last = (n - 1) - layer;
 			
 			for(int i = first; i < last; ++i) {
 				

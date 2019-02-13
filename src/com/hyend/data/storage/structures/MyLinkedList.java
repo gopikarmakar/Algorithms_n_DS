@@ -128,6 +128,26 @@ public class MyLinkedList<E> implements Iterable<E> {
 		}
 	}
 	
+	public Node<E> removeNthFromEnd(int n) {
+		return removeNthFromEnd(head, n);
+	}
+	
+	
+	private Node<E> removeNthFromEnd(Node<E> head, int n) {
+        
+		int size = 1;
+		Node<E> node = head;
+		if(head == null || n == 0) return head;
+		while(node.next != null) {
+			node = node.next;
+			size+=1;
+		}		
+		node = head;
+		
+		return head;
+	}
+
+	
 	public int size() {
 		return totalSize;
 	}
