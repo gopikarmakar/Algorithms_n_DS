@@ -2,6 +2,8 @@ package com.hyend.data.storage.structures;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  * 
@@ -16,11 +18,27 @@ public class MyLinkedList<E> implements Iterable<E> {
 	private Node<E> head = null;
 	private Node<E> tail = null;
 	
-	static class Node<E> {		
+	static class Node<E> implements Iterable<E> {		
 		E item;
 		Node<E> next;		
 		Node(E item) {
 			this.item = item;
+		}
+		
+		@Override
+		public Iterator<E> iterator() {			
+			Iterator<E> itr = new Iterator<E>() {
+				@Override
+				public boolean hasNext() {					
+					return (next == null);
+				}
+				@Override
+				public E next() {
+					// TODO Auto-generated method stub
+					return item;
+				}
+			};
+			return itr;
 		}
 	}
 	
@@ -128,11 +146,53 @@ public class MyLinkedList<E> implements Iterable<E> {
 		}
 	}
 	
+	public Node<E> reverseKGroups(int k) {
+		return reverseKGroups(head, k);
+	}
+	
+	/**
+	 *         
+	 * input : 1->2->3->4->5->6-7 k = 3
+	 * output : 3->2->1->6->5->4->7
+	 * 
+	 * @param k
+	 */
+	private Node<E> reverseKGroups(Node<E> head, int k) { 
+		Node<E> current = head; 
+		Node<E> next = null;
+		Node<E> prev = null; 
+         
+       int count = 0; 
+  
+       	/* Reverse first k nodes of linked list */
+       	while (count < k && current != null)  {       		
+       		next = current.next; 
+       		current.next = prev; 
+       		prev = current; 
+       		current = next;
+       		count++;
+       	}	 
+  
+       	/* next is now a pointer to (k+1)th node  
+		   Recursively call for the list starting from current. 
+		   And make rest of the list as next of first node */
+       	if (next != null)  
+          head.next = reverseKGroups(next, k); 
+  
+       	// prev is now head of input list 
+       	return prev; 
+    }  
+	
 	public Node<E> removeNthFromEnd(int n) {
 		return removeNthFromEnd(head, n);
 	}
 	
-	
+	/**
+	 * Incomplete implementation
+	 * @param head
+	 * @param n
+	 * @return
+	 */
 	private Node<E> removeNthFromEnd(Node<E> head, int n) {
         
 		int size = 1;

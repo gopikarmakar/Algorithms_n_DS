@@ -123,7 +123,7 @@ public class TestDataStructure<K> {
 		
 		//TestUndirectedGraphStructure();
 		TestTrieDictionary();
-		
+		//TestSinglyLinkedList();
 	}
 	
 	private static void TestStackWithMin() {
@@ -160,13 +160,23 @@ public class TestDataStructure<K> {
 		lList.add("Eight");
 		lList.add("Nine");
 		lList.add("Ten");
-		//lList.removeAllDuplicates();
-		PrintMSG("Item Deleted = " + lList.delete("Two"));
 		//PrintMSG("Total Size = " + lList.size());
-		Iterator<String> items = lList.iterator(); 
+		/*Iterator<String> nodes = lList.reverseKGroups(3).iterator();				
+		while(nodes.hasNext()) {
+			PrintMSG(nodes.next());			
+		}*/
+		/*MyLinkedList.Node<String> nodes = lList.reverseKGroups(2);
+		while(nodes.next != null) {
+			PrintMSG(nodes.item);
+			nodes = nodes.next;
+		}*/
+		
+		//lList.removeAllDuplicates();
+		//PrintMSG("Item Deleted = " + lList.delete("Two"));
+		/*Iterator<String> items = lList.iterator(); 
 		while(items.hasNext()) {
 			PrintMSG(items.next());
-		}		
+		}*/		
 		//lList.printAllNodes();
 	}
 	
@@ -347,15 +357,42 @@ public class TestDataStructure<K> {
 	
 	private static <E> void TestTrieDictionary() {
 		
-		TernarySearchTrieDict<String> tst = new TernarySearchTrieDict<>();
-		String a = "ram";
-		String b = "ramji";
-		tst.put(a, "one");
-		tst.put(b, "two");
-		PrintMSG("Longest Prefix = " + tst.findLongestPrefix((a+b)));
+		//TernarySearchTrieDict<String> trieDict = new TernarySearchTrieDict<>();
+		TrieDictionary<String> trieDict = new TrieDictionary<>();
+		/*trieDict.put("Asuka", "Six");
+		trieDict.put("Kiaan", "one");
+		trieDict.put("Keshav", "two");
+		trieDict.put("Kush", "three");
+		trieDict.put("Kia", "four");
+		trieDict.put("Tulsi", "five");		
+		trieDict.put("Karan", "Seven");
+		trieDict.put("Kunal", "eight");
+		trieDict.put("Kiran", "nine");
+		trieDict.put("Kabir", "ten");*/
+		//trieDict.putChunks("googleishiring", "google");
+		//trieDict.putChunks("shesellsseashells", "shore");
+		//trieDict.putChunks("godhelpmeforinterview", "god");
+		//trieDict.putChunks("appletisnothiring", "apple");
+		//trieDict.putChunks("appleisnothiring", "apple");
+		/*Iterator<TernarySearchTrieDict<String>.Node<String>> itr = trieDict.keysWithPrefix("as").iterator(); 
+		while(itr.hasNext())
+			PrintMSG("Total Keys = " + itr.next().prefix);*/
+		//PrintMSG("Longest Prefix = " + trieDict.longestCommonPrefixOf("Kiransss"));		
+		PrintMSG("Count = " + trieDict.allDistinctSubstrings("ababa"));
+		/*Iterator<String> itr = trieDict.substringMatch("interview").iterator();
+		while(itr.hasNext()) 
+			PrintMSG("Substrings Are = " + itr.next());*/
+		/*String key = "cgcgggcgcg";
+		int length = key.length();
+		int index = 0, n = 3;
+		while(index < (length-n)) {
+			trieDict.put(key.substring(index, index + n), (""+index));
+			index+=1;
+		}*/
+		//PrintMSG("Unique Substrings = " + trieDict.uniqueNSubstrings("cgcgggcgcg", 3));
 		
 		//TrieDictionary<String> trieDict = new TrieDictionary<>();		
-		/*Iterator<TrieDictionary<String>.Node<String>> iterator = trieDict.keysWithPrefix("").iterator();						
+		/*Iterator<TrieDictionary<String>.Node<String>> iterator = trieDict.keysWithPrefix("an").iterator();						
 		while(iterator.hasNext()) {
 			TrieDictionary<String>.Node<String> node = iterator.next();
 			PrintMSG(""+ node.prefix + " and value = " + node.value);

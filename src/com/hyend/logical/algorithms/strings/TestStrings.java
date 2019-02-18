@@ -13,6 +13,10 @@ public class TestStrings {
 		//boolean val = anagram.isItAnagramString("INTEGRAL", "TRIANGLE");¥
 		
 		
-		System.out.println(new ZigZagConversion().convert("paypalishiring", 4));
+		//System.out.println(new ZigZagConversion().convert("paypalishiring", 4));
+		
+		//KMPSubstringPatternSearch kmp = new KMPSubstringPatternSearch();
+		RabinKarpPatternMatching rabin = new RabinKarpPatternMatching();
+		System.out.println("Is It A Match = " + rabin.isPatternMatched("abcxabcdabcdabcy", "abcdabcy"));
 	}
 }
