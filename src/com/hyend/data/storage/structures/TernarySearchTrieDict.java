@@ -1,11 +1,10 @@
 package com.hyend.data.storage.structures;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
-import javax.management.ValueExp;
 
 public class TernarySearchTrieDict<E> {
 	
@@ -143,39 +142,39 @@ public class TernarySearchTrieDict<E> {
 		else 						return length;
 	}
 	
+	int count = 0;
 	@SuppressWarnings("unchecked")
 	public int uniqueNSubstrings(String key, int n) {		
-		int index = 0, count = 0;
-		int length = key.length();
+		int index = 0;
+		int length = key.length()-n;
 		while(index < length) {
-			String suffix = key.substring(index);
+			String suffix = key.substring(index, index+n);
 			root = put(root, suffix, suffix, (E)suffix, 0);
 			index += 1;
 		}
 		index = 0;
+		HashMap<E, String> uniqueStrings = new HashMap<>();
 		while(index < length) {
-			//String prefix = key.substring(index);
-			count = getUniqueNSubstrings(root, key.substring(index++), 0, 0);
+			count = getUniqueNSubstrings(root, key.substring(index, index+n), 0, uniqueStrings);
 			index += 1;
 		}
 		return count;
 	}
-	
-	private int getUniqueNSubstrings(Node<E> x, String key, int d, int count) {
 		
-		if(x == null) return count;
-		/*if(x.value != null) {
-			count += 1;
+	private int getUniqueNSubstrings(Node<E> x, String key, int d, HashMap<E, String> uniqueStrings) {
+				
+		if(x == null) return uniqueStrings.size();
+		if(x.value != null) {			
+			uniqueStrings.put(x.value, x.prefix);
 			System.out.println("x = " + x.value);
-		}*/
-		count += 1;
-		if(d == key.length()) return count;
+		}
+		if(d == key.length()) return uniqueStrings.size();
 		
 		char c = key.charAt(d);
-		if(c < x.c ) 				getUniqueNSubstrings(x.left, key, d, count);
-		else if (c > x.c) 			getUniqueNSubstrings(x.right, key, d, count);		
-		else if(d < key.length()-1) getUniqueNSubstrings(x.mid, key, d+1, count);
+		if(c < x.c ) 				getUniqueNSubstrings(x.left, key, d, uniqueStrings);
+		else if (c > x.c) 			getUniqueNSubstrings(x.right, key, d, uniqueStrings);		
+		else if(d < key.length()-1) getUniqueNSubstrings(x.mid, key, d+1, uniqueStrings);
 		
-		return count;		
+		return uniqueStrings.size();		
 	}
 }

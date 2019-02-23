@@ -120,9 +120,9 @@ public class TestDataStructure<K> {
 		//System.out.println();
 		//System.out.println(new PalindromeString().canItBeAPalindrome("geeksogeeks"));
 		
-		
-		//TestUndirectedGraphStructure();
-		TestTrieDictionary();
+		//TestBinarySearchTree();
+		TestUndirectedGraphStructure();
+		//TestTrieDictionary();
 		//TestSinglyLinkedList();
 	}
 	
@@ -249,10 +249,10 @@ public class TestDataStructure<K> {
 		System.out.println(queue.pop());
 	}
 	
-	private static void TestBinaryTree() {
+	private static void TestBinarySearchTree() {
 		BinarySearchTree<Integer, String> bt = new BinarySearchTree<Integer, String>();	
 		int[][] keyValue = new int[20][1];		
-	    bt.put(11, "Juu");
+	    /*bt.put(11, "Juu");
 	    bt.put(15, "JuIchi");
 	    bt.put(5, "Kyuu");
 	    bt.put(16, "JuuNi");
@@ -271,18 +271,28 @@ public class TestDataStructure<K> {
 	    bt.put(6, "Uno");
 	    bt.put(20, "Uno");	   
 	    bt.put(9, "Uno");
-	    bt.put(21, "twotwo");
-	    PrintMSG("Tree Size = " + bt.size());
-	    PrintMSG("The Value For Deteletd Key 11 = " + bt.delete(11));
+	    bt.put(21, "twotwo");*/
+		bt.put(5, "f");
+		bt.put(2, "t");
+		bt.put(1, "s");
+		bt.put(3, "t");
+		bt.put(7, "s");		
+		bt.put(6, "s");
+		bt.put(8, "e");
+	    //PrintMSG("Tree Size = " + bt.size());
+	    //PrintMSG("The Value For Deteletd Key 11 = " + bt.delete(11));
 	    //PrintMSG("The Value For Key 2 = " + bt.contains(2));
 	    //bt.printAllPostOrderNodes();
-	    bt.printAllInOrderNodes(bt.NON_RECURSIVE);
+	    System.out.println("PreOrder Printing");
+	    bt.printAllPreOrderNodes();
 	    //bt.printAllInOrderNodes(bt.NON_RECURSIVE);
 	    //bt.printNodesInRange(4, 8);
 	    //bt.printAllRightDiagonalNodes();
 	    //bt.convertToDoubleLinkedList();
 	    //bt.printDoubleyLinkedList(bt.DESCENDING);
-	    //bt.printAllBFSNodesFromRoot();	    	    	    	    	    	    	  	   
+	    //bt.printAllBFSNodesFromRoot();
+	    System.out.println("Invert Printing");
+	    bt.printAnInvertedTree();
 	}
 	
 	private static void TestBalacedBSTree() {
@@ -345,10 +355,9 @@ public class TestDataStructure<K> {
 		if(uGraph.hasPathTo(destination)) {
 			
 			Iterator<Integer> path = uGraph.pathTo(source, destination).iterator();
-		
 			PrintMSG("\n");
 			while(path.hasNext()) {
-				PrintMSG("" + path.next() + "->");
+				System.out.print("" + path.next() + "->");
 			}
 		}
 		PrintMSG("\n\nIs There A Path Between " + source + " to " + destination + " = " + uGraph.hasPathTo(destination));
@@ -357,8 +366,8 @@ public class TestDataStructure<K> {
 	
 	private static <E> void TestTrieDictionary() {
 		
-		//TernarySearchTrieDict<String> trieDict = new TernarySearchTrieDict<>();
-		TrieDictionary<String> trieDict = new TrieDictionary<>();
+		TernarySearchTrieDict<String> trieDict = new TernarySearchTrieDict<>();
+		//TrieDictionary<String> trieDict = new TrieDictionary<>();
 		/*trieDict.put("Asuka", "Six");
 		trieDict.put("Kiaan", "one");
 		trieDict.put("Keshav", "two");
@@ -377,8 +386,8 @@ public class TestDataStructure<K> {
 		/*Iterator<TernarySearchTrieDict<String>.Node<String>> itr = trieDict.keysWithPrefix("as").iterator(); 
 		while(itr.hasNext())
 			PrintMSG("Total Keys = " + itr.next().prefix);*/
-		//PrintMSG("Longest Prefix = " + trieDict.longestCommonPrefixOf("Kiransss"));		
-		PrintMSG("Count = " + trieDict.allDistinctSubstrings("ababa"));
+		//PrintMSG("Longest Prefix = " + trieDict.longestCommonPrefixOf("Kiaaan"));		
+		//PrintMSG("Count = " + trieDict.allDistinctSubstrings("ababa"));
 		/*Iterator<String> itr = trieDict.substringMatch("interview").iterator();
 		while(itr.hasNext()) 
 			PrintMSG("Substrings Are = " + itr.next());*/
@@ -389,7 +398,7 @@ public class TestDataStructure<K> {
 			trieDict.put(key.substring(index, index + n), (""+index));
 			index+=1;
 		}*/
-		//PrintMSG("Unique Substrings = " + trieDict.uniqueNSubstrings("cgcgggcgcg", 3));
+		PrintMSG("Unique Substrings = " + trieDict.uniqueNSubstrings("cgcgggcgcg", 3));
 		
 		//TrieDictionary<String> trieDict = new TrieDictionary<>();		
 		/*Iterator<TrieDictionary<String>.Node<String>> iterator = trieDict.keysWithPrefix("an").iterator();						

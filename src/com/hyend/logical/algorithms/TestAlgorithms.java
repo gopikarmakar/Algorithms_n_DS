@@ -9,7 +9,7 @@ public class TestAlgorithms {
 	public static void main(String[] args) {
 		
 		int[] arr = {8, 9, 7, 12, 11, 10, 1};
-		int[] seats = {0,0,1,0,1,1};
+		int[] seats = {1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1};
 		
 		/*FindFirstMissingPositive findMinPositive = 
 				new FindFirstMissingPositive();
@@ -34,9 +34,10 @@ public class TestAlgorithms {
 		//GCD gcd = new GCD();
 		int[] nums1 = {1, 2};
 		int[] nums2 = {3, 4};
-		MedianOfTwoSortedArrays median = new MedianOfTwoSortedArrays();
-		double res = median.findMedian(nums1, nums2);	
-		printMsg("median = "+res);
+		//MedianOfTwoSortedArrays median = new MedianOfTwoSortedArrays();
+		//double res = median.findMedian(nums1, nums2);	
+		//printMsg("median = "+res);
+		printMsg("Max Zeroes = " + new MaxZerosByFlipping().getMaxZeroes(seats));
 	}
 	
 	private static void printMsg(String msg) {		

@@ -141,6 +141,10 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 		traverseBFSFromRootNonRecursive();
 	}
 	
+	public void printAnInvertedTree() {
+		invertATree();
+	}
+	
 	public void printAllRightDiagonalNodes() {
 		if(root == null)
 			return;
@@ -388,6 +392,23 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 				nodes.add(node.left);
 			if(node.right != null)
 				nodes.add(node.right);			
+		} while(!nodes.isEmpty());
+	}
+	
+	/**
+	 * Invert a tree.
+	 */
+	private void invertATree() {		
+		Queue<Node> nodes = new LinkedList<BinarySearchTree<K,V>.Node>();		
+		nodes.add(root);
+		do {
+			Node node = nodes.remove();
+			K parent = (node.parent == null) ? null : node.parent.key;
+			System.out.println("Parent = " + parent + " and Node = " + node.key);			
+			if(node.right != null)
+				nodes.add(node.right);
+			if(node.left != null)
+				nodes.add(node.left);
 		} while(!nodes.isEmpty());
 	}
 	

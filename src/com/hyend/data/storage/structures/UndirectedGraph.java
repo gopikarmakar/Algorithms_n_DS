@@ -1,5 +1,6 @@
 package com.hyend.data.storage.structures;
 
+import java.awt.print.Book;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -109,7 +110,7 @@ public class UndirectedGraph {
 	 * @param v
 	 * @param adjV
 	 */
-	private void addEdge(int v, int adjV, int type) {				
+	private void addEdge(int v, int adjV, int type) {
 		myAdjList[v].add(adjV);
 		myAdjHashSet.put(v, myAdjList[v]);
 		myAdjList[adjV].add(v);
@@ -133,7 +134,7 @@ public class UndirectedGraph {
 	 * proportional to the sum of their degrees
 	 * @param source
 	 */
-	public void dfsPath(int source) {				
+	public void dfsPath(int source) {
 		count+=1;
 		marked[source] = true;
 		//System.out.print("" + v + "->");
@@ -180,7 +181,7 @@ public class UndirectedGraph {
 		
 		if(!hasPathTo(v)) return null;
 		
-		Stack<Integer> paths = new Stack<>();		
+		Stack<Integer> paths = new Stack<>();
 		for(int x = v; x != source; x = edgeTo[x])
 			paths.push(x);
 		paths.push(source);
@@ -200,4 +201,30 @@ public class UndirectedGraph {
 	}
 	
 	public void printGraph() {}
+	
+	public class Cycle {
+		
+		private boolean[] marked;
+		private boolean hasCycle;
+		
+		public Cycle(UndirectedGraph unDiGraph) {
+			marked = new boolean[unDiGraph.getTotalVertices()];
+			for(int s = 0; s < unDiGraph.getTotalVertices(); s++) {
+				if(!marked(s))
+					dfs(unDiGraph, s, s);
+			}
+		}
+		
+		public void dfs(UndirectedGraph unDiGraph, int v, int u) {
+			marked[v] = true;
+			for(int w : unDiGraph.getAdjList(v)) {
+				if(!marked(w)) dfs(unDiGraph, w, v);
+				else if(w != u) hasCycle = true;
+			}
+		}
+		
+		public boolean hasCycle() {
+			return hasCycle;
+		}
+	}
 }
