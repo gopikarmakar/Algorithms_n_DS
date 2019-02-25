@@ -121,7 +121,7 @@ public class TestDataStructure<K> {
 		//System.out.println(new PalindromeString().canItBeAPalindrome("geeksogeeks"));
 		
 		//TestBinarySearchTree();
-		TestUndirectedGraphStructure();
+		TestGraphStructure();
 		//TestTrieDictionary();
 		//TestSinglyLinkedList();
 	}
@@ -339,7 +339,7 @@ public class TestDataStructure<K> {
 		PrintMSG("Value for google = " + hashTable.get("apple"));
 	}
 	
-	private static void TestUndirectedGraphStructure() {
+	private static void TestGraphStructure() {
 		int[][] graph = {{0, 5}, {4, 3}, {0, 1}, {9, 12}, {6, 4},
 						 {5, 4}, {0, 2}, {11, 12}, {9, 10}, {0, 6},
 						 {7, 8}, {9, 11}, {5, 3}, {2, 6, 4}};
@@ -354,7 +354,7 @@ public class TestDataStructure<K> {
 		
 		if(uGraph.hasPathTo(destination)) {
 			
-			Iterator<Integer> path = uGraph.pathTo(source, destination).iterator();
+			Iterator<Integer> path = uGraph.pathTo(destination, source).iterator();
 			PrintMSG("\n");
 			while(path.hasNext()) {
 				System.out.print("" + path.next() + "->");
@@ -362,6 +362,10 @@ public class TestDataStructure<K> {
 		}
 		PrintMSG("\n\nIs There A Path Between " + source + " to " + destination + " = " + uGraph.hasPathTo(destination));
 		//PrintMSG("\nTotal Number of Vertices Connected to " + vertex + " = " + uGraph.getDFSCount());
+		
+		//DirectedGraph diGraph = new DirectedGraph(graph);
+		//DirectedGraph.DirectedDFS dfs = diGraph.new DirectedDFS();
+		//dfs.dfs(0);
 	}
 	
 	private static <E> void TestTrieDictionary() {

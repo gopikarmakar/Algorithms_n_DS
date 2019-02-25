@@ -153,24 +153,19 @@ public class UndirectedGraph {
 	 */
 	public void bfsPath(int source) {
 		
-		//LinkedListQueue<Integer> queue = new LinkedListQueue<>();
-		Queue<Integer> queue = new LinkedList<Integer>();
-		//LinkedListWithStackAndQueue<Integer> queue = new LinkedListWithStackAndQueue<Integer>();
+		Queue<Integer> queue = new LinkedList<Integer>();	
 		marked[source] = true;		
 		queue.add(source);
-		//queue.pushOrEnqueue(source);
 		
 		while(!queue.isEmpty()) {
 						
 			int v = queue.remove();
-			//int v = queue.dequeue();
 			//System.out.println("\nDQ = " + v + " Size in DQ = " + queue.size);
 			for(int e : getAdjList(v)) {
 				if(!marked(e)) {
 					edgeTo[e] = v;
 					marked[e] = true;
 					queue.add(e);
-					//queue.pushOrEnqueue(e);
 					//System.out.println("\nNQ = " + e + " Size in NQ = " + queue.size);
 				}
 			}
@@ -202,7 +197,7 @@ public class UndirectedGraph {
 	
 	public void printGraph() {}
 	
-	public class Cycle {
+	class Cycle {
 		
 		private boolean[] marked;
 		private boolean hasCycle;
