@@ -241,7 +241,7 @@ public class DirectedGraph {
 			for(int w : DirectedGraph.this.getAdjacencyListFor(v)) {
 				if(!marked[w]) dfs(w);
 			}
-		}		
+		}
 		public boolean isStronglyConnected(int v, int w) {
 			return (id[v] == id[w]);
 		}		

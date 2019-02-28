@@ -1,5 +1,6 @@
 package com.hyend.logical.algorithms;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -37,7 +38,15 @@ public class TestAlgorithms {
 		//MedianOfTwoSortedArrays median = new MedianOfTwoSortedArrays();
 		//double res = median.findMedian(nums1, nums2);	
 		//printMsg("median = "+res);
-		printMsg("Max Zeroes = " + new MaxZerosByFlipping().getMaxZeroes(seats));
+		//printMsg("Max Zeroes = " + new MaxZerosByFlipping().getMaxZeroes(seats));
+		
+		int[] arr1 = {1, 2, 3};
+		int[] arr2 = {2, 4, 6, 8};
+		int[] arr3 = {3, 7, 9};		
+		
+		MultiwayMerge mMerge = new MultiwayMerge();
+		int[][] keys = {arr1, arr2, arr3};
+		mMerge.merge(keys);
 	}
 	
 	private static void printMsg(String msg) {		

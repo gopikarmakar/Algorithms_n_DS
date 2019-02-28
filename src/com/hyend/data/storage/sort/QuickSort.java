@@ -10,7 +10,7 @@ package com.hyend.data.storage.sort;
  * Due to random shuffling of values from pivot compares.
  * The QuickSort is not stable, but it's a very efficient 
  * sorting algorithm for primitive type of data. Since,
- * It's an in-place sorting algorithm and unlike MergeSort,
+ * It's an in-place sorting algorithm unlike MergeSort,
  * It doesn't use any extra space for an auxiliary array.
  */
 public class QuickSort {
