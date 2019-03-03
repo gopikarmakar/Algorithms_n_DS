@@ -32,8 +32,9 @@ public class TestRecursion {
 		Permutations charPerm = new Permutations(keys);*/
 		
 		//StudentAttendance sa = new StudentAttendance();
-		Permutations p = new Permutations();
-		PrintMSG("Total Ways = " + p.totalPemutations( 3, 1, 2, ""));
+		//Permutations p = new Permutations();
+		//PrintMSG("Total Ways = " + p.totalPemutations( 3, 1, 2, ""));
+		Combinations comb = new Combinations(3);
 	}
 	
 	private static void PrintMSG(Object msg) {

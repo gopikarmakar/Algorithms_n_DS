@@ -1,6 +1,6 @@
 package com.hyend.logical.algorithms;
 
-public class MedianOfTwoSortedArrays {
+public class MedianOfTwoSortedArrays {	
       
     // Function to find minimum 
     private boolean minimum(int a, int b) { 
