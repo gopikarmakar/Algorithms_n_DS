@@ -30,8 +30,9 @@ public class TestAlgorithms {
 		//MaximumDistanceToTheClosestPerson mdttcp = new MaximumDistanceToTheClosestPerson();
 		//mdttcp.maximumDistanceToTheClosestPerson(seats);
 		
-		//PrintMinNumberOfIDPattern minNumberPattern = new PrintMinNumberOfIDPattern();
-		//String pattern = minNumberPattern.printMinNumberForPattern("DIDI");
+		PrintMinNumberOfIDPattern minNumberPattern = new PrintMinNumberOfIDPattern();
+		String pattern = minNumberPattern.printMinNumberForPattern("DI");
+		printMsg(pattern);
 		//GCD gcd = new GCD();
 		int[] nums1 = {1, 2};
 		int[] nums2 = {3, 4};
@@ -44,9 +45,9 @@ public class TestAlgorithms {
 		int[] arr2 = {2, 4, 6, 8};
 		int[] arr3 = {3, 7, 9};		
 		
-		MultiwayMerge mMerge = new MultiwayMerge();
-		int[][] keys = {arr1, arr2, arr3};
-		mMerge.merge(keys);
+		//MultiwayMerge mMerge = new MultiwayMerge();
+		//int[][] keys = {arr1, arr2, arr3};
+		//mMerge.merge(keys);
 	}
 	
 	private static void printMsg(String msg) {		

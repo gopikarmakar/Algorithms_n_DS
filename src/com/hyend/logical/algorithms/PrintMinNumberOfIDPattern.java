@@ -10,7 +10,8 @@ import java.util.Stack;
  * Given a pattern containing only I’s and D’s. 
  * I for increasing and D for decreasing. 
  * Devise an algorithm to print the minimum number 
- * following that pattern. Digits from 1-9 and digits can’t repeat
+ * following that pattern. 
+ * should be between 1-9 digits and the digits can’t repeat
  * 
  * @author gopi_karmakar
  *
@@ -30,8 +31,8 @@ public class PrintMinNumberOfIDPattern {
 			if (x == len || pattern.charAt(x) == 'I') {
 				
 				while (!stack.isEmpty()) {					
-					converted += stack.peek();
-					stack.pop();
+					//converted += stack.peek();
+					converted += stack.pop();
 				}
 			}		
 		}

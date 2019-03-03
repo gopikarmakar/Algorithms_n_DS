@@ -1,6 +1,8 @@
 package com.hyend.logical.algorithms;
 
 /**
+ * An inefficient solution. Can be solved with min heap.
+ * 
  * Given an unsorted integer array, 
  * find the smallest missing positive integer.
  * 
@@ -11,7 +13,7 @@ package com.hyend.logical.algorithms;
  * output: 3
  * 
  * It was a hard level LeetCodequestion 
- * Code has been submitted and accepted to LeetCode.
+ * Code has been submitted and accepted to LeetCode in one shot.
  *  
  * @author gopi_karmakar
  *

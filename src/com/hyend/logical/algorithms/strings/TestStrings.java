@@ -16,7 +16,14 @@ public class TestStrings {
 		//System.out.println(new ZigZagConversion().convert("paypalishiring", 4));
 		
 		//KMPSubstringPatternSearch kmp = new KMPSubstringPatternSearch();
-		RabinKarpPatternMatching rabin = new RabinKarpPatternMatching();
-		System.out.println("Is It A Match = " + rabin.isPatternMatched("abcxabcdabcdabcy", "abcdabcy"));
+		//RabinKarpPatternMatching rabin = new RabinKarpPatternMatching();
+		//System.out.println("Is It A Match = " + rabin.isPatternMatched("abcxabcdabcdabcy", "abcdabcy"));
+		
+		LongestPalindromeSubString lps = new LongestPalindromeSubString();
+		printMsg(lps.palindromicSubString("bb"));
+	}
+	
+	private static void printMsg(String msg) {		
+		System.out.println(msg);
 	}
 }

@@ -2,7 +2,7 @@ package com.hyend.logical.algorithms;
 
 /**
  * The time complexity is O(1).
- * Since since the number of operations is constant.
+ * Since the number of operations are constant.
  * @author gopi_karmakar
  *
  */
@@ -14,8 +14,7 @@ public class RectangleIntersection {
 		
 		int x, y, width, height;
 		
-		public Rectangle(int x, int y, int width, int height) {
-			
+		public Rectangle(int x, int y, int width, int height) {			
 			this.x = x;
 			this.y = y;
 			this.width = width;
@@ -25,18 +24,38 @@ public class RectangleIntersection {
 	
 	public Rectangle intersectRectangle(Rectangle r1, Rectangle r2) {
 		
-		if(!isIntersect(r1, r2)) {
+		if(!isIntersecting(r1, r2)) {
 			return new Rectangle(0, 0, -1, -1);
 		}
 		
-		return new Rectangle(Math.max(r1.x, r2.x), Math.max(r1.y, r2.y),
-				(Math.min(r1.x + r1.width, r2.x + r2.width) - Math.max(r1.x, r2.x)),
-				(Math.min(r1.y + r1.height, r2.y + r2.height) - Math.max(r1.y, r2.y)));
+		return new Rectangle(getMaxX(r1, r2), getMaxY(r1, r2),
+				getIntersectingWidth(r1, r2), getIntersectingHeight(r1, r2));
 	}
 	
-	private boolean isIntersect(Rectangle r1, Rectangle r2) {
-		
-		return ((r1.x <= r2.x + r2.width && r1.x + r1.width >= r2.x) &&
+	/**
+	 * Helper Methods	
+	 * @param r1
+	 * @param r2
+	 * @return
+	 */
+	private int getMaxX(Rectangle r1, Rectangle r2) {
+		return Math.max(r1.x, r2.x);
+	}
+
+	private int getMaxY(Rectangle r1, Rectangle r2) {
+		return Math.max(r1.y, r2.y);
+	}
+
+	private int getIntersectingWidth(Rectangle r1, Rectangle r2) {
+		return Math.min(r1.x + r1.width, r2.x + r2.width) - getMaxX(r1, r2);
+	}
+
+	private int getIntersectingHeight(Rectangle r1, Rectangle r2) {
+		return Math.min(r1.y + r1.height, r2.y + r2.height) - getMaxY(r1, r2);
+	}
+
+	private boolean isIntersecting(Rectangle r1, Rectangle r2) {
+		return ((r1.x <= r2.x + r2.width && r1.x + r1.width >= r2.x) && 
 				(r1.y <= r2.y + r2.height && r1.y + r1.height >= r2.y));		
 	}
 }

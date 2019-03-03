@@ -13,13 +13,12 @@ package com.hyend.logical.algorithms.recursive;
 public class Staircase {
 	
 	int totalWays = 0;
-	int[] cache;
 	
 	public Staircase() {}
 	
 	public Staircase(int n) {
-		cache = new int[n+1];
-	}
+		//cache = new int[n+1];
+	}	
 	
 	/**
 	 * Highly inefficient recursive approach.
@@ -46,7 +45,7 @@ public class Staircase {
 	 * @param temp
 	 * @return
 	 */
-	public int numberOfWays(int n, int[] temp) {
+	public int numberOfWays(int n, int[] cache) {
 		
 		if(cache[n] != 0) return cache[n];
 		if(n == 0 || n == 1) return 1;
@@ -71,7 +70,7 @@ public class Staircase {
 		temp[1] = 1;
 		if(n == 0 || n == 1) return temp[n];
 		
-		for(i = 2; i <= n; i++) {
+		for(; i <= n; i++) {
 			temp[i] = temp[n-1] + temp[n-2];
 		}
 		return temp[i-1];
@@ -86,13 +85,14 @@ public class Staircase {
 	 */
 	public int numOfWaysWithInRange(int n, int[] range) {
 		
-		int i = 1;
+		
 		int[] temp = new int[n+1];
 		temp[0] = 1;
 		
 		if(n == 0) return 1;
 		
-		for(i = 1; i<= n; i++) {
+		int i = 1;
+		for(; i<= n; i++) {
 			totalWays = 0;
 			for(int j : range) {
 				if(i-j >= 0) 

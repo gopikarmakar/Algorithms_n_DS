@@ -126,6 +126,6 @@ public class StudentAttendance {
         count += getPenaltyWays(days, currDay + 1, 'A', prev, aCount + 1, 
         penalty || (aCount + 1 >= 2));
 
-        return count;
+        return count;        
     }
 }

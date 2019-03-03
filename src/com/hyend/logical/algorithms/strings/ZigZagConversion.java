@@ -29,6 +29,6 @@ public class ZigZagConversion {
 		for(String str : chunks)
 			zigzag += str;
 			
-		return zigzag;
+		return zigzag;		
     }
 }

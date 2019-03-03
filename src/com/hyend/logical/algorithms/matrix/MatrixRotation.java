@@ -27,7 +27,7 @@ public class MatrixRotation {
 	}
 
 	/**
-	 * We rotate the matrix in layers. Which means 
+	 * We rotate the matrix in layers. Which means
 	 * rotate all the elements from the most outer layer first.
 	 * After rotating a layer completely we should reduce the size
 	 * of the matrix by 1 and keep track of the offset.

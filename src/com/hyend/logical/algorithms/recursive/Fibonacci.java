@@ -26,6 +26,11 @@ public class Fibonacci {
 		return array;
 	}
 	
+	/**
+	 * Very inefficient
+	 * 
+	 * @return
+	 */
 	public int[] recursive() {
 				
 		if(counter == this.limit) return array;
@@ -65,7 +70,11 @@ public class Fibonacci {
 	 * @param temp
 	 * @return
 	 */
-	public int findFib(int pos, int[] temp) {
+	public int findFibMemoized(int limit) {
+		int[] temp = new int[limit+1];
+		return memoized(limit, temp);
+	}
+	private int memoized(int pos, int[] temp) {
 		
 		if(temp[pos] != 0) {
 			return temp[pos];
@@ -73,9 +82,9 @@ public class Fibonacci {
 		
 		if(pos == 1 || pos == 2)	return 1;
 		else {
-			sum = findFib(pos-1, temp) + findFib(pos-2, temp);
+			sum = memoized(pos-1, temp) + memoized(pos-2, temp);
 			temp[pos] = sum;
 		}
-		return temp[pos];
+		return temp[pos];		
 	}
 }

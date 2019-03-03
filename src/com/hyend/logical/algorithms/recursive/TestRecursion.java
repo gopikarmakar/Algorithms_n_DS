@@ -1,5 +1,7 @@
 package com.hyend.logical.algorithms.recursive;
 
+import java.util.ArrayList;
+
 public class TestRecursion {
 	
 	public static void recursive(int[] arr, int l, int h) {
@@ -17,8 +19,21 @@ public class TestRecursion {
 		
 		//StudentAttendance sa = new StudentAttendance();
 		//PrintMSG(sa.waysToGetPenalty(5));
-		int[] arr = {6,3,2,1,5,4,9,7,10,8};
-		recursive(arr, 0, arr.length-1);
+		//int[] arr = {6,3,2,1,5,4,9,7,10,8};
+		//recursive(arr, 0, arr.length-1);
+		
+		//Fibonacci fib = new Fibonacci();
+		//PrintMSG("Fibonacci Sum = " + fib.findFibMemoized(8));
+		
+		/*ArrayList<Integer> keys = new ArrayList<>();
+		keys.add(1);
+		keys.add(1);
+		keys.add(2);
+		Permutations charPerm = new Permutations(keys);*/
+		
+		//StudentAttendance sa = new StudentAttendance();
+		Permutations p = new Permutations();
+		PrintMSG("Total Ways = " + p.totalPemutations( 3, 1, 2, ""));
 	}
 	
 	private static void PrintMSG(Object msg) {
