@@ -8,9 +8,7 @@ import java.util.Queue;
 
 public class TernarySearchTrieDict<E> {
 	
-	public TernarySearchTrieDict() {
-		// TODO Auto-generated constructor stub		
-	}
+	public TernarySearchTrieDict() {}
 
 	private Node<E> root;
 		
@@ -49,7 +47,7 @@ public class TernarySearchTrieDict<E> {
 	 */
 	private Node<E> put(Node<E> x, String key, String prefix, E value, int d) {
 		
-		char c = key.charAt(d);		
+		char c = key.charAt(d);
 		if(x == null) {
 			x = new Node<E>(); 
 			x.c = c; 

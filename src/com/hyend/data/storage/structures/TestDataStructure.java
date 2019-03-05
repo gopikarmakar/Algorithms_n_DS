@@ -2,6 +2,7 @@ package com.hyend.data.storage.structures;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Stack;
@@ -121,9 +122,9 @@ public class TestDataStructure<K> {
 		//System.out.println(new PalindromeString().canItBeAPalindrome("geeksogeeks"));
 		
 		//TestBinarySearchTree();
-		TestGraphStructure();
+		//TestGraphStructure();
 		//TestTrieDictionary();
-		//TestSinglyLinkedList();
+		TestSinglyLinkedList();
 	}
 	
 	private static void TestStackWithMin() {
@@ -150,16 +151,23 @@ public class TestDataStructure<K> {
 		lList.add("One");
 		lList.add("Two");
 		lList.add("Three");
-		lList.add("Three");
 		lList.add("Four");
 		lList.add("Five");
-		lList.add("Five");
+		/*lList.add("Five");
 		lList.add("Six");
 		lList.add("Seven");
 		lList.add("Eight");
 		lList.add("Eight");
 		lList.add("Nine");
-		lList.add("Ten");
+		lList.add("Ten");*/		
+		MyLinkedList.Node<String> node = lList.reverse();		
+		Iterator<String> items = lList.iterator();
+		while(items.hasNext()) {
+			PrintMSG(items.next());
+			ArrayList<Integer> al = new ArrayList<>();
+			al.remove(al.size());
+		}
+		
 		//PrintMSG("Total Size = " + lList.size());
 		/*Iterator<String> nodes = lList.reverseKGroups(3).iterator();				
 		while(nodes.hasNext()) {

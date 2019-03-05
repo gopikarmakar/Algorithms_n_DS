@@ -144,6 +144,26 @@ public class MyLinkedList<E> implements Iterable<E> {
 			}
 			current = current.next;
 		}
+	}	
+	
+	public Node<E> reverse() {
+		return reverse(head);		
+	}
+	
+	private Node<E> reverse(Node<E> head) {		 
+		Node<E> prev = null;
+		Node<E> next = null;
+		Node<E> current = head;
+		
+		while(current != null) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		this.head = prev;
+		//System.out.print("Head = " + head.item);
+		return prev;
 	}
 	
 	public Node<E> reverseKGroups(int k) {
@@ -157,7 +177,7 @@ public class MyLinkedList<E> implements Iterable<E> {
 	 * 
 	 * @param k
 	 */
-	private Node<E> reverseKGroups(Node<E> head, int k) { 
+	private Node<E> reverseKGroups(Node<E> head, int k) {
 		Node<E> current = head; 
 		Node<E> next = null;
 		Node<E> prev = null; 
@@ -181,7 +201,7 @@ public class MyLinkedList<E> implements Iterable<E> {
   
        	// prev is now head of input list 
        	return prev; 
-    }  
+    }
 	
 	public Node<E> removeNthFromEnd(int n) {
 		return removeNthFromEnd(head, n);
