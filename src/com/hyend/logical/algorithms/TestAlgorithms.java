@@ -2,8 +2,11 @@ package com.hyend.logical.algorithms;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
+
+import com.hyend.logical.algorithms.Elections.Candidate;
 
 public class TestAlgorithms {
 	
@@ -31,8 +34,8 @@ public class TestAlgorithms {
 		//mdttcp.maximumDistanceToTheClosestPerson(seats);
 		
 		PrintMinNumberOfIDPattern minNumberPattern = new PrintMinNumberOfIDPattern();
-		String pattern = minNumberPattern.printMinNumberForPattern("DI");
-		printMsg(pattern);
+		//String pattern = minNumberPattern.printMinNumberForPattern("DI");
+		//printMsg(pattern);
 		//GCD gcd = new GCD();
 		int[] nums1 = {1, 2};
 		int[] nums2 = {3, 4};
@@ -48,6 +51,31 @@ public class TestAlgorithms {
 		//MultiwayMerge mMerge = new MultiwayMerge();
 		//int[][] keys = {arr1, arr2, arr3};
 		//mMerge.merge(keys);
+		Elections e = new Elections();
+		int time = 101;
+		e.put(createSampleData());
+		Candidate member = e.getVoteCount(time);
+		printMsg(member.getName() + " Received " + member.getTotalVotesAt(time) + " Votes At " + time + " Timestamp");
+	}
+	
+	
+	private static List<Elections.InputVote> createSampleData() {
+		
+		List<Elections.InputVote> votes = new ArrayList<>();
+		Elections.InputVote[] vote = new Elections.InputVote[6];
+		for(int i = 0; i < vote.length; i++)
+			vote[i] = new Elections.InputVote();
+		
+		vote[0].name = "Amy"; vote[0].time = 97;
+		vote[1].name = "Mark"; vote[1].time = 99;
+		vote[2].name = "Cathy"; vote[2].time = 100;
+		vote[3].name = "Amy"; vote[3].time = 101;
+		vote[4].name = "Mark"; vote[4].time = 102;
+		vote[5].name = "Amy"; vote[5].time = 103;
+		for(int i = 0; i < vote.length; i++)
+			votes.add(vote[i]);
+		
+		return votes;
 	}
 	
 	private static void printMsg(String msg) {		

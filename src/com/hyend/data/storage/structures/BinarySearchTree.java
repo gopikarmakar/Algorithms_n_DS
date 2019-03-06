@@ -453,14 +453,14 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 		if(node == null)
 			return;
 		convertToDoubleyLLRecursively(node.left);
-		Node link = tail;
+		Node prev = tail;
 		tail = new Node(node.key, node.value, null);
 		if(head == null)
 			head = tail;
 		else {
-			link.right = tail;
-			tail.left = link;
-			link = tail;
+			prev.right = tail;
+			tail.left = prev;
+			prev = tail;
 		}
 		convertToDoubleyLLRecursively(node.right);
 	}

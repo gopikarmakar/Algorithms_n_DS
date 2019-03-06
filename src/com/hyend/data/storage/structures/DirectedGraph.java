@@ -22,7 +22,7 @@ public class DirectedGraph {
 		adjacencyList = new MyLinkedList[this.vertices];
 		for(int v = 0; v < this.vertices; v++) {
 			adjacencyList[v] = new MyLinkedList<Integer>();
-		}
+		}		
 	}		
 	public DirectedGraph(int[][] graph) {
 		this(graph.length);

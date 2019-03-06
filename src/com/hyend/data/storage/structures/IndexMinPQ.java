@@ -83,7 +83,7 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
 		if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
 		else return keys[i];
 	}
-	
+
 	/**
 	 * Change the key associated with index {@code i} to the specified value.
 	 * @param i
