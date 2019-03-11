@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures;
+package com.hyend.logical.designs;
 
 import java.util.concurrent.ConcurrentHashMap;
 

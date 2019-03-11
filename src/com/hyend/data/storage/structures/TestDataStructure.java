@@ -38,7 +38,7 @@ import com.hyend.logical.algorithms.recursive.Staircase;
 import com.hyend.logical.algorithms.recursive.StudentAttendance;
 import com.hyend.logical.algorithms.strings.FindFirstUniqueChar;
 import com.hyend.logical.algorithms.strings.HasStringAllUniqueChars;
-import com.hyend.logical.algorithms.strings.PalindromeString;
+import com.hyend.logical.algorithms.strings.Palindromicity;
 import com.hyend.logical.algorithms.strings.RemoveDuplicatesFromString;
 import com.hyend.logical.algorithms.AmountInWords;
 

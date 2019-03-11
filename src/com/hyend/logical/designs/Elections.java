@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms;
+package com.hyend.logical.designs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,10 +9,7 @@ import java.util.Map;
  * Solution: Given a list of candidates with name and the timestamp of their receiving vote.
  * 			 reply the total no. of votes received by a candidate in a given timestamp.
  * 
- * This was My 2019 Google Telephonic Interview Question.
- * Even though I solved the question with in 45 minutes 
- * but my small silly mistakes fucked me so hard
- * that my life delayed for a whole year.
+ * It was a Google Telephonic Interview Question found in LeetCode.
  *  
  * @author gopi_karmakar
  *
@@ -38,11 +35,12 @@ public class Elections {
 		private int time;
 		
 		String name;	
+		
 		// It'll hold the total no. of votes for a particular timestamp.
 		Map<Integer, Integer> times = new HashMap<>();
 		
 		public Candidate(Candidate member) {
-			this.name = member.name;
+			this.name = member.name;			
 			this.totalVotes = times.get(member.time);
 		}
 
@@ -86,6 +84,8 @@ public class Elections {
 	public Candidate getVoteCount(int time) {
 
 		List<Candidate> list = new ArrayList<>(candidates.values());
+		
+		new ArrayList<Integer>() ;
 
 		if(list.size() == 0)
 			return null;

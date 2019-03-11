@@ -1,6 +1,6 @@
 package com.hyend.logical.algorithms.strings;
 
-public class PalindromeString {
+public class Palindromicity {
 
 	public void isItAPalindrome(String str) {
 		str = str.toLowerCase();
@@ -43,5 +43,31 @@ public class PalindromeString {
 			rightTotal = rightTotal + (int)str.charAt(j-i);
 		}		
 		return (leftTotal == rightTotal) ? true : false;
+	}
+	
+	/**
+	 * Validate if a string is a Palindrome.
+	 * Ignoring spaces & special characters.
+	 * 
+	 * We spend 0(1) per character, so the time complexity is 0(n), 
+	 * where n is the length of line
+	 * 
+	 * @return
+	 */
+	public boolean isPalindrome(String line) {
+		
+		int i = 0, j = line.length()-1;
+		System.out.println("j = " + j);
+		while(i < j) {
+			
+			while(!Character.isLetterOrDigit(line.charAt(i)) && i < j) { i++; }
+			
+			while(!Character.isLetterOrDigit(line.charAt(j)) && j > i) { j--; }
+			
+			if(Character.toLowerCase(line.charAt(i++)) != Character.toLowerCase(line.charAt(j--))) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

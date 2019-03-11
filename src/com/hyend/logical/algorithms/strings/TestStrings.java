@@ -19,8 +19,10 @@ public class TestStrings {
 		//RabinKarpPatternMatching rabin = new RabinKarpPatternMatching();
 		//System.out.println("Is It A Match = " + rabin.isPatternMatched("abcxabcdabcdabcy", "abcdabcy"));
 		
-		LongestPalindromeSubString lps = new LongestPalindromeSubString();
-		printMsg(lps.palindromicSubString("bb"));
+		//LongestPalindromeSubString lps = new LongestPalindromeSubString();
+		//printMsg(lps.palindromicSubString("bb"));
+		Palindromicity palindrome = new Palindromicity();
+		printMsg(""+palindrome.isPalindrome("A Toyota’s a Toyota"));
 	}
 	
 	private static void printMsg(String msg) {		
