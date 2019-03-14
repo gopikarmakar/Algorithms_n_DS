@@ -1,9 +1,10 @@
 package com.hyend.logical.algorithms;
 
+import java.util.PriorityQueue;
+
 /**
- * An inefficient solution. Can be solved with min heap.
  * 
- * Given an unsorted integer array, 
+ * Given an unsorted array of unique integer values. 
  * find the smallest missing positive integer.
  * 
  * Input: [3,4,-1,1]
@@ -34,7 +35,11 @@ public class FindFirstMissingPositive {
 		return max;
 	}
 	
-	public int findFirstMinPositive(int[] arr) {	
+	/**
+	 * It's 100% full proof but a huge space consuming an inefficient solution.
+	 * A quite less space consuming more efficiently can be solved with min heap. 
+	 */	 
+	public int findFirstMinPositive(int[] arr) {			
 						
 		this.array = new int[getMax(arr)+1];
 		
@@ -51,4 +56,34 @@ public class FindFirstMissingPositive {
 		}				
 		return min;		
 	}
+	
+	/**
+	 * More Efficient solution for all unique values.
+	 * 
+	 * @param arr
+	 * @return
+	 */
+	public int findFirstPositive(int[] arr) {
+		
+		if(arr.length == 0)
+			return 0;
+		
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+		
+		for(int j = 0; j < arr.length; j++) {
+			if(arr[j] > 0)
+				pq.add(arr[j]);
+		}
+		
+		int min = 1;
+		while(!pq.isEmpty()) {
+			
+			int x = pq.poll();
+			if(x != min) {
+				break;
+			}
+			else min += 1;				
+		}		
+		return min;
+	}	
 }

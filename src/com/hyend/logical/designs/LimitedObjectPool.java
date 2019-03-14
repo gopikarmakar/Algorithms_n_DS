@@ -1,5 +1,6 @@
 package com.hyend.logical.designs;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -38,40 +39,36 @@ public class LimitedObjectPool {
 		}
 	}
 	
-	private int sizeLimit = 0;
+	private int threshold = 0;
 	private final long expiryTime = 7000;	//7 seconds
 
-	public LimitedObjectPool(int limit) {
-		this.sizeLimit = limit;
+	public LimitedObjectPool(int threshold) {
+		this.threshold = threshold;
 	}
 	
 	ConcurrentHashMap<DataObject, Long> inUse = new ConcurrentHashMap<>();
-	ConcurrentHashMap<DataObject, Long> available = new ConcurrentHashMap<>(this.sizeLimit);
+	ConcurrentHashMap<DataObject, Long> available = new ConcurrentHashMap<>();
 
 	public DataObject getObject() {
 		
 		if(!available.isEmpty()) {
-			if(available.size() >= sizeLimit) {
-				makeAvailability(available);
+			if(available.size() <= threshold) {
+				DataObject object  = validateCache();
+				if(object != null)
+					return object;						
 			}
 			else {
-				for(Map.Entry<DataObject, Long> entry: available.entrySet()) {
-					if((System.currentTimeMillis() - entry.getValue()) > expiryTime) {
-						//Time has expired
-						makeAvailability(available, entry.getKey());
-					}
-					else {
-						DataObject object = makeAvailability(available, entry.getKey());
-						push(inUse, object, System.currentTimeMillis());
-						return object;
-					}
-				}				
-			}			
+				/**
+				 * Free space in case of cache reaches size threshold.
+				 */
+				invalidateExpiredOnes();			
+			}
 		}
 		return createObject();
 	}
 
 	public void makeItAvailable(DataObject key) {
+		cleanUp(key);
 		Long now = System.currentTimeMillis();	
 		available.put(key, now);
 		inUse.remove(key);
@@ -86,17 +83,38 @@ public class LimitedObjectPool {
 		map.put(key, time);
 		return key;
 	}
-	
-	private void makeAvailability(ConcurrentHashMap<DataObject, Long> map) {
-		Map.Entry<DataObject, Long> entry = map.entrySet().iterator().next();
-		DataObject key = entry.getKey();
-		map.remove(key);		
-	}
 
-	private DataObject makeAvailability(ConcurrentHashMap<DataObject, Long> map, DataObject key) {
-		cleanUp(key);
-		map.remove(key);
+	private DataObject makeAvailability(DataObject key) {
+		available.remove(key);
 		return key;
+	}
+	
+	private DataObject validateCache() {
+		
+		DataObject object = invalidateExpiredOnes();
+		if(object != null) {
+			makeAvailability(object);
+			push(inUse, object, System.currentTimeMillis());
+			return object;
+		}				
+		return null;
+	}
+	
+	private DataObject invalidateExpiredOnes() {
+		
+		Iterator<Map.Entry<DataObject, Long>> itr = available.entrySet().iterator();
+		
+		while(itr.hasNext()) {
+			Map.Entry<DataObject, Long> entry = itr.next();
+			if((System.currentTimeMillis() - entry.getValue()) > expiryTime) {
+				//Time has expired
+				makeAvailability(entry.getKey());
+			}
+			else {
+				return entry.getKey();
+			}
+		}
+		return null;
 	}
 
 	private void cleanUp(DataObject object) {

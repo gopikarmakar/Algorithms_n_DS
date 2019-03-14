@@ -50,6 +50,18 @@ public class TestAlgorithms {
 		//int[][] keys = {arr1, arr2, arr3};
 		//mMerge.merge(keys);
 		
+		//testUniqueTriplets();
+		testFirstMissingPositive();
+	}
+	
+	private static void testFirstMissingPositive() {
+		int[] s = {1, 3, 6, 4, 1, 2};
+		//int[] s = {-1, -3};
+		FindFirstMissingPositive f = new FindFirstMissingPositive();
+		printMsg("First Missing Positive = " + f.findFirstPositive(s));
+	}
+	
+	private static void testUniqueTriplets() {
 		int[] s = {-4,-2,-1,0,1,3,4};
 		FindUniqueTriplets tri = new FindUniqueTriplets();
 		//List<List<Integer>> list = tri.getUniqueTriplets(s);
