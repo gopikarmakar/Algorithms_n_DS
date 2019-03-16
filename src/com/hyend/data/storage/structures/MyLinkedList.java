@@ -1,5 +1,6 @@
 package com.hyend.data.storage.structures;
 
+import java.net.Socket;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -12,33 +13,17 @@ import java.util.Stack;
  * A concrete Single LinkedList Implementation.
  * @param <E>
  */
-public class MyLinkedList<E> implements Iterable<E> {
+public class MyLinkedList<E extends Comparable<E>> implements Iterable<E> {
 
 	private int totalSize = 0;
 	private Node<E> head = null;
 	private Node<E> tail = null;
 	
-	static class Node<E> implements Iterable<E> {		
+	static class Node<E> {		
 		E item;
 		Node<E> next;		
 		Node(E item) {
 			this.item = item;
-		}
-		
-		@Override
-		public Iterator<E> iterator() {			
-			Iterator<E> itr = new Iterator<E>() {
-				@Override
-				public boolean hasNext() {					
-					return (next == null);
-				}
-				@Override
-				public E next() {
-					// TODO Auto-generated method stub
-					return item;
-				}
-			};
-			return itr;
 		}
 	}
 	
@@ -129,20 +114,13 @@ public class MyLinkedList<E> implements Iterable<E> {
 	
 	public void removeAllDuplicates() {		
 		Node<E> current = head; 
-		while(current.next != null) {
-			Node<E> previous = current;
+		while(current != null) {
 			Node<E> nextCurrent = current.next;
-			while(nextCurrent.next != null) {
-				if(nextCurrent.item.equals(current.item)) {
-					previous.next = nextCurrent.next;
-				}
-				previous = nextCurrent;
+			while(nextCurrent != null && nextCurrent.item.compareTo(current.item) == 0) {
 				nextCurrent = nextCurrent.next;
 			}
-			if(nextCurrent.item.equals(current.item)) {
-				previous.next = null;
-			}
-			current = current.next;
+			current.next = nextCurrent;
+			current = nextCurrent;
 		}
 	}	
 	
@@ -204,29 +182,60 @@ public class MyLinkedList<E> implements Iterable<E> {
     }
 	
 	public Node<E> removeNthFromEnd(int n) {
-		return removeNthFromEnd(head, n);
+		return removeKthFromEnd(head, n);
 	}
 	
 	/**
-	 * Incomplete implementation
+	 * Remove Kth node from the end of the linked list
 	 * @param head
-	 * @param n
+	 * @param k
 	 * @return
 	 */
-	private Node<E> removeNthFromEnd(Node<E> head, int n) {
-        
-		int size = 1;
-		Node<E> node = head;
-		if(head == null || n == 0) return head;
-		while(node.next != null) {
-			node = node.next;
-			size+=1;
-		}		
-		node = head;
+	private Node<E> removeKthFromEnd(Node<E> head, int k) {
+        		
+		Node<E> first, second;
+		first = head.next;		
+		while(k-- >= 0) {
+			if(first != null)
+				first = first.next;
+		}
 		
+		second = head;
+		while(first != null) {
+			second = second.next;
+			first = first.next;
+		}
+		second.next = second.next.next;
 		return head;
 	}
-
+	
+	/**
+	 * Merge two sorted linked list
+	 * @return
+	 */
+	public Node<E> merge(MyLinkedList<E> list1, MyLinkedList<E> list2) {
+	
+		Node<E> dummyHead = new Node<>(null);
+		Node<E> current = dummyHead;
+		Node<E> l1 = list1.head, l2 = list2.head;
+		
+		while(l1 != null && l2 != null) {
+			if(l1.item.compareTo(l2.item) < 0) {
+				current.next = l1;
+				l1 = l1.next;
+			}
+			else {
+				current.next = l2;
+				l2 = l2.next;
+			}
+			current = current.next;
+		}
+		//Appending the remaining nodes of l1 or l2
+		current.next = (l1 != null) ? l1 : l2;
+		this.head = dummyHead.next;
+		dummyHead = null;	// For garbage collection		
+		return this.head;
+	}
 	
 	public int size() {
 		return totalSize;

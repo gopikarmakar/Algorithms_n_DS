@@ -327,7 +327,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 				nodes.push(node);
 				node = node.left;						
 			}
-			else {				
+			else {
 				treeSize -= 1;
 				node = nodes.pop();
 				/**

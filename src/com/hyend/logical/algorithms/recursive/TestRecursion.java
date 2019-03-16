@@ -32,9 +32,10 @@ public class TestRecursion {
 		Permutations charPerm = new Permutations(keys);*/
 		
 		//StudentAttendance sa = new StudentAttendance();
-		//Permutations p = new Permutations();
+		Permutations p = new Permutations();
+		p.anagramStringPermutations("AABB");
 		//PrintMSG("Total Ways = " + p.totalPemutations( 3, 1, 2, ""));
-		Combinations comb = new Combinations(3);
+		//Combinations comb = new Combinations(3);
 	}
 	
 	private static void PrintMSG(Object msg) {

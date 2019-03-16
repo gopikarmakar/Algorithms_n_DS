@@ -21,8 +21,10 @@ public class TestStrings {
 		
 		//LongestPalindromeSubString lps = new LongestPalindromeSubString();
 		//printMsg(lps.palindromicSubString("bb"));
-		Palindromicity palindrome = new Palindromicity();
-		printMsg(""+palindrome.isPalindrome("A Toyota’s a Toyota"));
+		//Palindromicity palindrome = new Palindromicity();
+		LongestCommonSubstring lss = new LongestCommonSubstring();
+		int length = lss.getLCS("geeksforskeeg", "skeeggggeeeeksfor");
+		printMsg(""+length);
 	}
 	
 	private static void printMsg(String msg) {		

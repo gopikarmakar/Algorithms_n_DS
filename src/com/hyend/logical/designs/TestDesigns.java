@@ -1,6 +1,8 @@
 package com.hyend.logical.designs;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import com.hyend.logical.designs.Elections.Candidate;
 
@@ -35,6 +37,7 @@ public class TestDesigns {
 	}
 	
 	private static void printMsg(String msg) {		
+		
 		System.out.println(msg);
 	}
 }

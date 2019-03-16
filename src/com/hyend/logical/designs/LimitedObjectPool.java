@@ -1,7 +1,10 @@
 package com.hyend.logical.designs;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -102,7 +105,7 @@ public class LimitedObjectPool {
 	
 	private DataObject invalidateExpiredOnes() {
 		
-		Iterator<Map.Entry<DataObject, Long>> itr = available.entrySet().iterator();
+		Iterator<Map.Entry<DataObject, Long>> itr = available.entrySet().iterator();	
 		
 		while(itr.hasNext()) {
 			Map.Entry<DataObject, Long> entry = itr.next();
