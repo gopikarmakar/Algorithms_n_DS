@@ -46,8 +46,7 @@ public class Palindromicity {
 	}
 	
 	/**
-	 * Validate if a string is a Palindrome.
-	 * Ignoring spaces & special characters.
+	 * Validate if a sentence with spaces and special chars is a Palindrome.	 
 	 * 
 	 * We spend 0(1) per character, so the time complexity is 0(n), 
 	 * where n is the length of line

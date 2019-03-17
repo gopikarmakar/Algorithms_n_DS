@@ -95,12 +95,12 @@ public class Permutations {
     private boolean isVowel(char c) {
     	
     	boolean status = false;
-    	for(int i = 0; i < vowels.length; i++) {
-    		if(c == vowels[i]) {
+    	for(char ch : vowels) {
+    		if(c == ch) {
     			status = true;
     			break;
     		}
-		}
+    	}
     	return status;
     }
     

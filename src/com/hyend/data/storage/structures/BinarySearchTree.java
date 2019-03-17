@@ -341,6 +341,12 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 		} while(treeSize > 0);
 	}
 	
+	/**
+	 * Print In-Order tree traversal with in range. 
+	 * @param node
+	 * @param leftRange
+	 * @param rightRange
+	 */
 	private void traverseInOrderRecursiveWithInRange(Node node, K leftRange, K rightRange) {
 		if(node == null)
 			return;		

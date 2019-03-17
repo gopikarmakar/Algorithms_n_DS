@@ -2,9 +2,7 @@ package com.hyend.logical.algorithms.strings;
 
 public class LongestPalindromeSubString {
 	
-	public LongestPalindromeSubString() {
-		
-	}
+	public LongestPalindromeSubString() {}
 	
 	public String palindromicSubString(String s) {
 				
