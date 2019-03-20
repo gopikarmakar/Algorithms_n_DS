@@ -53,17 +53,17 @@ public class Palindromicity {
 	 * 
 	 * @return
 	 */
-	public boolean isPalindrome(String line) {
+	public boolean isPalindrome(String text) {
 		
-		int i = 0, j = line.length()-1;
+		int i = 0, j = text.length()-1;
 		System.out.println("j = " + j);
 		while(i < j) {
 			
-			while(!Character.isLetterOrDigit(line.charAt(i)) && i < j) { i++; }
+			while(!Character.isLetterOrDigit(text.charAt(i)) && i < j) { i++; }
 			
-			while(!Character.isLetterOrDigit(line.charAt(j)) && j > i) { j--; }
+			while(!Character.isLetterOrDigit(text.charAt(j)) && j > i) { j--; }
 			
-			if(Character.toLowerCase(line.charAt(i++)) != Character.toLowerCase(line.charAt(j--))) {
+			if(Character.toLowerCase(text.charAt(i++)) != Character.toLowerCase(text.charAt(j--))) {
 				return false;
 			}
 		}

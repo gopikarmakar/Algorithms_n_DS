@@ -13,8 +13,8 @@ import java.util.LinkedList;
  *
  */
 public class DirectedGraph {
-	private int edges = 0, vertices = 0;	
-	private MyLinkedList<Integer>[] adjacencyList;	
+	private int edges = 0, vertices = 0;
+	private MyLinkedList<Integer>[] adjacencyList;
 	@SuppressWarnings("unchecked")
 	public DirectedGraph(int V) {
 		this.vertices = V;
@@ -92,7 +92,7 @@ public class DirectedGraph {
 				}
 			}
 		}		
-		public void bfs(int source) {			
+		public void bfs(int source) {
 			Queue<Integer> queue = new LinkedList<>();
 			queue.add(source);
 			marked[source] = true;			
@@ -125,7 +125,7 @@ public class DirectedGraph {
 	 * @author gopi_karmakar
 	 *
 	 */
-	class DirectedCycle {		
+	class DirectedCycle {
 		private int edgeTo[];
 		private boolean marked[];
 		private boolean onStack[];

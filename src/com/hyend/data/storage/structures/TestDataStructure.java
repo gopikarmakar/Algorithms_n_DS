@@ -372,7 +372,7 @@ public class TestDataStructure<K> {
 		//PrintMSG("\nTotal Number of Vertices Connected to " + vertex + " = " + uGraph.getDFSCount());
 		
 		//DirectedGraph diGraph = new DirectedGraph(graph);
-		//DirectedGraph.DirectedDFS dfs = diGraph.new DirectedDFS();
+		//DirectedGraph.DirectedTraversals dfs = diGraph.new DirectedTraversals();
 		//dfs.dfs(0);
 	}
 	
