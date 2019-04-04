@@ -1,4 +1,4 @@
-package com.hyend.logical.designs;
+package com.hyend.logical.interview.questions.veltra;
 
 import java.util.HashSet;
 import java.util.Iterator;

@@ -1,10 +1,10 @@
-package com.hyend.logical.designs;
+package com.hyend.logical.interview.questions;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import com.hyend.logical.designs.Elections.Candidate;
+import java.util.ArrayList;
+
+import com.hyend.logical.interview.questions.google.Elections;
+import com.hyend.logical.interview.questions.google.Elections.Candidate;
 
 public class TestDesigns {
 	

@@ -1,4 +1,4 @@
-package com.hyend.logical.designs;
+package com.hyend.logical.interview.questions.google;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.Map;
  * Solution: Given a list of candidates with name and the timestamp of their receiving vote.
  * 			 reply the total no. of votes received by a candidate in a given timestamp.
  * 
- * It was a Google Telephonic Interview Question found in LeetCode.
+ * It was a GTI Question found in LeetCode.
  *  
  * @author gopi_karmakar
  *
@@ -22,12 +22,12 @@ public class Elections {
 		candidates = new HashMap<>();
 	}
 	
-	static class InputVote {		
-		int time;
-		String name;		
+	public static class InputVote {		
+		public int time;
+		public String name;		
 	}
 
-	class Candidate {
+	public class Candidate {
 
 		// It'll be the total no. of votes received by candidate.
 		private int totalVotes;

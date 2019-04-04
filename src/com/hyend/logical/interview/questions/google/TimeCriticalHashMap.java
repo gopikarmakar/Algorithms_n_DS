@@ -1,4 +1,4 @@
-package com.hyend.logical.designs;
+package com.hyend.logical.interview.questions.google;
 
 import java.util.concurrent.ConcurrentHashMap;
 
