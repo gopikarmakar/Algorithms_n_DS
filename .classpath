@@ -3,5 +3,14 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="/Users/gopi_karmakar/.m2/repository/com/github/stefanbirkner/system-rules/1.16.1/system-rules-1.16.1.jar" sourcepath="/Users/gopi_karmakar/.m2/repository/com/github/stefanbirkner/system-rules/1.16.1/system-rules-1.16.1-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.github.stefanbirkner"/>
+			<attribute name="maven.artifactId" value="system-rules"/>
+			<attribute name="maven.version" value="1.16.1"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -10,7 +10,7 @@ public class TestSalesForce {
                 "DEPEND NETCARD TCPIP\n",
                 "DEPEND DNS TCPIP NETCARD\n",
                 "DEPEND BROWSER TCPIP HTML\n",
-                "INSTALL NETCARD\n",
+                /*"INSTALL NETCARD\n",
                 "INSTALL TELNET\n",
                 "INSTALL foo\n",
                 "REMOVE NETCARD\n",
@@ -26,15 +26,21 @@ public class TestSalesForce {
                 "REMOVE BROWSER\n",
                 "REMOVE TCPIP\n",
                 "LIST\n",
-                "END\n"
+                "END\n"*/
         };
 		
 		/*for(String line : input)
 			System.out.print(line);*/
 		
-		SalesForceProblem sp = new SalesForceProblem();
+		/*SalesForceProblem sp = new SalesForceProblem();
 		sp.readInput(input);
 		sp.printMappings();
-		sp.printLogs();		
+		sp.printLogs()*/;
+		
+		Solution s = new Solution();
+		for(String line : input) {
+			s.readInput(line);
+		}
+		s.printGraph();
 	}
 }

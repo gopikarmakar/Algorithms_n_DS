@@ -22,7 +22,6 @@ import com.hyend.data.storage.structures.SelfBalancedBSTres;
 import com.hyend.data.storage.structures.BinarySearchTree;
 import com.hyend.data.storage.structures.DoublyLinkedList;
 import com.hyend.data.storage.structures.MyHashTable;
-import com.hyend.data.storage.structures.LinkedListQueue;
 import com.hyend.data.storage.structures.LinkedListStack;
 import com.hyend.data.storage.structures.LinkedListWithStackAndQueue;
 import com.hyend.data.storage.structures.MyLinkedList;
@@ -221,19 +220,6 @@ public class TestDataStructure<K> {
 		//PrintMSG(myStack.isEmpty());
 		PrintMSG(myStack.pop());
 		//PrintMSG(myStack.isEmpty());
-	}
-	
-	private static void TestQueue() {
-		
-		LinkedListQueue myQueue = new LinkedListQueue();
-		myQueue.enqueue("One");
-		myQueue.enqueue("Two");
-		myQueue.enqueue("Three");
-		PrintMSG(myQueue.dequeue());
-		PrintMSG(myQueue.dequeue());
-		PrintMSG(myQueue.dequeue());
-		myQueue.enqueue("Four");
-		myQueue.enqueue("Five");
 	}
 	
 	private static void TestQueueFromStack() {
