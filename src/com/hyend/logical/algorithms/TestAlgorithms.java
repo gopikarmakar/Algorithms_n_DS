@@ -70,7 +70,7 @@ public class TestAlgorithms {
 			printMsg("No Triplets Found.");			
 		}
 		else {
-			for(List<Integer> l : list) {			
+			for(List<Integer> l : list) {
 				for(int x : l) {
 					System.out.print(x + " ");
 				}

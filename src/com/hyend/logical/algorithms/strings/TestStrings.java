@@ -22,9 +22,17 @@ public class TestStrings {
 		//LongestPalindromeSubString lps = new LongestPalindromeSubString();
 		//printMsg(lps.palindromicSubString("bb"));
 		//Palindromicity palindrome = new Palindromicity();
-		LongestCommonSubstring lss = new LongestCommonSubstring();
+		/*LongestCommonSubstring lss = new LongestCommonSubstring();
 		int length = lss.getLCS("geeksforskeeg", "skeeggggeeeeksfor");
-		printMsg(""+length);
+		printMsg(""+length);*/
+				
+		MatchNamesParity c = new MatchNamesParity();
+		List<String> list = new ArrayList<>();
+		list.add("ababaa");
+		List<Integer> l1 = c.prefix(list);		
+		for(int i : l1) {
+			printMsg("" + i);
+		}
 	}
 	
 	private static void printMsg(String msg) {		

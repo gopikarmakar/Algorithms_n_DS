@@ -12,8 +12,10 @@ package com.hyend.data.storage.sort;
  */
 public class MergeSort {
 	
+	private int aux[];
+	
 	public void sort(int[] arr) {
-		split(arr, 0, arr.length-1);		
+		split(arr, 0, arr.length-1);				
 	}
 	
 	public void split(int[] arr, int low, int high) {		
@@ -25,11 +27,15 @@ public class MergeSort {
 	}
 	
 	public void sortAndMerge(int[] arr, int low, int mid, int high) {
-		
-		int aux[] = new int[arr.length];
+				
+		/**
+		 * Creating an auxiliary array to compare with.
+		 */
+		aux = new int[arr.length];
 		for(int k = 0; k < arr.length; k++) {
 			aux[k] = arr[k];
 		}
+		
 		int i = low, j = mid+1;
 		for(int k = low; k <= high; k++) {	
 			if(i > mid) 				arr[k] = aux[j++];

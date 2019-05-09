@@ -13,18 +13,18 @@ import java.util.List;
  * 	  5001->4501
  * 	  4501->4500
  * 
- * Solution : A Di-Graphical solution. Map the adjacent manager node 
- * 			  for each employee node and recursively iterate through from the mapping. 
+ * Solution : A Di-Graphical solution. Map the adjacent manager node for each
+ * 			   employee node and recursively iterate through from the mapping (DFS). 
  * 
  * @author gopi_karmakar
  */
 public class FindCommonManager {
 	
 	// To hold the organization's structure
-	HashMap<String, String> structure;
+	HashMap<String, String> map;
 	
 	public FindCommonManager() {
-		structure = new HashMap<>();
+		map = new HashMap<>();
 	}
 
 	/**
@@ -51,16 +51,18 @@ public class FindCommonManager {
 	 */
 	public void empToMgrMapping(List<Employee> list) {
 		
-		for(Employee emp : list) {			
-			structure.put(emp.empId, emp.mgrId);
+		for(Employee emp : list) {
+			map.put(emp.empId, emp.mgrId);
 		}
 	}
 		
 	public String findCommonManager(String emp1, String emp2) {
 		
 		String mgr1 = find(emp1, "");
+		System.out.println("MGR-1 = " + mgr1);	
 		String mgr2 = find(emp2, "");
-		return (mgr1.equals(mgr2)) ? mgr2 : null;			
+		System.out.println("MGR-2 = " + mgr2);
+		return (mgr1.equals(mgr2)) ? mgr2 : null;	
 	}
 	
 	/**
@@ -73,11 +75,8 @@ public class FindCommonManager {
 		
 		if(emp == null)
 			return mgr;
-
-		if(!structure.containsKey(emp))
-			return mgr;
 		
-		return find(structure.get(emp), emp);
+		return find(map.get(emp), emp);
 	}
 	
 	/**
@@ -86,7 +85,7 @@ public class FindCommonManager {
 	 */
 	public List<Employee> createSampleData() {
 		
-		Employee emp1 = new Employee("4500", "null");
+		Employee emp1 = new Employee("4500", null);
 		Employee emp2 = new Employee("5000", "4500");
 		Employee emp3 = new Employee("5001", "4501");
 		Employee emp4 = new Employee("4501", "4500");

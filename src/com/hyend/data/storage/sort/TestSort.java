@@ -10,5 +10,16 @@ public class TestSort {
 		//sSort.sort(arr);
 		MergeSort mSort = new MergeSort();
 		mSort.sort(arr);
+		for(int x : arr) {
+			printMSG(x);
+		}
+	}
+	
+	private static void printMSG(int x) {		
+		System.out.println(x);
+	}
+	
+	private static void printMSG(String x) {		
+		System.out.println(x);
 	}
 }

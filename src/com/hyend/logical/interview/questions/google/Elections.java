@@ -1,18 +1,18 @@
 package com.hyend.logical.interview.questions.google;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Solution: Given a list of candidates with name and the timestamp of their receiving vote.
- * 			 reply the total no. of votes received by a candidate in a given timestamp.
+ * Solution: 
+ * Given a list of candidates with name and the timestamp of their receiving vote.
+ * reply the total no. of votes received by a candidate in a given timestamp.
  * 
  * It was a GTI Question found in LeetCode.
  *  
  * @author gopi_karmakar
- *
  */
 public class Elections {
 	
@@ -22,22 +22,22 @@ public class Elections {
 		candidates = new HashMap<>();
 	}
 	
-	public static class InputVote {		
+	public static class InputVote {
 		public int time;
 		public String name;		
 	}
 
 	public class Candidate {
 
-		// It'll be the total no. of votes received by candidate.
+		//Total no. of votes received by candidate.
 		private int totalVotes;
 		
 		private int time;
 		
-		String name;	
+		private String name;	
 		
-		// It'll hold the total no. of votes for a particular timestamp.
-		Map<Integer, Integer> times = new HashMap<>();
+		// Mapping the total no. of votes at a particular timestamp.
+		private Map<Integer, Integer> times = new HashMap<>();
 		
 		public Candidate(Candidate member) {
 			this.name = member.name;			
@@ -46,7 +46,7 @@ public class Elections {
 
 		Candidate(String name, int time) {			
 			totalVotes += 1;
-			this.name = name;			
+			this.name = name;	
 			times.put(time, totalVotes);
 		}
 		
@@ -59,7 +59,7 @@ public class Elections {
 		}
 	}
 
-	private void replace(Candidate guy, int time) {
+	private void mapAndIncrementVoteCount(Candidate guy, int time) {
 
 		guy.totalVotes += 1;
 		guy.times.put(time, guy.totalVotes);
@@ -72,7 +72,7 @@ public class Elections {
 
 			Candidate vote = candidates.get(x.name);
 			if(vote != null) {
-				replace(vote, x.time);
+				mapAndIncrementVoteCount(vote, x.time);
 			}
 			else {
 				vote = new Candidate(x.name, x.time);
@@ -82,10 +82,8 @@ public class Elections {
 	}
 
 	public Candidate getVoteCount(int time) {
-
-		List<Candidate> list = new ArrayList<>(candidates.values());
 		
-		new ArrayList<Integer>() ;
+		Collection<Candidate> list = candidates.values();
 
 		if(list.size() == 0)
 			return null;

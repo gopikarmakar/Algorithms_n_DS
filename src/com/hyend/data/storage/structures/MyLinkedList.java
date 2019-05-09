@@ -1,17 +1,12 @@
 package com.hyend.data.storage.structures;
 
-import java.net.Socket;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
 
 /**
- * 
- * @author gopi_karmakar
- *
  * A concrete Single LinkedList Implementation.
  * @param <E>
+ * 
+ * @author gopi_karmakar
  */
 public class MyLinkedList<E extends Comparable<E>> implements Iterable<E> {
 
@@ -30,7 +25,7 @@ public class MyLinkedList<E extends Comparable<E>> implements Iterable<E> {
 	public void add(E item) {
 		totalSize += 1;
 		Node<E> node = tail;
-		tail = new Node<E>(item);							
+		tail = new Node<E>(item);
 		if(head == null) {
 			head = tail;
 			return;
