@@ -1,5 +1,8 @@
 package com.hyend.logical.interview.questions.SalesForce;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class TestSalesForce {
 
 	public static void main(String[] args) {
@@ -42,5 +45,12 @@ public class TestSalesForce {
 			s.readInput(line);
 		}
 		s.printGraph();
+		
+		LinkedHashMap<String, String> l = new LinkedHashMap<String, String>(10, 1.0F, true) {
+			@Override
+			protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {
+				return false;
+			};
+		};
 	}
 }

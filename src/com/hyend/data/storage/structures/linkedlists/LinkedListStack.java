@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures;
+package com.hyend.data.storage.structures.linkedlists;
 
 /**
  * A stack with linked list

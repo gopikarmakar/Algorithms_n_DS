@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures;
+package com.hyend.data.storage.structures.priorityqueue;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

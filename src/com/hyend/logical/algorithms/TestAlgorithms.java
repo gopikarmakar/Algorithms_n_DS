@@ -46,12 +46,12 @@ public class TestAlgorithms {
 		int[] arr2 = {2, 4, 6, 8};
 		int[] arr3 = {3, 7, 9};		
 		
-		//MultiwayMerge mMerge = new MultiwayMerge();
-		//int[][] keys = {arr1, arr2, arr3};
-		//mMerge.merge(keys);
+		MultiwayMerge mMerge = new MultiwayMerge();
+		int[][] keys = {arr1, arr2, arr3};
+		mMerge.merge(keys);
 		
 		//testUniqueTriplets();
-		testFirstMissingPositive();
+		//testFirstMissingPositive();
 	}
 	
 	private static void testFirstMissingPositive() {

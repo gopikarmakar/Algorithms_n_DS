@@ -1,6 +1,6 @@
 package com.hyend.logical.algorithms;
 
-import com.hyend.data.storage.structures.IndexMinPQ;
+import com.hyend.data.storage.structures.priorityqueue.IndexMinPQ;
 
 /**
  * Solution: A very efficient solution for Merging K Sorted Arrays.

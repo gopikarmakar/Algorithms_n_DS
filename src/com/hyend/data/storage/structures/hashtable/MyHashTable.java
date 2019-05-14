@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures;
+package com.hyend.data.storage.structures.hashtable;
 
 import java.util.HashMap;
 import java.util.Iterator;

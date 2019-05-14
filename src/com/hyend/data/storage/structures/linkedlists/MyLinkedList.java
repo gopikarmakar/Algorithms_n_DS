@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures;
+package com.hyend.data.storage.structures.linkedlists;
 
 import java.util.Iterator;
 
@@ -14,7 +14,7 @@ public class MyLinkedList<E extends Comparable<E>> implements Iterable<E> {
 	private Node<E> head = null;
 	private Node<E> tail = null;
 	
-	static class Node<E> {		
+	public static class Node<E> {		
 		E item;
 		Node<E> next;		
 		Node(E item) {

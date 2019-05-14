@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures;
+package com.hyend.data.storage.structures.graphs;
 
 import java.awt.print.Book;
 import java.util.ArrayList;
@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
+
+import com.hyend.data.storage.structures.hashtable.MyHashTable;
+import com.hyend.data.storage.structures.linkedlists.MyLinkedList;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures;
+package com.hyend.data.storage.structures.trie;
 
 import java.util.LinkedList;
 import java.util.Queue;

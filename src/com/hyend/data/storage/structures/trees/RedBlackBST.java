@@ -1,6 +1,6 @@
-package com.hyend.data.storage.structures;
+package com.hyend.data.storage.structures.trees;
 
-import com.hyend.data.storage.structures.SelfBalancedBSTres.Node;
+import com.hyend.data.storage.structures.trees.SelfBalancedBSTres.Node;
 
 public class RedBlackBST<Key extends Comparable<Key>, Value>
 {

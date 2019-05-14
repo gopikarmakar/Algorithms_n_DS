@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures;
+package com.hyend.data.storage.structures.priorityqueue;
 
 /**
  * A binary heap based max priority queue implementation. 
