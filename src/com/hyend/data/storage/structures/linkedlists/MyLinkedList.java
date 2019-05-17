@@ -1,6 +1,7 @@
 package com.hyend.data.storage.structures.linkedlists;
 
 import java.util.Iterator;
+import java.util.PriorityQueue;
 
 /**
  * A concrete Single LinkedList Implementation.
@@ -16,7 +17,8 @@ public class MyLinkedList<E extends Comparable<E>> implements Iterable<E> {
 	
 	public static class Node<E> {		
 		E item;
-		Node<E> next;		
+		Node<E> next;
+		Node() {}
 		Node(E item) {
 			this.item = item;
 		}
@@ -230,6 +232,32 @@ public class MyLinkedList<E extends Comparable<E>> implements Iterable<E> {
 		this.head = dummyHead.next;
 		dummyHead = null;	// For garbage collection		
 		return this.head;
+	}
+	
+	public Node<E> merge(Node<E>...lists) {
+		if(lists.length == 0)
+			return null;
+		
+		Node<E> head = null;
+		Node<E> dummyHead = new Node<E>(null);
+		Node<E> current  = dummyHead;
+		PriorityQueue<E> pq = new PriorityQueue<>();		
+		
+		for(Node<E> node : lists) {
+			while(node != null) {
+				pq.add(node.item);
+				node = node.next;
+			}
+		}
+		
+		while(!pq.isEmpty()) {			
+			current.next = new Node<E>(pq.remove());
+			current = current.next;
+		}
+		
+		head = dummyHead.next;
+		dummyHead = current = null;
+		return head;
 	}
 	
 	public int size() {
