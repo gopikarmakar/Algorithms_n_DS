@@ -1,6 +1,8 @@
 package com.hyend.data.storage.structures.linkedlists;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
@@ -237,6 +239,9 @@ public class MyLinkedList<E extends Comparable<E>> implements Iterable<E> {
 	public Node<E> merge(Node<E>...lists) {
 		if(lists.length == 0)
 			return null;
+	
+		
+		double d = Double.MAX_VALUE;
 		
 		Node<E> head = null;
 		Node<E> dummyHead = new Node<E>(null);
