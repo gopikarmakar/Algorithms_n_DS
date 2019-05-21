@@ -123,8 +123,8 @@ public class TestDataStructure<K> {
 		
 		//TestBinarySearchTree();
 		//TestGraphStructure();
-		//TestTrieDictionary();
-		TestSinglyLinkedList();
+		TestTrieDictionary();
+		//TestSinglyLinkedList();
 	}
 	
 	private static void TestStackWithMin() {
@@ -365,7 +365,7 @@ public class TestDataStructure<K> {
 	
 	private static <E> void TestTrieDictionary() {
 		
-		TernarySearchTrieDict<String> trieDict = new TernarySearchTrieDict<>();
+		TernarySearchTrieDict trieDict = new TernarySearchTrieDict();
 		//TrieDictionary<String> trieDict = new TrieDictionary<>();
 		/*trieDict.put("Asuka", "Six");
 		trieDict.put("Kiaan", "one");
@@ -377,11 +377,11 @@ public class TestDataStructure<K> {
 		trieDict.put("Kunal", "eight");
 		trieDict.put("Kiran", "nine");
 		trieDict.put("Kabir", "ten");*/
-		//trieDict.putChunks("googleishiring", "google");
-		//trieDict.putChunks("shesellsseashells", "shore");
-		//trieDict.putChunks("godhelpmeforinterview", "god");
-		//trieDict.putChunks("appletisnothiring", "apple");
-		//trieDict.putChunks("appleisnothiring", "apple");
+		/*trieDict.putChunks("googleishiring", "google");
+		trieDict.putChunks("shesellsseashells", "shore");
+		trieDict.putChunks("godhelpmeforinterview", "god");
+		trieDict.putChunks("appletisnothiring", "apple");
+		trieDict.putChunks("appleisnothiring", "apple");*/
 		/*Iterator<TernarySearchTrieDict<String>.Node<String>> itr = trieDict.keysWithPrefix("as").iterator(); 
 		while(itr.hasNext())
 			PrintMSG("Total Keys = " + itr.next().prefix);*/
@@ -397,7 +397,8 @@ public class TestDataStructure<K> {
 			trieDict.put(key.substring(index, index + n), (""+index));
 			index+=1;
 		}*/
-		PrintMSG("Unique Substrings = " + trieDict.uniqueNSubstrings("cgcgggcgcg", 3));
+		//PrintMSG("Unique Substrings = " + trieDict.uniqueNSubstrings("cgcgggcgcg", 3));
+		PrintMSG("Unique Substrings = " + trieDict.longestSubStringWithKDistinctChars("abcxaabbcyabcz", 3));
 		
 		//TrieDictionary<String> trieDict = new TrieDictionary<>();		
 		/*Iterator<TrieDictionary<String>.Node<String>> iterator = trieDict.keysWithPrefix("an").iterator();						

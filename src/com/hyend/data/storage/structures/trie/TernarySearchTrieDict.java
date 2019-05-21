@@ -1,75 +1,116 @@
 package com.hyend.data.storage.structures.trie;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Queue;
+import java.util.Set;
 
-public class TernarySearchTrieDict<E> {
+public class TernarySearchTrieDict {
 	
 	public TernarySearchTrieDict() {}
 
-	private Node<E> root;
-		
-	@SuppressWarnings("hiding")
-	public class Node<E> {		
+	private Node root;
+	
+	public class Node {		
 		char c;
-		String prefix;
-		E value;
-		Node<E> left, mid, right;
+		String value;
+		Node left, mid, right;		
+		public Node(char c) {
+			this.c = c;
+		}
 	}
 	
-	public void put(String key, E value) {		
-		root = put(root, key, key, value, 0);
+	public void put(String key) {
+		root = put(root, key, 0);
 	}
 	
-	public void put(String chunk, String prefix, E value) {		
-		root = put(root, chunk, prefix, value, 0);
-	}
-	
-	public void putChunks(String key, E value) {
-		int index = 0, length = key.length();		
-		while(index < length) {
-			String chunk = key.substring(index++, length);
-			System.out.println("Chunk = " + chunk);
-			put(chunk, key, value);
+	/**
+	 * The prefix trie for "aabbcc" will be
+	 * aabbcc aabbc aabb aab aa a
+	 * 
+	 * @param key
+	 */
+	private void createPrefixTrie(String key) {		
+		int length = key.length();
+		for(int i = length; i > 0; i--) {
+			String prefix = key.substring(0, i);
+			//System.out.println(prefix);
+			put(prefix);
 		}
 	}
 	
 	/**
+	 * @param key
+	 * @param n
+	 */
+	private void createPrefixTrie(String key, int n) {		
+		int length = key.length();
+		for(int i = length; i >= n; i--) {
+			String prefix = key.substring(i-n, i);
+			//System.out.println(prefix);
+			put(prefix);
+		}
+	}
+	
+	/**
+	 * The suffix trie for "aabbcc" will be
+	 * aabbcc abbcc bbcc bcc cc c
 	 * 
+	 * @param key
+	 * @param n
+	 */
+	private void creeateSuffixTrie(String key) {		
+		int length = key.length();
+		for(int i = 0; i < length; i++) {
+			String suffix = key.substring(i);
+			//System.out.println(suffix);
+			put(suffix);
+		}
+	}
+	
+	/**
+	 * @param key
+	 * @param n
+	 */
+	private void creeateSuffixTrie(String key, int n) {				
+		int length = key.length()-n;
+		for(int i = 0; i <= length; i++) {
+			String suffix = key.substring(i, i+n);
+			put(suffix);
+		}
+	}
+	
+	/**
 	 * @param x
 	 * @param key
 	 * @param value
 	 * @param d
 	 * @return
 	 */
-	private Node<E> put(Node<E> x, String key, String prefix, E value, int d) {
+	private Node put(Node x, String key, int d) {
 		
 		char c = key.charAt(d);
 		if(x == null) {
-			x = new Node<E>(); 
-			x.c = c; 
+			x = new Node(c); 
 		}		
-		if(c < x.c) 				x.left = put(x.left, key, prefix, value, d);
-		else if(c > x.c) 			x.right = put(x.right, key, prefix, value, d);
-		else if(d < key.length()-1) x.mid = put(x.mid, key, prefix, value, d+1);
+		if(c < x.c) 				x.left = put(x.left, key, d);
+		else if(c > x.c) 			x.right = put(x.right, key, d);
+		else if(d < (key).length()-1) x.mid = put(x.mid, key, d+1);
 		else {			
-			x.value = value;
-			x.prefix = prefix;
-			System.out.println("Put x.value = " + x.value + " and x.prefix = " + x.prefix);
+			x.value = key;
+			//System.out.println("Put x.value = " + x.value + " and x.prefix = " + x.prefix);
 		}
 		return x;
 	}
 	
-	public E get(String key) {
-		Node<E> x = get(root, key, 0);
+	public String get(String key) {
+		Node x = get(root, key, 0);
 		if(x == null) return null;
 		else return x.value;
 	}
 	
-	private Node<E> get(Node<E> x, String key, int d) {
+	private Node get(Node x, String key, int d) {
 		
 		if(x == null) return null;
 		
@@ -80,13 +121,13 @@ public class TernarySearchTrieDict<E> {
 		else return x;
 	}	
 		
-	public Iterable<Node<E>> keysWithPrefix(String prefix) {
-		Queue<Node<E>> queue = new LinkedList<Node<E>>();
+	public Iterable<Node> keysWithPrefix(String prefix) {
+		Queue<Node> queue = new LinkedList<Node>();
 		keysWithPrefix(get(root, prefix, 0).mid, queue);
 		return queue;
 	}
 		
-	private void keysWithPrefix(Node<E> x, Queue<Node<E>> queue) {
+	private void keysWithPrefix(Node x, Queue<Node> queue) {
 						
 		if(x == null) return;
 				
@@ -104,7 +145,7 @@ public class TernarySearchTrieDict<E> {
 		return str.substring(0, length+1);
 	}
 	
-	private int longestCommonPrefixOf(Node<E> x, String str, int d, int length) {
+	private int longestCommonPrefixOf(Node x, String str, int d, int length) {
 		
 		char c = str.charAt(d);
 		if(x == null) return length;		
@@ -117,41 +158,17 @@ public class TernarySearchTrieDict<E> {
 		else 						return length;
 	}
 		
-	public Iterable<String> substringMatch(String key) {
-		List<String> matches = new ArrayList<String>();
-		substringMatch(root, key, 0, 0, matches);
-		return matches;		
-	}
+	public int uniqueNSubstrings(String key, int n) {				
 	
-	private int substringMatch(Node<E> x, String str, int d, int length, List<String> list) {
+		int count = 0;
+		//creeateSuffixTrie(key, 3);
+		createPrefixTrie(key, 3);
 		
-		char c = str.charAt(d);
-		if(x == null) return length;		
-		if(x.value != null) { 
-			length = d;
-			list.add(x.prefix);
-			System.out.println("List Length = " + list.size());
-		}		
-		if(d == str.length()) return length;						
-						
-		if(c < x.c) 				return longestCommonPrefixOf(x.left, str, d, length);
-		else if(c > x.c) 			return longestCommonPrefixOf(x.right, str, d, length);
-		else if(d < str.length()-1) return longestCommonPrefixOf(x.mid, str, d+1, length);
-		else 						return length;
-	}
-	
-	int count = 0;
-	@SuppressWarnings("unchecked")
-	public int uniqueNSubstrings(String key, int n) {		
 		int index = 0;
 		int length = key.length()-n;
-		while(index < length) {
-			String suffix = key.substring(index, index+n);
-			root = put(root, suffix, suffix, (E)suffix, 0);
-			index += 1;
-		}
-		index = 0;
-		HashMap<E, String> uniqueStrings = new HashMap<>();
+		
+		Set<String> uniqueStrings = new HashSet<String>();
+		
 		while(index < length) {
 			count = getUniqueNSubstrings(root, key.substring(index, index+n), 0, uniqueStrings);
 			index += 1;
@@ -159,12 +176,12 @@ public class TernarySearchTrieDict<E> {
 		return count;
 	}
 		
-	private int getUniqueNSubstrings(Node<E> x, String key, int d, HashMap<E, String> uniqueStrings) {
+	private int getUniqueNSubstrings(Node x, String key, int d, Set<String> uniqueStrings) {
 				
 		if(x == null) return uniqueStrings.size();
 		if(x.value != null) {			
-			uniqueStrings.put(x.value, x.prefix);
-			System.out.println("x = " + x.value);
+			uniqueStrings.add(x.value);
+			System.out.println("x.value = " + x.value);
 		}
 		if(d == key.length()) return uniqueStrings.size();
 		
@@ -174,5 +191,59 @@ public class TernarySearchTrieDict<E> {
 		else if(d < key.length()-1) getUniqueNSubstrings(x.mid, key, d+1, uniqueStrings);
 		
 		return uniqueStrings.size();		
+	}
+	
+	int maxCount = 0;
+	private void traverseTrie(Node x, int k, Queue<String> queue) {		
+		if(x == null) return;		
+		if(x.value != null) {
+			System.out.println("x.value = " + x.value);
+			int c = getTotalDistinctChars(x.value);
+			//System.out.println("count = " + c);
+			if(getTotalDistinctChars(x.value) == k) {
+				queue.add(x.value);
+				//int l = x.value.length();
+				//System.out.println("length = " + l);
+				//if(maxCount < l)
+					//maxCount = x.value.length();
+			}
+		}		
+		//System.out.println("max = " + max);
+		traverseTrie(x.left, k, queue);
+		traverseTrie(x.mid, k, queue);
+		traverseTrie(x.right, k, queue);		
+		return;
+	}
+	
+	private int getTotalDistinctChars(String text) {
+ 		int count = 0;
+ 		boolean[] chars = new boolean[26];
+ 		for(char c : text.toCharArray()) {
+ 			if(!chars[c - 'a']) {
+ 				count += 1;
+ 				chars[c - 'a'] = true;
+ 			} 			
+ 		}
+ 		return count;
+ 	}
+	
+	public int longestSubStringWithKDistinctChars(String key, int k) {
+		Queue<String> list = new LinkedList<>();		
+		createPrefixTrie(key);
+		creeateSuffixTrie(key);
+		creeateSuffixTrie(key, k);
+		traverseTrie(root, k, list);
+		
+		int maxLength = 0;
+		Iterator<String> itr = list.iterator();
+		
+		while(itr.hasNext()) {
+			String item = itr.next();
+			System.out.println(item);
+			int l = item.length();
+			if(maxLength < l)
+				maxLength = l;			
+		}
+		return maxLength;
 	}
 }
