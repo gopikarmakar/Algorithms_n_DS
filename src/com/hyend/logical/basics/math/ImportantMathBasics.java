@@ -10,7 +10,7 @@ public class ImportantMathBasics {
 	
 	private static void bitwiseOperation() {
 		//Initial values 
-        int a = 5; 
+        int a = -5; 
         int b = 7; 
   
         /*

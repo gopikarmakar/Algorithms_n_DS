@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Stack;
 import java.util.TreeMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.hyend.data.storage.search.BinarySearch;
 import com.hyend.data.storage.search.LinearSearch;
@@ -42,9 +44,9 @@ import com.hyend.logical.algorithms.strings.Palindromicity;
 import com.hyend.logical.algorithms.strings.RemoveDuplicatesFromString;
 import com.hyend.logical.algorithms.AmountInWords;
 
-public class TestDataStructure<K> {
+class TestDataStructure<K> {
 
-	public static void main(String args[]) {
+	public static void main(String args[]) {	
 				
 		PrintMSG("\nThe Value Is : ¥" + new AmountInWords().translateMoney(6600));
 		int[] arr = {6,3,2,1,5,4,9,7,10,8};

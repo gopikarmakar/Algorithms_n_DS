@@ -26,7 +26,7 @@ public class MaxPriorityQueue<Key extends Comparable<Key>> {
 	 */
 	public MaxPriorityQueue(Key[] keys) {
 		this(keys.length);
-		for(Key k : mpq)
+		for(Key k : keys)
 			insert(k);
 	}
 	
@@ -38,14 +38,27 @@ public class MaxPriorityQueue<Key extends Comparable<Key>> {
 		return N;
 	}
 	
+	public void add(Key key) {
+		insert(key);
+	}
+	
+	public void addAll(Key[] keys) {
+		for(Key k : keys)
+			insert(k);
+	}
+	
 	/**
 	 * In an N-key priority queue, the heap algorithms require no more than 
 	 * 1 + log(N) compares for insert and no more than 2lg N compares for remove the maximum.
 	 * @param key
 	 */
-	public void insert(Key key) {
+	private void insert(Key key) {
 		mpq[++N] = key;
 		swim(N);
+	}
+	
+	public Key peek() {
+		return mpq[1];
 	}
 	
 	/**
@@ -61,6 +74,11 @@ public class MaxPriorityQueue<Key extends Comparable<Key>> {
 		mpq[N+1] = null;
 		sink(1);
 		return max;
+	}
+	
+	public void removeLast() {
+		if(N > 1)
+			mpq[N--] = null;	
 	}
 	
 	private boolean less(int i, int j) {

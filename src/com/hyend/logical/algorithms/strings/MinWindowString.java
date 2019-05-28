@@ -1,5 +1,10 @@
 package com.hyend.logical.algorithms.strings;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.concurrent.locks.ReentrantLock;
+
+// TODO: Wrong Implementation I need to improve it
 public class MinWindowString {
 	
 	public static void main(String...args) {
@@ -7,6 +12,8 @@ public class MinWindowString {
 	}
 
 	private static String minWindow(String s, String t) {
+		
+		Deque<Integer> dq = new LinkedList<Integer>();
 		
 		if(s == null || t == null ||
 				s.isEmpty() || t.isEmpty())

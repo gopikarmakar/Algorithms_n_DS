@@ -14,7 +14,9 @@ public class MinMaxtSubstringWithKUniqueChars {
 	
 	public static void main(String...args) {
 		try {
-			minMaxSubStringWindow("aabacbebebe", 2);	
+			String s = "aabbcc";
+			//String s = "aabacbebebe";
+			minMaxSubStringWindow(s, 3);	
 		} catch(NullPointerException npe) {
 			System.out.println(npe.getMessage());
 		}		
@@ -28,21 +30,20 @@ public class MinMaxtSubstringWithKUniqueChars {
 		
 		if(text == null)
 			throw new NullPointerException("Value can't be null");
-			
-		
+					
 		/**
 		 * LinkedHashSet because to retrieve the values in insertion order.
 		 */
-		Set<String> words = new LinkedHashSet<String>();
-		
+		Set<String> words = new LinkedHashSet<String>();		
 		text += "\0";
 		for(int x = 0; x < text.length()-k; x++) {
-			int offset = x + k;
+			int offset = x + (k-1);
 			for(int i = offset; i < text.length(); i++) {	
 				String s = text.substring(x, i);				
 				if(getTotalDistinctChars(s) == k) {
 					//System.out.println("SubString = " + s);									
 					words.add(s);
+					
 				}
 			}
 		}
@@ -65,7 +66,7 @@ public class MinMaxtSubstringWithKUniqueChars {
 		}
 		System.out.println("Minimum Substring Window = " + minSubString + " Of Length = "+ (min == Integer.MAX_VALUE ? 0 : min) );
 		System.out.println("Maximum Substring Window = " + maxSubString + " Of Length = "+ max);		
-	}
+	}	
 	
 	private static int getTotalDistinctChars(String text) {
  		int count = 0;
@@ -78,4 +79,13 @@ public class MinMaxtSubstringWithKUniqueChars {
  		}
  		return count;
  	}
+	
+	private static boolean[] chars = new boolean[26];
+	private static void TotalAADistinctChars(String text) {
+		for(char c : text.toCharArray()) {
+ 			if(!chars[c - 'a']) {
+ 				chars[c - 'a'] = true;
+ 			} 			
+ 		}
+	}
 }
