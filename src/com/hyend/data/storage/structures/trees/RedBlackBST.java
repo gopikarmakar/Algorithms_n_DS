@@ -1,7 +1,5 @@
 package com.hyend.data.storage.structures.trees;
 
-import com.hyend.data.storage.structures.trees.SelfBalancedBSTres.Node;
-
 public class RedBlackBST<Key extends Comparable<Key>, Value>
 {
 	private static final boolean RED = true;

@@ -1,6 +1,6 @@
-package com.hyend.logical.basics.math;
+package com.hyend.logical.basics.java;
 
-public class ImportantMathBasics {
+public class ImportantBasicJavaOperators {
 
 	public static void main(String...args) {
 		functions();

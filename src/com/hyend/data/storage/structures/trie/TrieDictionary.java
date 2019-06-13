@@ -11,7 +11,7 @@ public class TrieDictionary<E> {
 	@SuppressWarnings("hiding")
 	public class Node<E> {
 		E value;
-		String prefix;
+		public String prefix;
 		@SuppressWarnings("unchecked")
 		Node<E>[] next = new Node[alphabets];
 	}

@@ -1,82 +1,109 @@
 package com.hyend.data.storage.structures.priorityqueue;
 
-public class MinPriorityQueue {
+import java.util.Collection;
 
-	private int index = 0;
-	private int[] minPQ;
+public class MinPriorityQueue {
 	
-	public MinPriorityQueue() {
-		this(0);
-	}
-	
-	public MinPriorityQueue(int capacity) {
-		this.minPQ = new int[capacity+1];
-	}
-	
-	public void add(int k) {
-		insert(k);
-	}
-	
-	public void addAll(int[] keys) {
-		for(int k : keys)
-			insert(k);
-	}
-	
-	public int peek() {
-		return minPQ[1];
-	}
-	
-	public int remove() {
-		if(minPQ == null || index == 0)
-			throw new IllegalStateException("Min PQ is empty");
-		int min = minPQ[1];
-		exchange(1, index--);
-		minPQ[index+1] = 0;
-		sink(1);
-		return min;
-	}
-	
-	public int size() {
-		return index-1;
-	}
-	
-	private void insert(int k) {
-		minPQ[++index] = k;
-		swim(index);
-	}
-	
-	/**
-	 * 6 2 3 4 5
-	 * @param index
-	 */
-	private void sink(int k) {
-		while(2*k <= index) {
-			int j = 2*k;
-			if(j < index && isGreaterThan(j+1, j)) j++;
-			if(!isGreaterThan(k, j)) break;
-			exchange(k, j);
-			k = j;
-		}
-	}
-	
-	/**
-	 * 2 3 4 1
-	 * @param index
-	 */
-	private void swim(int index) {
-		if(index > 1 && isGreaterThan(index/2, index)) {
-			exchange(index/2, index);
-			index /= 2;
-		}
-	}
+	public static void main(String[] args) {
 		
-	private boolean isGreaterThan(int l, int r) {
-		return (minPQ[l] > minPQ[r]);
+		MyPriorityQueue<Integer> minPQ = new MyPriorityQueue<Integer>(10);
+		minPQ.add(5);
+		minPQ.add(3);
+		minPQ.add(4);
+		minPQ.add(2);
+		minPQ.add(1);
+		
+		while(!minPQ.isEmpty()) {
+			printMSG(minPQ.remove().toString());			
+		}
 	}
 	
-	private void exchange(int l, int r) {
-		int t = minPQ[l];
-		minPQ[l] = minPQ[r];
-		minPQ[r] = t;
+	private static void printMSG(String msg) {
+		System.out.println("" + msg);
+	}
+	
+	private static class MyPriorityQueue<Key extends Comparable<Key>> {
+		
+		private int N = 0;
+		private Key[] minPQ;	
+		
+		@SuppressWarnings("unchecked")
+		public MyPriorityQueue(int capacity) {
+			minPQ = (Key[]) new Comparable[capacity+1];
+		}
+		
+		public MyPriorityQueue(Collection<Key> keys) {
+			this(keys.size());
+			addAll(keys);
+		}
+		
+		public void add(Key key) {
+			insert(key);
+		}
+		
+		public void addAll(Collection<Key> keys) {
+			for(Key k : keys)
+				insert(k);
+		}
+		
+		public Key peek() {
+			return minPQ[1];
+		}
+		
+		public Key remove() {
+			if(minPQ == null || N == 0)
+				throw new IllegalStateException("Min PQ is empty");
+			Key min = minPQ[1];
+			exchange(1, N--);
+			minPQ[N+1] = null;
+			sink(1);
+			return min;
+		}
+		
+		public int size() {
+			return N;
+		}
+		
+		public boolean isEmpty() {
+			return (size() == 0);
+		}
+		
+		private void insert(Key k) {
+			minPQ[++N] = k;
+			swim(N);
+		}
+		
+		/**
+		 * @param N
+		 */
+		private void sink(int k) {
+			while(2*k <= N) {
+				int j = 2*k;
+				if(j < N && isGreaterThan(j, j+1)) j++;
+				if(!isGreaterThan(k, j)) break;
+				exchange(k, j);
+				k = j;
+			}
+		}
+		
+		/**
+		 * @param index
+		 */
+		private void swim(int index) {
+			while(index > 1 && isGreaterThan(index/2, index)) {
+				exchange(index/2, index);
+				index /= 2;
+			}
+		}
+			
+		private boolean isGreaterThan(int l, int r) {
+			return (minPQ[l].compareTo(minPQ[r]) > 0);
+		}
+		
+		private void exchange(int l, int r) {
+			Key t = minPQ[l];
+			minPQ[l] = minPQ[r];
+			minPQ[r] = t;
+		}
 	}
 }

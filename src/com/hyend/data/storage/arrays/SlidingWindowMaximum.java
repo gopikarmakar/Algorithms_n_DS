@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import com.hyend.data.storage.stackandqueue.ImmutableQueue;
 import com.hyend.data.storage.stackandqueue.ImmutableStack;
@@ -27,7 +28,7 @@ public class SlidingWindowMaximum {
 		//int arr[] = {1,3,1,2,0,5};
 		int arr[] = {7, 2, 4};
 		//int arr[] = {1,3,-1,-3,5,3,2,7};
-		//int arr[] = {1, 2, 3, 1, 4, 5, 2, 3, 6};
+		//int arr[] = {1, 2, 3, 1, 4, 5, 2, 3, 6};	
 		maxInSubArrayWindow(2, arr);
 	}
 	
@@ -125,7 +126,7 @@ public class SlidingWindowMaximum {
 				
 		if(nums.length == 0 || k == 0 || k == 1)
             return;
-        
+        		
         List<Integer> subList = new ArrayList<>();
         List<Integer> maxList = new ArrayList<>();
         PriorityQueue<Integer> pq = new PriorityQueue<>();

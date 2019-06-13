@@ -54,12 +54,12 @@ public class TestAlgorithms {
 		//testFirstMissingPositive();
 	}
 	
-	private static void testFirstMissingPositive() {
+	/*private static void testFirstMissingPositive() {
 		int[] s = {1, 3, 6, 4, 1, 2};
 		//int[] s = {-1, -3};
 		FindFirstMissingPositive f = new FindFirstMissingPositive();
 		printMsg("First Missing Positive = " + f.findFirstPositive(s));
-	}
+	}*/
 	
 	private static void testUniqueTriplets() {
 		int[] s = {-4,-2,-1,0,1,3,4};

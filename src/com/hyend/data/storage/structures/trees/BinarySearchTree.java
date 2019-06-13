@@ -2,6 +2,7 @@ package com.hyend.data.storage.structures.trees;
 
 import java.util.Queue;
 import java.util.Stack;
+
 import java.util.LinkedList;
 
 /**
@@ -318,27 +319,24 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 	 *					               18       21 
 	 *     								        						  
 	 */
-	private void traverseInOrderNonRecursive() {
-		Stack<Node> nodes = new Stack<>();
-		Node node = root;
-		int treeSize = size();
+	private void traverseInOrderNonRecursive() {		
+		Stack<Node> s = new Stack<>();
+		Node x = root;
 		do {
-			if(node != null) {				
-				nodes.push(node);
-				node = node.left;						
+			if(x != null) {
+				s.add(x);
+				x = x.left;
 			}
-			else {
-				treeSize -= 1;
-				node = nodes.pop();
-				/**
-				 * Null check isn't required bcoz a 
-				 * null can't be added due to null check above. 				 
-				 */
-				K parent = (node.parent == null) ? null : node.parent.key;
-				System.out.println("Parent = " + parent + " and Node = " + node.key);
-				node = node.right;										
+			else {					
+				if(!s.isEmpty())
+					x = s.pop();
+				else break;
+				
+				K parent = (x.parent == null) ? null : x.parent.key;
+				System.out.println("Parent = " + parent + " and Node = " + x.key);					
+				x = x.right;
 			}			
-		} while(treeSize > 0);
+		} while(true);
 	}
 	
 	/**

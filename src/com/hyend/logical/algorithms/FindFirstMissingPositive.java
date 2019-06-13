@@ -20,12 +20,40 @@ import java.util.PriorityQueue;
  *
  */
 public class FindFirstMissingPositive {
-
-	int[] array;
 	
 	public FindFirstMissingPositive() {}
 	
-	private int getMax(int[] arr) {
+	public static void main(String[] args) {
+		int[] arr = {8, 9, 2, 7, 12, 11, 10, 1};
+		int val = findFirstMissingPositive(arr);		
+		System.out.println("First Missing Positive = " + val);
+	}
+	
+	/**
+	 * The Most efficient O(n) solution
+	 * @param arr
+	 * @return
+	 */
+	private static int findFirstMissingPositive(int...arr) {
+		
+		for(int i = 0; i < arr.length; i++) {
+			
+			if(arr[i] > 0 && arr[i] <= arr.length && arr[arr[i]-1] != arr[i]) {
+				int x = arr[arr[i]-1];
+				arr[arr[i]-1] = arr[i];
+				arr[i] = x;				
+			}
+		}
+		
+		for(int i = 0; i < arr.length; i++) {
+			if(arr[i] != i+1) {
+				return i+1;
+			}
+		}
+		return arr.length+1;
+	}
+	
+	private static int getMax(int[] arr) {
 		int max = 0;
 		
 		for(int x = 0; x < arr.length; x++) {			
@@ -36,12 +64,14 @@ public class FindFirstMissingPositive {
 	}
 	
 	/**
-	 * It's 100% full proof but a huge space consuming an inefficient solution.
-	 * A quite less space consuming more efficiently can be solved with min heap. 
+	 * It's 100% full proof but a huge space 
+	 * consuming an inefficient solution.
+	 * A quite less space consuming bit 
+	 * better can be solved with min heap. 
 	 */	 
-	public int findFirstMinPositive(int[] arr) {			
+	private static int findFirstMinPositive(int[] arr) {			
 						
-		this.array = new int[getMax(arr)+1];
+		int[] array = new int[getMax(arr)+1];
 		
 		for(int i = 0; i < arr.length; i++) {
 			if(arr[i] > 0) 
@@ -58,12 +88,12 @@ public class FindFirstMissingPositive {
 	}
 	
 	/**
-	 * Very Efficient solution for all unique values.
+	 * A bit better Onlog(n) solution.
 	 * 
 	 * @param arr
 	 * @return
 	 */
-	public int findFirstPositive(int[] arr) {
+	private static int findFirstPositive(int[] arr) {
 		
 		if(arr.length == 0)
 			return 0;

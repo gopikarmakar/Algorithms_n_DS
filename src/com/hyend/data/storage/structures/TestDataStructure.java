@@ -29,7 +29,8 @@ import com.hyend.data.storage.structures.linkedlists.MyLinkedList;
 import com.hyend.data.storage.structures.trees.BinarySearchTree;
 import com.hyend.data.storage.structures.trees.RedBlackBST;
 import com.hyend.data.storage.structures.trees.SelfBalancedBSTres;
-import com.hyend.data.storage.structures.trie.TernarySearchTrieDict;
+import com.hyend.data.storage.structures.trie.TernaryTrieDictionary;
+import com.hyend.data.storage.structures.trie.TrieDictionary;
 import com.hyend.data.storage.structures.trie.TrieDictionary.Node;
 import com.hyend.logical.algorithms.FindKthElement;
 import com.hyend.logical.algorithms.StackWithMin;
@@ -281,15 +282,15 @@ class TestDataStructure<K> {
 	    //PrintMSG("The Value For Key 2 = " + bt.contains(2));
 	    //bt.printAllPostOrderNodes();
 	    System.out.println("PreOrder Printing");
-	    bt.printAllPreOrderNodes();
-	    //bt.printAllInOrderNodes(bt.NON_RECURSIVE);
+	    //bt.printAllPreOrderNodes();
+	    bt.printAllInOrderNodes(bt.NON_RECURSIVE);
 	    //bt.printNodesInRange(4, 8);
 	    //bt.printAllRightDiagonalNodes();
 	    //bt.convertToDoubleLinkedList();
 	    //bt.printDoubleyLinkedList(bt.DESCENDING);
 	    //bt.printAllBFSNodesFromRoot();
-	    System.out.println("Invert Printing");
-	    bt.printAnInvertedTree();
+	    //System.out.println("Invert Printing");
+	    //bt.printAnInvertedTree();
 	}
 	
 	private static void TestBalacedBSTree() {
@@ -367,26 +368,28 @@ class TestDataStructure<K> {
 	
 	private static <E> void TestTrieDictionary() {
 		
-		TernarySearchTrieDict trieDict = new TernarySearchTrieDict();
-		//TrieDictionary<String> trieDict = new TrieDictionary<>();
-		/*trieDict.put("Asuka", "Six");
-		trieDict.put("Kiaan", "one");
-		trieDict.put("Keshav", "two");
-		trieDict.put("Kush", "three");
-		trieDict.put("Kia", "four");
-		trieDict.put("Tulsi", "five");		
-		trieDict.put("Karan", "Seven");
-		trieDict.put("Kunal", "eight");
-		trieDict.put("Kiran", "nine");
-		trieDict.put("Kabir", "ten");*/
+		TrieDictionary<String> trieDict = new TrieDictionary<>();
+		trieDict.put("Asuka", "a");
+		trieDict.put("Kiaan", "b");
+		trieDict.put("Keshav", "c");
+		trieDict.put("Kush", "d");
+		trieDict.put("Kia", "e");
+		trieDict.put("Tulsi", "f");		
+		trieDict.put("Karan", "g");
+		trieDict.put("Kunal", "h");
+		trieDict.put("Kiran", "i");
+		trieDict.put("Kabir", "j");
+		
+		/*Iterator<TrieDictionary<String>.Node<String>> itr = trieDict.keysWithPrefix("As").iterator(); 
+		while(itr.hasNext())
+			PrintMSG("Total Keys = " + itr.next().prefix);*/			
+		
 		/*trieDict.putChunks("googleishiring", "google");
 		trieDict.putChunks("shesellsseashells", "shore");
 		trieDict.putChunks("godhelpmeforinterview", "god");
 		trieDict.putChunks("appletisnothiring", "apple");
 		trieDict.putChunks("appleisnothiring", "apple");*/
-		/*Iterator<TernarySearchTrieDict<String>.Node<String>> itr = trieDict.keysWithPrefix("as").iterator(); 
-		while(itr.hasNext())
-			PrintMSG("Total Keys = " + itr.next().prefix);*/
+		
 		//PrintMSG("Longest Prefix = " + trieDict.longestCommonPrefixOf("Kiaaan"));		
 		//PrintMSG("Count = " + trieDict.allDistinctSubstrings("ababa"));
 		/*Iterator<String> itr = trieDict.substringMatch("interview").iterator();
@@ -400,7 +403,7 @@ class TestDataStructure<K> {
 			index+=1;
 		}*/
 		//PrintMSG("Unique Substrings = " + trieDict.uniqueNSubstrings("cgcgggcgcg", 3));
-		PrintMSG("Unique Substrings = " + trieDict.longestSubStringWithKDistinctChars("abcxaabbcyabcz", 3));
+		//PrintMSG("Unique Substrings = " + trieDict.longestSubStringWithKDistinctChars("abcxaabbcyabcz", 3));
 		
 		//TrieDictionary<String> trieDict = new TrieDictionary<>();		
 		/*Iterator<TrieDictionary<String>.Node<String>> iterator = trieDict.keysWithPrefix("an").iterator();						

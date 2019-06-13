@@ -55,11 +55,10 @@ public class LRUCache {
 		}
 		
 		public void iterateCache() {			
-			Iterator<String> itr = cache.iterator();
 			System.out.println("Printing LRU Cache");
-			while(itr.hasNext()) {
-				System.out.println(itr.next());
-			}
+			cache.forEach(x -> {
+				System.out.println(x);
+			});
 		}
 	}
 	
@@ -81,7 +80,7 @@ public class LRUCache {
 		cache.put(4000, "Woods");
 		cache.put(5000, "Ali");
 		
-		demoIterateInAccessOrder(cache);
+		iterateInAccessAndInsertionOrder(cache);
 		
 		int key1 = 1000;
 		System.out.printf("1. Accessting value at key: %d is %s\n", key1, cache.get(key1));
@@ -89,7 +88,7 @@ public class LRUCache {
 		int key2 = 3000;
 		System.out.printf("2. Accessting value at key: %d is %s\n", key2, cache.get(key2));
 		
-		demoIterateInAccessOrder(cache);
+		iterateInAccessAndInsertionOrder(cache);
 	}
 	
 	/**
@@ -116,7 +115,7 @@ public class LRUCache {
 		cache.put(4000, "Woods");
 		cache.put(5000, "Ali");		
 		
-		demoIterateInAccessOrder(cache);
+		iterateInAccessAndInsertionOrder(cache);
 		
 		cache.put(2000, "Bradman");
 		cache.put(1000, "Federer");
@@ -130,7 +129,7 @@ public class LRUCache {
 		//int key2 = 3000;
 		//System.out.printf("2. Accessting value at key: %d is %s\n", key2, cache.get(key2));
 		
-		demoIterateInAccessOrder(cache);
+		iterateInAccessAndInsertionOrder(cache);
 	}	
 	
 	private static void OwnLRUCacheImplementation(int capacity) {
@@ -149,7 +148,7 @@ public class LRUCache {
 		lruCache.iterateCache();
 	}
 	
-	private static void demoIterateInAccessOrder(Map<Integer, String> cache) {
+	private static void iterateInAccessAndInsertionOrder(Map<Integer, String> cache) {
 		System.out.println("Printing LRU Cache");
 		cache.forEach((key, value) -> {
 			System.out.println("Key:"+ key + ", Value:" + value);
