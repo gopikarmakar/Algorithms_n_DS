@@ -6,11 +6,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
+/**
+ * Not taking care of corner cases yet!
+ * @author gopi_karmakar
+ */
 public class SlidingWindowMedian {
 
 	public static void main(String[] args) {
 		int[] nums = {1,3,-1,-3,5,3,6,7};
-		//int[] nums = {2147483647, 2147483647};				
+		//int[] nums = {2147483647, 2147483647}; // It'll fail since Not taking care of corner cases yet!				
 		Solution sol = new Solution();
 		for(double d : sol.medianSlidingWindow(nums, 2)) {
 			System.out.println(d);

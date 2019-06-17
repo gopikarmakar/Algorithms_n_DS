@@ -1,18 +1,25 @@
 package com.hyend.logical.algorithms.strings;
 
-import java.lang.reflect.Array;
+import java.util.Arrays;
 
-/**
- * 
- * It's a O(n) solution. 
- * Where n is the length of both the strings. 
- *  
+/**  
  * @author gopi_karmakar
- *
  */
 public class AnagramString {
 	
-	public boolean isItAnagramString(String str1, String str2) {
+	public static void main(String[] args) {		
+		boolean val = isItAnagramString2("debitcard", "badcredit");
+		if(val)
+			System.out.println("It's An Anagram!");
+		else
+			System.out.println("It's Not An Anagram!");
+	}
+	
+	/**
+	 * It's a O(n) solution. 
+	 * Where n is the length of both the strings. 
+	 */
+	public static boolean isItAnagramString(String str1, String str2) {
 		
 		boolean isAnagram = true;
 		int str1length = str1.length();
@@ -46,5 +53,21 @@ public class AnagramString {
 		}
 				
 		return isAnagram;
+	}
+	
+	/**
+	 * A more simple and full proof O(n log(n)) solution. 
+	 */
+	public static boolean isItAnagramString2(String str1, String str2) {
+		
+		char[] s1 = str1.toCharArray();
+		Arrays.sort(s1);
+		String sortedStr1 = new String(s1);
+		
+		char[] s2 = str1.toCharArray();
+		Arrays.sort(s2);
+		String sortedStr2 = new String(s2);
+		
+		return sortedStr1.equals(sortedStr2);
 	}
 }
