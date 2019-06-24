@@ -12,6 +12,7 @@ import java.util.List;
  * @author gopi_karmakar
  */
 public final class ImmutableStack {
+	int maxInRange = 0;
 	private Deque<Element> dq = new LinkedList<Element>();
 	class Element {		
 		int max;
@@ -24,17 +25,29 @@ public final class ImmutableStack {
 		}
 	}
 	
-	public void push(int element) {
+	public ImmutableStack() {}
+	
+	public ImmutableStack(int range) {
+		this.maxInRange = range;
+	}
+	
+	int offset = 0;
+	public void push(int v) {
 		//int min = Math.min(element, dq.isEmpty() ? element : getMin());
-		int max = Math.max(element, dq.isEmpty() ? element : getMax());
-		//System.out.println(max);
-		dq.push(new Element(element, 0, max));
+		int max = Math.max(v, (dq.isEmpty() ? v : getMax()));
+		//System.out.println(max);		
+		//max = (v > dq.peek())
+		dq.push(new Element(v, 0, max));
+	}
+	
+	public int size() {
+		return dq.size();
 	}
 	
 	public int pop() {
 		if(dq.isEmpty())
 			throw new IllegalStateException("pop(): empty stack");
-		return dq.pop().element;
+		return dq.removeLast().element;
 	}
 	
 	public int getMin() {
@@ -46,7 +59,16 @@ public final class ImmutableStack {
 	public int getMax() {
 		if(dq.isEmpty())
 			throw new IllegalStateException("max(): empty stack");
+				
 		return dq.peek().max;
+	}
+	
+	private int setMax(int v) {
+		if(dq.isEmpty())
+			throw new IllegalStateException("max(): empty stack");
+		
+		return (v < dq.peek().element) ? dq.peek().max : v;
+		//return dq.peek().max;
 	}
 	
 	public List<Integer> getDQList() {

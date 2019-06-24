@@ -19,7 +19,7 @@ public class LRUCache {
 								
 		//removingEldestEntry();
 		//notRemovingEldestEntry();
-		OwnLRUCacheImplementation(3);		
+		OwnLRUCacheImplementation();		
 	}
 	
 	/**
@@ -38,12 +38,10 @@ public class LRUCache {
 			cache = new LinkedList<String>();			
 		}
 		
-		public void add(String item) {
-			
-			if(!items.contains(item)) {
-				
+		public void add(String item) {			
+			if(!items.contains(item)) {				
 				if(cache.size() == mCapacity) {
-					String expiredItem = cache.removeLast();
+					String expiredItem = cache.pollLast();
 					items.remove(expiredItem);
 				}
 			}
@@ -54,13 +52,24 @@ public class LRUCache {
 			items.add(item);
 		}
 		
+		public String access(String item) {
+			if(!items.contains(item)) {				
+				add(item);
+			}
+			else {
+				cache.remove(item);
+				cache.push(item);
+			}
+			return item;
+		}
+		
 		public void iterateCache() {			
 			System.out.println("Printing LRU Cache");
 			cache.forEach(x -> {
 				System.out.println(x);
 			});
 		}
-	}
+	}	
 	
 	/**
 	 * LRU cache implementation using existing Java API
@@ -105,7 +114,7 @@ public class LRUCache {
 		int capacity = 3;
 		LinkedHashMap<Integer, String> cache = new LinkedHashMap<Integer, String>(capacity, 0.75f, true) {			
 			@Override
-			protected boolean removeEldestEntry(java.util.Map.Entry<Integer, String> eldest) {			
+			protected boolean removeEldestEntry(Map.Entry<Integer, String> eldest) {			
 				return this.size() > capacity;
 			}
 		};
@@ -113,7 +122,13 @@ public class LRUCache {
 		cache.put(2000, "Bradman");
 		cache.put(3000, "Jordan");
 		cache.put(4000, "Woods");
-		cache.put(5000, "Ali");		
+		cache.put(5000, "Ali");
+		
+		/*int key1 = 2000;
+		System.out.printf("1. Accessting value at key: %d is %s\n", key1, cache.get(key1));
+		
+		int key2 = 1000;
+		System.out.printf("2. Accessting value at key: %d is %s\n", key2, cache.get(key2));*/
 		
 		iterateInAccessAndInsertionOrder(cache);
 		
@@ -123,17 +138,17 @@ public class LRUCache {
 		cache.put(8000, "Kohli");
 		cache.put(9000, "Pandya");
 		
-		//int key1 = 1000;
-		//System.out.printf("1. Accessting value at key: %d is %s\n", key1, cache.get(key1));
+		/*int key3 = 1000;
+		System.out.printf("1. Accessting value at key: %d is %s\n", key3, cache.get(key3));
 		
-		//int key2 = 3000;
-		//System.out.printf("2. Accessting value at key: %d is %s\n", key2, cache.get(key2));
+		int key4 = 7000;
+		System.out.printf("2. Accessting value at key: %d is %s\n", key4, cache.get(key4));*/
 		
 		iterateInAccessAndInsertionOrder(cache);
 	}	
 	
-	private static void OwnLRUCacheImplementation(int capacity) {
-		OwnLRUCache lruCache = new OwnLRUCache(capacity);
+	private static void OwnLRUCacheImplementation() {		
+		OwnLRUCache lruCache = new OwnLRUCache(5);
 		lruCache.add("One");
 		lruCache.add("Two");
 		lruCache.add("Three");
@@ -141,11 +156,14 @@ public class LRUCache {
 		lruCache.add("Five");
 		lruCache.iterateCache();
 		lruCache.add("Six");
-		lruCache.add("Seven");
+		lruCache.add("Seven");		
+		lruCache.access("Four");		
 		lruCache.iterateCache();
-		lruCache.add("Five");
 		lruCache.add("Eight");
+		lruCache.access("Four");
+		lruCache.add("Nine");
 		lruCache.iterateCache();
+				
 	}
 	
 	private static void iterateInAccessAndInsertionOrder(Map<Integer, String> cache) {

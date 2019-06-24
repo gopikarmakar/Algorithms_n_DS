@@ -194,7 +194,7 @@ public class MyLinkedList<E extends Comparable<E>> implements Iterable<E> {
         		
 		Node<E> first, second;
 		first = head.next;		
-		while(k-- >= 0) {
+		while(--k >= 0) {
 			if(first != null)
 				first = first.next;
 		}
