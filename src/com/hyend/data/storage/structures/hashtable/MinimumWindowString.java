@@ -3,6 +3,11 @@ package com.hyend.data.storage.structures.hashtable;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/*
+ * It passes for below case but It'll fail for some cases.
+ * Not a full fledged solution still need to improve.
+ */
 public class MinimumWindowString {
 	
 	public static void main(String[] args) {

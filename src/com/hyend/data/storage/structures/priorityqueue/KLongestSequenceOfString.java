@@ -1,5 +1,4 @@
 package com.hyend.data.storage.structures.priorityqueue;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

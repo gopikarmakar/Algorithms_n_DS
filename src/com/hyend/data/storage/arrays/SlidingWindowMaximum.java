@@ -14,6 +14,8 @@ import com.hyend.data.storage.structures.priorityqueue.MinPriorityQueue;
 /**
  * Sliding Window Maximum (Maximum of all SubArrays of size k) 
  * 
+ * It's improper since it fails. 
+ * 
  * Input arr[] : {1, 2, 3, 1, 4, 5, 2, 3, 6}
  * k = 3 
  * Output : 3 3 4 5 5 5 6

@@ -7,14 +7,18 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 /**
- * Not taking care of corner cases yet!
+ * It'll fail in corner cases yet!
+ * Need to improve.
+ * 
+ * Otherwise it's a correct and very efficient solution!
+ * 
  * @author gopi_karmakar
  */
 public class SlidingWindowMedian {
 
 	public static void main(String[] args) {
 		int[] nums = {1,3,-1,-3,5,3,6,7};
-		//int[] nums = {2147483647, 2147483647}; // It'll fail since Not taking care of corner cases yet!				
+		//int[] nums = {2147483647, 2147483647}; // It'll fail for this case.				
 		Solution sol = new Solution();
 		for(double d : sol.medianSlidingWindow(nums, 2)) {
 			System.out.println(d);
@@ -35,13 +39,17 @@ public class SlidingWindowMedian {
 	    public List<Double> medianSlidingWindow(int[] nums, int k) {
 	        int i = 0;
 	        List<Double> medians = new ArrayList<>();
-	        while(i <= nums.length-k) {            
-	            add(Arrays.copyOfRange(nums, i, i+k));
-	            medians.add(findMedian());
+	        while(i <= nums.length-k) {
+	            medians.add(compute(Arrays.copyOfRange(nums, i, i+k)));
 	            clearPQs();
 	            i+=1;
-	        }
+	        }	        
 	        return medians;
+	    }
+	    
+	    private Double compute(int[] nums) {
+	    	add(nums);
+            return findMedian();
 	    }
 	    
 	    private void add(int[] nums) {	        
@@ -57,6 +65,7 @@ public class SlidingWindowMedian {
 	    }
 	    
 	    private double findMedian() {
+	    	//long res = (minPQ.peek()+maxPQ.peek());
 	        return (minPQ.size() == maxPQ.size()) 
 	            ? ((minPQ.peek()+maxPQ.peek()) * 0.5) : minPQ.peek();
 	    }
