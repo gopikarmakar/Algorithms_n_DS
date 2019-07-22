@@ -11,26 +11,14 @@ public class BinaryTree {
 	
 	public static void main(String[] args) {
 		
-		Integer[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};		
-		BTree<Integer> bTree = new BTree<>();		
-		addEvenly(bTree);
-		//addUnEven(bTree);
-		//recreateBTreeFromListOfKeys(bTree, keys);
-		bTree.printBFS();
-		printMSG("=================================");
-		bTree.pringtInOrder();
-		printMSG("Is Balanced = " + bTree.isTreeBalanced());
+		Integer[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};		
+		BTree<Integer> bTree = new BTree<>();
+		bTree.root = buildBTreeFromListOfKeys(bTree, keys);
+		bTree.printBFS(bTree.root);
+		//printMSG("=================================");
 		//bTree.pringtInOrder();
-		//bTree.printInorderNonRecursive();
-		//printMSG("Height of Tree = " + bTree.calculateHeight());
-						
-		//char[] inOrder = {'F', 'B', 'A', 'E', 'H', 'C', 'D', 'I', 'G'};
-		//Character[] preOrder = {'H', 'B', 'F', 'E', 'A', 'C', 'D', 'G', 'I'};
-		//BTree<Character> cBTree = new BTree<>();
-		//recreateBTreeFromPreOrderTraversal(preOrder, cBTree);
-		//recreateBTreeFromInandPreOrderTraversal(inOrder, preOrder);
-		//cBTree.pringtPreOrder();
-		//cBTree.printBFS();
+		//printMSG("Is Balanced = " + bTree.isTreeBalanced());
+
 	}
 	
 	private static void printMSG(String msg) {
@@ -47,24 +35,17 @@ public class BinaryTree {
 			bTree.addByWeight(i);
 	}
 	
-	private static void recreateBTreeFromListOfKeys(BTree<Integer> bTree, Integer[] keys) {
-		bTree.recreateBTreeFromListOfKeys(keys);
+	private static BTree.Node buildBTreeFromListOfKeys(BTree<Integer> bTree, Integer[] keys) {
+		return bTree.buildBTreeFromListOfKeys(keys, bTree.root, 0);
 	}
 	
-	private static void recreateBTreeFromPreOrderTraversal(Character[] preOrder, BTree<Character> bTree) {
-	}
-	
-	private static void recreateBTreeFromInandPreOrderTraversal(char[] inOrder, char[] preOrder) {
 		
-		Map<Character, Integer> map = new HashMap<>();
-		for(int i = 0; i < inOrder.length; i++)
-			map.put(inOrder[i], i);
-			
-	}
-	
-	//						Tree Implementation Starts Here
-	//===================================================================================================
-	
+	/**
+	 * Tree Implementation Starts Here 
+	 * @author gopi_karmakar
+	 *
+	 * @param <Key>
+	 */
 	private static class BTree<Key> {		
 		class Node {			
 			Key k;			
@@ -95,30 +76,18 @@ public class BinaryTree {
 				insertByWeight(root, k);
 		}
 				
-		/**
-		 * Evenly balanced binary tree
+		/**		
 		 * @param preOrder
 		 * @return
 		 */
-		public Node recreateBTreeFromListOfKeys(Key[] preOrder) {
-			Queue<Node> q = new LinkedList<>();
-			for(Key k : preOrder) {
-				if(q.isEmpty()) {
-					root = new Node(k);
-					q.add(root);
-				}
-				else {
-					Node x = q.peek();
-					if(x.left == null) {						
-						x.left = new Node(k);
-						q.add(x.left);
-					}
-					else {
-						x.right = new Node(k);						
-						q.add(x.right);
-						q.remove();
-					}
-				}
+		public Node buildBTreeFromListOfKeys(Key[] keys, Node root, int i) {
+			
+			if(i < keys.length) {
+				root = new Node(keys[i]);
+				
+				root.left = buildBTreeFromListOfKeys(keys, root.left, (i*2)+1);
+				
+				root.right = buildBTreeFromListOfKeys(keys, root.right, (i*2)+2);
 			}
 			return root;
 		}
@@ -135,7 +104,7 @@ public class BinaryTree {
 			postOrder(root);
 		}
 		
-		public void printBFS() {			
+		public void printBFS(Node root) {			
 			Queue<Node> q = new LinkedList<Node>();
 			q.add(root);
 			do {												
@@ -170,14 +139,9 @@ public class BinaryTree {
 			return heightOfTree(root);
 		}
 		
-		public boolean isTreeBalanced() {
-			AtomicBoolean balanced = new AtomicBoolean(true);
-			isBalanced(root, balanced);
-			return balanced.get();
-		}
 		
 		/**
-		 * Left leaning binary tree. 
+		 * Right subtree leaning binary tree. 
 		 * @param x
 		 * @param k
 		 * @param v
@@ -257,18 +221,6 @@ public class BinaryTree {
 			return height;
 		}
 		
-		private int isBalanced(Node x, AtomicBoolean balanced) {
-			
-			if(x == null)
-				return 0;
-			
-			int LH = isBalanced(x.left, balanced);
-			int RH = isBalanced(x.right, balanced);
-			if((LH+1) > 2*(RH+1) || (RH+1) > 2*(LH+1))
-				balanced.set(false);
-			
-			return 1 + Math.max(LH, RH);			
-		}
 		
 		private void printMSG(Node x) {
 			System.out.println("Key = " + x.k + "  and   Weight = " + x.weight);

@@ -77,7 +77,9 @@ public class ImportantBasicJavaOperators {
 		
 		//Initial values 
         int a = 2; 
-        int b = 3;
+        int b = 5;
+        
+        System.out.println("Math.abs(2-5)		= " + Math.abs(a-b));
         
         System.out.println("Math.abs(-34.5)		= " + Math.abs(-34.5));
         System.out.println("Math.ceil(2.17)		= " + Math.ceil(2.17));

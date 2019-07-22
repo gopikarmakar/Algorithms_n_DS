@@ -56,7 +56,8 @@ public class AnagramString {
 	}
 	
 	/**
-	 * A more simple and full proof O(n log(n)) solution. 
+	 * A more simpler and full proof solution with O(n) time and space complexity.
+	 * Where n is the number of characters of str1.
 	 */
 	public static boolean isItAnagramString2(String str1, String str2) {
 		

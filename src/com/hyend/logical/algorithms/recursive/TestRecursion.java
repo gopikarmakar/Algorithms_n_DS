@@ -1,6 +1,8 @@
 package com.hyend.logical.algorithms.recursive;
 
 import java.util.ArrayList;
+import java.util.NavigableSet;
+import java.util.Objects;
 
 public class TestRecursion {
 	
@@ -22,8 +24,8 @@ public class TestRecursion {
 		//int[] arr = {6,3,2,1,5,4,9,7,10,8};
 		//recursive(arr, 0, arr.length-1);
 		
-		//Fibonacci fib = new Fibonacci();
-		//PrintMSG("Fibonacci Sum = " + fib.findFibMemoized(8));
+		Fibonacci fib = new Fibonacci();
+		PrintMSG("Fibonacci Sum = " + fib.findFibMemoized(1000));
 		
 		/*ArrayList<Integer> keys = new ArrayList<>();
 		keys.add(1);
@@ -32,13 +34,14 @@ public class TestRecursion {
 		Permutations charPerm = new Permutations(keys);*/
 		
 		//StudentAttendance sa = new StudentAttendance();
-		Permutations p = new Permutations();
-		p.anagramStringPermutations("AABB");
+		//Permutations p = new Permutations();
+		//p.anagramStringPermutations("AABB");
 		//PrintMSG("Total Ways = " + p.totalPemutations( 3, 1, 2, ""));
 		//Combinations comb = new Combinations(3);
 	}
 	
 	private static void PrintMSG(Object msg) {
 		System.out.println(msg);
+		Objects.hash(10, 20);		
 	}
 }

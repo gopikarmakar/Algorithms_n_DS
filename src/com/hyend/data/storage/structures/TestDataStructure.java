@@ -247,52 +247,6 @@ class TestDataStructure<K> {
 		System.out.println(queue.pop());
 	}
 	
-	private static void TestBinarySearchTree() {
-		BinarySearchTree<Integer, String> bt = new BinarySearchTree<Integer, String>();	
-		int[][] keyValue = new int[20][1];		
-	    /*bt.put(11, "Juu");
-	    bt.put(15, "JuIchi");
-	    bt.put(5, "Kyuu");
-	    bt.put(16, "JuuNi");
-	    bt.put(3, "Penta");
-	    bt.put(14, "Seven");
-	    bt.put(8, "Nine");
-	    bt.put(13, "Duo");
-	    bt.put(4, "Uno");
-	    bt.put(18, "Uno");
-	    bt.put(7, "Uno");
-	    bt.put(12, "Uno");
-	    bt.put(2, "Uno");
-	    bt.put(17, "Uno");
-	    bt.put(1, "Uno");
-	    bt.put(19, "Uno");
-	    bt.put(6, "Uno");
-	    bt.put(20, "Uno");	   
-	    bt.put(9, "Uno");
-	    bt.put(21, "twotwo");*/
-		bt.put(5, "f");
-		bt.put(2, "t");
-		bt.put(1, "s");
-		bt.put(3, "t");
-		bt.put(7, "s");		
-		bt.put(6, "s");
-		bt.put(8, "e");
-	    //PrintMSG("Tree Size = " + bt.size());
-	    //PrintMSG("The Value For Deteletd Key 11 = " + bt.delete(11));
-	    //PrintMSG("The Value For Key 2 = " + bt.contains(2));
-	    //bt.printAllPostOrderNodes();
-	    System.out.println("PreOrder Printing");
-	    //bt.printAllPreOrderNodes();
-	    bt.printAllInOrderNodes(bt.NON_RECURSIVE);
-	    //bt.printNodesInRange(4, 8);
-	    //bt.printAllRightDiagonalNodes();
-	    //bt.convertToDoubleLinkedList();
-	    //bt.printDoubleyLinkedList(bt.DESCENDING);
-	    //bt.printAllBFSNodesFromRoot();
-	    //System.out.println("Invert Printing");
-	    //bt.printAnInvertedTree();
-	}
-	
 	private static void TestBalacedBSTree() {
 					
 		SelfBalancedBSTres<Character, String> bt = new SelfBalancedBSTres<Character, String>();		
