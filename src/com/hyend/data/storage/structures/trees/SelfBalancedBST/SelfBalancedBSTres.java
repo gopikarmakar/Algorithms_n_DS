@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures.trees;
+package com.hyend.data.storage.structures.trees.SelfBalancedBST;
 
 import java.util.LinkedList;
 import java.util.Queue;

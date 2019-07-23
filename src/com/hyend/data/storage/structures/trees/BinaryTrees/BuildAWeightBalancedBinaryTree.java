@@ -8,12 +8,17 @@ package com.hyend.data.storage.structures.trees.BinaryTrees;
  */
 public class BuildAWeightBalancedBinaryTree {
 	
-	public static void main(String[] args) {		
-		BinaryTree.printBFS(build());
+	public static void main(String[] args) {
+		//int[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+		BinaryTree.printBFS(build(), false);
 	}
 	
-	public static BinaryTree.Node<Integer> build() {
-		int[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+	public static BinaryTree.Node<Integer> build(int...keys) {
+		if(keys == null || keys.length == 0) {
+			keys = new int[15];
+			for(int i = 0; i < 15; i++)
+				keys[i] = i+1;
+		}
 		BinaryTree.Node<Integer> root = null; 
 		for(int x : keys)
 			root = addNode(root, x);

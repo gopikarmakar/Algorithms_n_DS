@@ -1,5 +1,13 @@
-package com.hyend.data.storage.structures.trees;
+package com.hyend.data.storage.structures.trees.BinarySearchTree;
 
+/**
+ * A Red Black BST Implementation
+ *  
+ * @author gopi_karmakar
+ *
+ * @param <Key>
+ * @param <Value>
+ */
 public class RedBlackBST<Key extends Comparable<Key>, Value>
 {
 	private static final boolean RED = true;
