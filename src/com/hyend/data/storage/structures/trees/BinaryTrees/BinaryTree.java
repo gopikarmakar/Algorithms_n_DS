@@ -1,6 +1,8 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -55,11 +57,11 @@ public class BinaryTree {
 		}		
 	}
 	
-	public static Node<Integer> create(int type, int size, int...keys) {
+	public static Node<Integer> create(int type, int...keys) {
 		Node<Integer> root = null;		
 		switch (type) {
 			case LEVEL_ORDER:
-				root = BuildABinaryTreeInLevelOrder.build(size, keys);
+				root = BuildABinaryTreeInLevelOrder.build(keys);
 				break;
 			case LEFT_LEANING:
 				root = BuildLeftOrRightLeaningAndSkewedBT.build(type, keys);
@@ -106,7 +108,7 @@ public class BinaryTree {
 		System.out.println(node.key + ((withParent == true) ? 
 				((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : ""));		
 		printInOrderRecursive(node.right, withParent);
-	}
+	}	
 	
 	public static void printPreOrderRecursive(Node<?> node, boolean withParent) {
 		if(node == null) //Base case

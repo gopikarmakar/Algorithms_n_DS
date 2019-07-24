@@ -2,7 +2,7 @@ package com.hyend.data.storage.structures.trees.BinaryTrees;
 
 /**
  * Creating a balanced Binary Tree by balancing the 
- * left and right subtrees weight equally.
+ * left and right subtrees weight equally from the root.
  * 
  * @author gopi_karmakar
  */

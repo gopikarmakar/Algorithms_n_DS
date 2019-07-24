@@ -3,7 +3,7 @@ package com.hyend.data.storage.structures.trees.BinaryTrees;
 public class CalculateHeightOfABinaryTree {
 	
 	public static void main(String[] args) {
-		BinaryTree.Node<Integer> root = BinaryTree.create(15, BinaryTree.LEVEL_ORDER);
+		BinaryTree.Node<Integer> root = BinaryTree.create(BinaryTree.LEVEL_ORDER);
 		BinaryTree.printBFS(root, false);
 		System.out.println("Height Of The Binary Tree = " + calculateHeight(root));		
 	}

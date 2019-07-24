@@ -18,7 +18,7 @@ public class FindLCAInBinaryTree {
 		
 		//int[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 		//BinaryTree.Node<Integer> root = BuildABinaryTreeInLevelOrder.build(keys);
-		BinaryTree.Node<Integer> root = BinaryTree.create(15, BinaryTree.LEVEL_ORDER);
+		BinaryTree.Node<Integer> root = BinaryTree.create(BinaryTree.LEVEL_ORDER);
 		//BinaryTree.printBFS(root);
 		
 		Node<Integer> node1 = root.left.right;

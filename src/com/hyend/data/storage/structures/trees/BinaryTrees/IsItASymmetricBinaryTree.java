@@ -11,9 +11,8 @@ public class IsItASymmetricBinaryTree {
 		
 		int correctKeys[] = {1,2,2,4,5,5,4,8,9,10,11,11,10,9,8};
 		//int wrongKeys[] = {1,2,3,4,5,5,4,8,9,9,8,10,11,11,10};		
-		int size = (correctKeys!=null && correctKeys.length > 0) ? correctKeys.length : 0;
 		
-		BinaryTree.Node<Integer> root = BuildABinaryTreeInLevelOrder.build(size, correctKeys);
+		BinaryTree.Node<Integer> root = BuildABinaryTreeInLevelOrder.build(correctKeys);
 		System.out.println("Is It A Symmetry = " + isItASymmetry(root.left, root.right));
 	}
 	
