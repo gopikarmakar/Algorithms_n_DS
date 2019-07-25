@@ -1,9 +1,7 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
+import java.util.LinkedList;
 
 /**
  * A Binary Tree structure is each node holds two children 
@@ -28,7 +26,7 @@ import java.util.Queue;
  * @author gopi_karmakar
  *
  */
-public class BinaryTree {
+public class BinaryTree<K> {
 	
 	public static final int LEVEL_ORDER 		= 1;
 	public static final int LEFT_SKEWED 		= 2;
@@ -57,11 +55,37 @@ public class BinaryTree {
 		}		
 	}
 	
-	public static Node<Integer> create(int type, int...keys) {
+	/**
+	 * Creates a generic Binary Tree of any type in level order.
+	 * 
+	 * @param type
+	 * @param keys
+	 * @return
+	 */
+	public static Node<?> create(int type, Object...keys) {
+		Node<?> tree = null;		
+		switch (type) {
+			case LEVEL_ORDER:
+				tree = BuildABinaryTreeInLevelOrder.build(keys);
+				break;
+		}
+		return tree;
+	}
+	
+	/** 
+	 * Creating only Integer valued Binary Trees.
+	 * Just for varieties of Binary Tree creation
+	 * 
+	 * @param type
+	 * @param keys
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static Node<Integer> build(int type, int...keys) {
 		Node<Integer> root = null;		
 		switch (type) {
 			case LEVEL_ORDER:
-				root = BuildABinaryTreeInLevelOrder.build(keys);
+				root = (Node<Integer>) BuildABinaryTreeInLevelOrder.build(keys);
 				break;
 			case LEFT_LEANING:
 				root = BuildLeftOrRightLeaningAndSkewedBT.build(type, keys);

@@ -14,16 +14,17 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  */
 public class FindLCAInBinaryTree {
 	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		//int[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 		//BinaryTree.Node<Integer> root = BuildABinaryTreeInLevelOrder.build(keys);
-		BinaryTree.Node<Integer> root = BinaryTree.create(BinaryTree.LEVEL_ORDER);
+		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
 		//BinaryTree.printBFS(root);
 		
-		Node<Integer> node1 = root.left.right;
+		Node<Integer> node1 = tree.left.right;
 		//Node<Integer> node2 = root.right.right;
-		Node<Integer> node2 = root.left.left.right;
+		Node<Integer> node2 = tree.left.left.right;
 
 		//Node<Integer> ancestor = findLCAWithoutParent(root, n1, n2).ancestor;		
 		//System.out.println("LCA for " + node1 + " and " + node2 + " = " + ancestor.key);	

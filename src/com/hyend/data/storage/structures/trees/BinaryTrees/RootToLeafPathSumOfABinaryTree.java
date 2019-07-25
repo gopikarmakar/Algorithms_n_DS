@@ -28,19 +28,21 @@ public class RootToLeafPathSumOfABinaryTree {
 
 	public static void main(String[] args) {		
 		int sum = 0;
-		sum = testDecimalBinaryTree();		
-		int keys[] = {1,0,1,0,1,0,0,0,1,0,1,0,0,1,0}; // Keys for Binary digit tree 
-		//sum = testBinaryDigitBinaryTree(keys);		
+		//sum = testDecimalBinaryTree();		
+		Integer keys[] = {1,0,1,0,1,0,0,0,1,0,1,0,0,1,0}; // Keys for Binary digit tree 
+		sum = testBinaryDigitBinaryTree(keys);		
 		System.out.println("Root-To-Leaf Path Sum = " + sum);
 	}
 	
+	@SuppressWarnings("unchecked")
 	private static int testDecimalBinaryTree() {
-		Node<Integer> root = BinaryTree.create(BinaryTree.LEVEL_ORDER);		
+		Node<Integer> root = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);		
 		return sumRootToLeafPath(DECIMAL, root, 0);		
 	}
 	
-	private static int testBinaryDigitBinaryTree(int...keys) {	
-		Node<Integer> root = BinaryTree.create(BinaryTree.LEVEL_ORDER, keys);		
+	@SuppressWarnings("unchecked")
+	private static int testBinaryDigitBinaryTree(Integer...keys) {	
+		Node<Integer> root = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER, (Object[])keys);		
 		return sumRootToLeafPath(BINARY_DIGIT, root, 0);
 	}
 	

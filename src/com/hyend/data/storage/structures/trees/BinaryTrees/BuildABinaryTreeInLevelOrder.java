@@ -22,32 +22,34 @@ public class BuildABinaryTreeInLevelOrder {
 	
 	private static final int DEFAULT_SIZE = 15;
 	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {	
-		int[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-		BinaryTree.Node<Integer> root = build(15);
+		//Integer[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+		Node<Integer> root = (Node<Integer>) build();
 		//BinaryTree.printBFS(root, true);
 		BinaryTree.printInOrderRecursive(root, true);
 		//BinaryTree.printPreOrderRecursive(root, true);
 	}
 	
-	public static BinaryTree.Node<Integer> build(int...keys) {
+	public static Node<?> build(Object...keys) {
 		if(keys == null || keys.length == 0) {
-			keys = new int[DEFAULT_SIZE];
+			keys = new Object[DEFAULT_SIZE];
 			for(int i = 0; i < DEFAULT_SIZE; i++)
 				keys[i] = i+1;
 		}
 		return levelOrederBTCreation(keys, null, null, 0);
 	}
 	
-	private static BinaryTree.Node<Integer> levelOrederBTCreation(int[] keys, 
-			Node<Integer> parent, Node<Integer> node, int i) {		
+	@SuppressWarnings("unchecked")
+	private static Node<?> levelOrederBTCreation(Object[] keys, 
+			Node<Object> parent, Node<Object> node, int i) {		
 		if(i < keys.length) {	
 			if(node == null) {				
-				node = new BinaryTree.Node<Integer>(keys[i]);
-				node.parent = parent;
+				node = new Node<Object>(keys[i]);
+				node.parent = (Node<Object>) parent;
 			}
-			node.left = levelOrederBTCreation(keys, node, node.left, (i*2)+1);			
-			node.right = levelOrederBTCreation(keys, node, node.right, (i*2)+2);
+			node.left = (Node<Object>) levelOrederBTCreation(keys, node, node.left, (i*2)+1);			
+			node.right = (Node<Object>) levelOrederBTCreation(keys, node, node.right, (i*2)+2);
 		}
 		return node;
 	}

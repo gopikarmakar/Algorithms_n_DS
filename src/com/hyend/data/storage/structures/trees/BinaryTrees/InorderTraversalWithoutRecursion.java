@@ -12,8 +12,10 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * @author gopi_karmakar
  */
 public class InorderTraversalWithoutRecursion {
+	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		Node<Integer> root = BinaryTree.create(BinaryTree.LEVEL_ORDER);		
+		Node<Integer> root = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);		
 		BinaryTree.printInOrderRecursive(root, false);		
 		System.out.println(traverseInOrder(root));
 	}

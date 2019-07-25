@@ -13,10 +13,11 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  */
 public class PreOrderTraversalWithoutRecursion {
 	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		Node<Integer> tree = BinaryTree.create(BinaryTree.LEVEL_ORDER);
+		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
 		BinaryTree.printPreOrderRecursive(tree, true);
-		System.out.println(traversePreOrder(tree));		
+		System.out.println(traversePreOrder(tree));
 	}
 	
 	/**

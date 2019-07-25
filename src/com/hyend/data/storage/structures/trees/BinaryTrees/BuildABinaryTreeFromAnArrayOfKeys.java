@@ -1,23 +1,31 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
+import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+
 /**
  * Building a Binary Tree in level order fashion 
  * from an array or list of keys.
+ * 							A
+ * 				B							C	
+ * 		D				E			F				G
+ * 	H		I		J		K	L		M		N		O
  * 
  * @author gopi_karmakar
  */
 public class BuildABinaryTreeFromAnArrayOfKeys {
 
 	public static void main(String[] args) {		
-		int size = 15;
-		int[] keys = new int[size];
-		for(int i = 0; i < size; i++)
-			keys[i] = i+1;
 		
-		BinaryTree.printBFS(build(keys), false);
+		BinaryTree.printBFS(build(), true);
 	}
 	
-	public static BinaryTree.Node<Integer> build(int...keys) {		
-		return BuildABinaryTreeInLevelOrder.build(keys);
+	public static Node<String> build() {
+		String[] keys = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"};
+		return build(keys);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static Node<String> build(String...keys) {		
+		return (Node<String>) BinaryTree.create(BinaryTree.LEVEL_ORDER, (Object[]) keys);
 	} 
 }

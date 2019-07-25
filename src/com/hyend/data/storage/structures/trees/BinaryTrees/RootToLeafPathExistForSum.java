@@ -9,8 +9,9 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  */
 public class RootToLeafPathExistForSum {
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		Node<Integer> root = BinaryTree.create(BinaryTree.LEVEL_ORDER);
+		Node<Integer> root = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
 		System.out.println("Does path exist = " + hasPath(root, 23, 0));		
 	}
 	
