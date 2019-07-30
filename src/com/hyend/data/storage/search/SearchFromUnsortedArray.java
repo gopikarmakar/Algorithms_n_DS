@@ -2,7 +2,7 @@ package com.hyend.data.storage.search;
 
 /**
  * Search a given key from an unsorted array
- * in O(nlogn) time.
+ * in O(n)log(n) time.
  * 
  * @author karmakargopi
  */

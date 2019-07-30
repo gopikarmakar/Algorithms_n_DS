@@ -42,11 +42,15 @@ public class BuildABinaryTreeInLevelOrder {
 	
 	@SuppressWarnings("unchecked")
 	private static Node<?> levelOrederBTCreation(Object[] keys, 
-			Node<Object> parent, Node<Object> node, int i) {		
+			Node<Object> parent, Node<Object> node, int i) {
+		
 		if(i < keys.length) {	
-			if(node == null) {				
+			if(node == null) {
+				if(keys[i] == null) return node;
+				
 				node = new Node<Object>(keys[i]);
 				node.parent = (Node<Object>) parent;
+				
 			}
 			node.left = (Node<Object>) levelOrederBTCreation(keys, node, node.left, (i*2)+1);			
 			node.right = (Node<Object>) levelOrederBTCreation(keys, node, node.right, (i*2)+2);

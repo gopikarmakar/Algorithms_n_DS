@@ -36,6 +36,7 @@ public class FindLCAInBinaryTree {
 	private static class Status {
 	
 		public int numTargetNodes;
+		@SuppressWarnings("unused")
 		public BinaryTree.Node<Integer> ancestor;
 		
 		public Status(int numTargetNodes, BinaryTree.Node<Integer> node) {
@@ -45,8 +46,7 @@ public class FindLCAInBinaryTree {
 	}
 	
 	/**
-	 * 1: Find LCA when there's no track of
-	 * parent node for any child node
+	 * 1: Find LCA when there's no track of parent node
 	 * 
 	 * This Algorithm is structurally similar 
 	 * to a recursive PostOrder traversal
@@ -59,6 +59,7 @@ public class FindLCAInBinaryTree {
 	 * @param node2
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	private static Status findLCAWithoutParent(Node<Integer> node, 
 			Node<Integer> node1, Node<Integer> node2) {
 		

@@ -12,7 +12,7 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * 
  * @author gopi_karmakar
  */
-public class BuildABinaryTreeFromAnArrayOfKeys {
+public class ConstructABinaryTreeFromAnArrayOfKeys {
 
 	public static void main(String[] args) {		
 		

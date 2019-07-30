@@ -1,6 +1,9 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
 import java.util.Queue;
+
+import javax.swing.text.AbstractDocument.LeafElement;
+
 import java.util.LinkedList;
 
 /**
@@ -26,7 +29,7 @@ import java.util.LinkedList;
  * @author gopi_karmakar
  *
  */
-public class BinaryTree<K> {
+public class BinaryTree {
 	
 	public static final int LEVEL_ORDER 		= 1;
 	public static final int LEFT_SKEWED 		= 2;
@@ -53,6 +56,12 @@ public class BinaryTree<K> {
 			this.left = null;
 			this.right = null;
 		}		
+		
+		public Node(Key key, Node<Key> left, Node<Key> right) {
+			this.key = key;
+			this.left = left;
+			this.right = right;
+		}
 	}
 	
 	/**
@@ -68,25 +77,24 @@ public class BinaryTree<K> {
 			case LEVEL_ORDER:
 				tree = BuildABinaryTreeInLevelOrder.build(keys);
 				break;
+			case WEIGHT_BALANCED:
+				tree = BuildALeftOrRightWeightedBinaryTree.build(keys);
+				break;
 		}
 		return tree;
 	}
 	
 	/** 
 	 * Creating only Integer valued Binary Trees.
-	 * Just for varieties of Binary Tree creation
+	 * Just for the varieties of Binary Tree creation
 	 * 
 	 * @param type
 	 * @param keys
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public static Node<Integer> build(int type, int...keys) {
 		Node<Integer> root = null;		
 		switch (type) {
-			case LEVEL_ORDER:
-				root = (Node<Integer>) BuildABinaryTreeInLevelOrder.build(keys);
-				break;
 			case LEFT_LEANING:
 				root = BuildLeftOrRightLeaningAndSkewedBT.build(type, keys);
 				break;
@@ -99,20 +107,17 @@ public class BinaryTree<K> {
 			case RIGHT_SKEWED:
 				root = BuildLeftOrRightLeaningAndSkewedBT.build(type, keys);
 				break;
-			case WEIGHT_BALANCED:
-				root = BuildAWeightBalancedBinaryTree.build(keys);
-				break;
 		}
 		return root;
 	}
 	
 	/**
 	 * It's been called level order too.
-	 * @param root
+	 * @param tree
 	 */
-	public static void printBFS(Node<?> root, boolean withParent) {		
+	public static void printBFS(Node<?> tree, boolean withParent) {		
 		Queue<Node<?>> queue = new LinkedList<>();
-		queue.add(root);		
+		queue.add(tree);		
 		while(!queue.isEmpty()) {			
 			Node<?> node = queue.poll();			
 			if(node != null)
@@ -124,33 +129,33 @@ public class BinaryTree<K> {
 		}
 	}
 	
-	public static void printInOrderRecursive(Node<?> node, boolean withParent) {
-		if(node == null) //Base case
+	public static void printInOrderRecursive(Node<?> tree, boolean withParent) {
+		if(tree == null) //Base case
 			return;
 		
-		printInOrderRecursive(node.left, withParent);		
-		System.out.println(node.key + ((withParent == true) ? 
-				((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : ""));		
-		printInOrderRecursive(node.right, withParent);
+		printInOrderRecursive(tree.left, withParent);		
+		System.out.println(tree.key + ((withParent == true) ? 
+				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));		
+		printInOrderRecursive(tree.right, withParent);
 	}	
 	
-	public static void printPreOrderRecursive(Node<?> node, boolean withParent) {
-		if(node == null) //Base case
+	public static void printPreOrderRecursive(Node<?> tree, boolean withParent) {
+		if(tree == null) //Base case
 			return;
 		
-		System.out.println(node.key + ((withParent == true) ? 
-				((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : ""));
-		printPreOrderRecursive(node.left, withParent);
-		printPreOrderRecursive(node.right, withParent);
+		System.out.println(tree.key + ((withParent == true) ? 
+				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
+		printPreOrderRecursive(tree.left, withParent);
+		printPreOrderRecursive(tree.right, withParent);
 	}
 	
-	public static void printPostOrderRecursive(Node<?> node, boolean withParent) {
-		if(node == null) //Base case
+	public static void printPostOrderRecursive(Node<?> tree, boolean withParent) {
+		if(tree == null) //Base case
 			return;
 				
-		printPostOrderRecursive(node.left, withParent);
-		printPostOrderRecursive(node.right, withParent);
-		System.out.println(node.key + ((withParent == true) ? 
-				((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : ""));
+		printPostOrderRecursive(tree.left, withParent);
+		printPostOrderRecursive(tree.right, withParent);
+		System.out.println(tree.key + ((withParent == true) ? 
+				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
 	}
 }

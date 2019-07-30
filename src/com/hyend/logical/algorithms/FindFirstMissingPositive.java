@@ -1,5 +1,6 @@
 package com.hyend.logical.algorithms;
 
+import java.util.Collections;
 import java.util.PriorityQueue;
 
 /**
@@ -12,9 +13,6 @@ import java.util.PriorityQueue;
  * 
  * Input: [8, 9, 2, 7, 12, 11, 10, 1]
  * output: 3
- * 
- * It was a hard level LeetCodequestion 
- * Code has been submitted and accepted to LeetCode in one shot.
  *  
  * @author gopi_karmakar
  *
@@ -24,31 +22,35 @@ public class FindFirstMissingPositive {
 	public FindFirstMissingPositive() {}
 	
 	public static void main(String[] args) {
-		int[] arr = {8, 9, 2, 7, 12, 11, 10, 1};
+		int[] arr = {8, 12, 1, 7, 9, 11, 10, 2};
 		int val = findFirstMissingPositive(arr);		
 		System.out.println("First Missing Positive = " + val);
 	}
 	
 	/**
-	 * The Most efficient O(n) solution
+	 * Solution 1: A full proof and most efficient O(n) solution.
+	 * 
+	 * The time complexity is O(n)
+	 * 
 	 * @param arr
 	 * @return
 	 */
 	private static int findFirstMissingPositive(int...arr) {
-		
-		for(int i = 0; i < arr.length; i++) {
+			
+		int i = 0;
+		while(i < arr.length) {
 			
 			if(arr[i] > 0 && arr[i] <= arr.length && arr[arr[i]-1] != arr[i]) {
 				int x = arr[arr[i]-1];
 				arr[arr[i]-1] = arr[i];
-				arr[i] = x;				
+				arr[i] = x;
 			}
+			else i++;
 		}
 		
-		for(int i = 0; i < arr.length; i++) {
-			if(arr[i] != i+1) {
+		for(i = 0; i < arr.length; i++) {
+			if(arr[i] != i+1)
 				return i+1;
-			}
 		}
 		return arr.length+1;
 	}
@@ -64,10 +66,7 @@ public class FindFirstMissingPositive {
 	}
 	
 	/**
-	 * It's 100% full proof but a huge space 
-	 * consuming an inefficient solution.
-	 * A quite less space consuming bit 
-	 * better can be solved with min heap. 
+	 * Solution 2: A huge space consuming inefficient O(n) solution  
 	 */	 
 	private static int findFirstMinPositive(int[] arr) {			
 						
@@ -88,7 +87,7 @@ public class FindFirstMissingPositive {
 	}
 	
 	/**
-	 * A bit better Onlog(n) solution.
+	 * Solution 3: More inefficient O(n)log(n) solution.
 	 * 
 	 * @param arr
 	 * @return

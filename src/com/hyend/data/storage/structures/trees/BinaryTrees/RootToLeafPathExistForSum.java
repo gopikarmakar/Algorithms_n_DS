@@ -3,7 +3,8 @@ package com.hyend.data.storage.structures.trees.BinaryTrees;
 import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
 
 /**
- * Solution to find whether Root-to-Leaf path exist for a specified sum
+ * Solution to find whether there's any Root-to-Leaf 
+ * path exist for a specified sum
  * 
  * @author gopi_karmakar
  */

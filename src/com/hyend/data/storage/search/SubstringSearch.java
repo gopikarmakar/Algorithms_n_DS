@@ -1,5 +1,11 @@
 package com.hyend.data.storage.search;
 
+/**
+ * Recursively searching for a given SubString in a String
+ * 
+ * @author gopi_karmakar
+ *
+ */
 public class SubstringSearch {
 	
 	public SubstringSearch(char[] str, char[] pattern) {

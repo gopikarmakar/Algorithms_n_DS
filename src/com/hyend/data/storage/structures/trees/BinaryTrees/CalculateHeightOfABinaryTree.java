@@ -4,6 +4,7 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
 
 public class CalculateHeightOfABinaryTree {
 	
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		Node<Integer> root = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
 		BinaryTree.printBFS(root, false);

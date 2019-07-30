@@ -11,11 +11,11 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * @author gopi_karmakar
  *
  */
-public class FormLinkedListFromLeaves { 
+public class ConstructALinkedListFromLeavesOfBinaryTree { 
 	
 	public static void main(String[] args) {
 		
-		Node<String> tree = BuildABinaryTreeFromAnArrayOfKeys.build();
+		Node<String> tree = ConstructABinaryTreeFromAnArrayOfKeys.build();
 		List<String> leaves = new LinkedList<String>();
 		listOfLeaves(tree, leaves);
 		
