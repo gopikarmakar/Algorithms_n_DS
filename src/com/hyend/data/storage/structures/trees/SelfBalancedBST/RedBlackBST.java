@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures.trees.BinarySearchTree;
+package com.hyend.data.storage.structures.trees.SelfBalancedBST;
 
 /**
  * A Red Black BST Implementation

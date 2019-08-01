@@ -27,7 +27,7 @@ import com.hyend.data.storage.structures.linkedlists.LinkedListStack;
 import com.hyend.data.storage.structures.linkedlists.LinkedListWithStackAndQueue;
 import com.hyend.data.storage.structures.linkedlists.MyLinkedList;
 import com.hyend.data.storage.structures.trees.BinarySearchTree.BinarySearchTree;
-import com.hyend.data.storage.structures.trees.BinarySearchTree.RedBlackBST;
+import com.hyend.data.storage.structures.trees.SelfBalancedBST.RedBlackBST;
 import com.hyend.data.storage.structures.trees.SelfBalancedBST.SelfBalancedBSTres;
 import com.hyend.data.storage.structures.trie.TernaryTrieDictionary;
 import com.hyend.data.storage.structures.trie.TrieDictionary;
