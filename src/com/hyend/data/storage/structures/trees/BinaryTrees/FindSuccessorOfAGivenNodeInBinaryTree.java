@@ -12,17 +12,18 @@ public class FindSuccessorOfAGivenNodeInBinaryTree {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		/*Integer[] keys = {314,6,6,271,561,2,271,28,0,null,3,null,1,null,28,null,null,null,null,17,null,401,257,null,null,
-							null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,641};*/		
+		/*Integer[] keys = {314,6,6,271,561,2,271,28,0,null,3,null,1,null,28,null,null,null,null,null,null,17,null,null,null,401,257,null,null,null,null,
+							null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+							null,null,null,null,null,null,null,641,null,null,null,null};		*/
 
 		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
-		//BinaryTree.printBFS(tree, true);
-		Node<Integer> successor = findSuccessor(tree.left.right.right);
+		BinaryTree.printBFS(tree, true);
+		Node<Integer> successor = findSuccessor(tree.left.right);
 		System.out.println("The Successor Is = " + successor.key);
 	}
 	
 	/**
-	 * The most efficient and simple successor finding solution ever.
+	 * The most efficient and simple successor finding solution.
 	 * 
 	 * Since the number of edges followed cannot be more than the tree height, 
 	 * the time complexity is 0(h), where h is the height of the tree

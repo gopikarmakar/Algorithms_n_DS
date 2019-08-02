@@ -11,43 +11,23 @@ package com.hyend.logical.algorithms.strings;
  *
  */
 public class IsARotation {
+	
+	public static void main(String[] args) {
+		
+		String s1 = "waterbottle";
+		String s2 = "erbottlewat";
+		System.out.println("Is It A Rotation = " + isRotation(s1, s2));
+	}
 
-	public boolean isRotation(String s1, String s2) {
+	public static boolean isRotation(String s1, String s2) {
 		boolean isRotation = false;
 		
 		int len = s1.length();
-		if((len == s2.length()) && len > 0) {			
-			String s1s1 = s1 + s1;
-			System.out.println(s1s1);
-			isRotation = isSubstring(s1s1, s2);			
+		if(len > 0 && (len == s2.length())) {			
+			String s1s2 = s1 + s1;
+			System.out.println(s1s2);		
+			isRotation = s1s2.contains(s2);
 		}				
 		return isRotation;
-	}
-	
-	/**
-	 * Fin
-	 * @param s1
-	 * @param s2
-	 * @return
-	 */
-	public boolean isSubstring(String s1, String s2) {
-		boolean isSubstring = false;
-		int j = 0;
-		char[] ss1 = s1.toCharArray();
-		char[] ss2 = s2.toCharArray();		
-		for(int i = 0; i < ss1.length; i++) {					
-			int x = i;
-			for(;j < ss2.length;) {					 					
-				if(ss2[j++] != ss1[x++]) {
-					j = 0;
-					break;
-				}					
-			}
-			if(j == ss2.length) {
-				isSubstring = true;
-				break;
-			}											
-		}		
-		return isSubstring;
 	}
 }

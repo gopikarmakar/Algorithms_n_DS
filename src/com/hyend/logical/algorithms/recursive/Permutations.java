@@ -1,13 +1,17 @@
 package com.hyend.logical.algorithms.recursive;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Permutations {
 		
 	private final String alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	
-	public Permutations() {}
+	public Permutations() {
+		
+	}
 	
 	public void stringPermutations(int limit) {
 		String elements = alphabets.substring(0, limit);		
@@ -18,13 +22,22 @@ public class Permutations {
 	 * Ordered Permutations of all Characters in a String.
 	 * @param prefix
 	 * @param str
+	 * 
+	 * ""  abc
+	 * 
+	 * 
 	 */
 	private void stringPermutations(String prefix, String str) {
 		int n = str.length();
         if (n == 0) System.out.println(prefix);
         else {
-            for (int i = 0; i < n; ++i)
-            	stringPermutations(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+            for (int i = 0; i < n; ++i) {
+            	String s1 = str.substring(0, i);
+            	//System.out.println("s1 = " + s1);            	
+            	String s2 = str.substring(i+1, n);
+            	//System.out.println("s2 = " + s2);
+            	stringPermutations(prefix + str.charAt(i), s1 + s2);
+            }
         }
 	}
 	
@@ -52,57 +65,49 @@ public class Permutations {
 		
 		return total;
 	}
-	
+		
 	public int anagramStringPermutations(String str) {
-		return anagramPermutations("", str);
+		String[] vow = {"A", "E", "I", "O", "U"};
+		Set<String> vowels = new HashSet<>();		
+		for(String s : vow)
+			vowels.add(s);
+		
+		List<String> list = new ArrayList<>();
+		
+		return anagramPermutations("", str, vowels, list);
 	}
         
 	/**
+	 * An Memoized Solution
 	 * A perfect anagram word is a word when
 	 * 1: A word should not start with any vowel
 	 * 2: Two vowels can't be next to each other
 	 *  
-	 * Print all the perfect anagram word permutations.	 
+	 * Print all the perfect anagram word permutations.	
 	 */
-	int count = 0;	
-	ArrayList<String> list = new ArrayList<>();
-    private int anagramPermutations(String prefix, String str) {
+	int count = 0;
+    private int anagramPermutations(String prefix, String str, Set<String> vowels, List<String> list) {
 		
-    	if(list.contains(str))
+    	if(list.contains(prefix))
     		return count;
     	
     	int n = str.length();
         if (n == 0) {        	
-        	if(!list.contains(prefix)) {
-	        	for(int i = 0; i < prefix.length()-1; i++) {        		
-	        		if(!isVowel(prefix.charAt(i)) && isVowel(prefix.charAt(i+1)))
-	        			i+=1;
-	        		else return count;			
-	    		}
-	        	count+=1;
-	        	list.add(prefix);
-	        	System.out.println(prefix);	        	
-        	}
+        	for(int i = 0; i < prefix.length()-1; i++) {
+        		if(!vowels.contains(""+prefix.charAt(i)) && vowels.contains(""+prefix.charAt(i+1)))
+        			i+=1;
+        		else return count;			
+    		}
+        	count+=1;
+        	list.add(prefix);
+        	System.out.println(prefix);
         }
         else {
             for (int i = 0; i < n; ++i)
-            	anagramPermutations(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+            	anagramPermutations(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n), vowels, list);
         }
         return count;
 	}
-    
-    char[] vowels = {'A', 'E', 'I', 'O', 'U'};
-    private boolean isVowel(char c) {
-    	
-    	boolean status = false;
-    	for(char ch : vowels) {
-    		if(c == ch) {
-    			status = true;
-    			break;
-    		}
-    	}
-    	return status;
-    }
     
     /**
      * 

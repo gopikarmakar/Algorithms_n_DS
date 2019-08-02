@@ -83,7 +83,8 @@ public class FindLCAInBinaryTree {
 	
 	/**
 	 * 2: Find LCA when there's a track of
-	 * parent node for every child node
+	 * parent node for every child node.
+	 * An iterative approach.x
 	 * 
 	 * @return
 	 */

@@ -47,6 +47,9 @@ public class BinarySearchTree {
 		
 	/**
 	 * Level-order BFS traversal of the tree.
+	 * 
+	 * Time Complexity : O(n) where n is the total 
+	 * number of nodes.
 	 *    
 	 * Traversal Order : All nodes of each level.
 	 */
@@ -56,6 +59,9 @@ public class BinarySearchTree {
 	
 	/**
 	 * Pre-order DFS traversal of the tree.
+	 * 
+	 * Time Complexity : O(n) where n is the total 
+	 * number of nodes.
 	 *    
 	 * Traversal Order : Root-Left-Right
 	 */
@@ -68,6 +74,9 @@ public class BinarySearchTree {
 	
 	/**
 	 * In-order DFS traversal of the tree.
+	 * 
+	 * Time Complexity : O(n) where n is the total 
+	 * number of nodes.
 	 *    
 	 * Traversal Order : Left-Root-Right
 	 */
@@ -80,6 +89,9 @@ public class BinarySearchTree {
 	
 	/**
 	 * Post-order DFS traversal of the tree.
+	 * 
+	 * Time Complexity : O(n) where n is the total 
+	 * number of nodes.
 	 *    
 	 * Traversal Order : Left-Right-Root
 	 */
