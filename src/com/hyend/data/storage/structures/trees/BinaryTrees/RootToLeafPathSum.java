@@ -17,7 +17,7 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * 
  * @author gopi_karmakar
  */
-public class RootToLeafPathSumOfABinaryTree {
+public class RootToLeafPathSum {
 	
 	private static final int DECIMAL = 1;
 	private static final int BINARY_DIGIT = 2;

@@ -2,10 +2,10 @@ package com.hyend.data.storage.structures.trees.BinaryTrees;
 
 import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
 
-public class CalculateHeightOfABinaryTree {
+public class CalculateHeight {
 	
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		Node<Integer> root = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
 		BinaryTree.printBFS(root, false);
 		System.out.println("Height Of The Binary Tree = " + calculateHeight(root));		

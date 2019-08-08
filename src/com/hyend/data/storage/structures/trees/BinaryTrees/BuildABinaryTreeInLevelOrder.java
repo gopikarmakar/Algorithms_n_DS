@@ -19,42 +19,49 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * @author gopi_karmakar
  */
 public class BuildABinaryTreeInLevelOrder {
-	
-	private static final int DEFAULT_SIZE = 15;
-	
-	@SuppressWarnings("unchecked")
+
 	public static void main(String[] args) {	
 		//Integer[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-		Node<Integer> root = (Node<Integer>) build();
+		Node<Integer> root = buildDecimalBT();
 		//BinaryTree.printBFS(root, true);
 		BinaryTree.printInOrderRecursive(root, true);
 		//BinaryTree.printPreOrderRecursive(root, true);
 	}
 	
-	public static Node<?> build(Object...keys) {
-		if(keys == null || keys.length == 0) {
-			keys = new Object[DEFAULT_SIZE];
-			for(int i = 0; i < DEFAULT_SIZE; i++)
-				keys[i] = i+1;
-		}
-		return levelOrederBTCreation(keys, null, null, 0);
+	public static Node<Integer> buildDecimalBT(Integer...keys) {		
+		LevelOrderBT<Integer> bt = new LevelOrderBT<>();
+		return bt.build(keys);
 	}
 	
-	@SuppressWarnings("unchecked")
-	private static Node<?> levelOrederBTCreation(Object[] keys, 
-			Node<Object> parent, Node<Object> node, int i) {
+	public static Node<String> buildStringBT(String...keys) {		
+		LevelOrderBT<String> bt = new LevelOrderBT<>();
+		return bt.build(keys);
+	}
+	
+	private static class LevelOrderBT<K> {							
 		
-		if(i < keys.length) {	
-			if(node == null) {
-				if(keys[i] == null) return node;
-				
-				node = new Node<Object>(keys[i]);
-				node.parent = (Node<Object>) parent;
-				
-			}
-			node.left = (Node<Object>) levelOrederBTCreation(keys, node, node.left, (i*2)+1);			
-			node.right = (Node<Object>) levelOrederBTCreation(keys, node, node.right, (i*2)+2);
+		@SuppressWarnings("unchecked")
+		public Node<K> build(K...keys) {			
+			return levelOrederBTCreation(keys, null, null, 0);
 		}
-		return node;
+		
+		int size = 0;
+		private Node<K> levelOrederBTCreation(K[] keys, 
+				Node<K> parent, Node<K> node, int i) {
+			
+			if(i < keys.length) {	
+				if(node == null) {
+					if(keys[i] == null) return node;
+					
+					node = new Node<K>(keys[i]);					
+					size+=1;
+					node.size = size;
+					node.parent = parent;					
+				}				
+				node.left = levelOrederBTCreation(keys, node, node.left, (i*2)+1);			
+				node.right = levelOrederBTCreation(keys, node, node.right, (i*2)+2);
+			}
+			return node;
+		}
 	}
 }

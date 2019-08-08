@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.matrix;
+package com.hyend.data.storage.arrays.matrix;
 
 public class MinimumPathSum {
 

@@ -14,7 +14,7 @@ public class IsItAValidBST {
 		//Integer[] keys = {0,-1};
 		Integer[] keys = {5,1,4,null,null,3,6};
 		
-		Node<Integer> tree = (Node<Integer>) BuildABinaryTreeInLevelOrder.build((Object[]) keys);
+		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER, keys);
 		
 		BinaryTree.printPreOrderRecursive(tree, false);
 		//BinaryTree.printBFS(tree, true);

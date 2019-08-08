@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.matrix;
+package com.hyend.logical.algorithms.dp;
 
 import java.util.Collections;
 

@@ -12,7 +12,7 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * @author gopi_karmakar
  *
  */
-public class FindLCAInBinaryTree {
+public class FindLCA {
 	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {

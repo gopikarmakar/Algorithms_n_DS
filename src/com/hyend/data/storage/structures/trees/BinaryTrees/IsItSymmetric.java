@@ -7,7 +7,7 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  *  
  * @author gopi_karmakar
  */
-public class IsItASymmetricBinaryTree {
+public class IsItSymmetric {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {

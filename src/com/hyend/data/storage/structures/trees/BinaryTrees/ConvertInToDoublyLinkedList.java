@@ -9,7 +9,7 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * @author gopi_karmakar
  *
  */
-public class ConvertABinaryTreeInToDoublyLinkedList {
+public class ConvertInToDoublyLinkedList {
 	
 	private static Link<String> head = null;
 	private static Link<String> tail = null;	

@@ -26,6 +26,6 @@ public class ConstructABinaryTreeFromAnArrayOfKeys {
 	
 	@SuppressWarnings("unchecked")
 	public static Node<String> build(String...keys) {		
-		return (Node<String>) BinaryTree.create(BinaryTree.LEVEL_ORDER, (Object[]) keys);
+		return (Node<String>) BinaryTree.create(BinaryTree.LEVEL_ORDER, keys);
 	} 
 }

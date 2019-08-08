@@ -11,7 +11,7 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * @author gopi_karmakar
  *
  */
-public class ConstructALinkedListFromLeavesOfBinaryTree { 
+public class ConstructALinkedListFromLeaves { 
 	
 	public static void main(String[] args) {
 		

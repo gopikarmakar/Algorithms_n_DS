@@ -37,6 +37,8 @@ public class BinaryTree {
 	public static final int LEFT_LEANING 		= 4;	
 	public static final int RIGHT_LEANING 		= 5;
 	public static final int WEIGHT_BALANCED 	= 6;
+	
+	private static final int DEFAULT_TREE_SIZE = 15;
 
 	/**
 	 * A single Binary Tree node.
@@ -47,6 +49,7 @@ public class BinaryTree {
 	 */
 	public static class Node<Key> {		
 		Key key;
+		int size;
 		int weight;
 		Node<Key> left;
 		Node<Key> right;
@@ -64,21 +67,24 @@ public class BinaryTree {
 		}
 	}
 	
-	/**
-	 * Creates a generic Binary Tree of any type in level order.
-	 * 
-	 * @param type
-	 * @param keys
-	 * @return
-	 */
-	public static Node<?> create(int type, Object...keys) {
-		Node<?> tree = null;		
-		switch (type) {
-			case LEVEL_ORDER:
-				tree = BuildABinaryTreeInLevelOrder.build(keys);
+	public static Node<?> create(int order, Object...keys) {
+		if(keys == null || keys.length == 0) {
+			keys = new Integer[DEFAULT_TREE_SIZE];
+			for(int i = 0; i < DEFAULT_TREE_SIZE; i++)
+				keys[i] = i+1;
+		}
+		Node<?> tree = null;
+		switch (order) {
+			case BinaryTree.LEVEL_ORDER:
+				if(keys instanceof Integer[]) {
+					tree = BuildABinaryTreeInLevelOrder.buildDecimalBT((Integer[]) keys);
+				}
+				else if(keys instanceof String[])
+					tree = BuildABinaryTreeInLevelOrder.buildStringBT((String[]) keys);
 				break;
-			case WEIGHT_BALANCED:
-				tree = BuildALeftOrRightWeightedBinaryTree.build(keys);
+			case BinaryTree.WEIGHT_BALANCED:
+				if(keys instanceof Integer[])
+					tree = BuildALeftOrRightWeightedBinaryTree.build(keys);
 				break;
 		}
 		return tree;

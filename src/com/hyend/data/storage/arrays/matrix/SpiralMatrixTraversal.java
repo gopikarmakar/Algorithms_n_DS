@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.matrix;
+package com.hyend.data.storage.arrays.matrix;
 
 import java.util.ArrayList;
 import java.util.List;
