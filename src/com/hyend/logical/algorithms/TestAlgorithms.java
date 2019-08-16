@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
+import com.hyend.data.storage.structures.priorityqueue.MultiwayMerge;
+
 public class TestAlgorithms {
 	
 	public static void main(String[] args) {
@@ -59,25 +61,7 @@ public class TestAlgorithms {
 		//int[] s = {-1, -3};
 		FindFirstMissingPositive f = new FindFirstMissingPositive();
 		printMsg("First Missing Positive = " + f.findFirstPositive(s));
-	}*/
-	
-	private static void testUniqueTriplets() {
-		int[] s = {-4,-2,-1,0,1,3,4};
-		FindUniqueTriplets tri = new FindUniqueTriplets();
-		//List<List<Integer>> list = tri.getUniqueTriplets(s);
-		List<List<Integer>> list = tri.getTriplets(s);
-		if(list == null || list.isEmpty()) {
-			printMsg("No Triplets Found.");			
-		}
-		else {
-			for(List<Integer> l : list) {
-				for(int x : l) {
-					System.out.print(x + " ");
-				}
-				printMsg("\n");
-			}
-		}
-	}
+	}*/	
 	
 	private static void printMsg(String msg) {		
 		System.out.println(msg);

@@ -24,7 +24,7 @@ public class LongestNonDecreasingSubsequence {
 	 * 
 	 * therefore the longest subsequence length is 4 so should return 4.
 	 * 
-	 * An O(n)^2 time complexity solution with O(n) extra space.
+	 * The time complexity is O(n)^2 time complexity with O(n) extra space.
 	 * 
 	 * The time complexity can be reduced to O(n)Log(n) with Binary Search 
 	 *  

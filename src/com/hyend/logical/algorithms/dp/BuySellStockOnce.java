@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms;
+package com.hyend.logical.algorithms.dp;
 
 /**
  * 
@@ -12,6 +12,8 @@ package com.hyend.logical.algorithms;
  * The same question asked by many different ways in Amazon and Google interview Like:
  * Calculate the min or max difference of the coldest or hottest days from 
  * the list of given temperatures of days.
+ * 
+ * variant: Stock Span Problem.
  *
  */
 public class BuySellStockOnce {

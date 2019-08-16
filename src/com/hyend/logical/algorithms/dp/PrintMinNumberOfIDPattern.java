@@ -1,11 +1,10 @@
-package com.hyend.logical.algorithms;
+package com.hyend.logical.algorithms.dp;
 
 import java.util.Stack;
 
 /** 
  * 
- * Google telephonic interview question
- * Amazon interview question
+ * Google and Amazon's telephonic interview question
  * 
  * Given a pattern containing only I’s and D’s. 
  * I for increasing and D for decreasing. 

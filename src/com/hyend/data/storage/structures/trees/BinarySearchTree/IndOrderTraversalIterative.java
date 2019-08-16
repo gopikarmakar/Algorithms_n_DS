@@ -6,10 +6,10 @@ import java.util.Stack;
 
 import com.hyend.data.storage.structures.trees.BinarySearchTree.BinarySearchTree.Node;
 
-public class BSTIndOrderTraversalIterative {
+public class IndOrderTraversalIterative {
 
 	public static void main(String[] args) {
-		print(BinarySearchTree.create(BinarySearchTree.ITERATIVE), true);
+		print(BinarySearchTree.createDefault(BinarySearchTree.ITERATIVE), true);
 	}
 	
 	public static void print(Node<?, ?> tree, boolean withParent) {

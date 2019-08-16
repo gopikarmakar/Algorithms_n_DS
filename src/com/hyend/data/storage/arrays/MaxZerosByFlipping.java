@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms;
+package com.hyend.data.storage.arrays;
 
 /**
  * Wrong and incomplete

@@ -18,10 +18,10 @@ import com.hyend.data.storage.structures.trees.BinarySearchTree.BinarySearchTree
 public class BSTNodeInsertion {	
 	
 	public static void main(String[] args) {			    
-	    BinarySearchTree.printInOrder(BinarySearchTree.RECURSIVE, create(BinarySearchTree.ITERATIVE), true);
+	    BinarySearchTree.printInOrder(BinarySearchTree.RECURSIVE, createDefault(BinarySearchTree.ITERATIVE), true);
 	}
 	
-	public static Node<Integer, Object> create(int type) {
+	public static Node<Integer, Object> createDefault(int type) {
 		
 		Integer[] keys = {11, 15, 5, 16, 3, 14, 8, 13, 4, 19, 7, 12, 2, 17, 1, 18, 6, 20, 9, 21};		
 		Node<Integer, Object> tree = null;
@@ -47,6 +47,8 @@ public class BSTNodeInsertion {
 		tree = bstInsertString.put(type, key, value);		
 		return tree;
 	}
+	
+
 	
 	/** 
 	 * A Binary Search Tree guarantees O(log(n) time for Insertions.

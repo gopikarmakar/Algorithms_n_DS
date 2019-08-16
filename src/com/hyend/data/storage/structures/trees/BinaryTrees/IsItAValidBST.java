@@ -45,10 +45,10 @@ public class IsItAValidBST {
 	
 	private static class QueueEntry {
 		
-		int min, max;
+		Integer min, max;
 		Node<Integer> node;
 		
-		public QueueEntry(Node<Integer> node, int min, int max) {
+		public QueueEntry(Node<Integer> node, Integer min, Integer max) {
 			this.min = min;
 			this.max = max;
 			this.node = node;			

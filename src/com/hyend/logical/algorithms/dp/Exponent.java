@@ -1,9 +1,10 @@
- package com.hyend.logical.algorithms;
+ package com.hyend.logical.algorithms.dp;
 
 public class Exponent {
 	
 	boolean negative = false;
 	double result = 1.0;
+	
 	public double myPow(double x, int n) {
 		
 		if(n >= Integer.MAX_VALUE || n <= -(Integer.MAX_VALUE))

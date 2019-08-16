@@ -41,8 +41,8 @@ public class BinarySearchTree {
 		}
 	}
 	
-	public static Node<Integer, Object> create(int type) {		
-		return BSTNodeInsertion.create(type);
+	public static Node<Integer, Object> createDefault(int type) {		
+		return BSTNodeInsertion.createDefault(type);
 	}
 		
 	/**
@@ -54,7 +54,7 @@ public class BinarySearchTree {
 	 * Traversal Order : All nodes of each level.
 	 */
 	public static void printPreOrder(Node<?, ?> tree, boolean withParent) {
-		BSTLevelOrderOrBFSTraversal.print(tree, withParent);
+		BFSOrLevelOrderTraversal.print(tree, withParent);
 	}
 	
 	/**
@@ -67,9 +67,9 @@ public class BinarySearchTree {
 	 */
 	public static void printPreOrder(int type, Node<?, ?> tree, boolean withParent) {
 		if(type == RECURSIVE)
-			BSTPreOrderTraversalRecursive.print(tree, withParent);
+			PreOrderTraversalRecursive.print(tree, withParent);
 		else if(type == ITERATIVE)
-			BSTPreOrderTraversalIterative.print(tree, withParent);
+			PreOrderTraversalIterative.print(tree, withParent);
 	}
 	
 	/**
@@ -82,9 +82,9 @@ public class BinarySearchTree {
 	 */
 	public static void printInOrder(int type, Node<?, ?> tree, boolean withParent) {
 		if(type == RECURSIVE)
-			BSTIndorderTraversalRecursive.print(tree, withParent);
+			IndorderTraversalRecursive.print(tree, withParent);
 		else if(type == ITERATIVE)
-			BSTIndOrderTraversalIterative.print(tree, withParent);
+			IndOrderTraversalIterative.print(tree, withParent);
 	}
 	
 	/**
@@ -97,8 +97,8 @@ public class BinarySearchTree {
 	 */
 	public static void printPostOrder(int type, Node<?, ?> tree, boolean withParent) {
 		if(type == RECURSIVE)
-			BSTPostOrderTraversalRecursive.print(tree, withParent);
+			PostOrderTraversalRecursive.print(tree, withParent);
 		else if(type == ITERATIVE)
-			BSTPostOrderTraversalIterative.print(tree, withParent);
+			PostOrderTraversalIterative.print(tree, withParent);
 	}
 }

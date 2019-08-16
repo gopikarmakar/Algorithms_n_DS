@@ -12,7 +12,7 @@ public class BSTNodeSearch {
 	
 	public static void main(String[] args) {
 		
-		Node<Integer, ?> tree = BinarySearchTree.create(BinarySearchTree.ITERATIVE);
+		Node<Integer, ?> tree = BinarySearchTree.createDefault(BinarySearchTree.ITERATIVE);
 		
 		Node<Integer, ?> node = contains(tree, 13, BinarySearchTree.RECURSIVE); 
 		String msg = (node != null) ? ""+node.value : "Key Doesn't Exist"; 

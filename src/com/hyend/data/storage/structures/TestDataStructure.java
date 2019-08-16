@@ -21,6 +21,7 @@ import com.hyend.data.storage.sort.MergeSort;
 import com.hyend.data.storage.sort.QuickSort;
 import com.hyend.data.storage.sort.SelectionSort;
 import com.hyend.data.storage.sort.ShellSort;
+import com.hyend.data.storage.stackandqueue.StackWithMin;
 import com.hyend.data.storage.structures.graphs.UndirectedGraph;
 import com.hyend.data.storage.structures.hashtable.MyHashTable;
 import com.hyend.data.storage.structures.linkedlists.DoublyLinkedList;
@@ -33,9 +34,9 @@ import com.hyend.data.storage.structures.trees.SelfBalancedBST.SelfBalancedBSTre
 import com.hyend.data.storage.structures.trie.TernaryTrieDictionary;
 import com.hyend.data.storage.structures.trie.TrieDictionary;
 import com.hyend.data.storage.structures.trie.TrieDictionary.Node;
-import com.hyend.logical.algorithms.FindKthElement;
-import com.hyend.logical.algorithms.StackWithMin;
+import com.hyend.logical.algorithms.dp.AmountInWords;
 import com.hyend.logical.algorithms.dp.Fibonacci;
+import com.hyend.logical.algorithms.dp.FindKthElement;
 import com.hyend.logical.algorithms.dp.FindLargestSquareInMatrix;
 import com.hyend.logical.algorithms.recursive.Staircase;
 import com.hyend.logical.algorithms.recursive.StudentAttendance;
@@ -43,7 +44,6 @@ import com.hyend.logical.algorithms.strings.FindFirstUniqueChar;
 import com.hyend.logical.algorithms.strings.HasStringAllUniqueChars;
 import com.hyend.logical.algorithms.strings.Palindromicity;
 import com.hyend.logical.algorithms.strings.RemoveDuplicatesFromString;
-import com.hyend.logical.algorithms.AmountInWords;
 
 class TestDataStructure<K> {
 

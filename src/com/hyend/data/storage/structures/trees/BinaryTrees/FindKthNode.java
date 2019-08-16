@@ -3,7 +3,8 @@ package com.hyend.data.storage.structures.trees.BinaryTrees;
 import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
 
 /**
- * yet to be fixed.
+ * TODO: Yet to be fixed.
+ * 
  * @author gopi_karmakar
  */
 public class FindKthNode {
@@ -15,9 +16,9 @@ public class FindKthNode {
 		System.out.println(compuetKTh(tree, 2).key);
 	}
 
-	private static Node<?> compuetKTh(Node<?> tree, int k) {
+	private static Node<Integer> compuetKTh(Node<Integer> tree, int k) {
 		
-		Node<?> node = tree;
+		Node<Integer> node = tree;
 		
 		while(node != null) {
 			int leftSize = (node.left != null) ? node.left.size : 0;

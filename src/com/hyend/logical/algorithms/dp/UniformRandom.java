@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms;
+package com.hyend.logical.algorithms.dp;
 
 import java.util.Random;
 

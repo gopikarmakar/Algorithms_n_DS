@@ -1,5 +1,12 @@
-package com.hyend.logical.algorithms;
+package com.hyend.logical.algorithms.dp;
 
+/**
+ * It all started from here. My very first solution. 
+ * 
+ * Given an amount in numeric, convert it to words.
+ * 
+ * @author gopi_karmakar
+ */
 public class AmountInWords {
 
 	private String ones_n_teens[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
