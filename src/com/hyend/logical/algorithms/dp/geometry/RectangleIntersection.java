@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.geometry;
+package com.hyend.logical.algorithms.dp.geometry;
 
 /**
  * The time complexity is O(1).
