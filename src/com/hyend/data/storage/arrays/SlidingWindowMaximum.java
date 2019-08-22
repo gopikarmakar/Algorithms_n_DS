@@ -1,15 +1,8 @@
 package com.hyend.data.storage.arrays;
 
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
-import com.hyend.data.storage.stackandqueue.ImmutableQueue;
 import com.hyend.data.storage.stackandqueue.ImmutableStack;
-import com.hyend.data.storage.structures.priorityqueue.MaxPriorityQueue;
-import com.hyend.data.storage.structures.priorityqueue.MinPriorityQueue;
 
 /**
  * Sliding Window Maximum (Maximum of all SubArrays of size k) 
@@ -29,7 +22,30 @@ public class SlidingWindowMaximum {
 		//int arr[] = {7, 2, 4};
 		//int arr[] = {1,3,-1,-3,5,3,2,7};
 		//int arr[] = {1, 2, 3, 1, 4, 5, 2, 3, 6};	
-		maxInSubArrayWindow(3, arr);		
+		maxInSubArrayWindow(3, arr);
+		//maxInSubArrayWindow(2, arr.length, arr);
+	}
+	
+	/**
+	 * Full Proof solution:
+	 * 
+	 * The time complexity is O((n-k+1)*k) 
+	 * which can also be written as O(N * K)
+	 * 
+	 * @param k
+	 * @param n
+	 * @param arr
+	 */
+	public static void maxInSubArrayWindow(int k, int n, int...arr) {
+		int j, max;		  
+        for (int i = 0; i <= n - k; i++) { 
+            max = arr[i];
+            for (j = 1; j < k; j++) { 
+                if (arr[i + j] > max) 
+                    max = arr[i + j];
+            } 
+            System.out.print(max + " "); 
+        } 
 	}
 	
 	/**
@@ -53,4 +69,6 @@ public class SlidingWindowMaximum {
 		}		
 		System.out.println(maxList);
 	}
+	
+	
 }

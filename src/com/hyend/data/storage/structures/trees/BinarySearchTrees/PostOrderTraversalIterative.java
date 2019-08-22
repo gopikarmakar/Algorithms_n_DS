@@ -1,14 +1,14 @@
-package com.hyend.data.storage.structures.trees.BinarySearchTree;
+package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
 import java.util.Stack;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTree.BinarySearchTree.Node;
+import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
 
 public class PostOrderTraversalIterative {
 	
 	public static void main(String[] args) {
 		
-		print(BinarySearchTree.createDefault(BinarySearchTree.ITERATIVE), true);
+		print(BinarySearchTree.createDefault(), true);
 	}
 	
 	public static void print(Node<?, ?> tree, boolean withParent) {

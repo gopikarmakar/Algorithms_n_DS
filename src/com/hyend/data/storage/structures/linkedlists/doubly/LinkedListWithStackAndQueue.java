@@ -1,7 +1,5 @@
-package com.hyend.data.storage.structures.linkedlists;
+package com.hyend.data.storage.structures.linkedlists.doubly;
 /**
- * @author karmakargopi
- * 
  * Amazon Interview Question.
  * 
  * Implement a DataStructure Which Can  
@@ -9,7 +7,8 @@ package com.hyend.data.storage.structures.linkedlists;
  * Which means, functionalities like 
  * Push and Enqueue or Pop and Dequeue 
  * all the from the same data structure parallely.
- *
+ * 
+ * @author gopi_karmakar
  */
 public class LinkedListWithStackAndQueue<E> {
 	

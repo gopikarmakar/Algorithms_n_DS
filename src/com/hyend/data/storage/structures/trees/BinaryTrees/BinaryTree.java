@@ -77,10 +77,13 @@ public class BinaryTree {
 		switch (order) {
 			case BinaryTree.LEVEL_ORDER:
 				if(keys instanceof Integer[]) {
-					tree = BuildABinaryTreeInLevelOrder.buildDecimalBT((Integer[]) keys);
+					BuildABinaryTreeInLevelOrder<Integer> levelOrderBT = new BuildABinaryTreeInLevelOrder<>();
+					tree = levelOrderBT.build((Integer[]) keys);
 				}
-				else if(keys instanceof String[])
-					tree = BuildABinaryTreeInLevelOrder.buildStringBT((String[]) keys);
+				else if(keys instanceof String[]) {
+					BuildABinaryTreeInLevelOrder<String> levelOrderBT = new BuildABinaryTreeInLevelOrder<>();
+					tree = levelOrderBT.build((String[])keys);
+				}				
 				break;
 			case BinaryTree.WEIGHT_BALANCED:
 				if(keys instanceof Integer[])

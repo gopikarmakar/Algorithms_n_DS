@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures.trees.BinarySearchTree;
+package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
 import java.util.Queue;
 import java.util.Stack;

@@ -1,23 +1,22 @@
-package com.hyend.data.storage.structures.linkedlists;
+package com.hyend.data.storage.structures.linkedlists.doubly;
 
 /**
- * 
- * @author karmakargopi
- * 
  * Doubly LinkedList Implementation.
  *
+ * @author gopi_karmakar
  */
-public class DoublyLinkedList {
+public class DoublyLinkedList<K, V> {
 	
 	private Node head = null;
 	private Node tail = null;	
 	
 	class Node {		
+		K k;		
 		Node next;
 		Node previous;
 		Object item;
-		public Node(Object item) {
-			this.item = item;
+		public Node(K k) {
+			this.k = k;
 		}
 	}
 
@@ -31,9 +30,9 @@ public class DoublyLinkedList {
 		tail = tail.next;
 	}
 	
-	public void put(Object item) {		
-		Node node = new Node(item);
-		node.next = null;
+	public void put(K k) {		
+		Node node = new Node(k);
+		//node.next = null;
 		addNode(node);
 	}
 
@@ -41,12 +40,12 @@ public class DoublyLinkedList {
 	 * Solution: Amazon Coding Interview Question.
 	 * 
 	 * Given x1 -> x2 -> x3… -> y3 -> y2 -> y1
-	 * Reorder it to x1 -> y1 -> x2 -> y2 -> x3 -> y3 …
+	 * Reorder it to x1 -> y1 -> x2 -> y2 -> x3 -> y3
 	 * e.g.
 	 * Given 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 	 * Return 1 -> 10 -> 2 -> 9 -> 3 -> 8 -> 4 -> 7 -> 5 -> 6
 	 */
-	public void reorderLinkedList() {		
+	public void reorderLinkedList() {
 		int length = getLength()/2;
 		Node tempTail, current;		
 		current = head;

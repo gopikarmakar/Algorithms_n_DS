@@ -11,7 +11,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 import com.hyend.data.storage.structures.hashtable.MyHashTable;
-import com.hyend.data.storage.structures.linkedlists.MyLinkedList;
+import com.hyend.data.storage.structures.linkedlists.singly.MyLinkedList;
 
 
 /**

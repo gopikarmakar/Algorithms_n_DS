@@ -20,7 +20,7 @@ public class FindLCA {
 		//int[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 		//BinaryTree.Node<Integer> root = BuildABinaryTreeInLevelOrder.build(keys);
 		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
-		//BinaryTree.printBFS(root);
+		BinaryTree.printBFS(tree, true);
 		
 		Node<Integer> node1 = tree.left.right;
 		//Node<Integer> node2 = root.right.right;

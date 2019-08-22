@@ -3,7 +3,7 @@ package com.hyend.data.storage.structures.graphs;
 import java.util.Queue;
 import java.util.Stack;
 
-import com.hyend.data.storage.structures.linkedlists.MyLinkedList;
+import com.hyend.data.storage.structures.linkedlists.singly.MyLinkedList;
 
 import java.util.LinkedList;
 

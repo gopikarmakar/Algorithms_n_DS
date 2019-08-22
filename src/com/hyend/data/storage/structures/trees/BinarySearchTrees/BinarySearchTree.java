@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures.trees.BinarySearchTree;
+package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
 /**
  * A concrete Binary Search Tree Implementation with the 
@@ -39,6 +39,10 @@ public class BinarySearchTree {
 			this(key, value);
 			this.parent = parent;
 		}
+	}
+	
+	public static Node<Integer, Object> createDefault() {		
+		return createDefault(ITERATIVE);
 	}
 	
 	public static Node<Integer, Object> createDefault(int type) {		

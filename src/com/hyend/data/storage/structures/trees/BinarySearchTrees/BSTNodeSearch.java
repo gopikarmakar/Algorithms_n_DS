@@ -1,6 +1,6 @@
-package com.hyend.data.storage.structures.trees.BinarySearchTree;
+package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTree.BinarySearchTree.Node;
+import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
 
 /**
  * Average-case cost (after N random search)	: 1.39 log(N)
@@ -12,7 +12,7 @@ public class BSTNodeSearch {
 	
 	public static void main(String[] args) {
 		
-		Node<Integer, ?> tree = BinarySearchTree.createDefault(BinarySearchTree.ITERATIVE);
+		Node<Integer, ?> tree = BinarySearchTree.createDefault();
 		
 		Node<Integer, ?> node = contains(tree, 13, BinarySearchTree.RECURSIVE); 
 		String msg = (node != null) ? ""+node.value : "Key Doesn't Exist"; 

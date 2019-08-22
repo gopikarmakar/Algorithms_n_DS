@@ -1,8 +1,10 @@
 package com.hyend.data.storage.structures.linkedlists;
 
+import com.hyend.data.storage.structures.linkedlists.singly.MyLinkedList;
+
 public class TestLinkedList {
 
-	public static void main(String...args) {
+	/*public static void main(String...args) {
 		
 		MyLinkedList<Integer> myLink = new MyLinkedList<>();
 				
@@ -29,5 +31,5 @@ public class TestLinkedList {
 			System.out.print(node.item + "->");
 			node = node.next;
 		}
-	}
+	}*/
 }

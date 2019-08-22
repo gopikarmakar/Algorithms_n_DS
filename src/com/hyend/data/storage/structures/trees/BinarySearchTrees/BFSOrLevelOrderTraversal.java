@@ -1,15 +1,15 @@
-package com.hyend.data.storage.structures.trees.BinarySearchTree;
+package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTree.BinarySearchTree.Node;
+import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
 
 public class BFSOrLevelOrderTraversal {
 	
 	public static void main(String[] args) {
 		
-		Node<?, ?> tree = BinarySearchTree.createDefault(BinarySearchTree.ITERATIVE);
+		Node<?, ?> tree = BinarySearchTree.createDefault();
 		print(tree, true);
 	}
 	

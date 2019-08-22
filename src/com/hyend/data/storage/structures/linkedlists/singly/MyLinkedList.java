@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures.linkedlists;
+package com.hyend.data.storage.structures.linkedlists.singly;
 
 import java.util.ArrayList;
 import java.util.Iterator;
