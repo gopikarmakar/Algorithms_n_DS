@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.recursive;
+package com.hyend.logical.algorithms.dp.recursive;
 
 /**
  * 
