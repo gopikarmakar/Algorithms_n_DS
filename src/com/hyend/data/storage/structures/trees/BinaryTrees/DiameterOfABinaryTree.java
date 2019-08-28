@@ -23,7 +23,7 @@ public class DiameterOfABinaryTree {
 	}
 	
 	/**
-	 * An O(n) solution
+	 * An O(n) time complexity solution
 	 * 
 	 * @param node
 	 * @param height

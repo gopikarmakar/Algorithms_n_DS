@@ -1,72 +1,29 @@
 package com.hyend.logical.algorithms.strings;
 
 public class Palindromicity {
+	
+	public static void main(String[] args) {				
+		
+		//String s = "MALAYALAM";
+		String s = "MALYALAM";
+		System.out.println(isPalindrome(s));
+	}
 
-	public void isItAPalindrome(String str) {
-		str = str.toLowerCase();
-		int fullLength = str.length()-1;
-		int halfLength = (fullLength)/2;
-		int i = halfLength, j = halfLength;
-		for(; i > 0; i-=1, j+=1) {
-			if(str.charAt(i) != str.charAt(j)) {
-				System.out.println("Loop's broken coz " + str.charAt(i) + 
-						" = " + str.charAt((j)));	
-				break;
-			}
-		}
-		System.out.println("Full Length = " + str.length() + 
-				" Half Length = " + halfLength + " i = " + i + " j = " + j);
-		
-		if(i == 0 && j == fullLength)
-			System.out.println("It's a Palindrome String!");
-		else
-			System.out.println("It's not a Palindrome String!");
-	}
-	
 	/**
-	 * It just simply checks the addition of the ascii value 
-	 * of the two halves of the string, non reversed and reversed halves. 
-	 * If both are equal then the string can be formed as a Palindrome string else not. 
-	 * As simple as that!
-	 * 
-	 * @param str
+	 * O(n) time complexity where n = s.length()/2
+	 *  
+	 * @param s
 	 * @return
 	 */
-	public boolean canItBeAPalindrome(String str) {
-		str = str.toLowerCase();
-		int fullLength = str.length()-1;		
-		int halfLength = (fullLength)/2;
-		int i = 0, j = fullLength;
-		int leftTotal = 0, rightTotal = 0;
-		for(; i < halfLength; i+=1) {
-			leftTotal = leftTotal + (int)str.charAt(i);
-			rightTotal = rightTotal + (int)str.charAt(j-i);
-		}		
-		return (leftTotal == rightTotal) ? true : false;
-	}
-	
-	/**
-	 * Validate if a sentence with spaces and special chars is a Palindrome.	 
-	 * 
-	 * We spend 0(1) per character, so the time complexity is 0(n), 
-	 * where n is the length of line
-	 * 
-	 * @return
-	 */
-	public boolean isPalindrome(String text) {
+	public static boolean isPalindrome(String s) {
 		
-		int i = 0, j = text.length()-1;
-		System.out.println("j = " + j);
+		int i = 0, j = s.length()-1;
+		
 		while(i < j) {
 			
-			while(!Character.isLetterOrDigit(text.charAt(i)) && i < j) { i++; }
-			
-			while(!Character.isLetterOrDigit(text.charAt(j)) && j > i) { j--; }
-			
-			if(Character.toLowerCase(text.charAt(i++)) != Character.toLowerCase(text.charAt(j--))) {
+			if(s.toLowerCase().charAt(i++) != s.toLowerCase().charAt(j--)) 
 				return false;
-			}
 		}
 		return true;
-	}
+	}	
 }

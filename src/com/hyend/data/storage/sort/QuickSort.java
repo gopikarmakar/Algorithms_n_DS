@@ -14,6 +14,14 @@ package com.hyend.data.storage.sort;
  * It doesn't use any extra space for an auxiliary array.
  */
 public class QuickSort {
+	
+	public static void main(String[] args) {
+		
+		int[] arr = {3,1,5,2,7,4,8,6,9,0};
+		QuickSort qs = new QuickSort();
+		qs.sort(arr, 1, arr.length);
+		System.out.println(arr);
+	}
 
 	public void sort(int[] arr, int low, int high) {
 		

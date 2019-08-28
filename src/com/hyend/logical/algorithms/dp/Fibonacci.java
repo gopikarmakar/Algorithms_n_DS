@@ -1,9 +1,13 @@
 package com.hyend.logical.algorithms.dp;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Fibonacci {
 	
 	public static void main(String[] args) {
-		System.out.println(findFib(10));
+		//System.out.println(findFib(10));
+		System.out.println(fibMemoized(10));
 	}	
 	
 	/**
@@ -35,6 +39,17 @@ public class Fibonacci {
 	 * @param temp
 	 * @return
 	 */
+	
+	private static Map<Integer, Integer> cache = new HashMap<>();
+	private static int fibMemoized(int n) {
+		
+		if(n <= 1) return n;
+		else if(!cache.containsKey(n)) {
+			cache.put(n, fibMemoized(n-2) + fibMemoized(n-1));
+		}
+		return cache.get(n);
+	}
+	
 	public static int findFibMemoized(int limit) {
 		int[] temp = new int[limit+1];
 		return memoized(limit, temp);

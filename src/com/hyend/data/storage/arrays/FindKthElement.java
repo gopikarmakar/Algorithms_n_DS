@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.dp;
+package com.hyend.data.storage.arrays;
 
 /**
  * @author karmakargopi

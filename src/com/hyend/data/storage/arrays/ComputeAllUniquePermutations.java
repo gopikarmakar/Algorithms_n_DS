@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * A Google Interview Question:
+ * Asked by Google, Microsoft and FaceBook
+ * 
  * Compute all unique permutations, when the given array 
  * may have duplicates but the Permutations shouldn't repeat.
  * For e.g: [2,2,3,0] = {0,2,2,3}, {0,2,3,2}, {0,3,2,2}, {2,0,2,3},
@@ -18,7 +19,8 @@ import java.util.Collections;
 public class ComputeAllUniquePermutations {
 
 	public static void main(String[] args) {
-		Integer[] arr = {2,2,3,0};
+		//Integer[] arr = {2,2,3,0};
+		Integer[] arr = {1,1,2};
 		for(List<Integer> perm : uniquePermutations(Arrays.asList(arr))) {
 			System.out.println(perm);
 		}		

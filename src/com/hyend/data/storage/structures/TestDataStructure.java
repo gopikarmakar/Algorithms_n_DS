@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.hyend.data.storage.arrays.FindKthElement;
 import com.hyend.data.storage.arrays.matrix.MatrixRotation;
 import com.hyend.data.storage.search.BinarySearch;
 import com.hyend.data.storage.search.LinearSearch;
@@ -36,8 +37,7 @@ import com.hyend.data.storage.structures.trie.TrieDictionary;
 import com.hyend.data.storage.structures.trie.TrieDictionary.Node;
 import com.hyend.logical.algorithms.dp.AmountInWords;
 import com.hyend.logical.algorithms.dp.Fibonacci;
-import com.hyend.logical.algorithms.dp.FindKthElement;
-import com.hyend.logical.algorithms.dp.FindLargestSquareInMatrix;
+import com.hyend.logical.algorithms.dp.geometry.FindLargestSquareInMatrix;
 import com.hyend.logical.algorithms.dp.recursive.Staircase;
 import com.hyend.logical.algorithms.dp.recursive.StudentAttendance;
 import com.hyend.logical.algorithms.strings.FindFirstUniqueChar;
