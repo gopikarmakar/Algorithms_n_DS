@@ -25,7 +25,7 @@ public class CountUniValueSubTrees {
 	public static void main(String[] args) {
 		
 		Integer[] keys = {5,1,5,5,5,null,5,null,null,null,null,null,null,null,5};
-		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER, keys);
+		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER, keys);
 			
 		CountUniValueSubTrees uniVal = new CountUniValueSubTrees();
 		uniVal.countUniVal(tree);

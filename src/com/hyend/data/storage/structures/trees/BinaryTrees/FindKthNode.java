@@ -12,7 +12,7 @@ public class FindKthNode {
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 	
-		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);		
+		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);		
 		System.out.println(compuetKTh(tree, 2).key);
 	}
 

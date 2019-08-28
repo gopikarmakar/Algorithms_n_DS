@@ -15,7 +15,7 @@ public class InorderTraversalIterative {
 	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		Node<Integer> root = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);		
+		Node<Integer> root = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);		
 		BinaryTree.printInOrderRecursive(root, false);		
 		System.out.println(traverseInOrder(root));
 	}

@@ -33,13 +33,13 @@ public class RootToLeafPathSum {
 	
 	@SuppressWarnings({ "unchecked", "unused" })
 	private static int testDecimalBinaryTree() {
-		Node<Integer> root = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);		
+		Node<Integer> root = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);		
 		return sumRootToLeafPath(DECIMAL, root, 0);		
 	}
 	
 	@SuppressWarnings("unchecked")
 	private static int testBinaryDigitBinaryTree(Integer...keys) {	
-		Node<Integer> root = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER, (Object[])keys);		
+		Node<Integer> root = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER, (Object[])keys);		
 		return sumRootToLeafPath(BINARY_DIGIT, root, 0);
 	}
 	

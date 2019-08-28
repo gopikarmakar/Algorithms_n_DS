@@ -6,14 +6,14 @@ public class CalculateHeight {
 	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {		
-		Node<Integer> root = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
+		Node<Integer> root = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);
 		BinaryTree.printBFS(root, false);
 		System.out.println("Height Of The Binary Tree = " + calculateHeight(root));		
 	}
 	
 	/**
-	 * A PostOrder traversal algorithm to Calculate 
-	 * the height of a Binary Tree
+	 * An O(n) time complexity PostOrder traversal   
+	 * algorithm to calculate the height of a Binary Tree.
 	 * 
 	 * @param node
 	 * @return

@@ -18,13 +18,44 @@ public class IsItHeightBalanced {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		//Integer[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
+		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);
 		
-		boolean status = isBalanced(tree);
-		System.out.println("Is It Balanced = " + status);
+		System.out.println("Is Height Balanced = " + (isHeightBalanced(tree) >= 0));
+
+		//boolean status = isBalanced(tree);
+		//System.out.println("Is It Balanced = " + status);
 	}
 	
+	/**
+	 * An O(n) time complexity solution.
+	 * @param node
+	 * @return
+	 */
+	private static int isHeightBalanced(Node<Integer> node) {
+		
+		if(node == null) {
+			return 0;
+		}
+		
+		int lh = isHeightBalanced(node.left);
+		if(lh < 0) 
+			return -1;
+		
+		int rh = isHeightBalanced(node.right);
+		if(rh < 0)
+			return -1;
+		
+		int diff = Math.abs(lh - rh);
+		return (diff <= 1) ? (lh + rh) + 1 : -1; 
+	}
+	
+	//#####################################################################################
+	/**
+	 * An another li'l better Solution.
+	 * 
+	 * @param root
+	 * @return
+	 */
 	private static boolean isBalanced(Node<Integer> root) {
 		return checkBalance(root).balanced;
 	}
@@ -55,19 +86,19 @@ public class IsItHeightBalanced {
 	 * 
 	 * The time complexity is the same as that for a PostOrder traversal, namely 0(n).
 	 * 
-	 * @param BinaryTree.Node<Key> left
+	 * @param BinaryTree.Node<Key> node
 	 * @return
 	 */
-	private static BalanceStatusWithHeight checkBalance(BinaryTree.Node<Integer> left) {
+	private static BalanceStatusWithHeight checkBalance(Node<Integer> node) {
 		
-		if(left == null)
+		if(node == null)
 			return new BalanceStatusWithHeight(true, -1); //Base Case
 		
-		BalanceStatusWithHeight leftTreeResult = checkBalance(left.left);
+		BalanceStatusWithHeight leftTreeResult = checkBalance(node.left);
 		if(!leftTreeResult.balanced)
 			return leftTreeResult;	//Left sub tree isn't balanced.
 		
-		BalanceStatusWithHeight rightTreeResult = checkBalance(left.right);
+		BalanceStatusWithHeight rightTreeResult = checkBalance(node.right);
 		if(!rightTreeResult.balanced)
 			return rightTreeResult;	//Right sub tree isn't balanced.
 		

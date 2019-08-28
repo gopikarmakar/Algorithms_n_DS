@@ -16,7 +16,7 @@ public class FindInOrderSuccessorOfAGivenNode {
 							null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
 							null,null,null,null,null,null,null,641,null,null,null,null};		*/
 
-		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
+		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);
 		BinaryTree.printBFS(tree, true);
 		Node<Integer> successor = findSuccessor(tree.left.right);
 		System.out.println("The Successor Is = " + successor.key);

@@ -19,7 +19,7 @@ public class FindLCA {
 		
 		//int[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 		//BinaryTree.Node<Integer> root = BuildABinaryTreeInLevelOrder.build(keys);
-		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER);
+		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);
 		BinaryTree.printBFS(tree, true);
 		
 		Node<Integer> node1 = tree.left.right;
@@ -37,9 +37,9 @@ public class FindLCA {
 	
 		public int numTargetNodes;
 		@SuppressWarnings("unused")
-		public BinaryTree.Node<Integer> ancestor;
+		public Node<Integer> ancestor;
 		
-		public Status(int numTargetNodes, BinaryTree.Node<Integer> node) {
+		public Status(int numTargetNodes, Node<Integer> node) {
 			this.numTargetNodes = numTargetNodes;
 			this.ancestor = node;
 		}

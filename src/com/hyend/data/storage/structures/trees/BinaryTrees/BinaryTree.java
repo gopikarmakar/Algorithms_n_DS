@@ -11,10 +11,10 @@ import java.util.LinkedList;
  * left and right child that's why it's called binary tree.
  * A complete family with parent and child called subtree.
  * 
- * 					1
- * 			2				3
- * 		4		5		6		7
- * 	8
+ * 								1
+ * 				2								3
+ * 		4				5 				6	 			7
+ * 	8   	9 		10		11  	12		13 		14		15
  * 
  * BinaryTree.Node<Integer> root = new BinaryTree.Node<Integer>(1);
  * root.left = new BinaryTree.Node<Integer>(2);
@@ -67,7 +67,7 @@ public class BinaryTree {
 		}
 	}
 	
-	public static Node<?> create(int order, Object...keys) {
+	public static Node<?> createDefault(int order, Object...keys) {
 		if(keys == null || keys.length == 0) {
 			keys = new Integer[DEFAULT_TREE_SIZE];
 			for(int i = 0; i < DEFAULT_TREE_SIZE; i++)
@@ -102,21 +102,8 @@ public class BinaryTree {
 	 * @return
 	 */
 	public static Node<Integer> build(int type, int...keys) {
-		Node<Integer> root = null;		
-		switch (type) {
-			case LEFT_LEANING:
-				root = BuildLeftOrRightLeaningAndSkewedBT.build(type, keys);
-				break;
-			case RIGHT_LEANING:
-				root = BuildLeftOrRightLeaningAndSkewedBT.build(type, keys);
-				break;
-			case LEFT_SKEWED:
-				root = BuildLeftOrRightLeaningAndSkewedBT.build(type, keys);
-				break;
-			case RIGHT_SKEWED:
-				root = BuildLeftOrRightLeaningAndSkewedBT.build(type, keys);
-				break;
-		}
+		Node<Integer> root = null;
+		root = BuildLeftOrRightLeaningAndSkewedBT.build(type, keys);		
 		return root;
 	}
 	

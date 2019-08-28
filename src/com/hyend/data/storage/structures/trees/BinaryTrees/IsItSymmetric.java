@@ -15,7 +15,7 @@ public class IsItSymmetric {
 		Integer[] correctKeys = {1,2,2,4,5,5,4,8,9,10,11,11,10,9,8};
 		//Integer[] wrongKeys = {1,2,3,4,5,5,4,8,9,9,8,10,11,11,10};		
 		
-		Node<Integer> tree = (Node<Integer>) BinaryTree.create(BinaryTree.LEVEL_ORDER, (Object[]) correctKeys);
+		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER, (Object[]) correctKeys);
 		System.out.println("Is It A Symmetry = " + isItASymmetry(tree.left, tree.right));
 	}
 	
