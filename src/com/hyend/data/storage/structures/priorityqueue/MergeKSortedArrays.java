@@ -18,10 +18,9 @@ public class MergeKSortedArrays {
 	
 	public static void main(String[] args) {
 		
-		int[][] files = {{3, 5, 7}, {0, 6}, {0, 6, 8}};
-		Solution sol = new Solution();
+		int[][] files = {{3, 5, 7}, {0, 6}, {0, 6, 8}};		
 		
-		for(int x: sol.merge(files)) {
+		for(int x: merge(files)) {
 			System.out.println(x);
 		}
 	}
@@ -37,31 +36,28 @@ public class MergeKSortedArrays {
 		}
 	}
 	
-	private static class Solution {
+	private static List<Integer> merge(int[][] files) {
 		
-		public List<Integer> merge(int[][] files) {
+		PriorityQueue<Entry> pq = new PriorityQueue<Entry>(files.length, new Comparator<Entry>() {
+			@Override
+			public int compare(Entry l, Entry r) {
+				return Integer.compare(l.key, r.key);
+			}
+		});
 		
-			PriorityQueue<Entry> pq = new PriorityQueue<Entry>(files.length, new Comparator<Entry>() {
-				@Override
-				public int compare(Entry l, Entry r) {
-					return Integer.compare(l.key, r.key);
-				}
-			});
+		for(int i = 0; i < files.length; i++) {
+			pq.add(new Entry(files[i][0], i, 0));
+		}
+		
+		List<Integer> merged = new ArrayList<>();
+		while(!pq.isEmpty()) {
+			Entry entry = pq.remove();
+			merged.add(entry.key);
 			
-			for(int i = 0; i < files.length; i++) {
-				pq.add(new Entry(files[i][0], i, 0));
+			if(entry.ci < files[entry.ri].length-1) {
+				pq.add(new Entry(files[entry.ri][++entry.ci], entry.ri, entry.ci));
 			}
-			
-			List<Integer> merged = new ArrayList<>();
-			while(!pq.isEmpty()) {
-				Entry entry = pq.remove();
-				merged.add(entry.key);
-				
-				if(entry.ci < files[entry.ri].length-1) {
-					pq.add(new Entry(files[entry.ri][++entry.ci], entry.ri, entry.ci));
-				}
-			}
-			return merged;
-		}		
+		}
+		return merged;
 	}
 }

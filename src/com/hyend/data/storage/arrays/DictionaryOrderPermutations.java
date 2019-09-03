@@ -26,7 +26,7 @@ public class DictionaryOrderPermutations {
 		do {
 			//Adding first dictionary order permutation.
 			perms.add(new ArrayList<>(perm));
-			perm = ComputeTheNextPermutaion.nextPermutation(perm);
+			perm = ComputeNextPermutaion.nextPermutation(perm);
 		} while(!perm.isEmpty());
 		return perms;
 	}

@@ -14,7 +14,7 @@ public class FindLCA {
 
 	public static void main(String[] args) {
 		
-		Node<Integer, ?> tree = BinarySearchTree.createDefault();
+		Node<Integer, String> tree = BinarySearchTree.createDefault();
 		Node<Integer, ?> node1 = tree.left.right.left.left;
 		Node<Integer, ?> node2 = tree.left.right.right;
 				

@@ -3,6 +3,10 @@ package com.hyend.logical.algorithms.strings;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * 
+ * @author gopi_karmakar
+ */
 public class FindFirstUniqueChar {	
 	Map<Character, Integer> uniqueChars =
 			new LinkedHashMap<Character, Integer>();	

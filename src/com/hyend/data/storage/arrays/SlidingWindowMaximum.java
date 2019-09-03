@@ -27,7 +27,7 @@ public class SlidingWindowMaximum {
 	}
 	
 	/**
-	 * Full Proof solution:
+	 * A naive solution:
 	 * 
 	 * The time complexity is O((n-k+1)*k) 
 	 * which can also be written as O(N * K)
@@ -69,6 +69,4 @@ public class SlidingWindowMaximum {
 		}		
 		System.out.println(maxList);
 	}
-	
-	
 }

@@ -10,7 +10,7 @@ import java.util.TreeMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.hyend.data.storage.arrays.FindKthElement;
+import com.hyend.data.storage.arrays.FindKthSmallestElementInTwoSortedArrays;
 import com.hyend.data.storage.arrays.matrix.MatrixRotation;
 import com.hyend.data.storage.search.BinarySearch;
 import com.hyend.data.storage.search.LinearSearch;
@@ -32,7 +32,7 @@ import com.hyend.data.storage.structures.linkedlists.singly.MyLinkedList;
 import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree;
 import com.hyend.data.storage.structures.trees.SelfBalancedBST.RedBlackBST;
 import com.hyend.data.storage.structures.trees.SelfBalancedBST.SelfBalancedBSTres;
-import com.hyend.data.storage.structures.trie.TernaryTrieDictionary;
+import com.hyend.data.storage.structures.trie.TernaryTrieDictionary_old;
 import com.hyend.data.storage.structures.trie.TrieDictionary;
 import com.hyend.data.storage.structures.trie.TrieDictionary.Node;
 import com.hyend.logical.algorithms.dp.AmountInWords;
@@ -193,7 +193,7 @@ class TestDataStructure<K> {
 	
 	private static void TestDoubleyLinkedList() {
 		DoublyLinkedList dblList = new DoublyLinkedList();
-		dblList.put("One");
+	/*	dblList.put("One");
 		dblList.put("Two");
 		dblList.put("Three");
 		dblList.put("Four");
@@ -202,9 +202,9 @@ class TestDataStructure<K> {
 		dblList.put("Seven");
 		dblList.put("Eight");
 		dblList.put("Nine");
-		dblList.put("Ten");
-		System.out.println("Length = " + dblList.getLength());
-		dblList.printAllNodesInReverse();
+		dblList.put("Ten");*/
+		//System.out.println("Length = " + dblList.size());
+		//dblList.printAllNodesInReverse();
 		//dblList.reorderLinkedList();
 		//dblList.printAllNodes();
 	}
@@ -356,8 +356,7 @@ class TestDataStructure<K> {
 			trieDict.put(key.substring(index, index + n), (""+index));
 			index+=1;
 		}*/
-		//PrintMSG("Unique Substrings = " + trieDict.uniqueNSubstrings("cgcgggcgcg", 3));
-		//PrintMSG("Unique Substrings = " + trieDict.longestSubStringWithKDistinctChars("abcxaabbcyabcz", 3));
+		//PrintMSG("Unique Substrings = " + trieDict.uniqueNSubstrings("cgcgggcgcg", 3));	
 		
 		//TrieDictionary<String> trieDict = new TrieDictionary<>();		
 		/*Iterator<TrieDictionary<String>.Node<String>> iterator = trieDict.keysWithPrefix("an").iterator();						

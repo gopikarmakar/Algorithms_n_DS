@@ -45,23 +45,23 @@ public class BinaryTree {
 	 * 
 	 * @author gopi_karmakar
 	 *
-	 * @param <Key>
+	 * @param <K>
 	 */
-	public static class Node<Key> {		
-		Key key;
+	public static class Node<K> {		
+		K key;
 		int size;
 		int weight;
-		Node<Key> left;
-		Node<Key> right;
-		Node<Key> parent;
-		public Node(Key key) {
-			this.key = key;
+		Node<K> left;
+		Node<K> right;
+		Node<K> parent;
+		public Node(K k) {
+			this.key = k;
 			this.left = null;
 			this.right = null;
 		}		
 		
-		public Node(Key key, Node<Key> left, Node<Key> right) {
-			this.key = key;
+		public Node(K k, Node<K> left, Node<K> right) {
+			this.key = k;
 			this.left = left;
 			this.right = right;
 		}

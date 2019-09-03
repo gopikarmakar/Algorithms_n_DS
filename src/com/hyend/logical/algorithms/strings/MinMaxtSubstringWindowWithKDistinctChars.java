@@ -10,26 +10,24 @@ import java.util.LinkedHashSet;
  * 
  * @author gopi_karmakar
  */
-public class MinMaxtSubstringWithKUniqueChars {
+public class MinMaxtSubstringWindowWithKDistinctChars {
 	
 	public static void main(String...args) {
-		try {
-			String s = "aabbcc";
-			//String s = "aabacbebebe";
-			minMaxSubStringWindow(s, 3);	
-		} catch(NullPointerException npe) {
-			System.out.println(npe.getMessage());
-		}		
+		//String s = "aabbcc";
+		//String s = "aabacbebebe";
+		String s = "abcxaabbcyabcz";
+		minMaxSubStringWindow(s, 4);		
 	}
 	
 	/** 
+	 * An almost O(n^2) time complexity solution.
 	 * @param text
 	 * @param k
 	 */
 	private static void minMaxSubStringWindow(String text, int k) {
 		
-		if(text == null)
-			throw new NullPointerException("Value can't be null");
+		if(text == null || text.isEmpty())
+			return;			
 					
 		/**
 		 * LinkedHashSet because to retrieve the values in insertion order.
@@ -40,14 +38,28 @@ public class MinMaxtSubstringWithKUniqueChars {
 			int offset = x + (k-1);
 			for(int i = offset; i < text.length(); i++) {	
 				String s = text.substring(x, i);				
-				if(getTotalDistinctChars(s) == k) {
-					//System.out.println("SubString = " + s);									
-					words.add(s);
-					
+				if(getTotalDistinctChars(s) == k) {									
+					words.add(s);					
 				}
 			}
 		}
-				
+		print(words);
+	}	
+	
+	private static int getTotalDistinctChars(String text) {
+ 		int count = 0;
+ 		boolean[] chars = new boolean[26];
+ 		for(char c : text.toCharArray()) {
+ 			if(!chars[c - 'a']) {
+ 				count += 1;
+ 				chars[c - 'a'] = true;
+ 			} 
+ 		}
+ 		return count;
+ 	}
+	
+	private static void print(Set<String> words) {
+		
 		String minSubString = "";
 		String maxSubString = "";
 		int max = 0, min = Integer.MAX_VALUE;
@@ -62,30 +74,9 @@ public class MinMaxtSubstringWithKUniqueChars {
 			if(min > s.length()) {
 				min = s.length();
 				minSubString = s;
-			}							
+			}
 		}
 		System.out.println("Minimum Substring Window = " + minSubString + " Of Length = "+ (min == Integer.MAX_VALUE ? 0 : min) );
-		System.out.println("Maximum Substring Window = " + maxSubString + " Of Length = "+ max);		
-	}	
-	
-	private static int getTotalDistinctChars(String text) {
- 		int count = 0;
- 		boolean[] chars = new boolean[26];
- 		for(char c : text.toCharArray()) {
- 			if(!chars[c - 'a']) {
- 				count += 1;
- 				chars[c - 'a'] = true;
- 			} 			
- 		}
- 		return count;
- 	}
-	
-	private static boolean[] chars = new boolean[26];
-	private static void TotalAADistinctChars(String text) {
-		for(char c : text.toCharArray()) {
- 			if(!chars[c - 'a']) {
- 				chars[c - 'a'] = true;
- 			} 			
- 		}
+		System.out.println("Maximum Substring Window = " + maxSubString + " Of Length = "+ max);
 	}
 }

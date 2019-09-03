@@ -2,38 +2,42 @@ package com.hyend.data.storage.structures.linkedlists.singly;
 
 import java.util.Iterator;
 
-public class SinglyLinkedList<K, V> {
+/**
+ * Concrete Single Linked List Implementation
+ *   
+ * @author gopi_karmakar
+ */
+public class SinglyLinkedList<K> {
 	
 	public static void main(String[] args) {		
-		SinglyLinkedList<?, ?> linkedList = createDefault();
+		SinglyLinkedList<Integer> linkedList = createDefault();
 		linkedList.print(linkedList);
 	}
 	
-	public static SinglyLinkedList<Integer, Integer> createDefault() {
-		SinglyLinkedList<Integer, Integer> linkedList = new SinglyLinkedList<>();
-		for(Integer i = 1; i <= 10; i++)
-			linkedList.addNode(i, i);
+	public static SinglyLinkedList<Integer> createDefault() {
+		SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+		for(Integer i = 1; i <= 15; i++)
+			linkedList.add(i);
 		
 		return linkedList;
 	}
 
+	public int size = 0;
 	private Node head; 
 	private Node tail;
 	
 	public class Node {		
 		public K k;
-		public V v;
 		public Node next;
-		public Node(K k, V v) {
+		public Node(K k) {
 			this.k = k;
-			this.v = v;
 		}
 	}		
 	
-	public void addNode(K k, V v) {		
+	public void add(K k) {		
+		size += 1;
 		Node node = tail;
-		tail = new Node(k,v);
-		
+		tail = new Node(k);		
 		if(head == null) {
 			head = tail;
 			return;
@@ -41,19 +45,22 @@ public class SinglyLinkedList<K, V> {
 		node.next = tail;
 	}
 	
-	@SuppressWarnings("unchecked")
-	private void print(SinglyLinkedList<?, ?> linkedList) {
+	public int size() {		
+		return size;
+	}
+	
+	public void print(SinglyLinkedList<K> linkedList) {
 		
-		Iterator<?> itr = linkedList.getIterator();
+		Iterator<K> itr = linkedList.getIterator();
 		while(itr.hasNext()) {			
-			Node node = (SinglyLinkedList<K, V>.Node) itr.next(); 
-			System.out.println("Key = " + node.k + " Value = " + node.v);
+			K k = itr.next(); 
+			System.out.println("Key = " + k );
 		}
 	}
 	
-	public Iterator<Node> getIterator() {
+	public Iterator<K> getIterator() {
 		
-		Iterator<Node> itr = new Iterator<Node>() {
+		Iterator<K> itr = new Iterator<K>() {
 
 			Node current = head;
 			
@@ -63,10 +70,10 @@ public class SinglyLinkedList<K, V> {
 			}
 
 			@Override
-			public Node next() {
-				Node node = current;
+			public K next() {
+				K k = current.k;
 				current = current.next;				
-				return node;
+				return k;
 			}
 			
 			@Override

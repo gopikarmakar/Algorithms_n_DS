@@ -13,8 +13,10 @@ import java.util.List;
  * 	  5001->4501
  * 	  4501->4500
  * 
- * Solution : A Di-Graphical solution. Map the adjacent manager node for each
- * 			   employee node and recursively iterate through from the mapping (DFS). 
+ * Solution : It's a variant of:
+ * Find LCA of two given nodes in a BinaryTree.
+ * 
+ * Below is the naive simple DFS solution. 
  * 
  * @author gopi_karmakar
  */

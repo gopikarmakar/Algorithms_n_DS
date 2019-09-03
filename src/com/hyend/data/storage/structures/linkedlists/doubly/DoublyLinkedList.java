@@ -1,41 +1,99 @@
 package com.hyend.data.storage.structures.linkedlists.doubly;
 
+import java.util.Iterator;
+
 /**
- * Doubly LinkedList Implementation.
+ * Concrete Doubly LinkedList Implementation.
  *
  * @author gopi_karmakar
  */
-public class DoublyLinkedList<K, V> {
+public class DoublyLinkedList<K> {	
 	
-	private Node head = null;
-	private Node tail = null;	
+	public static final int FORWARD = 1;
+	public static final int REVERSE = 2;
 	
-	class Node {		
-		K k;		
+	public static void main(String[] args) {
+		
+		DoublyLinkedList<Integer> dll = createDefault();		
+		dll.printAllNodes(FORWARD);
+	}
+	
+	public static DoublyLinkedList<Integer> createDefault() {
+		DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
+		for(Integer i = 1; i <= 15; i++)
+			dll.add(i);
+		
+		return dll;
+	}
+	
+	public int size = 0;
+	public Node head = null;
+	public Node tail = null;	
+	
+	public class Node {		
+		K k;
 		Node next;
-		Node previous;
-		Object item;
+		Node prev;
 		public Node(K k) {
-			this.k = k;
+			this.k = k;			
 		}
 	}
 
-	private void addNode(Node node) {		
-		if(head == null && tail == null) {
-			head = tail = node;
+	private void addNode(Node node) {
+		size += 1;
+		Node temp = tail;
+		tail = node;
+		if(head == null) {
+			head = tail;
 			return;
 		}
-		node.previous = tail;
-		tail.next = node;
-		tail = tail.next;
+		temp.next = tail;
+		tail.prev = temp;
 	}
 	
-	public void put(K k) {		
+	public void add(K k) {		
 		Node node = new Node(k);
-		//node.next = null;
 		addNode(node);
 	}
-
+	
+	public int size() {		
+		return size;
+	}
+	
+	public void printAllNodes(int order) {
+		Iterator<K> itr = getIterator(order); 
+		while(itr.hasNext()) {
+			K k = itr.next();
+			System.out.println("Key = " + k);
+		}
+	}
+	
+	public Iterator<K> getIterator(int order) {		
+		
+		Iterator<K> itr = new Iterator<K>() {
+			
+			Node current = (order == REVERSE) ? tail : head;
+			
+			@Override
+			public boolean hasNext() {				
+				return (current != null);
+			}
+			
+			@Override
+			public K next() {
+				K k = current.k;
+				current = (order == REVERSE) ? current.prev : current.next;
+				return k;
+			}
+			
+			@Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+		};
+		return itr;
+	}
+	
 	/**
 	 * Solution: Amazon Coding Interview Question.
 	 * 
@@ -46,42 +104,17 @@ public class DoublyLinkedList<K, V> {
 	 * Return 1 -> 10 -> 2 -> 9 -> 3 -> 8 -> 4 -> 7 -> 5 -> 6
 	 */
 	public void reorderLinkedList() {
-		int length = getLength()/2;
+		int length = size()/2;
 		Node tempTail, current;		
 		current = head;
 		while(length > 0) {
 			tempTail = tail;
-			tail = tail.previous;
+			tail = tail.prev;
 			tail.next = null;
 			tempTail.next = current.next;
 			current.next = tempTail;
 			current = tempTail.next;
 			length -= 1;
-		}
-	}
-	
-	public int getLength() {
-		int length = 0;
-		Node node = head;
-		while(node != null) {
-			length += 1;
-			node = node.next;
-		}
-		return length;
-	}
-	
-	public void printAllNodes() {		
-		Node node = head;
-		while(node != null) {
-			System.out.println(node.item);
-			node = node.next;		
-		}
-	}
-	
-	public void printAllNodesInReverse() {		
-		while(tail != null) {
-			System.out.println(tail.item);
-			tail = tail.previous;			
 		}
 	}
 }

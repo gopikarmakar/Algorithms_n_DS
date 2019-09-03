@@ -5,6 +5,14 @@ import java.util.Collections;
 
 import java.util.PriorityQueue;
 
+/**
+ * Not so efficient solutions since it uses extra space.
+ * An O(n log n) solution with O(m+n) extra space.
+ * 
+ * The most efficient solution will be in place binary search.  
+ *
+ * @author gopi_karmakar
+ */
 public class MedianOfTwoSortedArrays {
 
 	public static void main(String[] args) {
@@ -17,13 +25,15 @@ public class MedianOfTwoSortedArrays {
 		if(n2 < n1) {			
 			int temp = n1;
 			n1 = n2;
-			n2 = temp;
+			n2 = temp;			
 		}
+		
 		int i;
 		for(i = 0; i < n1; i++) {
 			add(arr1[i]);
 			add(arr2[i]);
 		}
+		
 		int[] left;
 		if(i == arr1.length)
 			left = Arrays.copyOfRange(arr1, i, arr2.length);

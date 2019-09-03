@@ -18,19 +18,14 @@ import java.util.List;
 public class IntervalCovering {
 
 	public static void main(String[] args) {
+		
 		int[][] tasks = {{0,3},{3,4},{4,5},{2,3},{3,4},{1,2}};
-		
-		IntervalCovering ic = new IntervalCovering();
-		
-		List<Interval> intervals = new ArrayList<>();
-		for(int i = 0; i < tasks.length; i++) {
-			intervals.add(ic.new Interval(tasks[i][0], tasks[i][1]));			
-		}
-		System.out.println("Visits at " + ic.findMinimumVisits(intervals) + 
+					
+		System.out.println("Visits at " + findMinimumVisits(tasks) + 
 				" Intervals Covers All Tasks");		
 	}
 	
-	private class Interval {		
+	private static class Interval {		
 		int left, right;		
 		public Interval(int left, int right) {
 			this.left = left;
@@ -42,37 +37,43 @@ public class IntervalCovering {
 	 * Since we spend O(1) time per index, the time complexity 
 	 * after the initial sort is 0(n), where n is the 
 	 * number of intervals Therefore, the time taken is 
-	 * dominated by the initial sort, i.e., 0(n log n)
-	 * 
-	 * @param intervals
-	 * @return
+	 * dominated by the initial sort, i.e., 0(n log n)	 
 	 */
-	public List<Integer> findMinimumVisits(List<Interval> intervals) {
+	public static List<Integer> findMinimumVisits(int[][] tasks) {
+		
+		List<Interval> intervals = new ArrayList<>();
+		for(int i = 0; i < tasks.length; i++) {
+			intervals.add(new Interval(tasks[i][0], tasks[i][1]));			
+		}
 		
 		if(intervals.isEmpty())
 			return Collections.emptyList();
 		
-		Collections.sort(intervals, new Comparator<Interval>() {			
-			@Override
-			public int compare(Interval i1, Interval i2) {
-				return Integer.compare(i1.right, i2.right);
-			}
-		});
+		sort(intervals);
 		
 		int lastVisitTime = intervals.get(0).right;		
 		List<Integer> OptimumVisits = new ArrayList<>();
 		OptimumVisits.add(lastVisitTime);
 		
 		for(Interval interval : intervals) {
-			if(interval.left > lastVisitTime) {						
-				/**
-				 * The current right end point, lastVisitTime, 
-				 * will not cover any more intervals
-				 */
+			 // The current right end point lastVisitTime, 
+			 // will not cover any more intervals
+			if(interval.left > lastVisitTime) {					 
 				lastVisitTime = interval.right;
 				OptimumVisits.add(lastVisitTime);
 			}
 		}		
 		return OptimumVisits;
+	}
+	
+	private static void sort(List<Interval> intervals) {
+		
+		Collections.sort(intervals, new Comparator<Interval>() {
+			
+			@Override
+			public int compare(Interval i1, Interval i2) {
+				return Integer.compare(i1.right, i2.right);
+			}
+		});
 	}
 }

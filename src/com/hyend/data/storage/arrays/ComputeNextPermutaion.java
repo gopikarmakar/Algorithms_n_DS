@@ -16,17 +16,18 @@ import java.util.Collections;
  * Variant: Compute the next permutation when given array may contain
  * Duplicates, for e.g: the next permutation for {2,2,3,0} = {2,3,0,2}
  * 
+ * NOTE: This solution works for unique and duplicate entries both.
+ * 
  * @author gopi_karmakar
  */
-public class ComputeTheNextPermutaion {
+public class ComputeNextPermutaion {
 
 	public static void main(String[] args) {
 		Integer[] arr = {1,0,3,2};
 		System.out.println("Next Permutation  = " + nextPermutation(Arrays.asList(arr)));
 	}
 	
-	/**
-	 * 
+	/**	 
 	 * Each step is an iteration through an array, 
 	 * so the time complexity is 0(n)
 	 * We used few local variables, so the additional space complexity is 0(1).

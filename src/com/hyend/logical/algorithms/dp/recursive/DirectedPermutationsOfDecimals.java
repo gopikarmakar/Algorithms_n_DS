@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Directed permutations of an int array. 
+ * 
+ * @author gopi_karmakar
+ */
 public class DirectedPermutationsOfDecimals {
 
 	public static void main(String[] args) {
@@ -21,12 +26,8 @@ public class DirectedPermutationsOfDecimals {
 	 * since within each function the time spent is 0(1),
 	 * 
 	 * So, the time complexity is O(n X n!), since we do O(n) 
-	 * computation per call outside of the recursive calls.
-	 * 
-	 * It's not a Memoized solution, So It's inefficient, since It 
-	 * does a lot of repetitive computations internally, due to back
-	 * stack trace of recursive calls.
-	 * For an efficient non recursive solution, see, DicionaryPermutation 
+	 * computation per call outside of the recursive calls and
+	 * permutations of any n takes n! time. 
 	 *   
 	 * @param i
 	 * @param perm

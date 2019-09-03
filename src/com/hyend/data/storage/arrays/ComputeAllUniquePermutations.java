@@ -40,7 +40,7 @@ public class ComputeAllUniquePermutations {
 		do {
 			//Adding first permutation
 			perms.add(new ArrayList<>(perm));
-			perm = ComputeTheNextPermutaion.nextPermutation(perm);
+			perm = ComputeNextPermutaion.nextPermutation(perm);
 			
 		} while(!perm.isEmpty());
 		return perms;

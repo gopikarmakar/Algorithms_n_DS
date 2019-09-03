@@ -11,9 +11,10 @@ import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTre
  */
 public class AreThreeBSTNodesTotallyOrdered {
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
-		Node<Integer, ?> tree = BinarySearchTree.createDefault();
+		Node<Integer, ?> tree = (Node<Integer, ?>) BinarySearchTree.createDefault();
 		Node<Integer, ?> node1 = tree.left;
 		Node<Integer, ?> middle = tree.left.right;
 		//Node<Integer, ?> middle = tree.left.left;
@@ -57,7 +58,7 @@ public class AreThreeBSTNodesTotallyOrdered {
 		
 		/**
 		 * If we get here then we know for sure that the middle node path  
-		 * lie between either of node1 or node2, now we just need find  
+		 * lie between either of node1 or node2, now we just need to find  
 		 * from which node has a path to middle node.		 
 		 */
 		return (search1 == middle) ? searhTarget(middle, node2) : searhTarget(middle, node1);

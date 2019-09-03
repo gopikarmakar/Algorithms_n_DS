@@ -10,6 +10,8 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * 		D				E			F				G
  * 	H		I		J		K	L		M		N		O
  * 
+ * Variant: Build a minimum height BT from an array/list of values.
+ * 
  * @author gopi_karmakar
  */
 public class ConstructABinaryTreeFromAnArrayOfKeys {

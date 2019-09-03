@@ -6,9 +6,9 @@ import java.util.Iterator;
 import java.util.Queue;
 import java.util.Set;
 
-public class TernaryTrieDictionary {
+public class TernaryTrieDictionary_old {
 
-	public TernaryTrieDictionary() {}
+	public TernaryTrieDictionary_old() {}
 	
 	public static void main(String[] args) {
 	
@@ -220,61 +220,5 @@ public class TernaryTrieDictionary {
 			
 			return uniqueStrings.size();		
 		}
-		
-		int maxCount = 0;
-		private void traverseTrie(Node x, int k, Queue<String> queue) {		
-			if(x == null) return;		
-			if(x.value != null) {
-				System.out.println("x.value = " + x.value);
-				int c = getTotalDistinctChars(x.value);
-				//System.out.println("count = " + c);
-				if(getTotalDistinctChars(x.value) == k) {
-					queue.add(x.value);
-					//int l = x.value.length();
-					//System.out.println("length = " + l);
-					//if(maxCount < l)
-						//maxCount = x.value.length();
-				}
-			}		
-			//System.out.println("max = " + max);
-			traverseTrie(x.left, k, queue);
-			traverseTrie(x.mid, k, queue);
-			traverseTrie(x.right, k, queue);		
-			return;
-		}
-		
-		private int getTotalDistinctChars(String text) {
-	 		int count = 0;
-	 		boolean[] chars = new boolean[26];
-	 		for(char c : text.toCharArray()) {
-	 			if(!chars[c - 'a']) {
-	 				count += 1;
-	 				chars[c - 'a'] = true;
-	 			} 			
-	 		}
-	 		return count;
-	 	}
-		
-		public int longestSubStringWithKDistinctChars(String key, int k) {
-			Queue<String> list = new LinkedList<>();		
-			createPrefixTrie(key);
-			creeateSuffixTrie(key);
-			creeateSuffixTrie(key, k);
-			traverseTrie(root, k, list);
-			
-			int maxLength = 0;
-			Iterator<String> itr = list.iterator();
-			
-			while(itr.hasNext()) {
-				String item = itr.next();
-				System.out.println(item);
-				int l = item.length();
-				if(maxLength < l)
-					maxLength = l;			
-			}
-			return maxLength;
-		}
 	}
-
-	
 }

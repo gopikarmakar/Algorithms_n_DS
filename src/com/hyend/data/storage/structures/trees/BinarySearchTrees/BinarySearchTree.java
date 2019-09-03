@@ -41,12 +41,8 @@ public class BinarySearchTree {
 		}
 	}
 	
-	public static Node<Integer, Object> createDefault() {		
-		return createDefault(ITERATIVE);
-	}
-	
-	public static Node<Integer, Object> createDefault(int type) {		
-		return BSTNodeInsertion.createDefault(type);
+	public static Node<Integer, String> createDefault() {		
+		return BSTNodeInsertion.createDefault();
 	}
 		
 	/**

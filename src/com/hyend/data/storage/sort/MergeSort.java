@@ -12,13 +12,21 @@ package com.hyend.data.storage.sort;
  */
 public class MergeSort {
 	
+	public static void main(String[] args) {
+		int[] arr = {3,1,5,2,7,4,8,6,9,0};
+		MergeSort mSort = new MergeSort();	
+		mSort.sort(arr);
+		for(int x : arr)
+			System.out.println(x);
+	}
+	
 	private int aux[];
 	
 	public void sort(int[] arr) {
-		split(arr, 0, arr.length-1);				
+		split(arr, 0, arr.length-1);
 	}
 	
-	public void split(int[] arr, int low, int high) {		
+	public void split(int[] arr, int low, int high) {
 		if(high <= low) return;
 		int mid = low + (high - low)/2;
 		split(arr, low, mid);

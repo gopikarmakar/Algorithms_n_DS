@@ -1,74 +1,47 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
+import java.util.Iterator;
+
+import com.hyend.data.storage.structures.linkedlists.doubly.DoublyLinkedList;
 import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
 
 /**
- * Creating a doubly linked list from the keys of a
- * Binary Tree in InOrder fashion.
+ * Convert a Binary Tree into Doubly Linked List
  * 
  * @author gopi_karmakar
- *
  */
 public class ConvertInToDoublyLinkedList {
-	
-	private static Link<String> head = null;
-	private static Link<String> tail = null;	
-	
-	private static class Link<Key> {
 		
-		Key key;
-		Link<Key> prev;
-		Link<Key> next;
-		
-		Link(Key key) {
-			this.key = key;
-		}
-	}
-	
 	public static void main(String[] args) {
 		
 		Node<String> tree = ConstructABinaryTreeFromAnArrayOfKeys.build();
-		formDoubleyLinkedList(tree);
-
-		Link<?> current = head;
-		
-		System.out.print("Head-to-Tail =");
-		while(current != null) {
-			System.out.print(" " + current.key);
-			current = current.next;
-		}
-		
-		System.out.print("\nTail-to-Head =");		
-		current = tail;
-		while(current != null) {
-			System.out.print(" " + current.key);
-			current = current.prev;
-		}
+		convert(tree);
+		print(DoublyLinkedList.FORWARD);
 	}
 	
+	private static DoublyLinkedList<Node<?>> dll = new DoublyLinkedList<>();
+	
 	/**
-	 * The time complexity is O(n)
+	 * O(n) time complexity recursive InOrder solution.
 	 * 
 	 * @param node
 	 */
-	private static void formDoubleyLinkedList(Node<String> node) {
-		if(node == null)
-			return;
+	public static void convert(Node<?> node) {
 		
-		formDoubleyLinkedList(node.left);
-		addNode(node);
-		formDoubleyLinkedList(node.right);		
+		if(node == null) return;			
+		
+		convert(node.left);
+		dll.add(node);
+		convert(node.right);		
 	}
 	
-	private static void addNode(Node<String> node) {
+	public static void print(int order) {				
 		
-		Link<String> temp = tail;
-		tail = new Link<String>(node.key);
-		if(head == null) {
-			head = tail;
-			return;
+		Iterator<Node<?>> itr = dll.getIterator(order);
+		
+		while(itr.hasNext()) {
+			Node<?> node = itr.next();
+			System.out.println("Key = " + node.key);
 		}
-		temp.next = tail;
-		tail.prev = temp;
 	}
 }

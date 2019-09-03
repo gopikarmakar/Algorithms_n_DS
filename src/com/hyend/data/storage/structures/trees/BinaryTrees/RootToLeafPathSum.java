@@ -3,17 +3,26 @@ package com.hyend.data.storage.structures.trees.BinaryTrees;
 import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
 
 /**
- * Solutions-1: Each node of this Binary Tree contains a binary digit.
+ * Each node of this Binary Tree contains a binary digit.
  * Compute the sum of the binary numbers represented by the root-to-leaf paths.
  * 							1	
  * 					0				1
  * 				0		1		0		0	
  * 	    	  0	  1	  0	  1	  0	  0	  1   0
- * A root- to-leaf path can be associated with a binary number.
+ * 
+ * A Root-to-Leaf path can be associated with a binary number.
  * For E.g: ((1000)2 = 8) + ((1001)2 = 9) + ((1010)2 = 10) + ((1011)2 = 11), 
  * 			((1100)2 = 12) + ((1100)2 = 12) + ((1101)2 = 13) + ((1100)2 = 12) = 87
  * 			
- * Solutions-2: Root-to-Leaf path sum for a decimal valued Binary Tree. 
+ * Variant: Compute Root-to-Leaf path sum for a decimal valued Binary Tree.
+ * 								1
+ * 				2								3
+ * 		4				5 				6	 			7
+ * 	8   	9 		10		11  	12		13 		14		15
+ *  
+ * A Root-to-Leaf Path and Sum
+ * For e.g: ((1+2+4+8) = 15) + ((1+2+4+9) = 16) + ((1+2+5+10) = 18) + ((1+2+5+11) = 19) +
+ * ((1+3+6+12) = 22) + ((1+3+6+13) = 23) + ((1+3+7+14) = 25) + ((1+3+7+15) = 26) = 164 
  * 
  * @author gopi_karmakar
  */
