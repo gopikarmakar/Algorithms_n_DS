@@ -1,6 +1,6 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * Each node of this Binary Tree contains a binary digit.
@@ -39,16 +39,17 @@ public class RootToLeafPathSum {
 		sum = testBinaryDigitBinaryTree(keys);		
 		System.out.println("Root-To-Leaf Path Sum = " + sum);
 	}
-	
-	@SuppressWarnings({ "unchecked", "unused" })
+
 	private static int testDecimalBinaryTree() {
-		Node<Integer> root = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);		
+		
+		Node<Integer> root = BinaryTree.buildDefault();		
 		return sumRootToLeafPath(DECIMAL, root, 0);		
 	}
 	
 	@SuppressWarnings("unchecked")
-	private static int testBinaryDigitBinaryTree(Integer...keys) {	
-		Node<Integer> root = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER, (Object[])keys);		
+	private static int testBinaryDigitBinaryTree(Integer...keys) {
+		
+		Node<Integer> root = (Node<Integer>) BinaryTree.build(BinaryTree.LEVEL_ORDER, keys);		
 		return sumRootToLeafPath(BINARY_DIGIT, root, 0);
 	}
 	
@@ -58,10 +59,6 @@ public class RootToLeafPathSum {
 	 * 
 	 * Time and space complexity for this algorithm are 
 	 * O(n) and O(h) respectively.
-	 * 
-	 * @param node
-	 * @param partialPathSum
-	 * @return
 	 */
 	private static int sumRootToLeafPath(int type, Node<Integer> node, int partialPathSum) {
 		

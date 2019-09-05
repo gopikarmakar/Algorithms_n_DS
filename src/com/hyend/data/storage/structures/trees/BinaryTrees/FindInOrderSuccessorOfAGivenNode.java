@@ -1,6 +1,6 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * The successor of a node in a binary tree is the node that
@@ -10,13 +10,10 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  */
 public class FindInOrderSuccessorOfAGivenNode {
 
-	@SuppressWarnings("unchecked")
-	public static void main(String[] args) {
-		/*Integer[] keys = {314,6,6,271,561,2,271,28,0,null,3,null,1,null,28,null,null,null,null,null,null,17,null,null,null,401,257,null,null,null,null,
-							null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
-							null,null,null,null,null,null,null,641,null,null,null,null};		*/
+	public static void main(String[] args) {		
 
-		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);
+		Node<Integer> tree = BinaryTree.buildDefault();
+		
 		BinaryTree.printBFS(tree, true);
 		Node<Integer> successor = findSuccessor(tree.left.right);
 		System.out.println("The Successor Is = " + successor.key);
@@ -27,7 +24,6 @@ public class FindInOrderSuccessorOfAGivenNode {
 	 * 
 	 * Since the number of edges followed cannot be more than the tree height, 
 	 * the time complexity is 0(h), where h is the height of the tree
-	 * @param node
 	 */
 	private static Node<Integer> findSuccessor(Node<Integer> node) {
 		

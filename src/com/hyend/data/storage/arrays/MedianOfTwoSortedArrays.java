@@ -1,19 +1,51 @@
 package com.hyend.data.storage.arrays;
 
-public class MedianOfTwoSortedArrays {	
-      
-    // Function to find minimum 
-    private boolean minimum(int a, int b) { 
-        return a < b ? true : false;  
+/**
+ * 
+ * @author gopi_karmakar
+ */
+public class MedianOfTwoSortedArrays {
+	
+	public static void main(String[] args) {
+		int[] a = {1, 3, 4, 9, 11};
+		int[] b = {2, 5, 6, 8, 10};
+		
+		System.out.println(findMedian(a, b));
+	}
+    
+    /**
+     * A program to find the Kth smallest number
+     * as well as the median of an array. if the 
+     * k = n/2 where n is the lenght of an array.    
+     */
+    public static double findMedian(int[] a, int[] b) {
+    	
+    	double res = 0.0;
+    	int n = a.length;
+    	int m = b.length;
+    	int k = (n+m)/2;
+    	int[] arr = new int[(n + m)];
+    	
+    	for(int x = 0; x < n; x++) arr[x] = a[x];
+    	for(int y = 0; y < m; y++) arr[(n+y)] = b[y];
+    	
+    	int low = 0, hi = arr.length -1;
+        while (hi > low) {
+           int j = partition(arr, low, hi);
+           if (j == k)  {
+        	   if(k%2 == 0) {
+        		   return (arr[j-1]+arr[k])/2;
+        	   }
+        	   else
+        		   return arr[k];
+           }
+           else if (j > k)  hi = j - 1;
+           else if (j < k)  low = j + 1;           
+        }         
+        return res;    
     }
     
-    private void exchange(int[] arr, int a, int b) {
-    	int temp = arr[a];
-    	arr[a] = arr[b];
-    	arr[b] = temp;
-    }
-    
-    private int partition(int[] arr, int low, int high) {
+    private static int partition(int[] arr, int low, int high) {
     	
     	int i = low, j = high+1, v = arr[low];    	
     	    	 
@@ -30,39 +62,14 @@ public class MedianOfTwoSortedArrays {
          return j;
     }
     
-    /**
-     * A program to find the Kth smallest number
-     * as well as the median of an array. if the 
-     * k = n/2 where n is the lenght of an array.
-     * 
-     * @param nums1
-     * @param nums2
-     * @return
-     */
-    public double findMedian(int[] nums1, int[] nums2) {
-    	
-    	double res = 0.0;
-    	int n = nums1.length;
-    	int m = nums2.length;
-    	int k = (n+m)/2;
-    	int[] arr = new int[(n + m)];
-    	
-    	for(int x = 0; x < n; x++) arr[x] = nums1[x];
-    	for(int y = 0; y < m; y++) arr[(n+y)] = nums2[y];
-    	
-    	int low = 0, hi = arr.length -1;
-        while (hi > low) {
-           int j = partition(arr, low, hi);
-           if (j == k)  {
-        	   if(k%2 == 0) {
-        		   return (arr[j-1]+arr[k])/2;
-        	   }
-        	   else
-        		   return arr[k];
-           }
-           else if (j > k)  hi = j - 1;
-           else if (j < k)  low = j + 1;           
-        }         
-        return res;    
+    // Function to find minimum 
+    private static boolean minimum(int a, int b) { 
+        return a < b ? true : false;  
+    }
+    
+    private static void exchange(int[] arr, int a, int b) {
+    	int temp = arr[a];
+    	arr[a] = arr[b];
+    	arr[b] = temp;
     }
 }

@@ -3,7 +3,7 @@ package com.hyend.data.storage.structures.trees.BinaryTrees;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 public class IsItAValidBST {
 
@@ -14,7 +14,7 @@ public class IsItAValidBST {
 		//Integer[] keys = {0,-1};
 		Integer[] keys = {5,1,4,null,null,3,6};
 		
-		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER, keys);
+		Node<Integer> tree = BinaryTree.buildDefault();
 		
 		BinaryTree.printPreOrderRecursive(tree, false);
 		//BinaryTree.printBFS(tree, true);
@@ -25,12 +25,7 @@ public class IsItAValidBST {
 	}	
 	
 	/**
-	 * A DFS Algorithm to validate the BST property of a Binary Tree.
-	 * 
-	 * @param node
-	 * @param min
-	 * @param max
-	 * @return
+	 * A DFS Algorithm to validate the BST property of a Binary Tree.	 
 	 */
 	private static boolean isBST(Node<Integer> node, int min, int max) {
 		
@@ -62,10 +57,7 @@ public class IsItAValidBST {
 	 * left and right child nodes so for any subtree if the BST   
 	 * property fails then it's for sure that the tree isn't a BST.
 	 * We don't have to go deeper if the BST property fails at 
-	 * initial subtrees itself.
-	 * 
-	 * @param root
-	 * @return
+	 * initial subtrees itself.	 
 	 */
 	private static boolean isBSTLevelOrder(Node<Integer> root) {
 		
@@ -86,6 +78,8 @@ public class IsItAValidBST {
 		return true;
 	}
 	
+	//#####################################################################################
+	
 	private static boolean isBSTPostOrder(Node<Integer> root) {		
 		return checkViaPostOrder(root).status;
 	}
@@ -103,9 +97,6 @@ public class IsItAValidBST {
 	
 	/**
 	 * Needs improvement
-	 * 
-	 * @param node
-	 * @return
 	 */
 	private static Status checkViaPostOrder(Node<Integer> node) {
 		

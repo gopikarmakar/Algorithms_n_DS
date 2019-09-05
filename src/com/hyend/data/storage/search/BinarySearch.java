@@ -1,8 +1,20 @@
 package com.hyend.data.storage.search;
 
+/**
+ * A O(log n) Binary Search Solution
+ * 
+ * @author gopi_karmakar
+ */
 public class BinarySearch {
+	
+	public static void main(String[] args) {
+		
+		int[] arr = {1, 3, 5, 8, 11, 13, 15, 19, 25};
+		
+		System.out.println("Found At Index = " + searchWithLessCompares(arr, 0, arr.length, 19));
+	}
 
-	public int nonRecursiveSearch(int[] arr, int start, int end, int value) {
+	private static int nonRecursiveSearch(int[] arr, int start, int end, int value) {
 		
 		while(start <= end) {
 			
@@ -18,18 +30,7 @@ public class BinarySearch {
 		return -1;
 	}
 	
-	public int searchWithLessCompares(int[] arr, int start, int end, int value) {
-		
-		while((end - start) > 1) {
-			
-			int mid = start + (end - start)/2;
-			if(arr[mid] <= value) 	start = mid;
-			else 					end = mid;
-		}
-		return (arr[start] == value) ? start : -1;
-	}
-	
-	public int recursiveSearch(int[] arr, int start, int end, int value) {
+	private static int recursiveSearch(int[] arr, int start, int end, int value) {
 		
 		int mid = start + (end - start)/2;
 		
@@ -40,5 +41,16 @@ public class BinarySearch {
 		else 						end = mid;
 		
 		return recursiveSearch(arr, start, end, value);
+	}
+	
+	private static int searchWithLessCompares(int[] arr, int start, int end, int value) {
+		
+		while((end - start) > 1) {
+			
+			int mid = start + (end - start)/2;
+			if(arr[mid] <= value) 	start = mid;
+			else 					end = mid;
+		}
+		return (arr[start] == value) ? start : -1;
 	}
 }

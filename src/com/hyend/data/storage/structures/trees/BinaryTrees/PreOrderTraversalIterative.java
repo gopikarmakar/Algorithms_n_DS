@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Stack;
 import java.util.ArrayList;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * Iteratively traversing PreOrder traversal for a Binary Tree.
@@ -13,9 +13,9 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  */
 public class PreOrderTraversalIterative {
 	
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);
+		
+		Node<Integer> tree = BinaryTree.buildDefault();
 		BinaryTree.printPreOrderRecursive(tree, true);
 		System.out.println(traversePreOrder(tree));
 	}
@@ -32,6 +32,7 @@ public class PreOrderTraversalIterative {
 	 * @return
 	 */
 	private static List<Integer> traversePreOrder(Node<Integer> tree) {
+		
 		Stack<Node<Integer>> path = new Stack<>();
 		path.push(tree);
 		List<Integer> preOrderList = new ArrayList<>();				

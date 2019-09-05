@@ -1,5 +1,9 @@
 package com.hyend.data.storage.search;
 
+/**
+ * 
+ * @author gopi_karmakar
+ */
 public class FindFirstOccurrenceOfKInASortedArray {
 
 	public static void main(String[] args) {

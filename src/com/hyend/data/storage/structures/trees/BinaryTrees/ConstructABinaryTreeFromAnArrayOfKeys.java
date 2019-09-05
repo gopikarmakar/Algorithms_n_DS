@@ -1,6 +1,6 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * Building a Binary Tree in level order fashion 
@@ -18,16 +18,8 @@ public class ConstructABinaryTreeFromAnArrayOfKeys {
 
 	public static void main(String[] args) {		
 		
-		BinaryTree.printBFS(build(), true);
-	}
-	
-	public static Node<String> build() {
-		String[] keys = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"};
-		return build(keys);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static Node<String> build(String...keys) {		
-		return (Node<String>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER, keys);
+		Node<Integer> tree = BinaryTree.buildDefault(); 
+		
+		BinaryTree.printBFS(tree, true);
 	} 
 }

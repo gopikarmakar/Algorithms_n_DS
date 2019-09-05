@@ -1,6 +1,6 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * Creating a weight balanced left or right

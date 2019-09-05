@@ -1,12 +1,12 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 public class CalculateHeight {
 	
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {		
-		Node<Integer> root = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);
+		
+		Node<Integer> root = BinaryTree.buildDefault();
 		BinaryTree.printBFS(root, false);
 		System.out.println("Height Of The Binary Tree = " + calculateHeight(root));		
 	}
@@ -18,7 +18,7 @@ public class CalculateHeight {
 	 * @param node
 	 * @return
 	 */
-	private static int calculateHeight(BinaryTree.Node<Integer> node) {		
+	private static int calculateHeight(Node<Integer> node) {		
 		if(node == null)
 			return 0;
 		

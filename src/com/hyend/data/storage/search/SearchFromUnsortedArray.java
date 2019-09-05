@@ -4,7 +4,7 @@ package com.hyend.data.storage.search;
  * Search a given key from an unsorted array
  * in O(n)log(n) time.
  * 
- * @author karmakargopi
+ * @author gopi_karmakar
  */
 public class SearchFromUnsortedArray {
 

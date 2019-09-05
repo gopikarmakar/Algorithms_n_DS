@@ -1,6 +1,6 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * A solution to check whether a Binary Tree is height balanced.
@@ -15,10 +15,10 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * @author gopi_karmakar
  */
 public class IsItHeightBalanced {
-
-	@SuppressWarnings("unchecked")
+	
 	public static void main(String[] args) {
-		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);
+		
+		Node<Integer> tree = BinaryTree.buildDefault();
 		
 		System.out.println("Is Height Balanced = " + (isHeightBalanced(tree) >= 0));
 

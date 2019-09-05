@@ -27,7 +27,7 @@ public class MinMaxtSubstringWindowWithKDistinctChars {
 	private static void minMaxSubStringWindow(String text, int k) {
 		
 		if(text == null || text.isEmpty())
-			return;			
+			return;
 					
 		/**
 		 * LinkedHashSet because to retrieve the values in insertion order.

@@ -1,6 +1,6 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * Calculate the diameter of the Binary Tree.
@@ -9,11 +9,10 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  */
 public class DiameterOfABinaryTree {
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 			
 		//Node<Integer> tree = BinaryTree.build(BinaryTree.RIGHT_LEANING);
-		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);
+		Node<Integer> tree = BinaryTree.buildDefault();
 		BinaryTree.printBFS(tree, true);
 		System.out.println("Diameter = " + diameter(tree, new Height()));
 	}
@@ -23,7 +22,7 @@ public class DiameterOfABinaryTree {
 	}
 	
 	/**
-	 * An O(n) time complexity solution
+	 * An O(h) time complexity solution
 	 * 
 	 * @param node
 	 * @param height

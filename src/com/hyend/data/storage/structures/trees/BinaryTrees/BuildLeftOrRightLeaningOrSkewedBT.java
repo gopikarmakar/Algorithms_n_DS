@@ -1,47 +1,42 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * Building a left or right leaning and skewed binary trees
  * for testing different cases. 
  * 
  * @author gopi_karmakar
- *
  */
-public class BuildLeftOrRightLeaningAndSkewedBT {
+public class BuildLeftOrRightLeaningOrSkewedBT<K> {
 
 	public static void main(String[] args) {
-		Node<Integer> root = build(BinaryTree.LEFT_SKEWED);
+		Node<Integer> root = build(BinaryTree.LEFT_SKEWED, null);
 		BinaryTree.printBFS(root, true);
 		//BinaryTree.printInOrderRecursive(root, true);
 		//BinaryTree.printPreOrderRecursive(root, true);		
 		//BinaryTree.printPostOrderRecursive(root, true);
 	}
 	
-	public static Node<Integer> build(int type, int...keys) {
-		if(keys == null || keys.length == 0) {
-			keys = new int[9];
-			for(int i = 0; i < 9; i++)
-				keys[i] = i+1;
-		}
+	public static Node<Integer> build(int order, Integer[] keys) {
+		
+		BuildLeftOrRightLeaningOrSkewedBT<Integer> tree = new BuildLeftOrRightLeaningOrSkewedBT<>(); 
 		
 		Node<Integer> root = null;
-		switch(type) {
+		
+		switch(order) {
 			case BinaryTree.LEFT_SKEWED:
-				root = buildLeftSkewed(null, root, keys, 0);
-				return root;
+				root = tree.buildLeftSkewed(null, root, keys, 0);
+				break;
 			case BinaryTree.RIGHT_SKEWED:
-				root = buildRightSkewed(null, root, keys, 0);
-				return root;
-			case BinaryTree.LEFT_LEANING:
-				for(int key : keys)
-					root = buildLeftLeaning(null, root, key);				
-				return root;
-			case BinaryTree.RIGHT_LEANING:
-				for(int key : keys)
-					root = buildRightLeaning(null, root, key);
-				return root;				
+				root = tree.buildRightSkewed(null, root, keys, 0);
+				break;
+			case BinaryTree.LEFT_LEANING:				
+				root = tree.buildLeftLeaning(null, root, keys, 0);				
+				break;
+			case BinaryTree.RIGHT_LEANING:				
+				root = tree.buildRightLeaning(null, root, keys, 0);
+				break;
 		}
 		return root;
 	}
@@ -59,18 +54,18 @@ public class BuildLeftOrRightLeaningAndSkewedBT {
 	 * @param key
 	 * @return
 	 */
-	private static Node<Integer> buildLeftLeaning(Node<Integer> parent, 
-			Node<Integer> node, int key) {
+	private Node<K> buildLeftLeaning(Node<K> parent, Node<K> node, K[] keys, int i) {
+		
 		if(node == null) {
-			node = new Node<Integer>(key);
+			node = new Node<K>(keys[i]);
 			node.parent = parent;
 		}
 		else {	
 			if(node.right == null) {
-				node.right = buildLeftLeaning(node, node.right, key);
+				node.right = buildLeftLeaning(node, node.right, keys, i+1);
 			}
 			else {
-				node.left = buildLeftLeaning(node, node.left, key);
+				node.left = buildLeftLeaning(node, node.left, keys, i+1);
 			}
 		}		
 		return node;
@@ -88,18 +83,18 @@ public class BuildLeftOrRightLeaningAndSkewedBT {
 	 * @param key
 	 * @return
 	 */
-	private static Node<Integer> buildRightLeaning(Node<Integer> parent,
-			Node<Integer> node, int key) {
+	private Node<K> buildRightLeaning(Node<K> parent, Node<K> node, K[] keys, int i) {
+		
 		if(node == null) {
-			node = new Node<Integer>(key);
+			node = new Node<K>(keys[i]);
 			node.parent = parent;
 		}
 		else {
 			if(node.left == null) {
-				node.left = buildRightLeaning(node, node.left, key);
+				node.left = buildRightLeaning(node, node.left, keys, i+1);
 			}
 			else {
-				node.right = buildRightLeaning(node, node.right, key);
+				node.right = buildRightLeaning(node, node.right, keys, i+1);
 			}
 		}		
 		return node;
@@ -120,10 +115,10 @@ public class BuildLeftOrRightLeaningAndSkewedBT {
 	 * @param i
 	 * @return
 	 */
-	private static Node<Integer> buildLeftSkewed(Node<Integer> parent, Node<Integer> node, 
-			int[] keys, int i) {
+	private Node<K> buildLeftSkewed(Node<K> parent, Node<K> node, K[] keys, int i) {
+		
 		if(node == null) {
-			node = new BinaryTree.Node<Integer>(keys[i]);
+			node = new Node<K>(keys[i]);
 			node.parent = parent;
 		}
 		
@@ -155,11 +150,11 @@ public class BuildLeftOrRightLeaningAndSkewedBT {
 	 * @param i
 	 * @return
 	 */
-	private static Node<Integer> buildRightSkewed(Node<Integer> parent, Node<Integer> node, 
-			int[] keys, int i) {
+	private Node<K> buildRightSkewed(Node<K> parent, Node<K> node, 
+			K[] keys, int i) {
 		
 		if(node == null) {
-			node = new Node<Integer>(keys[i]);
+			node = new Node<K>(keys[i]);
 			node.parent = parent;
 		}
 		

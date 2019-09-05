@@ -1,9 +1,6 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
 import java.util.Queue;
-
-import javax.swing.text.AbstractDocument.LeafElement;
-
 import java.util.LinkedList;
 
 /**
@@ -27,7 +24,6 @@ import java.util.LinkedList;
  * return root;
  * 
  * @author gopi_karmakar
- *
  */
 public class BinaryTree {
 	
@@ -38,41 +34,21 @@ public class BinaryTree {
 	public static final int RIGHT_LEANING 		= 5;
 	public static final int WEIGHT_BALANCED 	= 6;
 	
-	private static final int DEFAULT_TREE_SIZE = 15;
-
-	/**
-	 * A single Binary Tree node.
-	 * 
-	 * @author gopi_karmakar
-	 *
-	 * @param <K>
-	 */
-	public static class Node<K> {		
-		K key;
-		int size;
-		int weight;
-		Node<K> left;
-		Node<K> right;
-		Node<K> parent;
-		public Node(K k) {
-			this.key = k;
-			this.left = null;
-			this.right = null;
-		}		
+	public static final int DEFAULT_TREE_SIZE 	= 15;
+	
+	public static Node<Integer> buildDefault() {
 		
-		public Node(K k, Node<K> left, Node<K> right) {
-			this.key = k;
-			this.left = left;
-			this.right = right;
-		}
+		return BuildABinaryTreeInLevelOrder.buildDefault();
 	}
 	
-	public static Node<?> createDefault(int order, Object...keys) {
+	public static Node<?> build(int order, Object...keys) {
+		
 		if(keys == null || keys.length == 0) {
-			keys = new Integer[DEFAULT_TREE_SIZE];
-			for(int i = 0; i < DEFAULT_TREE_SIZE; i++)
+			keys = new Integer[9];
+			for(int i = 0; i < BinaryTree.DEFAULT_TREE_SIZE; i++)
 				keys[i] = i+1;
 		}
+		
 		Node<?> tree = null;
 		switch (order) {
 			case BinaryTree.LEVEL_ORDER:
@@ -85,26 +61,22 @@ public class BinaryTree {
 					tree = levelOrderBT.build((String[])keys);
 				}				
 				break;
+				
+			// Creating only Integer valued Binary Trees just for testing.
 			case BinaryTree.WEIGHT_BALANCED:
 				if(keys instanceof Integer[])
 					tree = BuildALeftOrRightWeightedBinaryTree.build(keys);
 				break;
+				
+			case BinaryTree.LEFT_SKEWED:
+			case BinaryTree.LEFT_LEANING:
+			case BinaryTree.RIGHT_SKEWED:			
+			case BinaryTree.RIGHT_LEANING:
+				if(keys instanceof Integer[])
+					tree = BuildLeftOrRightLeaningOrSkewedBT.build(order, (Integer[])keys);
+				break;
 		}
 		return tree;
-	}
-	
-	/** 
-	 * Creating only Integer valued Binary Trees.
-	 * Just for the varieties of Binary Tree creation
-	 * 
-	 * @param type
-	 * @param keys
-	 * @return
-	 */
-	public static Node<Integer> build(int type, int...keys) {
-		Node<Integer> root = null;
-		root = BuildLeftOrRightLeaningAndSkewedBT.build(type, keys);		
-		return root;
 	}
 	
 	/**
@@ -118,7 +90,7 @@ public class BinaryTree {
 			Node<?> node = queue.poll();			
 			if(node != null)
 				System.out.println(node.key + ((withParent == true) ? 
-					((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : ""));
+					((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : "") + " size = " + node.size);
 			
 			if(node.left != null) queue.add(node.left);			
 			if(node.right != null) queue.add(node.right);
@@ -131,7 +103,7 @@ public class BinaryTree {
 		
 		printInOrderRecursive(tree.left, withParent);		
 		System.out.println(tree.key + ((withParent == true) ? 
-				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));		
+				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : "") + " size = " + tree.size);		
 		printInOrderRecursive(tree.right, withParent);
 	}	
 	
@@ -140,7 +112,7 @@ public class BinaryTree {
 			return;
 		
 		System.out.println(tree.key + ((withParent == true) ? 
-				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
+				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : "") + " size = " + tree.size);
 		printPreOrderRecursive(tree.left, withParent);
 		printPreOrderRecursive(tree.right, withParent);
 	}
@@ -152,6 +124,6 @@ public class BinaryTree {
 		printPostOrderRecursive(tree.left, withParent);
 		printPostOrderRecursive(tree.right, withParent);
 		System.out.println(tree.key + ((withParent == true) ? 
-				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
+				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : "") + " size = " + tree.size);
 	}
 }

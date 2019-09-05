@@ -1,6 +1,6 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * Given a Binary Tree count Uni-Value sub trees.
@@ -17,7 +17,6 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  * is an Uni-Val sub tree too.
  * 
  * @author gopi_karmakar
- *
  */
 public class CountUniValueSubTrees {
 
@@ -25,7 +24,7 @@ public class CountUniValueSubTrees {
 	public static void main(String[] args) {
 		
 		Integer[] keys = {5,1,5,5,5,null,5,null,null,null,null,null,null,null,5};
-		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER, keys);
+		Node<Integer> tree = (Node<Integer>) BinaryTree.build(BinaryTree.LEVEL_ORDER, keys);
 			
 		CountUniValueSubTrees uniVal = new CountUniValueSubTrees();
 		uniVal.countUniVal(tree);
@@ -33,6 +32,9 @@ public class CountUniValueSubTrees {
 		System.out.println(uniVal.count);
 	}
 	
+	/**
+	 * O(n) time complexity
+	 */
 	int count = 0;
 	public boolean countUniVal(Node<Integer> root) {
 		

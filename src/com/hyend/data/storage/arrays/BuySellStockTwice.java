@@ -32,7 +32,8 @@ public class BuySellStockTwice {
 		double minPriceSoFar = Double.MAX_VALUE;		
 		List<Double> firstBuySellProfits = new ArrayList<>();
 		
-		for(double price : prices) {			
+		for(double price : prices) {
+			
 			minPriceSoFar = Math.min(minPriceSoFar, price);			
 			maxTotalProfit = Math.max(maxTotalProfit, price - minPriceSoFar);			
 			firstBuySellProfits.add(maxTotalProfit);

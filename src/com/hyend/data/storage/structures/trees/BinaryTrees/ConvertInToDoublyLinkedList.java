@@ -1,9 +1,8 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
 import java.util.Iterator;
-
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 import com.hyend.data.storage.structures.linkedlists.doubly.DoublyLinkedList;
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
 
 /**
  * Convert a Binary Tree into Doubly Linked List
@@ -14,7 +13,7 @@ public class ConvertInToDoublyLinkedList {
 		
 	public static void main(String[] args) {
 		
-		Node<String> tree = ConstructABinaryTreeFromAnArrayOfKeys.build();
+		Node<Integer> tree = BinaryTree.buildDefault();
 		convert(tree);
 		print(DoublyLinkedList.FORWARD);
 	}

@@ -1,6 +1,6 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
-import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
+import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * Two different solutions to find a Lowest Common Ancestor 
@@ -14,29 +14,25 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree.Node;
  */
 public class FindLCA {
 	
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		
-		//int[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-		//BinaryTree.Node<Integer> root = BuildABinaryTreeInLevelOrder.build(keys);
-		Node<Integer> tree = (Node<Integer>) BinaryTree.createDefault(BinaryTree.LEVEL_ORDER);
-		BinaryTree.printBFS(tree, true);
+				
+		Node<Integer> tree = BinaryTree.buildDefault();
+		//BinaryTree.printBFS(tree, true);
 		
 		Node<Integer> node1 = tree.left.right;
 		//Node<Integer> node2 = root.right.right;
 		Node<Integer> node2 = tree.left.left.right;
 
-		//Node<Integer> ancestor = findLCAWithoutParent(root, n1, n2).ancestor;		
-		//System.out.println("LCA for " + node1 + " and " + node2 + " = " + ancestor.key);	
+		Node<Integer> lca = findLCAWithoutParent(tree, node1, node2).ancestor;	
 		
-		Node<Integer> lca = findLCAWithParent(node1, node2);
+		//Node<Integer> lca = findLCAWithParent(node1, node2);
+		
 		System.out.println("LCA for " + node1.key + " and " + node2.key + " = " + lca.key);
 	}
 	
 	private static class Status {
 	
 		public int numTargetNodes;
-		@SuppressWarnings("unused")
 		public Node<Integer> ancestor;
 		
 		public Status(int numTargetNodes, Node<Integer> node) {
@@ -52,14 +48,8 @@ public class FindLCA {
 	 * to a recursive PostOrder traversal
 	 * 
 	 * The time complexity for this algorithm is O(n) 
-	 * and the space complexity is O(h) where h is the height of the tree.	 
-	 * 
-	 * @param node
-	 * @param node1
-	 * @param node2
-	 * @return
+	 * and the space complexity is O(h) where h is the height of the tree.
 	 */
-	@SuppressWarnings("unused")
 	private static Status findLCAWithoutParent(Node<Integer> node, 
 			Node<Integer> node1, Node<Integer> node2) {
 		
@@ -85,8 +75,6 @@ public class FindLCA {
 	 * 2: Find LCA when there's a track of
 	 * parent node for every child node.
 	 * An iterative approach.x
-	 * 
-	 * @return
 	 */
 	private static Node<Integer> findLCAWithParent(Node<Integer> node1, Node<Integer> node2) {
 		
