@@ -32,7 +32,6 @@ import com.hyend.data.storage.structures.linkedlists.singly.MyLinkedList;
 import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree;
 import com.hyend.data.storage.structures.trees.SelfBalancedBST.RedBlackBST;
 import com.hyend.data.storage.structures.trees.SelfBalancedBST.SelfBalancedBSTres;
-import com.hyend.data.storage.structures.trie.TernaryTrieDictionary_old;
 import com.hyend.data.storage.structures.trie.TrieDictionary;
 import com.hyend.data.storage.structures.trie.TrieDictionary.Node;
 import com.hyend.logical.algorithms.dp.AmountInWords;
@@ -336,34 +335,7 @@ class TestDataStructure<K> {
 		
 		/*Iterator<TrieDictionary<String>.Node<String>> itr = trieDict.keysWithPrefix("As").iterator(); 
 		while(itr.hasNext())
-			PrintMSG("Total Keys = " + itr.next().prefix);*/			
-		
-		/*trieDict.putChunks("googleishiring", "google");
-		trieDict.putChunks("shesellsseashells", "shore");
-		trieDict.putChunks("godhelpmeforinterview", "god");
-		trieDict.putChunks("appletisnothiring", "apple");
-		trieDict.putChunks("appleisnothiring", "apple");*/
-		
-		//PrintMSG("Longest Prefix = " + trieDict.longestCommonPrefixOf("Kiaaan"));		
-		//PrintMSG("Count = " + trieDict.allDistinctSubstrings("ababa"));
-		/*Iterator<String> itr = trieDict.substringMatch("interview").iterator();
-		while(itr.hasNext()) 
-			PrintMSG("Substrings Are = " + itr.next());*/
-		/*String key = "cgcgggcgcg";
-		int length = key.length();
-		int index = 0, n = 3;
-		while(index < (length-n)) {
-			trieDict.put(key.substring(index, index + n), (""+index));
-			index+=1;
-		}*/
-		//PrintMSG("Unique Substrings = " + trieDict.uniqueNSubstrings("cgcgggcgcg", 3));	
-		
-		//TrieDictionary<String> trieDict = new TrieDictionary<>();		
-		/*Iterator<TrieDictionary<String>.Node<String>> iterator = trieDict.keysWithPrefix("an").iterator();						
-		while(iterator.hasNext()) {
-			TrieDictionary<String>.Node<String> node = iterator.next();
-			PrintMSG(""+ node.prefix + " and value = " + node.value);
-		}*/		
+			PrintMSG("Total Keys = " + itr.next().prefix);*/					
 	}
 	
 	private static void PrintMSG(Object msg) {

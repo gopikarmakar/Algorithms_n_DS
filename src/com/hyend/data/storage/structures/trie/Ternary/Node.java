@@ -1,5 +1,9 @@
 package com.hyend.data.storage.structures.trie.Ternary;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Node<K extends Comparable<K>, V> {
 
 	K k;
@@ -10,6 +14,6 @@ public class Node<K extends Comparable<K>, V> {
 	
 	Node(K k, V v) {
 		this.k = k;
-		this.v = v;			
+		this.v = v;
 	}
 }

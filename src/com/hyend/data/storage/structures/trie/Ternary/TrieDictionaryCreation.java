@@ -21,7 +21,7 @@ public class TrieDictionaryCreation {
 		return root;
 	}
 	
-	public Node<Character, String> createSuffixTrie(String key) {
+	public Node<Character, String> createSuffixTrie(String key) {		
 		root = createSuffixTrie(root, "", key, key.length()-1);
 		return root;
 	}
@@ -44,55 +44,49 @@ public class TrieDictionaryCreation {
 			node.mid = createDefault(node.mid, key, d+1);
 		else {
 			node.v = key;
-		}
-		
+		}		
 		return node;
 	}
 	
 	/**
 	 * Prefix Trie Creation
-	 */
+	 */	
 	private Node<Character, String> createPrefixTrie(Node<Character, String> node, 
 			String prefix, String key, int d) {
 		
 		Character ch = key.charAt(d);			
 		
-		if(node == null)
-			node = new Node<>(ch, prefix+ch);
-		
-		if(ch < node.k) 
-			node.left = createPrefixTrie(node.left, prefix, key, d);
-		else if(ch > node.k)			
-			node.right = createPrefixTrie(node.right, prefix, key, d);
-		else if(d < key.length()-1)
-			node.mid = createPrefixTrie(node.mid, ""+ch, key, d+1);
-		else {		
-			node.v = key;
-		}			
-		return node;		
-	}
+		if(node == null) 				node = new Node<>(ch, prefix+ch);
+				
+		if(ch < node.k) 				node.left = createPrefixTrie(node.left, prefix, key, d);
+			
+		else if(ch > node.k)			node.right = createPrefixTrie(node.right, prefix, key, d);			
+			
+		else if(d < key.length()-1)		node.mid = createPrefixTrie(node.mid, node.v, key, d+1);
+			
+		else							node.v = key;					
+					
+		return node;
+	}	
 	
 	/**
-	 * TODO: FIX
 	 * Suffix Trie Creation
 	 */
 	private Node<Character, String> createSuffixTrie(Node<Character, String> node, 
-			String prefix, String key, int d) {
+			String sufix, String key, int d) {
 		
 		Character ch = key.charAt(d);			
+				
+		if(node == null) 				node = new Node<>(ch, ch+sufix);		
 		
-		if(node == null)
-			node = new Node<>(ch, ch+prefix);
-		
-		if(ch < node.k) 
-			node.left = createPrefixTrie(node.left, prefix, key, d);
-		else if(ch > node.k)			
-			node.right = createPrefixTrie(node.right, prefix, key, d);
-		else if(d > 0)
-			node.mid = createPrefixTrie(node.mid, ""+ch, key, d-1);
-		else {		
-			node.v = key;
-		}			
-		return node;		
+		if(ch < node.k)					node.left = createSuffixTrie(node.left, sufix, key, d); 
+			
+		else if(ch > node.k)			node.right = createSuffixTrie(node.right, sufix, key, d);			
+			
+		else if(d > 0)					node.mid = createSuffixTrie(node.mid, node.v, key, d-1);
+			
+		else 							node.v = key;			
+			
+		return node;
 	}
 }

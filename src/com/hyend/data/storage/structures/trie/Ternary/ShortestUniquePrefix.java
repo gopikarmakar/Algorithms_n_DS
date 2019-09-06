@@ -27,32 +27,34 @@ public class ShortestUniquePrefix {
 		Node<Character, String> trie = null;
 		for(String key : dict)
 			trie = TernaryTrieDictionary.createPrefixTrie(key);
+		
+		//TrieDictionaryTraversals.printAllNodes(trie);		
 		 
-		System.out.println("Shortest Prefix  = " + shortestPrefix(trie, "cat"));
+		System.out.println("Shortest Prefix  = " + shortesUniquetPrefix(trie, "cat"));
 	}
 	
 	/**
 	 * O(log n) time complexity solution
 	 */
-	private static String shortestPrefix(Node<Character, String> trie, String query) {
+	private static String shortesUniquetPrefix(Node<Character, String> trie, String query) {
 							
-		int length = crawlPrefixTrie(trie, query, 0, 0);
+		int length = crawlTrie(trie, query, 0, 0);
 		
 		return (length == query.length()) ? "" : query.substring(0, length+1);
 	}
 	
-	private static int crawlPrefixTrie(Node<Character, String> node, String query, int d, int length) {
+	private static int crawlTrie(Node<Character, String> node, String query, int d, int length) {
 		
 		Character ch = query.charAt(d);
 		
 		if(node == null)		return length;
 		
 		if(ch < node.k)					
-			return crawlPrefixTrie(node.left, query, d, length);				
+			return crawlTrie(node.left, query, d, length);				
 		else if(ch > node.k)			
-			return crawlPrefixTrie(node.right, query, d, length);
+			return crawlTrie(node.right, query, d, length);
 		else if(d < query.length()-1)
-			return crawlPrefixTrie(node.mid, query, d+1, length+1);
+			return crawlTrie(node.mid, query, d+1, length+1);
 		else {
 			//For the (n-1)th character.
 			if(ch.equals(node.k)) length += 1;
