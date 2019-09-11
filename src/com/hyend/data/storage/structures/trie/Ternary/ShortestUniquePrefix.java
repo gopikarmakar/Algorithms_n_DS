@@ -20,13 +20,13 @@ public class ShortestUniquePrefix {
 
 	public static void main(String[] args) {
 		
-		String[] dict = {"dog", "be", "cut"};
+		//String[] dict = {"dog", "be", "cut"};
 		//String[] dict = {"dog", "be", "cut", "car"};
-		//String[] dict = {"dog", "be", "cut", "car", "cattle", "category"};
+		String[] dict = {"dog", "be", "cut", "car", "cattle", "category"};
 		
 		Node<Character, String> trie = null;
 		for(String key : dict)
-			trie = TernaryTrieDictionary.createPrefixTrie(key);
+			trie = TernaryTrieDictionary.createPrefixTrie(key, true);
 		
 		//TrieDictionaryTraversals.printAllNodes(trie);		
 		 
@@ -47,14 +47,14 @@ public class ShortestUniquePrefix {
 		
 		Character ch = query.charAt(d);
 		
-		if(node == null)		return length;
+		if(node == null)					return length;
 		
-		if(ch < node.k)					
-			return crawlTrie(node.left, query, d, length);				
-		else if(ch > node.k)			
-			return crawlTrie(node.right, query, d, length);
-		else if(d < query.length()-1)
-			return crawlTrie(node.mid, query, d+1, length+1);
+		if(ch < node.k)						return crawlTrie(node.left, query, d, length);
+							
+		else if(ch > node.k)				return crawlTrie(node.right, query, d, length);
+			
+		else if(d < query.length()-1)		return crawlTrie(node.mid, query, d+1, length+1);
+			
 		else {
 			//For the (n-1)th character.
 			if(ch.equals(node.k)) length += 1;

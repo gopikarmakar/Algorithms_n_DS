@@ -3,7 +3,7 @@ package com.hyend.data.storage.structures.trie.Ternary;
 /**
  * A Google interview Question:
  * 
- * Find all distinct substrings of a given string of any length
+ * Find all distinct substrings of any length for a given string. 
  * 
  * @author gopi_karmakar
  */
@@ -12,6 +12,7 @@ public class FindAllDistinctSubStringsOfAnyLength {
 	public static void main(String[] args) {
 		
 		String key = "aabbcc";
+		//String key = "abc";
 		findAllDistinctSubStrings(key);
 	}
 	
@@ -23,16 +24,16 @@ public class FindAllDistinctSubStringsOfAnyLength {
 	private static void findAllDistinctSubStrings(String key) {
 		
 		int n = key.length();
+				
 		Node<Character, String> trie = null;				
 		
-		for(int i = 0; i < n/2; i++) {
+		for(int i = 0; i < n/2 + ((n%2 == 0) ? 0 : 1); i++) {
 			
 			String s = key.substring(i, n-i);
-			trie = TernaryTrieDictionary.createPrefixTrie(s);
-			trie = TernaryTrieDictionary.createSuffixTrie(s);
+			trie = TernaryTrieDictionary.createPrefixTrie(s, true);
+			trie = TernaryTrieDictionary.createSuffixTrie(s, true);
 		}
 		
 		TrieDictionaryTraversals.printAllDistinctNodes(trie);
-		TrieDictionaryTraversals.printAllNodes(trie);
 	}
 }

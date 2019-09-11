@@ -13,7 +13,7 @@ public class FindLongestCommonSubStringFromListOfStrings {
 
 	public static void main(String[] args) {
 		
-		String[] keys = {"disadvantage", "sysadmin", "sadhu", "crusade", "misadvice"};
+		String[] keys = {"disadvantage", "sysadmin", "omsadhu", "crusade", "misadvice"};
 		
 		//String[] keys = {"disgrace", "graceful", "disgraceful", "ungracefully", "gracefully"};
 		
@@ -24,7 +24,6 @@ public class FindLongestCommonSubStringFromListOfStrings {
 	 * Trie creation will take O(n log n) time
 	 * Matching of all possible sub strings with the list of Strings
 	 * will take O(n^2) time.
-	 * 
 	 */
 	private static void longestCommonSubString(String[] keys) {
 
@@ -37,14 +36,13 @@ public class FindLongestCommonSubStringFromListOfStrings {
 			for(int i = 0; i < n/2; i++) {
 				
 				String key = s.substring(i, n-i);
-				trie = TernaryTrieDictionary.createPrefixTrie(key);
-				trie = TernaryTrieDictionary.createSuffixTrie(key);
+				trie = TernaryTrieDictionary.createPrefixTrie(key, true);
+				trie = TernaryTrieDictionary.createSuffixTrie(key, true);
 			}
-		}
+		}		
 		
 		System.out.println("Longest Common Sub String = " + find(trie, keys));
 
-		//crawlTrie(trie, keys);
 		//System.out.println(lcss);
 	}
 	
@@ -64,7 +62,7 @@ public class FindLongestCommonSubStringFromListOfStrings {
 			String s = entry.getKey();
 			
 			for(String k : keys) {
-													
+									
 				if(k.contains(s)) {
 					frequency += 1;			
 				}								
@@ -83,10 +81,10 @@ public class FindLongestCommonSubStringFromListOfStrings {
 	/**
 	 * A little inefficient since it check the duplicates too.
 	 */
-	/*private static String lcss = "";		
+	private static String lcss = "";		
 	private static int maxLength = 0;
 	private static int frequency = 0;
-	public static void crawlTrie(Node<Character, String> trie, String[] keys) {
+	public static void findRecursively(Node<Character, String> trie, String[] keys) {
 	
 		if(trie == null)
 			return;
@@ -107,8 +105,8 @@ public class FindLongestCommonSubStringFromListOfStrings {
 			frequency = 0;
 		}
 		
-		crawlTrie(trie.left, keys);
-		crawlTrie(trie.mid, keys);
-		crawlTrie(trie.right, keys);
-	}*/
+		findRecursively(trie.left, keys);
+		findRecursively(trie.mid, keys);
+		findRecursively(trie.right, keys);
+	}
 }

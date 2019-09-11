@@ -44,12 +44,10 @@ public class TrieDictionaryTraversals {
 	
 	public static void printAllDistinctNodes(Node<Character, String> trie) {		
 		
-		//Iterator<String> itr = getMap(trie).keySet().iterator();
 		Iterator<Map.Entry<String, Integer>> itr = getMap(trie).entrySet().iterator();		
 		while(itr.hasNext()) {			
 			Map.Entry<String, Integer> entry = itr.next();
-			System.out.println(entry.getKey());
-			//System.out.println(entry.getKey() + " Length === " + entry.getValue());			
+			System.out.println(entry.getKey());			
 		}
 	}
 		
