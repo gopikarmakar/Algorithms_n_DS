@@ -51,7 +51,7 @@ public class SpellingChecker {
 				
 				Node<Character, String> node = getCommonPrefix(trie, q, length);
 				
-				List<String> queue = TrieDictionaryTraversals.getList(node.mid);;
+				List<String> queue = TrieDictionaryTraversals.getList(node.mid);
 																
 				rectifiesWords.put(q, queue);
 			}			

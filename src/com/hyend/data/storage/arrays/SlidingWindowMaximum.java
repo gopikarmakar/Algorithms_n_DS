@@ -1,14 +1,14 @@
 package com.hyend.data.storage.arrays;
 
-import java.util.List;
 import java.util.ArrayList;
-import com.hyend.data.storage.stackandqueue.ImmutableStack;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * Sliding Window Maximum (Maximum of all SubArrays of size k) 
- * 
- * It's improper since it fails. 
- * 
+ * A Google Interview Question:
+ * Sliding Window Maximum (Variant: Maximum from SubArrays of size k) 
+ * For e.g:
  * Input arr[] : {1, 2, 3, 1, 4, 5, 2, 3, 6}
  * k = 3 
  * Output : 3 3 4 5 5 5 6
@@ -18,23 +18,49 @@ import com.hyend.data.storage.stackandqueue.ImmutableStack;
 public class SlidingWindowMaximum {	
 	
 	public static void main(String...args) {
-		int arr[] = {1,3,1,2,0,5};
+		//int arr = {};
+		//int arr[] = {1,3,1,2,0,5};
 		//int arr[] = {7, 2, 4};
 		//int arr[] = {1,3,-1,-3,5,3,2,7};
-		//int arr[] = {1, 2, 3, 1, 4, 5, 2, 3, 6};	
-		maxInSubArrayWindow(3, arr);
-		//maxInSubArrayWindow(2, arr.length, arr);
+		//int arr[] = {1, 2, 3, 1, 4, 5, 2, 3, 6};
+		//maxInSubArrayWindow(3, arr.length, arr);
+		
+		System.out.println(maxInSlidingWindow(1, new int[0]));
 	}
 	
 	/**
-	 * A naive solution:
-	 * 
-	 * The time complexity is O((n-k+1)*k) 
+	 * An efficient O(n) time complexity solution
+	 * with additional O(w) extra space. 
+	 */
+	public static List<Integer> maxInSlidingWindow(int w, int...arr) {
+		
+		List<Integer> list = new ArrayList<>();
+		Deque<Integer> deque = new LinkedList<>();
+		
+		if(w == 0 || w > arr.length) return list;
+		
+	    for(int i = 0; i < arr.length; i++){
+	    	
+	    	// Checking and removing the index from head which are out 
+	    	// Of this window boundary. In short when DQ.head < i+w
+	        if(!deque.isEmpty() && deque.peek() == i-w) 
+	            deque.poll();
+	 
+	        while(!deque.isEmpty() && arr[deque.peekLast()] < arr[i]){
+	            deque.removeLast();
+	        }  
+	        // It's similar to addLast();
+	        deque.addLast(i);
+	 
+	        if(i+1 >= w)
+	        	list.add(arr[deque.peek()]);
+	    }
+	    return list;
+	}
+	
+	/**
+	 * A naive solution O((n-k+1)*k) solution 
 	 * which can also be written as O(N * K)
-	 * 
-	 * @param k
-	 * @param n
-	 * @param arr
 	 */
 	public static void maxInSubArrayWindow(int k, int n, int...arr) {
 		int j, max;		  
@@ -46,27 +72,5 @@ public class SlidingWindowMaximum {
             } 
             System.out.print(max + " "); 
         } 
-	}
-	
-	/**
-	 * Solution: 1
-	 * @param arr
-	 * @param k
-	 */
-	public static void maxInSubArrayWindow(int k, int...arr) {		
-		ImmutableStack myStack = new ImmutableStack();
-		List<Integer> maxList = new ArrayList<Integer>();		
-		int x = 1;
-		for(int v : arr) {
-			myStack.push(v);
-			if(x >= k) {
-				x--;
-				maxList.add(myStack.getMax());
-				int d = myStack.pop();
-				System.out.println("Pop = " + d);
-			}
-			x++;
-		}		
-		System.out.println(maxList);
 	}
 }

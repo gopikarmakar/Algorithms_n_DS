@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Amazon Interview question:
+ * Compute max profit by buying and selling stocks twice
+ * 
  * For e.g: consider the following sequence of stock prices:  
  * (12,11,13,9,12,8,14,13,15)
  * Compute the max profit by buying and selling the share at most twice.
@@ -13,6 +16,7 @@ import java.util.List;
 public class BuySellStockTwice {
 
 	public static void main(String[] args) {
+		
 		double[] prices = {12,11,13,9,12,8,14,13,15};
 		System.out.println("Max Profit = " + buySellTwice(prices));		
 	}

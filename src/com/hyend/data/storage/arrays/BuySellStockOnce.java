@@ -6,18 +6,13 @@ package com.hyend.data.storage.arrays;
  * The maximum profit that can be made with one buy and one sell is 30.
  * Buy at 260 and sell at 290.
  * Note that 260 is not the lowest price, nor 290 the highest price.
- * 
- * Variant-1: Asked by different ways in Amazon and Google interview Like:
- * Calculate the min or max difference of the coldest or hottest days from 
- * the list of given temperatures of days.
- * 
- * Variant-2: Stock Span Problem.
  *
  * @author gopi_karmakar
  */
 public class BuySellStockOnce {
 	
-	public static void main(String...args) {		
+	public static void main(String...args) {	
+		
 		double[] stockPrices = {310,315,275,295,260,270,290,230,255,250};
 		printMSG("Max Profit = " + computeMaxProfit(stockPrices));
 	}
@@ -29,8 +24,8 @@ public class BuySellStockOnce {
 		
 		for(double price : prices) {
 			
-			maxProfit = Math.max(maxProfit, (price - minPrice));
 			minPrice = Math.min(price, minPrice);
+			maxProfit = Math.max(maxProfit, (price - minPrice));			
 		}
 		
 		return maxProfit;

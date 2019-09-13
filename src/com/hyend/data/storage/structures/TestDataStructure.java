@@ -22,7 +22,6 @@ import com.hyend.data.storage.sort.MergeSort;
 import com.hyend.data.storage.sort.QuickSort;
 import com.hyend.data.storage.sort.SelectionSort;
 import com.hyend.data.storage.sort.ShellSort;
-import com.hyend.data.storage.stackandqueue.StackWithMin;
 import com.hyend.data.storage.structures.graphs.UndirectedGraph;
 import com.hyend.data.storage.structures.hashtable.MyHashTable;
 import com.hyend.data.storage.structures.linkedlists.doubly.DoublyLinkedList;
@@ -125,27 +124,7 @@ class TestDataStructure<K> {
 		
 		//TestBinarySearchTree();
 		//TestGraphStructure();
-		TestTrieDictionary();
 		//TestSinglyLinkedList();
-	}
-	
-	private static void TestStackWithMin() {
-		StackWithMin minStack = new StackWithMin();
-		minStack.push(10);
-		minStack.push(22);
-		minStack.push(3);
-		minStack.push(41);
-		minStack.push(15);
-		minStack.push(69);
-		minStack.push(47);
-		minStack.push(38);
-		minStack.push(9);
-		minStack.push(1);
-		minStack.push(17);
-		minStack.push(52);
-		minStack.push(22);
-		PrintMSG("Popping = " + minStack.pop());
-		PrintMSG("Minimum val = " + minStack.getMin());
 	}
 	
 	private static void TestSinglyLinkedList() {
@@ -225,27 +204,6 @@ class TestDataStructure<K> {
 		//PrintMSG(myStack.isEmpty());
 	}
 	
-	private static void TestQueueFromStack() {
-		LinkedListWithStackAndQueue queue = new LinkedListWithStackAndQueue();
-		queue.pushOrEnqueue("One");
-		queue.pushOrEnqueue("Two");
-		queue.pushOrEnqueue("Three");
-		queue.pushOrEnqueue("Four");
-		queue.pushOrEnqueue("Five");
-		System.out.println(queue.dequeue());
-		System.out.println(queue.dequeue());
-		System.out.println(queue.dequeue());
-		queue.pushOrEnqueue("Six");
-		queue.pushOrEnqueue("Seven");
-		System.out.println(queue.pop());
-		System.out.println(queue.pop());
-		queue.pushOrEnqueue("Eight");
-		queue.pushOrEnqueue("Nine");
-		System.out.println(queue.dequeue());
-		queue.pushOrEnqueue("Ten");
-		System.out.println(queue.pop());
-	}
-	
 	private static void TestBalacedBSTree() {
 					
 		SelfBalancedBSTres<Character, String> bt = new SelfBalancedBSTres<Character, String>();		
@@ -280,16 +238,6 @@ class TestDataStructure<K> {
 	    bt.printAllNodesInOrder();*/
 	}
 	
-	private static void TestHashTable() {
-		MyHashTable<String, String> hashTable = new MyHashTable<>();
-		hashTable.put("apple", "17.172.224.47");
-		hashTable.put("amazon", "176.32.98.166");
-		hashTable.put("facebook", "31.13.95.36");
-		hashTable.put("google", "172.217.25.110");		
-		hashTable.put("microsoft", "40.112.72.205");				
-		PrintMSG("Value for google = " + hashTable.get("apple"));
-	}
-	
 	private static void TestGraphStructure() {
 		int[][] graph = {{0, 5}, {4, 3}, {0, 1}, {9, 12}, {6, 4},
 						 {5, 4}, {0, 2}, {11, 12}, {9, 10}, {0, 6},
@@ -317,25 +265,6 @@ class TestDataStructure<K> {
 		//DirectedGraph diGraph = new DirectedGraph(graph);
 		//DirectedGraph.DirectedTraversals dfs = diGraph.new DirectedTraversals();
 		//dfs.dfs(0);
-	}
-	
-	private static <E> void TestTrieDictionary() {
-		
-		TrieDictionary<String> trieDict = new TrieDictionary<>();
-		trieDict.put("Asuka", "a");
-		trieDict.put("Kiaan", "b");
-		trieDict.put("Keshav", "c");
-		trieDict.put("Kush", "d");
-		trieDict.put("Kia", "e");
-		trieDict.put("Tulsi", "f");		
-		trieDict.put("Karan", "g");
-		trieDict.put("Kunal", "h");
-		trieDict.put("Kiran", "i");
-		trieDict.put("Kabir", "j");
-		
-		/*Iterator<TrieDictionary<String>.Node<String>> itr = trieDict.keysWithPrefix("As").iterator(); 
-		while(itr.hasNext())
-			PrintMSG("Total Keys = " + itr.next().prefix);*/					
 	}
 	
 	private static void PrintMSG(Object msg) {
