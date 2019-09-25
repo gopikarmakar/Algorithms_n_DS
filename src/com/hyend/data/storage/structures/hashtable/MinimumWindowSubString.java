@@ -1,92 +1,76 @@
 package com.hyend.data.storage.structures.hashtable;
 
-import java.util.HashMap;
 import java.util.Map;
-
+import java.util.LinkedHashMap;
 
 /*
- * It passes for below case but It'll fail for some cases.
- * Not a full fledged solution still need to improve.
+ * 
  */
-public class MinimumWindowString {
+public class MinimumWindowSubString {
 	
 	public static void main(String[] args) {
-		System.out.println("Min Window Substring = " + minWindow("ADOBECODEBANC", "CAB"));
-		//System.out.println("Min Window Substring = " + minWindow("ADOBECODEBANC", "BD"));
-		//System.out.println("Min Window Substring = " + minWindow("AAAAABCCCD", "ACCCB"));
+		
+		String[] test = {"ADOBECODEBANC", "AAAAABCCCD"};
+		String[] query = {"BD", "CAB", "ACCCB"};
+		String s = test[1];
+		String q = query[1];		
+		
+		SubArray subArray = findWindow(s, q);		
+		System.out.println("Min Window Substring = " + s.substring(subArray.start, subArray.end+1));
 	}
 	
-	private static class MinWindow {
+	static class SubArray {
+		int start;
+		int end;
+		public SubArray(int start, int end) {
+			this.start = start;
+			this.end = end;
+		}
+	}
+	
+	private static int getValueForFirstEntry(Map<String, Integer> m) {
 		
-		private int tIndex = 0;
-		private int startIndex = 0;
-		private int minEndIndex = 0;
-		private int minStartIndex = 0;
-		private int minWindow = Integer.MAX_VALUE;
+		int result = 0;
+		for(Map.Entry<String, Integer> entry : m.entrySet()) {
+			result = entry.getValue();
+			break;
+		}
+		return result;
+	}
+	
+	private static SubArray findWindow(String s, String query) {
 		
-		public MinWindow() {}
+		int seenSoFar = 0, idx = 0;
+		SubArray subArray = new SubArray(-1, -1);
 		
-		public void setMinWindow(int si, int ei) {
-			int v = ei-si;			
-			if(v < minWindow) {				
-				minWindow = v;
-				minEndIndex = ei;
-				minStartIndex = si;
+		Map<String, Integer> dict = new LinkedHashMap<>();		
+		for(char c : query.toCharArray()) {
+			dict.put(""+c, null);
+		}
+		
+		for(char c : s.toCharArray()) {
+			
+			String ch = ""+c; 
+			if(dict.containsKey(ch)) {
+				Integer v = dict.get(ch);
+				
+				if(v == null) seenSoFar += 1;
+				
+				dict.remove(ch);
+				dict.put(ch, idx);
 			}
-		}
-	}
-
-	private static String minWindow(String s, String t) {
-		
-		MinWindow mw = new MinWindow();
-		Map<String, Integer> toSearch = new HashMap<>();		
-		Map<String, Integer> fromSearch = new HashMap<>();	
-		
-		for(char c : t.toCharArray())
-			mapFrequency(""+c, toSearch);
-		
-		for(int i = 0; i < s.length(); i++) {
-			mapSubString(i, ""+s.charAt(i), s, t.length(), mw, toSearch, fromSearch);			
-		}
-		
-		return s.substring(mw.minStartIndex, mw.minEndIndex);
-	}
-		
-	private static void mapSubString(int index, String w, String s, int tLen, MinWindow mw,
-			Map<String, Integer> toSearch, Map<String, Integer> fromSearch) {
-		
-		Integer freq = toSearch.get(w);
-		if(freq == null)	
-			return;
-		
-		mapFrequency(w, fromSearch);
-		
-		if(mw.tIndex == 0) {			
-			mw.startIndex = index;
-		}
-		
-		if(fromSearch.get(w) > freq) {
-			mw.startIndex = index-1;
-			return;
-		}
-		
-		mw.tIndex++;
-		if(mw.tIndex == tLen) {
-			mw.tIndex = 0;			
-			mw.setMinWindow(mw.startIndex, index+1);
-			String sub = s.substring(mw.startIndex, index+1);
-			System.out.println("Substring = " + sub);
-			fromSearch.clear();
-			return;
-		}
-		return;
-	}
-	
-	private static void mapFrequency(String w, Map<String, Integer> map) {	
-		Integer v =  map.get(w);
-		if(v == null) {
-			map.put(w, 1);
-		}
-		else map.put(w, map.get(w)+1);
+			
+			if(seenSoFar == dict.size()) {
+				
+				if((subArray.start == -1 && subArray.end == -1) || 
+						idx - getValueForFirstEntry(dict) < subArray.end - subArray.start) {
+					
+					subArray.start = getValueForFirstEntry(dict);
+					subArray.end = idx;
+				}					
+			}
+			++idx;
+		}		
+		return subArray;
 	}
 }

@@ -13,7 +13,7 @@ import java.util.List;
  * 
  * @author gopi_karmakar
  */
-public class BuySellStockTwice {
+public class BuySellStockTwiceForMaxProfit {
 
 	public static void main(String[] args) {
 		

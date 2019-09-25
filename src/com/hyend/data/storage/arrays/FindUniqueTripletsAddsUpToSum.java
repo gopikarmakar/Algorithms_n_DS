@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.dp;
+package com.hyend.data.storage.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,18 +7,18 @@ import java.util.List;
 
 /**
  * Given an array and a sum value, find all possible unique triplets 
- * in that array whose sum is equal to the given sum value.
+ * in that array which adds up to the given sum value.
  * 
  * @author gopi_karmakar
- *
  */
-public class FindUniqueTriplets {
+public class FindUniqueTripletsAddsUpToSum {
 
 	public static void main(String[] args) {
 		
-		int sum = 5;
+		int sum = 0;
 		//int[] arr = {12, 3, 6, 1, 6, 9};
-		int[] arr = {-2, 0, 1, 1, 2};
+		//int[] arr = {-2, 0, 1, 1, 2};
+		int[] arr = {0, -1, 2, -3, 1};
 		List<LinkedList<Integer>> list = uniqueTriplets(sum, arr);
 		
 		if(!list.isEmpty()) {
@@ -32,10 +32,6 @@ public class FindUniqueTriplets {
 	/**
 	 * Time taken to sort is 0(n Log n),
 	 * Total time complexity is 0(n^2) with O(1) extra space.
-	 * 
-	 * @param sum
-	 * @param arr
-	 * @return
 	 */
 	public static List<LinkedList<Integer>> uniqueTriplets(int sum, int...arr) {
 		

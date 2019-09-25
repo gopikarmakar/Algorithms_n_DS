@@ -1,7 +1,7 @@
 package com.hyend.data.storage.search;
 
 /**
- * 
+ * Find first occurrence of K in a sorted array.
  * @author gopi_karmakar
  */
 public class FindFirstOccurrenceOfKInASortedArray {
@@ -12,6 +12,9 @@ public class FindFirstOccurrenceOfKInASortedArray {
 		System.out.println("First Occurrence At = " + findFirstOfK(108, keys));
 	}
 	
+	/**
+	 * O(log n) time complexity
+	 */
 	private static int findFirstOfK(int k, int...keys) {
 		
 		int left = 0, right = keys.length-1, result = 0;
@@ -28,8 +31,7 @@ public class FindFirstOccurrenceOfKInASortedArray {
 			}
 			else
 				left = mid + 1;
-		}
-		
+		}		
 		return result;
 	}
 }

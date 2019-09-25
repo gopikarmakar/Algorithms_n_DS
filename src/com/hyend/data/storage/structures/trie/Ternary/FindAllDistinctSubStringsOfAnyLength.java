@@ -11,8 +11,8 @@ public class FindAllDistinctSubStringsOfAnyLength {
 
 	public static void main(String[] args) {
 		
-		String key = "aabbcc";
-		//String key = "abc";
+		//String key = "aabbcc";
+		String key = "abc";
 		findAllDistinctSubStrings(key);
 	}
 	

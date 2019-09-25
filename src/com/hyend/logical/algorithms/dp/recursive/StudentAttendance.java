@@ -1,9 +1,6 @@
 package com.hyend.logical.algorithms.dp.recursive;
 
 /**
- * 
- * @author karmakargopi
- * 
  * ### Google Interview Question ### 
  * 
  * There is student attendance information that has 3 state.
@@ -60,8 +57,7 @@ package com.hyend.logical.algorithms.dp.recursive;
  *     then that student can't get penalty for being late anymore, but for >3days, we'll calculate the Late & present(LO) case as well.
  *  8) So, in that case the total ways are, 2 + 3 + 3 = 8 ways to get penalty with in three days.    
  *  
- *  The program for this is even more simpler that you won't believe.
- *                   
+ *  @author gopi_karmakar         
  */
 public class StudentAttendance {
 	

@@ -20,12 +20,6 @@ public class Permutations {
 	
 	/**
 	 * Ordered Permutations of all Characters in a String.
-	 * @param prefix
-	 * @param str
-	 * 
-	 * ""  abc
-	 * 
-	 * 
 	 */
 	private void stringPermutations(String prefix, String str) {
 		int n = str.length();

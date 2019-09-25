@@ -14,8 +14,8 @@ public class TwoSum {
 	public static void main(String[] args) {
 		
 		int[] arr = {3, -1, -2, 5, 7, 4};
-		Arrays.sort(arr);
 		
+		Arrays.sort(arr);
 		System.out.println(hasTwoSum(13, arr));
 	}
 	

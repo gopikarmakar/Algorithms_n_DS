@@ -4,11 +4,10 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
- * Solution: Find the longest nondecreasing subsequence/subarray
+ * Solution: Find the longest nondecreasing subsequence
  * from a given array 
  * 
  * @author gopi_karmakar
- *
  */
 public class LongestNonDecreasingSubsequence {
 
@@ -33,6 +32,7 @@ public class LongestNonDecreasingSubsequence {
 	private static int findSubSequence(int...arr) {
 		
 		Integer[] lss = new Integer[arr.length];
+		
 		Arrays.fill(lss, 1);
 		
 		for(int i = 1; i < arr.length; ++i) {

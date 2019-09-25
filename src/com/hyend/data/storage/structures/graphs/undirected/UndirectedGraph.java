@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures.graphs;
+package com.hyend.data.storage.structures.graphs.undirected;
 
 import java.awt.print.Book;
 import java.util.ArrayList;

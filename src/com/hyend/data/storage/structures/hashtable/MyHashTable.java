@@ -18,9 +18,6 @@ import java.util.NoSuchElementException;
  * Search : < log(N)
  * 
  * @author gopi_karmakar
- *
- * @param <K>
- * @param <V>
  */
 public class MyHashTable<K, V> {
 	

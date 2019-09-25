@@ -62,7 +62,6 @@ public class MedianOfTwoSortedArrays {
          return j;
     }
     
-    // Function to find minimum 
     private static boolean minimum(int a, int b) { 
         return a < b ? true : false;  
     }

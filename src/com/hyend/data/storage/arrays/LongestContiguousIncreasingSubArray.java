@@ -16,31 +16,13 @@ public class LongestContiguousIncreasingSubArray {
 		SubArray sa = find(arr);
 		
 		System.out.print("{");
-		for(int x : Arrays.copyOfRange(arr, sa.start, sa.end+1))			
+		for(int x : Arrays.copyOfRange(arr, sa.start, sa.end))			
 			System.out.print(x + ", ");
 		System.out.print("}");
-	}	
-	
-	private static class SubArray {
-		
-		int start;
-		int end;
-		public SubArray(int start, int end) {
-			this.start = start;
-			this.end = end;
-		}
-		
-		@Override
-		public String toString() {			
-			return "{"+start + ", "+end+"}";
-		}
-	}
+	}		
 	
 	/**
 	 * An efficient O(n) time complexity solution.
-	 * 
-	 * @param arr
-	 * @return
 	 */
 	private static SubArray find(int...arr) {
 	
@@ -51,7 +33,7 @@ public class LongestContiguousIncreasingSubArray {
 			
 			boolean skippable = false;
 			
-			for(int j = i+maxLength; j > i; --j) {
+			for(int j = i + maxLength; j > i; --j) {
 				
 				if(arr[j-1] > arr[j]) {
 					i = j;
@@ -66,9 +48,23 @@ public class LongestContiguousIncreasingSubArray {
 					++i;
 					++maxLength;
 				}
-				indices = new SubArray(i-maxLength, i-1);
+				indices = new SubArray(i-maxLength, i);
 			}
 		}
 		return indices;
+	}
+	
+	private static class SubArray {
+		
+		int start;
+		int end;
+		public SubArray(int start, int end) {
+			this.start = start;
+			this.end = end;
+		}		
+		@Override
+		public String toString() {			
+			return "{"+start + ", "+end+"}";
+		}
 	}
 }

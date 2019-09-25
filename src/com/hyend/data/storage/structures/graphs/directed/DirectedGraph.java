@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures.graphs;
+package com.hyend.data.storage.structures.graphs.directed;
 
 import java.util.Queue;
 import java.util.Stack;
@@ -13,12 +13,13 @@ import java.util.LinkedList;
  * Depth first order traversals, Finding strong connections, Shortest paths traversals
  *   
  * @author gopi_karmakar
- *
  */
 public class DirectedGraph {
+	
 	private int edges = 0, vertices = 0;
 	private MyLinkedList<Integer>[] adjacencyList;
-	@SuppressWarnings("unchecked")
+	
+	@SuppressWarnings("unchecked")	
 	public DirectedGraph(int V) {
 		this.vertices = V;
 		this.edges = 0;

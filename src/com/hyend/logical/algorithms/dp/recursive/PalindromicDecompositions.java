@@ -14,6 +14,7 @@ import java.util.List;
 public class PalindromicDecompositions {
 
 	public static void main(String[] args) {
+		
 		List<List<String>> result = new ArrayList<List<String>>();
 		decompositions(0, "0204451881", new ArrayList<>(), result);
 		
@@ -23,15 +24,10 @@ public class PalindromicDecompositions {
 	}
 	
 	/**
-	 * The worst-case time complexity is still O(n X 2"), 
+	 * The worst-case time complexity is still O(n X 2), 
 	 * e.g., if the input string consists of n repetitions of a single character. 
 	 * However, the program has much better best-case time complexity than the
 	 * brute-force approach, e.g., when there are very few palindromic decompositions.
-	 * 
-	 * @param offset
-	 * @param input
-	 * @param partialPartition
-	 * @param result
 	 */
 	private static void decompositions(int offset, String input, 
 			List<String> partialPartition, List<List<String>> result) {
@@ -42,7 +38,9 @@ public class PalindromicDecompositions {
 		}
 		
 		for(int i = offset+1; i <= input.length(); ++i) {
+			
 			String prefix = input.substring(offset, i);
+			
 			if(isPalindrome(prefix)) {
 				
 				partialPartition.add(prefix);

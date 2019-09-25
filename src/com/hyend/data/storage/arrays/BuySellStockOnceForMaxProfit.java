@@ -9,7 +9,7 @@ package com.hyend.data.storage.arrays;
  *
  * @author gopi_karmakar
  */
-public class BuySellStockOnce {
+public class BuySellStockOnceForMaxProfit {
 	
 	public static void main(String...args) {	
 		

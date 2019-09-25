@@ -18,19 +18,20 @@ import java.util.List;
 public class SlidingWindowMaximum {	
 	
 	public static void main(String...args) {
-		//int arr = {};
+		int[] arr = new int[0];
 		//int arr[] = {1,3,1,2,0,5};
 		//int arr[] = {7, 2, 4};
 		//int arr[] = {1,3,-1,-3,5,3,2,7};
 		//int arr[] = {1, 2, 3, 1, 4, 5, 2, 3, 6};
 		//maxInSubArrayWindow(3, arr.length, arr);
 		
-		System.out.println(maxInSlidingWindow(1, new int[0]));
+		System.out.println(maxInSlidingWindow(1, arr));
 	}
 	
 	/**
 	 * An efficient O(n) time complexity solution
 	 * with additional O(w) extra space. 
+	 * where w is the window size.
 	 */
 	public static List<Integer> maxInSlidingWindow(int w, int...arr) {
 		

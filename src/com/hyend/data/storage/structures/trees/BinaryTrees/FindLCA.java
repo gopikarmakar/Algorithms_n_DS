@@ -19,8 +19,8 @@ public class FindLCA {
 		Node<Integer> tree = BinaryTree.buildDefault();
 		//BinaryTree.printBFS(tree, true);
 		
-		Node<Integer> node1 = tree.left.right;
-		//Node<Integer> node2 = root.right.right;
+		Node<Integer> node1 = tree.left.right.right;
+		//Node<Integer> node2 = tree.right.right;
 		Node<Integer> node2 = tree.left.left.right;
 
 		Node<Integer> lca = findLCAWithoutParent(tree, node1, node2).ancestor;	

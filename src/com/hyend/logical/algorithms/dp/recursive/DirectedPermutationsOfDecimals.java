@@ -13,9 +13,11 @@ import java.util.List;
 public class DirectedPermutationsOfDecimals {
 
 	public static void main(String[] args) {
+		
 		Integer[] arr = {2,3,1,4};
 		List<List<Integer>> perms = new ArrayList<>();
 		permutations(0, Arrays.asList(arr), perms);
+		
 		for(List<Integer> perm : perms) {
 			System.out.println(perm);
 		}
@@ -27,11 +29,7 @@ public class DirectedPermutationsOfDecimals {
 	 * 
 	 * So, the time complexity is O(n X n!), since we do O(n) 
 	 * computation per call outside of the recursive calls and
-	 * permutations of any n takes n! time. 
-	 *   
-	 * @param i
-	 * @param perm
-	 * @param perms
+	 * permutations of any n takes n! time.
 	 */
 	public static void permutations(int i, List<Integer> perm, 
 			List<List<Integer>> perms) {

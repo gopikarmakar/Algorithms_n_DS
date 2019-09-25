@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures.graphs;
+package com.hyend.data.storage.structures.graphs.edgeweighted;
 
 import java.util.LinkedList;
 

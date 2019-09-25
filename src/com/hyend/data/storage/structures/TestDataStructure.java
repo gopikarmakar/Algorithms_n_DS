@@ -10,7 +10,7 @@ import java.util.TreeMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.hyend.data.storage.arrays.FindKthSmallestElementInTwoSortedArrays;
+import com.hyend.data.storage.arrays.FindKthElementInTwoSortedArrays;
 import com.hyend.data.storage.arrays.matrix.MatrixRotation;
 import com.hyend.data.storage.search.BinarySearch;
 import com.hyend.data.storage.search.LinearSearch;
@@ -22,7 +22,7 @@ import com.hyend.data.storage.sort.MergeSort;
 import com.hyend.data.storage.sort.QuickSort;
 import com.hyend.data.storage.sort.SelectionSort;
 import com.hyend.data.storage.sort.ShellSort;
-import com.hyend.data.storage.structures.graphs.UndirectedGraph;
+import com.hyend.data.storage.structures.graphs.undirected.UndirectedGraph;
 import com.hyend.data.storage.structures.hashtable.MyHashTable;
 import com.hyend.data.storage.structures.linkedlists.doubly.DoublyLinkedList;
 import com.hyend.data.storage.structures.linkedlists.doubly.LinkedListWithStackAndQueue;
