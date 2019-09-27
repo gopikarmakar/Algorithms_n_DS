@@ -24,10 +24,6 @@ public class ThreeSum {
 	 * in a sorted array that sums to a specified value, 
 	 * 
 	 * Total time complexity is 0(n^2) with O(1) extra space. 
-	 * 
-	 * @param sum
-	 * @param arr
-	 * @return
 	 */
 	public static boolean hasThreeSum(int sum, int...arr) {
 		

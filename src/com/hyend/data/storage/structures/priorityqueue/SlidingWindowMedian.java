@@ -20,7 +20,7 @@ public class SlidingWindowMedian {
 		int[] nums = {1,3,-1,-3,5,3,6,7};
 		//int[] nums = {2147483647, 2147483647}; // It'll fail for this case.				
 		Solution sol = new Solution();
-		for(double d : sol.medianSlidingWindow(nums, 2)) {
+		for(double d : sol.medianSlidingWindow(nums, 3)) {
 			System.out.println(d);
 		}
 	}

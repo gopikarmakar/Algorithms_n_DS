@@ -1,4 +1,4 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.data.storage.search;
 
 import java.util.PriorityQueue;
 

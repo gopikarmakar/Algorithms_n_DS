@@ -10,12 +10,11 @@ import java.util.TreeMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.hyend.data.storage.arrays.FindKthElementInTwoSortedArrays;
 import com.hyend.data.storage.arrays.matrix.MatrixRotation;
 import com.hyend.data.storage.search.BinarySearch;
-import com.hyend.data.storage.search.LinearSearch;
+import com.hyend.data.storage.search.FindKthElementInTwoSortedArrays;
 import com.hyend.data.storage.search.SubstringSearch;
-import com.hyend.data.storage.search.SearchFromUnsortedArray;
+import com.hyend.data.storage.search.SearchAKeyInAnUnsortedArray;
 import com.hyend.data.storage.sort.HeapSort;
 import com.hyend.data.storage.sort.InsertionSort;
 import com.hyend.data.storage.sort.MergeSort;

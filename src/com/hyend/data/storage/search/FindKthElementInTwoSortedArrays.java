@@ -1,4 +1,4 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.data.storage.search;
 
 /**
  * Given two sorted arrays of size m and n respectively, 
@@ -13,16 +13,18 @@ public class FindKthElementInTwoSortedArrays {
 
 	public static void main(String[] args) {
 		
-		int[] arr1 = {2, 3, 7, 8};
-		int[] arr2 = {1, 4, 6, 9, 10};
-		System.out.println("Kth Element = " + findKth(arr1, arr2, 5));
+		//int[] arr1 = {2, 3, 7, 8};
+		//int[] arr2 = {1, 4, 6, 9, 10};
+		int[] a = {1, 3, 4, 9, 11};
+		int[] b = {2, 5, 6, 8};
+		System.out.println("Kth Element = " + findKth(a, b, 4));
 	}	
 	
 	/**
 	 * O(log k) time complexity with O(1) extra space.
 	 * Initializing proper lower and upper bounds are very important.
 	 */
-	private static int findKth(int[] a, int[] b, int k) {
+	public static int findKth(int[] a, int[] b, int k) {
 		
 		//Lower bound of elements we will choose in a.
 		int l = Math.max(0, k - b.length);
@@ -31,8 +33,8 @@ public class FindKthElementInTwoSortedArrays {
 		int u = Math.min(a.length, k);
 		
 		while(l < u) {
-			
-			int x = l + ((u -l)/2);
+			//Adding of l is necessary to be under b.length			
+			int x = l + ((u - l)/2);
 			int ax1 = (x <= 0) ? Integer.MIN_VALUE : a[x-1];
 			int ax = (x >= a.length) ? Integer.MAX_VALUE : a[x];
 			int bkx1 = (k-x <= 0) ? Integer.MIN_VALUE : b[k-x-1];
@@ -50,7 +52,10 @@ public class FindKthElementInTwoSortedArrays {
 			}
 		}
 		
-		int ab1 = (l <= 0) ? Integer.MIN_VALUE : a[l-1];
+		/**
+		 * If it comes here which means K = m+n. Handling such case.
+		 */
+		int ab1 = (l <= 0) ? Integer.MIN_VALUE : a[l - 1];
 		int bxkb1 = (k - l - 1 < 0) ? Integer.MIN_VALUE : b[k-l-1];
 		
 		return Math.max(ab1, bxkb1);
@@ -67,7 +72,7 @@ public class FindKthElementInTwoSortedArrays {
 		if(k > n+m) return k;
 		
 		/**
-		 * It fails if k = m+n. Needs to take care of this condition 
+		 * It fails if k = m+n. Needs to take care of that condition 
 		 */
 		while(writeIdx < k) {
 			

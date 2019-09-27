@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.dp;
+package com.hyend.data.storage.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import java.util.List;
  * 
  * @author gopi_karmakar
  */
-public class MaximumProductOfThreeDigits {
+public class FindTripletsForMaximumProduct {
 
 	public static void main(String[] args) {
 		//int[] arr = {100, 2, 7, -20, -30, 5, -40};
@@ -20,9 +20,6 @@ public class MaximumProductOfThreeDigits {
 	
 	/**
 	 * Time complexity will be dominated by sort O(n log n)
-	 * 
-	 * @param arr
-	 * @return
 	 */
 	public static List<Integer> maxProduct(int...arr) {		
 		List<Integer> list = new ArrayList<>();

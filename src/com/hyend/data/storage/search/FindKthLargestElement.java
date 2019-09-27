@@ -1,12 +1,12 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.data.storage.search;
 
 import java.util.Random;
 import java.util.Comparator;
 
 /**
- * For e.g : 
+ * Find Kth Largest Element in an unsorted array.
+ * For e.g : {3, 1, -1, 2, 7, 10, 4, 9, -3, -5} 
  * K = 5
- * arr[] = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5}
  * {10, 9, 7, 4, 3, 2, 1, -1, -3, -5} = return 3
  * 
  * @author gopi_karmakar
@@ -15,7 +15,7 @@ public class FindKthLargestElement {
 
 	public static void main(String[] args) {
 	
-		int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5};		
+		int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5};
 		System.out.println("Kth Largest = " + findKth(7, Compare.Greater_Than, arr));
 	}
 	
@@ -34,7 +34,8 @@ public class FindKthLargestElement {
 		
 		while(l <= r) {
 			
-			int pivotIdx = rand.nextInt(r - l + 1) + l;
+			int random = rand.nextInt(r - l + 1); 
+			int pivotIdx = random + l;
 			int newPivotIdx = partitionAroundPivot(l, r, pivotIdx, cmp, arr);
 			
 			if(newPivotIdx == k-1) {

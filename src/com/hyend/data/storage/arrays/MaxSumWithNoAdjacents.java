@@ -1,6 +1,7 @@
 package com.hyend.data.storage.arrays;
 
 /**
+ * Amazon interview question
  * Find maximum sum such that no two elements are adjacent
  * For e.g: 
  * {3, 2, 7, 10} = 3+10 = return 13
@@ -40,4 +41,3 @@ public class MaxSumWithNoAdjacents {
 		return (incl > excl) ? incl : excl;
 	}
 }
-	

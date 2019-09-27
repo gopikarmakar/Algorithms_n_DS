@@ -1,74 +1,55 @@
 package com.hyend.data.storage.arrays;
 
+import com.hyend.data.storage.search.FindKthElementInTwoSortedArrays;
+import com.hyend.data.storage.search.FindKthSmallestElement;
+
 /**
+ * Find Median of two sorted arrays.
  * 
  * @author gopi_karmakar
  */
 public class MedianOfTwoSortedArrays {
 	
 	public static void main(String[] args) {
+		//int[] a = {1, 3, 4, 9};
 		int[] a = {1, 3, 4, 9, 11};
 		int[] b = {2, 5, 6, 8, 10};
 		
 		System.out.println(findMedian(a, b));
+		System.out.println(median(a, b));
+	}
+	
+	/**
+	 * A more efficient O(log k) solution with O(1) extra space
+	 */
+	private static double median(int[] a, int[] b) {
+		
+		int m = a.length, n = b.length;
+		int s = (m+n);
+		int k = s/2;
+		
+		return (s%2 == 0) ? (FindKthElementInTwoSortedArrays.findKth(a, b, k) + 
+							FindKthElementInTwoSortedArrays.findKth(a, b, k + 1)) * 0.5 : 
+							FindKthElementInTwoSortedArrays.findKth(a, b, k);		
 	}
     
     /**
-     * A program to find the Kth smallest number
-     * as well as the median of an array. if the 
-     * k = n/2 where n is the lenght of an array.    
+     * An efficient O(n) solution but with extra O(m+n) space.    
      */
-    public static double findMedian(int[] a, int[] b) {
+    private static double findMedian(int[] a, int[] b) {
     	
-    	double res = 0.0;
-    	int n = a.length;
-    	int m = b.length;
-    	int k = (n+m)/2;
-    	int[] arr = new int[(n + m)];
+    	int m = a.length;
+    	int n = b.length;
+    	int s = (m+n);
+    	int k = s/2;
     	
-    	for(int x = 0; x < n; x++) arr[x] = a[x];
-    	for(int y = 0; y < m; y++) arr[(n+y)] = b[y];
+    	int[] merged = new int[(n + m)];
     	
-    	int low = 0, hi = arr.length -1;
-        while (hi > low) {
-           int j = partition(arr, low, hi);
-           if (j == k)  {
-        	   if(k%2 == 0) {
-        		   return (arr[j-1]+arr[k])/2;
-        	   }
-        	   else
-        		   return arr[k];
-           }
-           else if (j > k)  hi = j - 1;
-           else if (j < k)  low = j + 1;           
-        }         
-        return res;    
-    }
-    
-    private static int partition(int[] arr, int low, int high) {
+    	for(int x = 0; x < m; x++) merged[x] = a[x];
+    	for(int y = 0; y < n; y++) merged[(m+y)] = b[y];
     	
-    	int i = low, j = high+1, v = arr[low];    	
-    	    	 
-         while (true)
-         {  // Scan right, scan left, check for scan complete, and exchange.
-            while (minimum(arr[++i], v)) if (i == high) break;
-            while (minimum(v, arr[--j])) if (j == low) break;
-            if (i >= j) break;
-            exchange(arr, i, j);
-         }    	
-         exchange(arr, low, j); 
-         
-         //System.out.println("Value of i = " + i);
-         return j;
-    }
-    
-    private static boolean minimum(int a, int b) { 
-        return a < b ? true : false;  
-    }
-    
-    private static void exchange(int[] arr, int a, int b) {
-    	int temp = arr[a];
-    	arr[a] = arr[b];
-    	arr[b] = temp;
+    	return (s%2 == 0) ? (FindKthSmallestElement.findKthSmallest(k, merged) +
+    						FindKthSmallestElement.findKthSmallest(k+1, merged)) * 0.5 :
+    						FindKthSmallestElement.findKthSmallest(k, merged);    	
     }
 }

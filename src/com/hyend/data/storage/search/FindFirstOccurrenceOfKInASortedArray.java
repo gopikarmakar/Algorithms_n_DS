@@ -2,6 +2,10 @@ package com.hyend.data.storage.search;
 
 /**
  * Find first occurrence of K in a sorted array.
+ * For e.g: 
+ * {-14, -10, 2, 108, 108, 243, 285, 285, 285, 401} k = 108
+ * return 3 (since the first occurrence of 108 is at index 3)
+ * 
  * @author gopi_karmakar
  */
 public class FindFirstOccurrenceOfKInASortedArray {
