@@ -3,8 +3,8 @@ package com.hyend.logical.algorithms.dp.geometry;
 /**
  * The time complexity is O(1).
  * Since the number of operations are constant.
+ * 
  * @author gopi_karmakar
- *
  */
 public class RectangleIntersection {
 	
@@ -33,10 +33,7 @@ public class RectangleIntersection {
 	}
 	
 	/**
-	 * Helper Methods	
-	 * @param r1
-	 * @param r2
-	 * @return
+	 * Helper Methods
 	 */
 	private int getMaxX(Rectangle r1, Rectangle r2) {
 		return Math.max(r1.x, r2.x);

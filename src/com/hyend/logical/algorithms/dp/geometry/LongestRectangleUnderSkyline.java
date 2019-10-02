@@ -17,9 +17,6 @@ public class LongestRectangleUnderSkyline {
 
 	/**
 	 * The time complexity is 0(n)
-	 * 
-	 * @param heights
-	 * @return
 	 */
 	public static int calculateLargestRectangle(int...heights) {
 		

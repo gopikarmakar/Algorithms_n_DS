@@ -64,8 +64,7 @@ public class AnagramString {
 				isAnagram = false;
 				break;	
 			}
-		}
-				
+		}				
 		return isAnagram;
 	}
 }

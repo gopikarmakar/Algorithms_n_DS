@@ -30,7 +30,7 @@ public class MedianOfTwoSortedArrays {
 		
 		return (s%2 == 0) ? (FindKthElementInTwoSortedArrays.findKth(a, b, k) + 
 							FindKthElementInTwoSortedArrays.findKth(a, b, k + 1)) * 0.5 : 
-							FindKthElementInTwoSortedArrays.findKth(a, b, k);		
+							FindKthElementInTwoSortedArrays.findKth(a, b, k);
 	}
     
     /**
@@ -48,8 +48,8 @@ public class MedianOfTwoSortedArrays {
     	for(int x = 0; x < m; x++) merged[x] = a[x];
     	for(int y = 0; y < n; y++) merged[(m+y)] = b[y];
     	
-    	return (s%2 == 0) ? (FindKthSmallestElement.findKthSmallest(k, merged) +
-    						FindKthSmallestElement.findKthSmallest(k+1, merged)) * 0.5 :
-    						FindKthSmallestElement.findKthSmallest(k, merged);    	
+    	return (s%2 == 0) ? (FindKthSmallestElement.findKth(k, merged) +
+    						FindKthSmallestElement.findKth(k+1, merged)) * 0.5 :
+    						FindKthSmallestElement.findKth(k, merged);    	
     }
 }

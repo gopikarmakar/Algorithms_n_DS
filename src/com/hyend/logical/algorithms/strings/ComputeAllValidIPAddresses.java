@@ -20,9 +20,6 @@ public class ComputeAllValidIPAddresses {
 	/**
 	 * The total number of IP addresses is a constant (2^32), 
 	 * implying an O(1) time complexity for the below algorithm.
-	 * 
-	 * @param address
-	 * @return
 	 */
 	private static List<String> validateIPAddress(String address) {
 		
@@ -56,9 +53,6 @@ public class ComputeAllValidIPAddresses {
 	
 	/**
 	 * Validating IP Address rules
-	 * 
-	 * @param part
-	 * @return
 	 */
 	private static boolean isValidPart(String part) {
 		

@@ -46,8 +46,7 @@ public class MinimizeWaitingTime {
 		for(int i = 0; i < totalQueries; ++i) {
 			int query = totalQueries - (i+1);
 			totalWaitingTime += serviceTimes[i] * query; 
-		}
-		
+		}		
 		return totalWaitingTime;
 	}
 }

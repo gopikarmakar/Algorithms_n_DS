@@ -26,6 +26,7 @@ import java.util.List;
  * For this assignment, all tasks will finish with in the 
  * max(5 + 2, 1 + 6, 4 + 4) = 8 hours.
  * 
+ * @author gopi_karmakar
  */
 public class OptimumTaskAssignments {
 	

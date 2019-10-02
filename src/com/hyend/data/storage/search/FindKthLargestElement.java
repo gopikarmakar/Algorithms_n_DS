@@ -16,7 +16,7 @@ public class FindKthLargestElement {
 	public static void main(String[] args) {
 	
 		int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5};
-		System.out.println("Kth Largest = " + findKth(7, Compare.Greater_Than, arr));
+		System.out.println("Kth Largest = " + findKth(3, arr));
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class FindKthLargestElement {
 	 * and the worst-case is a non-issue in practice. For this reason, the randomize selection  
 	 * algorithm is sometimes said to have almost certain O(n) time complexity. 
 	 */
-	private static int findKth(int k, Comparator<Integer> cmp, int...arr) {
+	public static int findKth(int k, int...arr) {
 		
 		int l = 0, r = arr.length-1, result = 0;		
 		Random rand = new Random(0);
@@ -36,7 +36,7 @@ public class FindKthLargestElement {
 			
 			int random = rand.nextInt(r - l + 1); 
 			int pivotIdx = random + l;
-			int newPivotIdx = partitionAroundPivot(l, r, pivotIdx, cmp, arr);
+			int newPivotIdx = partitionAroundPivot(arr, l, r, pivotIdx, Compare.Greater_Than);
 			
 			if(newPivotIdx == k-1) {
 				result = arr[newPivotIdx];
@@ -52,7 +52,7 @@ public class FindKthLargestElement {
 		return result;
 	}
 	
-	private static int partitionAroundPivot(int l, int r, int pivotIdx, Comparator<Integer> cmp, int...arr) {
+	private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx, Comparator<Integer> cmp) {
 		
 		int newPivotIdx = l;
 		int pivotValue = arr[pivotIdx];	

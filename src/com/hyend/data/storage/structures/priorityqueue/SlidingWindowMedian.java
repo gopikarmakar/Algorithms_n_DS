@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 /**
- * It'll fail in corner cases yet!
+ * It'll fail in corner cases!
  * Need to improve.
  * 
  * Otherwise it's a correct and very efficient solution!
@@ -17,6 +17,7 @@ import java.util.PriorityQueue;
 public class SlidingWindowMedian {
 
 	public static void main(String[] args) {
+		//int[] nums = {-1,3,1,-3,5,3,6,7};
 		int[] nums = {1,3,-1,-3,5,3,6,7};
 		//int[] nums = {2147483647, 2147483647}; // It'll fail for this case.				
 		Solution sol = new Solution();
@@ -66,8 +67,11 @@ public class SlidingWindowMedian {
 	    
 	    private double findMedian() {
 	    	//long res = (minPQ.peek()+maxPQ.peek());
+	    	//System.out.println(minPQ.size());
+	    	//System.out.println(maxPQ.size());
 	        return (minPQ.size() == maxPQ.size()) 
-	            ? ((minPQ.peek()+maxPQ.peek()) * 0.5) : minPQ.peek();
+	            ? ((minPQ.peek() * 0.5 + maxPQ.peek() * 0.5) ) : minPQ.peek();
+	         
 	    }
 	    
 	    private void clearPQs() {

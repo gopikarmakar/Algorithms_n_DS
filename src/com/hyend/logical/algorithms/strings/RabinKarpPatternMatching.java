@@ -36,10 +36,7 @@ public class RabinKarpPatternMatching {
 	
 	/**
 	 * key = abcdef and length = 3
-	 * hash = ascii(a) * 31^0 + ascii(b) * 31^1 + ascii(c) * 31^2  
-	 * @param key
-	 * @param length
-	 * @return
+	 * hash = ascii(a) * 31^0 + ascii(b) * 31^1 + ascii(c) * 31^2 
 	 */
 	private long createHash(String key, int length) {
 		
@@ -58,19 +55,11 @@ public class RabinKarpPatternMatching {
 	 * 2: Bring it to the previous state by diving by base prime number.
 	 * 3: Add the new character's hash to the reverted state's hash after computing 
 	 * the new char hash with position exponentiation with the prime base.
-	 * 
 	 *  
 	 * str = bcd and length = 3
 	 * prevHash - ascii(a) = ascii(b) * 31^1 + ascii(c) * 31^2
 	 * (ascii(b) * 31^1 + ascii(c) * 31^2) / 31 = ascii(b) * 31^0 + ascii(c) * 31*1
 	 * newwHash = ascii(b) * 31^0 + ascii(c) * 31^1 + ascii(d) * 31^2
-	 * 
-	 * @param str
-	 * @param prevIndex
-	 * @param newIndex
-	 * @param prevHash
-	 * @param length
-	 * @return
 	 */
 	private long recreateHash(String str, int prevIndex, int newIndex, long prevHash, int length) {
 

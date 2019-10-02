@@ -20,7 +20,7 @@ public class MergeKSortedArrays {
 		
 		int[][] files = {{3, 5, 7}, {0, 6}, {0, 6, 8}};		
 		
-		for(int x: merge(files)) {
+		for(int x: mergeSortedArray(files)) {
 			System.out.println(x);
 		}
 	}
@@ -36,28 +36,63 @@ public class MergeKSortedArrays {
 		}
 	}
 	
-	private static List<Integer> merge(int[][] files) {
+	/**
+	 * Merge Sorted Arrays
+	 * An O(n log k) time complexity solution.
+	 */
+	public static List<Integer> mergeSortedArray(int[][] files) {
 		
-		PriorityQueue<Entry> pq = new PriorityQueue<Entry>(files.length, new Comparator<Entry>() {
+		List<Integer> merged = new ArrayList<>();
+		
+		PriorityQueue<Entry> heap = new PriorityQueue<Entry>(files.length, new Comparator<Entry>() {
 			@Override
-			public int compare(Entry l, Entry r) {
-				return Integer.compare(l.key, r.key);
+			public int compare(Entry e1, Entry e2) {
+				return Integer.compare(e1.key, e2.key);
 			}
 		});
 		
 		for(int i = 0; i < files.length; i++) {
-			pq.add(new Entry(files[i][0], i, 0));
+			heap.add(new Entry(files[i][0], i, 0));
 		}
-		
-		List<Integer> merged = new ArrayList<>();
-		while(!pq.isEmpty()) {
-			Entry entry = pq.remove();
+				
+		while(!heap.isEmpty()) {
+			Entry entry = heap.remove();
 			merged.add(entry.key);
 			
 			if(entry.ci < files[entry.ri].length-1) {
-				pq.add(new Entry(files[entry.ri][++entry.ci], entry.ri, entry.ci));
+				heap.add(new Entry(files[entry.ri][++entry.ci], entry.ri, entry.ci));
 			}
 		}
+		return merged;
+	}
+	
+	/**
+	 * Merge Sorted Lists
+	 * An O(n log k) time complexity solution
+	 */
+	public static List<Integer> mergeSortedLists(List<List<Integer>> lists) {
+		
+		List<Integer> merged = new ArrayList<>();
+		
+		PriorityQueue<Entry> heap = new PriorityQueue<>(lists.size(), new Comparator<Entry>() {
+			@Override
+			public int compare(Entry e1, Entry e2) {
+				return Integer.compare(e1.key, e2.key);
+			}
+		});
+		
+		for(int i = 0; i < lists.size(); ++i) {
+			heap.add(new Entry(lists.get(i).get(0), i, 0));
+		}
+		
+		while(!heap.isEmpty()) {
+			Entry entry = heap.remove();
+			merged.add(entry.key);
+			
+			if(entry.ci < lists.get(entry.ri).size()-1) {
+				heap.add(new Entry(lists.get(entry.ri).get(++entry.ci), entry.ri, entry.ci));
+			}
+		}		
 		return merged;
 	}
 }

@@ -16,7 +16,7 @@ public class FindKthSmallestElement {
 	public static void main(String[] args) {
 		
 		int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5};
-		System.out.println("Smallest Kth Element = " + findKthSmallest(5, arr));
+		System.out.println("Smallest Kth Element = " + findKth(5, arr));
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class FindKthSmallestElement {
 	 * and the worst-case is a non-issue in practice. For this reason, the randomize selection  
 	 * algorithm is sometimes said to have almost certain O(n) time complexity. 
 	 */
-	public static int findKthSmallest(int k, int...arr) {
+	public static int findKth(int k, int...arr) {
 		
 		int l = 0, r = arr.length-1, result = 0;		
 		Random rand = new Random(0);
