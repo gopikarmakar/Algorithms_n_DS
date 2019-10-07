@@ -57,7 +57,7 @@ public class ImplementStackUsingHeap {
 		}
 	}
 	
-	private static class Entry<K> {		
+	private static class Entry<K> {	
 		K k;
 		int rank;		
 		public Entry(K k, int rank) {

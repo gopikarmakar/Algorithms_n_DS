@@ -48,7 +48,7 @@ public class ComputeKClosestStars {
 		
 		List<Star> orderedStars = new ArrayList<>(maxPQ);
 		
-		//Since the sortedness won;t be guaranteed		
+		//Since the sortedness isn't guaranteed		
 		Collections.sort(orderedStars);
 		
 		return orderedStars;

@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 /**
- * Find K Large Elements from a max heap without modifying the max heap.
- *  
+ * Find K Large Elements from a max heap without modifying the max heap. 
  * @author gopi_karmakar
  */
 public class KLargeElementsFromAMaxHeap {

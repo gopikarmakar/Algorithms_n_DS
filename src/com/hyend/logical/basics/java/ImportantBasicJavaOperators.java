@@ -1,11 +1,13 @@
 package com.hyend.logical.basics.java;
 
+import java.util.BitSet;
+
 public class ImportantBasicJavaOperators {
 
 	public static void main(String...args) {
-		functions();
+		//functions();
 		//shiftOperation();
-		//bitwiseOperation();		
+		bitwiseOperation();		
     }
 	
 	private static void bitwiseOperation() {

@@ -11,46 +11,54 @@ public class BinarySearch {
 		
 		int[] arr = {1, 3, 5, 8, 11, 13, 15, 19, 25};
 		
-		System.out.println("Found At Index = " + searchWithLessCompares(arr, 0, arr.length, 19));
+		System.out.println("Found At Index = " + iterativeSearch(19, arr));
+		System.out.println("Found At Index = " + searchWithLessCompares(19, arr));
 	}
 
-	private static int nonRecursiveSearch(int[] arr, int start, int end, int value) {
+	public static int iterativeSearch(int k, int...arr) {
+		
+		int start = 0;
+		int end = arr.length;
 		
 		while(start <= end) {
 			
-			int mid = start + (end - start)/2;
+			int mid = start + (end - start) / 2;
 			
-			if(arr[mid] == value) return mid+1; // To give the real 
+			if(arr[mid] == k) 	return mid;
 			
-			if(arr[mid] <= value)
-				start = mid+1;				
-			else
-				end = mid-1;
+			if(arr[mid] < k)	start = mid+1;				
+			
+			else					end = mid-1;
 		}
 		return -1;
 	}
 	
-	private static int recursiveSearch(int[] arr, int start, int end, int value) {
+	public static int recursiveSearch(int[] arr, int start, int end, int k) {
 		
-		int mid = start + (end - start)/2;
+		int mid = start + (end - start) / 2;
 		
-		if(arr[mid] == value)		return mid;
+		if(arr[mid] == k)		return mid;
 		
-		else if(arr[mid] < value)	start = mid;
+		else if(arr[mid] < k)	start = mid;
 		
 		else 						end = mid;
 		
-		return recursiveSearch(arr, start, end, value);
+		return recursiveSearch(arr, start, end, k);
 	}
 	
-	private static int searchWithLessCompares(int[] arr, int start, int end, int value) {
+	public static int searchWithLessCompares(int k, int...arr) {
+		
+		int start = 0;
+		int end = arr.length;
 		
 		while((end - start) > 1) {
 			
 			int mid = start + (end - start)/2;
-			if(arr[mid] <= value) 	start = mid;
+			
+			if(arr[mid] <= k) 	start = mid;
+			
 			else 					end = mid;
 		}
-		return (arr[start] == value) ? start : -1;
+		return (arr[start] == k) ? start : -1;
 	}
 }

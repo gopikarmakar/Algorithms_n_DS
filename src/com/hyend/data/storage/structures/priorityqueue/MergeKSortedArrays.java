@@ -44,7 +44,7 @@ public class MergeKSortedArrays {
 		
 		List<Integer> merged = new ArrayList<>();
 		
-		PriorityQueue<Entry> heap = new PriorityQueue<Entry>(files.length, new Comparator<Entry>() {
+		PriorityQueue<Entry> minPQ = new PriorityQueue<Entry>(files.length, new Comparator<Entry>() {
 			@Override
 			public int compare(Entry e1, Entry e2) {
 				return Integer.compare(e1.key, e2.key);
@@ -52,15 +52,15 @@ public class MergeKSortedArrays {
 		});
 		
 		for(int i = 0; i < files.length; i++) {
-			heap.add(new Entry(files[i][0], i, 0));
+			minPQ.add(new Entry(files[i][0], i, 0));
 		}
 				
-		while(!heap.isEmpty()) {
-			Entry entry = heap.remove();
+		while(!minPQ.isEmpty()) {
+			Entry entry = minPQ.remove();
 			merged.add(entry.key);
 			
 			if(entry.ci < files[entry.ri].length-1) {
-				heap.add(new Entry(files[entry.ri][++entry.ci], entry.ri, entry.ci));
+				minPQ.add(new Entry(files[entry.ri][++entry.ci], entry.ri, entry.ci));
 			}
 		}
 		return merged;
@@ -74,7 +74,7 @@ public class MergeKSortedArrays {
 		
 		List<Integer> merged = new ArrayList<>();
 		
-		PriorityQueue<Entry> heap = new PriorityQueue<>(lists.size(), new Comparator<Entry>() {
+		PriorityQueue<Entry> minPQ = new PriorityQueue<>(lists.size(), new Comparator<Entry>() {
 			@Override
 			public int compare(Entry e1, Entry e2) {
 				return Integer.compare(e1.key, e2.key);
@@ -82,15 +82,15 @@ public class MergeKSortedArrays {
 		});
 		
 		for(int i = 0; i < lists.size(); ++i) {
-			heap.add(new Entry(lists.get(i).get(0), i, 0));
+			minPQ.add(new Entry(lists.get(i).get(0), i, 0));
 		}
 		
-		while(!heap.isEmpty()) {
-			Entry entry = heap.remove();
+		while(!minPQ.isEmpty()) {
+			Entry entry = minPQ.remove();
 			merged.add(entry.key);
 			
 			if(entry.ci < lists.get(entry.ri).size()-1) {
-				heap.add(new Entry(lists.get(entry.ri).get(++entry.ci), entry.ri, entry.ci));
+				minPQ.add(new Entry(lists.get(entry.ri).get(++entry.ci), entry.ri, entry.ci));
 			}
 		}		
 		return merged;
