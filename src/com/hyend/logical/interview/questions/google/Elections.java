@@ -59,24 +59,24 @@ public class Elections {
 		}
 	}
 
-	private void mapAndIncrementVoteCount(Candidate guy, int time) {
+	private void mapAndIncrementVoteCount(Candidate candidate, int time) {
 
-		guy.totalVotes += 1;
-		guy.times.put(time, guy.totalVotes);
-		candidates.put(guy.name, guy);
+		candidate.totalVotes += 1;
+		candidate.times.put(time, candidate.totalVotes);
+		candidates.put(candidate.name, candidate);
 	}
 
 	public void put(List<InputVote> votesList) {
 
 		for(InputVote x : votesList) {
 
-			Candidate vote = candidates.get(x.name);
-			if(vote != null) {
-				mapAndIncrementVoteCount(vote, x.time);
+			Candidate candidate = candidates.get(x.name);
+			if(candidate != null) {
+				mapAndIncrementVoteCount(candidate, x.time);
 			}
 			else {
-				vote = new Candidate(x.name, x.time);
-				candidates.put(x.name, vote);
+				candidate = new Candidate(x.name, x.time);
+				candidates.put(x.name, candidate);
 			}
 		}
 	}

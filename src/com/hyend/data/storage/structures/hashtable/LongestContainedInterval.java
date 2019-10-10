@@ -19,13 +19,13 @@ public class LongestContainedInterval {
 
 	public static void main(String[] args) {
 		
-		Integer[] arr = {3,-2,7,9,8,1,2,0,-1,5,8};
+		Integer[] arr = {3, -2, 7, 9, 8, 1, 2, 0, -1, 5, 8};
 		System.out.println("Maximum Length = " + find(arr));		
 	}
 	
 	/**
-	 * The time complexity of this approach is 0(n), where n is the array length, since we
-	 * add and remove array elements in the hash table no more than once.
+	 * Since we add and remove array elements in the hash table no more than once.
+	 * The time complexity of this approach is O(n), where n is the array length.
 	 */
 	public static int find(Integer...arr) {
 		

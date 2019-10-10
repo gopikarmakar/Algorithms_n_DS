@@ -4,16 +4,21 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 
 /*
+ * Given a string S and a string T, find the minimum window in S 
+ * which should contain all the characters of T
  * 
+ * e.g: S = "ADOBECODEBANC" T = "BCA"
+ * return "BANC" since it's the minimum length substring 
+ * which covers all the entries from queried window. 
  */
-public class MinimumWindowSubString {
+public class MinimumSubStringWindow {
 	
 	public static void main(String[] args) {
 		
 		String[] test = {"ADOBECODEBANC", "AAAAABCCCD"};
-		String[] query = {"BD", "CAB", "ACCCB"};
-		String s = test[1];
-		String q = query[1];		
+		String[] query = {"BCA", "CAB", "ACCCB"};
+		String s = test[0];
+		String q = query[0];		
 		
 		SubArray subArray = findWindow(s, q);		
 		System.out.println("Min Window Substring = " + s.substring(subArray.start, subArray.end+1));
@@ -28,16 +33,10 @@ public class MinimumWindowSubString {
 		}
 	}
 	
-	private static int getValueForFirstEntry(Map<String, Integer> m) {
-		
-		int result = 0;
-		for(Map.Entry<String, Integer> entry : m.entrySet()) {
-			result = entry.getValue();
-			break;
-		}
-		return result;
-	}
-	
+	/**
+	 * An efficient O(n) time with O(k) extra space complexity solution
+	 * where k = query.length
+	 */
 	private static SubArray findWindow(String s, String query) {
 		
 		int seenSoFar = 0, idx = 0;
@@ -67,10 +66,22 @@ public class MinimumWindowSubString {
 					
 					subArray.start = getValueForFirstEntry(dict);
 					subArray.end = idx;
-				}					
+				}
+				
 			}
 			++idx;
 		}		
 		return subArray;
+	}
+	
+	private static int getValueForFirstEntry(Map<String, Integer> m) {
+		
+		int result = 0;
+		for(Map.Entry<String, Integer> entry : m.entrySet()) {
+			//System.out.println("First Entry = " + entry.getKey() + " Index = " + entry.getValue());
+			result = entry.getValue();
+			break;
+		}
+		return result;
 	}
 }

@@ -2,11 +2,14 @@ package com.hyend.data.storage.structures.hashtable;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.NoSuchElementException;
+
 import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree;
 
 /**
  * Fins the LCA of two given binary nodes.
+ * 
  * @author gopi_karmakar
  */
 public class FindLCA {
@@ -31,7 +34,7 @@ public class FindLCA {
 	 * Where this solution takes O(D1+D2) space and time 
 	 * where D1 and D2 is the distance from the LCA to the node1 and node2.
 	 * In the worst-case, if the nodes are leaves whose LCA is the root, 
-	 * then we end up using 0(h) space and time where h is the height of the tree.
+	 * then we end up using O(h) space and time where h is the height of the tree.
 	 */
 	public static Node<Integer> findLCA(Node<Integer> node1, Node<Integer> node2) {
 		
@@ -56,6 +59,6 @@ public class FindLCA {
 			}
 		}
 		
-		throw new IllegalArgumentException("No LCA Exist!");
+		throw new NoSuchElementException("No LCA Exist!");
 	}
 }

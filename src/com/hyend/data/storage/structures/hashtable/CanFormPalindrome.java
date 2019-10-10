@@ -21,7 +21,7 @@ public class CanFormPalindrome {
 	}
 	
 	/**
-	 * O(n) time complexity
+	 * An O(n) time complexity solution.
 	 */
 	public static boolean canFormPalindrome(String s) {		
 		
