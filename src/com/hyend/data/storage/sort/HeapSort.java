@@ -1,12 +1,12 @@
 package com.hyend.data.storage.sort;
 
 /**
- * @author karmakargopi
- *
  * Time complexity of heapify is O(Logn). 
  * Time complexity of createAndBuildHeap() is O(n)
  * Overall time complexity of Heap Sort is O(nLogn).
- * HeapSort is usually slowest among Merge & Quick sort. 
+ * HeapSort is usually slowest among Merge & Quick sort.
+ * 
+ *  @author gopi_karmakar
  */
 public class HeapSort {
 	

@@ -18,21 +18,14 @@ import java.util.PriorityQueue;
  */
 public class ComputeKClosestStars {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {			
 		
-		// Sample data creation
-		List<Star> stars = new ArrayList<>();
-		for(int i = 1; i <= 10; ++i) {
-			if(i % 2 == 0)
-				stars.add(new Star(i * 2, i * 4, i * 6));
-			else 
-				stars.add(new Star(i * 3, i * 5, i + 7));
-		}
-		for(Star star : computeKClosestStars(3, stars)) {
-			System.out.println(star);
-		}		
+		computeKClosestStars(3, createSampleData()).forEach(e -> System.out.println(e));
 	}
 	
+	/**
+	 * O(n log n) time complexity.
+	 */
 	private static List<Star> computeKClosestStars(int k, List<Star> stars) {
 		
 		PriorityQueue<Star> maxPQ = new PriorityQueue<>(k, Collections.reverseOrder());
@@ -48,7 +41,7 @@ public class ComputeKClosestStars {
 		
 		List<Star> orderedStars = new ArrayList<>(maxPQ);
 		
-		//Since the sortedness isn't guaranteed		
+		//Since the Sortedness isn't guaranteed in MaxPQ
 		Collections.sort(orderedStars);
 		
 		return orderedStars;
@@ -78,5 +71,21 @@ public class ComputeKClosestStars {
 		public String toString() {
 			return "Star [x = " + x + ", y = " + y + ", z = " + z + ", distance = " + distance() + "]";
 		}				
+	}
+	
+	/**
+	 * Sample data creation
+	 */
+	private static List<Star> createSampleData() {
+		
+		List<Star> stars = new ArrayList<>();
+		
+		for(int i = 1; i <= 10; ++i) {
+			if(i % 2 == 0)
+				stars.add(new Star(i * 2, i * 4, i * 6));
+			else 
+				stars.add(new Star(i * 3, i * 5, i + 7));
+		}
+		return stars;
 	}
 }

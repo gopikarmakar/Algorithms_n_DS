@@ -15,14 +15,14 @@ public class FindLongestNonDuplicateSubArray {
 		
 		SubArray subArray = find(arr);
 		
-		for(int x : Arrays.copyOfRange(arr, subArray.start, subArray.end-1))
+		for(int x : Arrays.copyOfRange(arr, subArray.start, subArray.end))
 			System.out.println(x);
 	}	
 	
 	private static class SubArray {
 		
-		int start = 0;
-		int end = 0;
+		public int start = 0;
+		public int end = 0;
 		public SubArray(int start, int end) {
 			this.start = start;
 			this.end = end;
@@ -38,19 +38,33 @@ public class FindLongestNonDuplicateSubArray {
 		int longestDupFreeIdx = 0, maxLength = 0, n = arr.length;
 		HashMap<Integer, Integer> map = new HashMap<>();
 		
+		SubArray subArray = new SubArray(0, 0);
+		
 		for(int i = 0; i < n; ++i) {
 			
 			Integer dupIdx = map.put(arr[i], i);
 			if(dupIdx != null) {				
 				if(dupIdx >= longestDupFreeIdx) {					
-					maxLength = Math.max(maxLength, i - longestDupFreeIdx);
+
+					if((i - longestDupFreeIdx) > maxLength) {
+						maxLength = i - longestDupFreeIdx;
+						subArray.start = longestDupFreeIdx;
+						subArray.end = longestDupFreeIdx + maxLength;
+					}
 					longestDupFreeIdx = dupIdx + 1;
 				}
 			}				
 		}
 		
-		maxLength = Math.max(maxLength, n - longestDupFreeIdx);
+
+		if((n - longestDupFreeIdx) > maxLength) {
+			maxLength = n - longestDupFreeIdx;
+			subArray.start = longestDupFreeIdx;
+			subArray.end = longestDupFreeIdx + maxLength;
+		}
 		
-		return new SubArray(longestDupFreeIdx, longestDupFreeIdx + maxLength);
+		System.out.println("max Length = " + maxLength);
+		
+		return subArray;
 	}
 }

@@ -15,10 +15,10 @@ public class MinimumSubStringWindow {
 	
 	public static void main(String[] args) {
 		
-		String[] test = {"ADOBECODEBANC", "AAAAABCCCD"};
-		String[] query = {"BCA", "CAB", "ACCCB"};
-		String s = test[0];
-		String q = query[0];		
+		String[] test = {"ADOBECODEBANC", "AAAAABCCCD", "AABACBEBEBE"};
+		String[] query = {"BCA", "CAB", "ACCCB", "ABE"};
+		String s = test[2];
+		String q = query[3];		
 		
 		SubArray subArray = findWindow(s, q);		
 		System.out.println("Min Window Substring = " + s.substring(subArray.start, subArray.end+1));

@@ -18,20 +18,6 @@ public class MedianOfTwoSortedArrays {
 		System.out.println(findMedian(a, b));
 		System.out.println(median(a, b));
 	}
-	
-	/**
-	 * A more efficient O(log k) solution with O(1) extra space
-	 */
-	private static double median(int[] a, int[] b) {
-		
-		int m = a.length, n = b.length;
-		int s = (m+n);
-		int k = s/2;
-		
-		return (s%2 == 0) ? (FindKthElementInTwoSortedArrays.findKth(a, b, k) + 
-							FindKthElementInTwoSortedArrays.findKth(a, b, k + 1)) * 0.5 : 
-							FindKthElementInTwoSortedArrays.findKth(a, b, k);
-	}
     
     /**
      * An efficient O(n) solution but with extra O(m+n) space.    
@@ -52,4 +38,18 @@ public class MedianOfTwoSortedArrays {
     						FindKthSmallestElement.findKth(k+1, merged)) * 0.5 :
     						FindKthSmallestElement.findKth(k, merged);    	
     }
+    
+    /**
+	 * A more efficient O(log k) solution with O(1) extra space
+	 */
+	private static double median(int[] a, int[] b) {
+		
+		int m = a.length, n = b.length;
+		int s = (m+n);
+		int k = s/2;
+		
+		return (s%2 == 0) ? (FindKthElementInTwoSortedArrays.findKth(a, b, k) + 
+							FindKthElementInTwoSortedArrays.findKth(a, b, k + 1)) * 0.5 : 
+							FindKthElementInTwoSortedArrays.findKth(a, b, k);
+	}
 }

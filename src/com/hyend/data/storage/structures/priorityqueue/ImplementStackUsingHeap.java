@@ -66,6 +66,9 @@ public class ImplementStackUsingHeap {
 		}
 	}
 	
+	/**
+	 * Reverse order comparator
+	 */
 	private static class Compare implements Comparator<Entry<?>> {		
 		@Override
 		public int compare(Entry<?> e1, Entry<?> e2) {

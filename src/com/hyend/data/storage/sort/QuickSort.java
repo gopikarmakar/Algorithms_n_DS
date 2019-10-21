@@ -1,8 +1,6 @@
 package com.hyend.data.storage.sort;
 
 /**
- * @author karmakargopi
- *
  * QuickSort best case time-complexity is O(nlogn)
  * and worst case time-complexity is quadratic O(n^2) 
  * but since, pivot can vary from low-median-high,
@@ -12,6 +10,8 @@ package com.hyend.data.storage.sort;
  * sorting algorithm for primitive type of data. Since,
  * It's an in-place sorting algorithm unlike MergeSort,
  * It doesn't use any extra space for an auxiliary array.
+ * 
+ * @author gopi_karmakar
  */
 public class QuickSort {
 	
@@ -19,24 +19,29 @@ public class QuickSort {
 		
 		int[] arr = {3,1,5,2,7,4,8,6,9,0};
 		QuickSort qs = new QuickSort();
-		qs.sort(arr, 1, arr.length);
-		System.out.println(arr);
+		qs.sort(arr, 0, arr.length-1);
+		
+		for(int x : arr)
+			System.out.println(x);
 	}
 
+	/**
+	 * O(n log n) time complexity
+	 */
 	public void sort(int[] arr, int low, int high) {
 		
 		if(low < high) {
 		
 			int partitionIndex = partition(arr, low, high);
 			
-			sort(arr, low, partitionIndex -1);
-			sort(arr, partitionIndex+1, high);
+			sort(arr, low, partitionIndex - 1);
+			sort(arr, partitionIndex + 1, high);
 		}
 	}
 	
 	public int partition(int[] arr, int low, int high) {
 		
-		int i = low -1, pivot = arr[high];
+		int i = low - 1, pivot = arr[high];
 		
 		for(int j = low; j < high; j++) {
 			

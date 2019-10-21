@@ -1,5 +1,9 @@
 package com.hyend.data.storage.arrays;
 
+import java.util.Comparator;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 /**
  * Merge two sorted arrays which can contain empty entries:
  * For e.g:
@@ -22,6 +26,7 @@ public class MergeTwoSortedArraysWithEmptyValues {
 	 * O(n) time complexity
 	 */
 	private static int[] merge(int[] a, int[] b) {		
+		
 		int n = a.length-1, m = b.length-1;		
 		for(int i = n; i >= 0; --i) {
 			if(a[i] != 0) break;
@@ -31,6 +36,7 @@ public class MergeTwoSortedArraysWithEmptyValues {
 			if(b[j] != 0) break;
 			m--;
 		}
+		
 		int i = n, j = m, writeIdx = n + m + 1;
 		while(i >= 0 && j >= 0) {			
 			a[writeIdx--] = ((a[i] < b[j])) ? b[j--] : a[i--];			
@@ -40,5 +46,5 @@ public class MergeTwoSortedArraysWithEmptyValues {
 			a[writeIdx--] =  (m < n) ? b[x--] : a[x--];
 		}
 		return a;
-	}
+	}			
 }

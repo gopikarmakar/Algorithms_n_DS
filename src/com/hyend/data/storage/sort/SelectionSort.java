@@ -1,13 +1,12 @@
 package com.hyend.data.storage.sort;
 
 /**
- * 
- * @author karmakargopi
- *
  * Looping time will be always linear O(n) 
  * either for sorted or unsorted array.
  * Exchanges time complexity will be quadratic O(n^2)
- * as it always compare and exchange with it's previous one. 
+ * as it always compare and exchange with it's previous one.
+ * 
+ *  @author gopi_karmakar
  */
 public class SelectionSort {
 

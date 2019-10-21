@@ -33,7 +33,7 @@ public class LongestContainedInterval {
 		Set<Integer> set = new HashSet<>(Arrays.asList(arr));
 		
 		Queue<Queue<Integer>> subsets = new LinkedList<>();
-		
+				
 		for(int x: arr) {
 			
 			LinkedList<Integer> subset = new LinkedList<>();
@@ -54,21 +54,17 @@ public class LongestContainedInterval {
 				upperBound += 1;
 			}
 			
-			maxIntervalSize = Math.max(upperBound - lowerBound - 1, maxIntervalSize);
+			maxIntervalSize = Math.max(maxIntervalSize, upperBound - lowerBound - 1);
 			subsets.add(subset);
 		}
 		print(subsets);		
 		return maxIntervalSize;
 	}
 	
-	private static void print(Queue<Queue<Integer>> subsets) {
+	private static void print(Queue<Queue<Integer>> subsets) {		
 		
-		for(Queue<Integer> subset : subsets) {
-			
-			for(int x : subset)
-				System.out.print(x + ", ");
-			
-			System.out.println();
-		}
+		subsets.forEach(x -> {
+			System.out.println(x);
+		});		
 	}
 }

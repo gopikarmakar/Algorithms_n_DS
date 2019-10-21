@@ -22,7 +22,7 @@ public class KSmallElements {
 	/**
 	 * An O(n Log k) solution with extra O(k) space
 	 * since, It doesn't change the original array.
-	 * Max priority queue never guarantees sortedness. 
+	 * Max priority queue never guarantees Sortedness. 
 	 */
 	private static Collection<Integer> kSmallest(int k, int...arr) {
 		

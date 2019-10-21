@@ -34,6 +34,10 @@ public class MergeKSortedArrays {
 			this.ri = rIndex;
 			this.ci = cIndex;
 		}
+		
+		public int getKey() {
+			return key;
+		}
 	}
 	
 	/**
@@ -44,12 +48,15 @@ public class MergeKSortedArrays {
 		
 		List<Integer> merged = new ArrayList<>();
 		
-		PriorityQueue<Entry> minPQ = new PriorityQueue<Entry>(files.length, new Comparator<Entry>() {
+		/*PriorityQueue<Entry> minPQ = new PriorityQueue<Entry>(files.length, new Comparator<Entry>() {
 			@Override
 			public int compare(Entry e1, Entry e2) {
 				return Integer.compare(e1.key, e2.key);
 			}
-		});
+		});*/
+		
+		// Using lambda comparator
+		PriorityQueue<Entry> minPQ = new PriorityQueue<>(files.length, Comparator.comparing(Entry::getKey));
 		
 		for(int i = 0; i < files.length; i++) {
 			minPQ.add(new Entry(files[i][0], i, 0));
