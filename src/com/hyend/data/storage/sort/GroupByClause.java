@@ -18,7 +18,7 @@ import java.util.Map;
  * 
  * @author gopi_karmakar
  */
-public class GroupByAge {
+public class GroupByClause {
 
 	public static void main(String[] args) {
 		

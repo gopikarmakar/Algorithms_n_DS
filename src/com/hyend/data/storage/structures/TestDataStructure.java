@@ -21,7 +21,7 @@ import com.hyend.data.storage.sort.MergeSort;
 import com.hyend.data.storage.sort.QuickSort;
 import com.hyend.data.storage.sort.SelectionSort;
 import com.hyend.data.storage.sort.ShellSort;
-import com.hyend.data.storage.structures.graphs.undirected.UndirectedGraph;
+import com.hyend.data.storage.structures.graphs.undirected.UndirectedGraph_Old;
 import com.hyend.data.storage.structures.hashtable.MyHashTable;
 import com.hyend.data.storage.structures.linkedlists.doubly.DoublyLinkedList;
 import com.hyend.data.storage.structures.linkedlists.doubly.LinkedListWithStackAndQueue;
@@ -241,9 +241,9 @@ class TestDataStructure<K> {
 		int[][] graph = {{0, 5}, {4, 3}, {0, 1}, {9, 12}, {6, 4},
 						 {5, 4}, {0, 2}, {11, 12}, {9, 10}, {0, 6},
 						 {7, 8}, {9, 11}, {5, 3}, {2, 6, 4}};
-		UndirectedGraph uGraph = new UndirectedGraph(graph, UndirectedGraph.ADJACENCY_LIST);
+		UndirectedGraph_Old uGraph = new UndirectedGraph_Old(graph, UndirectedGraph_Old.ADJACENCY_LIST);
 		PrintMSG("Total Number of Vertices = " + uGraph.getTotalVertices());
-		PrintMSG("Total Number of Edges = " + uGraph.getTotalEdges(UndirectedGraph.ADJACENCY_LIST)/2);
+		PrintMSG("Total Number of Edges = " + uGraph.getTotalEdges(UndirectedGraph_Old.ADJACENCY_LIST)/2);
 		int source = 2;
 		int vertex = 4;
 		int destination = 5;

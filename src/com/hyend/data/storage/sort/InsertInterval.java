@@ -19,6 +19,8 @@ public class InsertInterval {
 
 	public static void main(String[] args) {
 		
+		
+		
 		//int[][] intervals = {{3,6}, {0,2}, {7,9}, {-4,-1}, {14,17}, {11,12}};
 		
 		int[][] intervals = {{6, 7}, {3, 5}, {1, 2}, {12, 16}, {8, 10}};
