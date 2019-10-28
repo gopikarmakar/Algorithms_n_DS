@@ -3,13 +3,17 @@ package com.hyend.data.storage.structures.graphs.undirected;
 import java.util.Set;
 import java.util.Map;
 import java.util.List;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 
 /**
  * An Undirected Graph Implementation
+ * 
+ * Graph creation takes O(v + e) time.
+ * Where v = total number of vertices and 
+ * e = max degree of any vertex.
  *  
  * @author gopi_karmakar
  */
@@ -26,7 +30,7 @@ public class UndirectedGraph<V> {
 			mapping = new LinkedHashMap<V, Set<V>>();
 		}		
 		
-		private void addPair(V v, V e) {
+		private void connectVertices(V v, V e) {
 			
 			Set<V> edges = mapping.getOrDefault(v, new HashSet<V>());
 			edges.add(e);
@@ -43,22 +47,20 @@ public class UndirectedGraph<V> {
 		create(vertices);
 	}
 	
-	public UndirectedGraph(List<Node<V>> vertices) {
+	public UndirectedGraph(List<List<V>> vertices) {
 		this();
 		create(vertices);
-	}		
-			
-	public void create(List<Node<V>> list) {				
+	}
+	
+	public void create(List<List<V>> list) {				
 		
 		list.forEach(node -> {
 			
-			node.e.forEach(v -> {
+			for(int i = 1; i < node.size(); ++i) {
 				
-				graph.addPair(node.v, v);
-				graph.addPair(v, node.v);
-				
-				totalEdges += 1;
-			});
+				graph.connectVertices(node.get(0), node.get(i));
+				graph.connectVertices(node.get(i), node.get(0));
+			}					
 		});
 	}
 	
@@ -68,8 +70,8 @@ public class UndirectedGraph<V> {
 			
 			entry.getValue().forEach(v -> {
 				
-				graph.addPair(entry.getKey(), v);
-				graph.addPair(v, entry.getKey());
+				graph.connectVertices(entry.getKey(), v);
+				graph.connectVertices(v, entry.getKey());
 				
 				totalEdges += 1;
 			});
@@ -102,11 +104,9 @@ public class UndirectedGraph<V> {
 	
 	public void traverseGraph(Map<V, Set<V>> graph) {
 		
-		graph.keySet().forEach(k -> {
+		graph.keySet().forEach(k -> {		
 			
-			System.out.print(k + "\t->\t");
-			
-			System.out.println(getAdjacencyList(k));
+			System.out.println(k + "\t->\t" + getAdjacencyList(k));
 		});
 	}
 }

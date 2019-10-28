@@ -25,7 +25,8 @@ public class ComputeDegree<V> {
 	}
 	
 	/**
-	 * Time complexity id O(n) where n is the maximum degree of a graph.
+	 * Time complexity id O(v + e) where v = number of vertices and
+	 * e = maximum degree of any vertex called edges.
 	 */
 	private static int getMaxDegreeOfGraph(UndirectedGraph<Integer> uGraph) {
 		

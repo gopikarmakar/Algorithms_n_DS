@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * 
  * @author gopi_karmakar
  */
-public class IsItCyclicGraph {
+public class IsItACyclicGraph {
 
 	public static void main(String[] args) {
 		
