@@ -5,9 +5,14 @@ import java.util.HashMap;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * An Undirected Graph Builder Wrapper
+ * 
+ * https://algs4.cs.princeton.edu/41graph/
+ * 
+ * NOTE : Refer to the above link for the source. 
  *  
  * @author gopi_karmakar
  */
@@ -16,7 +21,7 @@ public class BuildUndirectedGraph<V> {
 	public static void main(String[] args) {	
 		
 		UndirectedGraph<Integer> undiGraph = buildDefaultGraph();		
-		undiGraph.traverseGraph(undiGraph.getGraph());
+		undiGraph.printGraph();
 	}
 	
 	/**
@@ -58,6 +63,15 @@ public class BuildUndirectedGraph<V> {
 	}
 	
 	public UndirectedGraph<V> buildGraph(List<List<V>> data) {
+		
+		UndirectedGraph<V> uGraph = new UndirectedGraph<>();
+		
+		uGraph.create(data);
+		
+		return uGraph;
+	}
+	
+	public UndirectedGraph<V> buildGraph(Map<V, Set<V>> data) {
 		
 		UndirectedGraph<V> uGraph = new UndirectedGraph<>();
 		

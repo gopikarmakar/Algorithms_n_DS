@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.Map;
 import java.util.List;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
@@ -28,7 +27,11 @@ public class UndirectedGraph<V> {
 		
 		public Graph() {
 			mapping = new LinkedHashMap<V, Set<V>>();
-		}		
+		}
+		
+		public Map<V, Set<V>> getGraph() {
+			return mapping;
+		}
 		
 		private void connectVertices(V v, V e) {
 			
@@ -42,7 +45,7 @@ public class UndirectedGraph<V> {
 		graph = new Graph();
 	}
 	
-	public UndirectedGraph(Map<V, List<V>> vertices) {				
+	public UndirectedGraph(Map<V, Set<V>> vertices) {				
 		this();
 		create(vertices);
 	}
@@ -50,6 +53,17 @@ public class UndirectedGraph<V> {
 	public UndirectedGraph(List<List<V>> vertices) {
 		this();
 		create(vertices);
+	}
+	
+	@Override
+	public String toString() {		
+		String message = "";
+		
+		for(V v : graph.getGraph().keySet()) {
+			
+			message += v + "\t->\t" + getAdjacencyList(v) + "\n";
+		}		
+		return message;
 	}
 	
 	public void create(List<List<V>> list) {				
@@ -64,7 +78,7 @@ public class UndirectedGraph<V> {
 		});
 	}
 	
-	public void create(Map<V, List<V>> map) {				
+	public void create(Map<V, Set<V>> map) {				
 		
 		map.entrySet().forEach(entry -> {
 			
@@ -78,11 +92,11 @@ public class UndirectedGraph<V> {
 		});
 	}
 	
-	public int getTotalEdges() {
+	public int edges() {
 		return totalEdges;
 	}
 	
-	public int getTotalVertices() {
+	public int vertices() {
 		return graph.mapping.size();
 	}
 	
@@ -91,22 +105,15 @@ public class UndirectedGraph<V> {
 	}
 	
 	public Map<V, Set<V>> getGraph() {
-		return graph.mapping;		
+		return graph.getGraph();		
 	}
 	
-	public Iterable<V> getAdjacencyList(V v) {	
-		return graph.mapping.get(v);
+	public Set<V> getAdjacencyList(V v) {	
+		return graph.getGraph().get(v);
 	}
 	
-	public Iterator<V> getAdjacencyIterator(V v) {	
-		return graph.mapping.get(v).iterator();
-	}
-	
-	public void traverseGraph(Map<V, Set<V>> graph) {
+	public void printGraph() {
 		
-		graph.keySet().forEach(k -> {		
-			
-			System.out.println(k + "\t->\t" + getAdjacencyList(k));
-		});
+		System.out.println(toString());
 	}
 }

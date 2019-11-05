@@ -19,7 +19,8 @@ public class FindExistenceOfAPath {
 	}
 	
 	/**
-	 * O(n) time complexity.
+	 * Time complexity is O(v + e) where v = number of vertices and
+	 * e = maximum degree of any vertex called edges.
 	 */
 	private static boolean isAnyPathExist(int source, int destination) {
 		

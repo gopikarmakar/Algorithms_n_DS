@@ -19,6 +19,10 @@ public class DirectedGraph_Old {
 	private int edges = 0, vertices = 0;
 	private MyLinkedList<Integer>[] adjacencyList;
 	
+	public static void main(String[] args) {
+		
+	}
+	
 	@SuppressWarnings("unchecked")	
 	public DirectedGraph_Old(int V) {
 		this.vertices = V;

@@ -25,7 +25,7 @@ public class ComputeDegree<V> {
 	}
 	
 	/**
-	 * Time complexity id O(v + e) where v = number of vertices and
+	 * Time complexity is O(v + e) where v = number of vertices and
 	 * e = maximum degree of any vertex called edges.
 	 */
 	private static int getMaxDegreeOfGraph(UndirectedGraph<Integer> uGraph) {
@@ -41,22 +41,14 @@ public class ComputeDegree<V> {
 	
 	private static int getAvgDegreeOfGraph(UndirectedGraph<Integer> uGraph) {
 				
-		return 2 * uGraph.getTotalEdges() / uGraph.getTotalVertices();
+		return 2 * uGraph.edges() / uGraph.vertices();
 	}
 	
 	/**
-	 * Time complexity id O(n) where n is the degree of the vertex.
+	 * Time complexity id O(v + e) where n is the degree of the vertex.
 	 */
-	private static int getDegreeOfAVertex(UndirectedGraph<Integer> uGraph, int source) {
-		
-		int degree = 0;
+	private static int getDegreeOfAVertex(UndirectedGraph<Integer> uGraph, int source) {		
 				
-		Iterator<Integer> itr = uGraph.getAdjacencyIterator(source);
-		
-		while(itr.hasNext()) {						
-			itr.next();			
-			degree += 1;
-		}		
-		return degree;
+		return uGraph.getAdjacencyList(source).size();
 	}
 }

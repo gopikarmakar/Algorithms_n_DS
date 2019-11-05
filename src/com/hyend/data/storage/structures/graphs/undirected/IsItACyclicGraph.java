@@ -1,31 +1,62 @@
 package com.hyend.data.storage.structures.graphs.undirected;
 
 import java.util.Set;
+
+import com.hyend.data.storage.structures.graphs.directed.BuildDirectedGraph;
+import com.hyend.data.storage.structures.graphs.directed.DirectedGraph;
+
 import java.util.Queue;
-import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
- * Find is it a graph cyclic or acyclic
+ * Find whether an undirected graph is cyclic or acyclic.
+ * 
+ * Variant: Is the Graph also a valid tree.
  * 
  * @author gopi_karmakar
  */
 public class IsItACyclicGraph {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		
-		boolean isCyclic = bfs(BuildUndirectedGraph.buildDefaultGraph());
-		System.out.println("Is It A Cyclic Graph = " + isCyclic);		
+		UndirectedGraph<Integer> uGraph = BuildUndirectedGraph.buildDefaultGraph();
+		
+		System.out.println(isCyclic(uGraph, new boolean[2 * uGraph.vertices()], 
+				uGraph.getAllVertices().iterator().next()));
+		
+		System.out.println(isCyclic(uGraph));		
 	}
 	
 	/**
-	 * O(n) time complexity. Where n is the maximum degree of any vertex.
+	 * A DFS Approach
+	 * Time complexity id O(|v| + |e|) where v = number of vertices and
+	 * e = maximum degree of any vertex called edges.
 	 */
-	private static boolean bfs(UndirectedGraph<Integer> uGraph) {
+	private static boolean isCyclic(UndirectedGraph<Integer> diGraph, boolean[] visited, Integer v) {
+		
+		visited[v] = true;
+		
+		for(Integer e : diGraph.getAdjacencyList(v)) {
+			if(!visited[e]) {
+				if(isCyclic(diGraph, visited, e))
+					return true;
+			}
+			else if(v != e)
+				return true;
+		}
+		return false;				
+	}
+	
+	/**
+	 * A BFS Approach
+	 * Time complexity id O(|v| + |e|) where v = number of vertices and
+	 * e = maximum degree of any vertex called edges.
+	 */
+	private static boolean isCyclic(UndirectedGraph<Integer> uGraph) {
 		
 		boolean isCyclic = false;
 		
-		Set<Integer> visited = new HashSet<>();
+		boolean[] marked = new boolean[uGraph.vertices()+1];	
 		
 		Queue<Integer> queue = new LinkedList<>();
 		
@@ -33,12 +64,13 @@ public class IsItACyclicGraph {
 		
 		while(!queue.isEmpty()) {
 			
-			int v = queue.remove();
+			int v = queue.poll();
+			marked[v] = true;
 			
 			for(int e : uGraph.getAdjacencyList(v)) {
 				
-				if(!visited.contains(e)) {
-					visited.add(e);
+				if(!marked[e]) {
+					marked[e] = true;
 					queue.add(e);
 				}
 				else {

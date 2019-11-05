@@ -2,7 +2,6 @@ package com.hyend.data.storage.structures.graphs.undirected;
 
 import java.util.Set;
 import java.util.Queue;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.LinkedHashSet;
 
@@ -13,7 +12,7 @@ import java.util.LinkedHashSet;
  */
 public class FindPathFromSource<V> {
 
-	private Set<Integer> visitedPath = null;
+	private Set<V> visitedPath = null;
 	
 	public FindPathFromSource() {
 		
@@ -26,14 +25,14 @@ public class FindPathFromSource<V> {
 		
 		Integer source = 5;
 		
-		//pathToSource.dfsPathSearch(BuildUndirectedGraph.buildDefaultGraph(), source);
+		//path.dfsPathSearch(BuildUndirectedGraph.buildDefaultGraph(), source);
 		
 		path.bfsPathSearch(BuildUndirectedGraph.buildDefaultGraph(), source);
 		
 		System.out.println(path.visitedPath);
 	}
 	
-	public Set<Integer> getVisitedPath() {
+	public Set<V> getVisitedPath() {
 		return visitedPath;
 	}
 	
@@ -42,51 +41,43 @@ public class FindPathFromSource<V> {
 	 * DFS marks all the vertices connected to a given source in time 
 	 * proportional to the sum of their degrees
 	 *
-	 * O(n) Time complexity
+	 * O(v + e) Time complexity
 	 */
-	public void dfsPathSearch(UndirectedGraph<Integer> uGraph, int source) {
+	public void dfsPathSearch(UndirectedGraph<V> uGraph, V source) {
 
 		visitedPath.add(source);
 		
-		Iterator<Integer> itr = uGraph.getAdjacencyIterator(source);
-		
-		while(itr.hasNext()) {
-			
-			int e = itr.next();
+		for(V e : uGraph.getAdjacencyList(source)) {
 			
 			if(!visitedPath.contains(e)) {
-			
 				dfsPathSearch(uGraph, e);
-			}			
-		}		
+			}
+		}	
 	}
 	
 	/**
 	 * BFS traversal of a graph
 	 * 
-	 * O(n) Time complexity
+	 * Time complexity is O(v + e) where v = number of vertices and
+	 * e = maximum degree of any vertex called edges.
 	 */
-	public Set<Integer> bfsPathSearch(UndirectedGraph<Integer> uGraph, int source) {
+	public Set<V> bfsPathSearch(UndirectedGraph<V> uGraph, V source) {
 		
-		Queue<Integer> queue = new LinkedList<>();
+		Queue<V> queue = new LinkedList<>();
 		
 		queue.add(source);		
 		visitedPath.add(source);
 		
 		while(!queue.isEmpty()) {
 			
-			int v = queue.remove();
+			V v = queue.remove();
 			
-			Iterator<Integer> itr = uGraph.getAdjacencyIterator(v);
-			
-			while(itr.hasNext()) {
+			for(V e : uGraph.getAdjacencyList(v)) {
 				
-				int e = itr.next();
 				if(!visitedPath.contains(e)) {
-					
 					queue.add(e);
 					visitedPath.add(e);
-				}				
+				}
 			}
 		}
 		return visitedPath;

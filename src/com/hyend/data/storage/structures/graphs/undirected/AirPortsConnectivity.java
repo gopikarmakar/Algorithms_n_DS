@@ -23,18 +23,21 @@ public class AirPortsConnectivity {
 	 */
 	public static void main(String[] args) throws IOException {
 		
-		String fileName = args[0];
-		String delimeter = args[1];
+		String fileName = "routes.txt";
+		String delimeter = " ";
 		
 		List<List<String>> nodes = new AirPortsConnectivity().parseFile(fileName, delimeter);				
 		UndirectedGraph<String> uGraph = new BuildUndirectedGraph<String>().buildGraph(nodes);
 		
 		Scanner scanner = new Scanner(System.in);
-		String city = scanner.next();
-		scanner.close();
-		
-		System.out.print(city + " -> " );
-		System.out.println(uGraph.getAdjacencyList(city));		
+
+		while(scanner.hasNext()) {
+			
+			String city = scanner.next();
+			System.out.print(city + " -> " );
+			System.out.println(uGraph.getAdjacencyList(city));
+		}		
+		scanner.close();			
 	}
 	
 	private List<List<String>> parseFile(String fileName, String delimeter) throws IOException {

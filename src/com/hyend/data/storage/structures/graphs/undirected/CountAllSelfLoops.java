@@ -14,8 +14,9 @@ public class CountAllSelfLoops {
 		System.out.println("Total Loops = " + loops);
 	}
 	
-	/**
-	 * O(n) time complexity where n is the max degree of any vertex. 
+	/** 
+	 * Time complexity is O(v + e) where v = number of vertices and
+	 * e = maximum degree of any vertex called edges.
 	 */
 	private static int countSelfLoops(UndirectedGraph<Integer> uGraph) {
 		
