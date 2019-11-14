@@ -24,7 +24,7 @@ public class PalindromicDecompositions {
 	}
 	
 	/**
-	 * The worst-case time complexity is still O(n X 2), 
+	 * The worst-case time complexity is still O(n ^ 2), 
 	 * e.g., if the input string consists of n repetitions of a single character. 
 	 * However, the program has much better best-case time complexity than the
 	 * brute-force approach, e.g., when there are very few palindromic decompositions.

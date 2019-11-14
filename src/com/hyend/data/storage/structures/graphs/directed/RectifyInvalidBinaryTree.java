@@ -1,9 +1,7 @@
 package com.hyend.data.storage.structures.graphs.directed;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
 
 /**
  * A Google Interview Question
@@ -25,7 +23,7 @@ import java.util.Set;
  * 
  * @author gopi_karmakar
  */
-public class RemoveExtraInvalidEdgeFromBinaryTree<V> {
+public class RectifyInvalidBinaryTree<V> {
 
 	public static void main(String[] args) {
 		

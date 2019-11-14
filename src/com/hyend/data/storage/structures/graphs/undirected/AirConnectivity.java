@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
  * 
  * @author gopi_karmakar
  */
-public class AirPortsConnectivity {
+public class AirConnectivity {
 
 	/**
 	 * O(v + e) time complexity
@@ -26,7 +26,7 @@ public class AirPortsConnectivity {
 		String fileName = "routes.txt";
 		String delimeter = " ";
 		
-		List<List<String>> nodes = new AirPortsConnectivity().parseFile(fileName, delimeter);				
+		List<List<String>> nodes = new AirConnectivity().parseFile(fileName, delimeter);				
 		UndirectedGraph<String> uGraph = new BuildUndirectedGraph<String>().buildGraph(nodes);
 		
 		Scanner scanner = new Scanner(System.in);
@@ -35,7 +35,7 @@ public class AirPortsConnectivity {
 			
 			String city = scanner.next();
 			System.out.print(city + " -> " );
-			System.out.println(uGraph.getAdjacencyList(city));
+			System.out.println(uGraph.getAdjacencySet(city));
 		}		
 		scanner.close();			
 	}

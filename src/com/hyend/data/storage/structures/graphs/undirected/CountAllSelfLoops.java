@@ -24,7 +24,7 @@ public class CountAllSelfLoops {
 		
 		for(int v : uGraph.getAllVertices()) {
 			
-			for(int e : uGraph.getAdjacencyList(v)) {
+			for(int e : uGraph.getAdjacencySet(v)) {
 				
 				if(v == e) 
 					count += 1;

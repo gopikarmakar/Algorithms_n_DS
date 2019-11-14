@@ -242,7 +242,7 @@ public class DirectedGraph_Old {
 					count += 1;
 				}
 			}			
-		}		
+		}
 		private void dfs(int v) {
 			marked[v] = true;
 			id[v] = count;

@@ -47,7 +47,7 @@ public class FindPathFromSource<V> {
 
 		visitedPath.add(source);
 		
-		for(V e : uGraph.getAdjacencyList(source)) {
+		for(V e : uGraph.getAdjacencySet(source)) {
 			
 			if(!visitedPath.contains(e)) {
 				dfsPathSearch(uGraph, e);
@@ -72,7 +72,7 @@ public class FindPathFromSource<V> {
 			
 			V v = queue.remove();
 			
-			for(V e : uGraph.getAdjacencyList(v)) {
+			for(V e : uGraph.getAdjacencySet(v)) {
 				
 				if(!visitedPath.contains(e)) {
 					queue.add(e);

@@ -10,7 +10,7 @@ public class ComputeNextPermutaionWithDuplicateEntries {
 		 * Kindly see, ComputeNextPrmutation Solution.
 		 * It's a variant of that.
 		 */
-		Integer[] perm = {2,2,3,0};
-		ComputeNextPermutaion.nextPermutation(Arrays.asList(perm));
+		Integer[] perm = {2, 2, 3, 0};
+		System.out.println(ComputeNextPermutaion.nextPermutation(Arrays.asList(perm)));
 	}
 }

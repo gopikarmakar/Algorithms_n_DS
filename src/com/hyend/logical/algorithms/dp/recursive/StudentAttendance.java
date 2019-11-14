@@ -63,6 +63,11 @@ public class StudentAttendance {
 	
 	int totalWays = 2;
 	
+	public static void main(String[] args) {
+		
+		System.out.println(new StudentAttendance().waysToGetPenalty(3));
+	}
+	
 	private int factorial(int days) {
 		
 		if(days == 0) return 1;

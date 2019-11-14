@@ -6,15 +6,16 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Directed permutations of an int array. 
+ * Compute all the permutations of a given integer array in dictionary order.
+ * For e.g: {1,2,3} = {{1,2,3}, {1,3,2}, {2,1,3}, {2,3,1}, {3,1,2}, {3,2,1}} 
  * 
  * @author gopi_karmakar
  */
-public class DirectedPermutationsOfDecimals {
+public class DirectedNumericalPermutations {
 
 	public static void main(String[] args) {
 		
-		Integer[] arr = {2,3,1,4};
+		Integer[] arr = {1, 2, 3, 4};
 		List<List<Integer>> perms = new ArrayList<>();
 		permutations(0, Arrays.asList(arr), perms);
 		

@@ -23,14 +23,15 @@ import java.util.Collections;
 public class ComputeNextPermutaion {
 
 	public static void main(String[] args) {
-		Integer[] arr = {1,0,3,2};
+		
+		Integer[] arr = {1, 0, 3, 2};
 		System.out.println("Next Permutation  = " + nextPermutation(Arrays.asList(arr)));
 	}
 	
 	/**	 
 	 * Each step is an iteration through an array, 
-	 * so the time complexity is 0(n)
-	 * We used few local variables, so the additional space complexity is 0(1).
+	 * so the time complexity is O(n)
+	 * We used few local variables, so the additional space complexity is O(1).
 	 * 
 	 * @param perm
 	 * @return
@@ -40,10 +41,10 @@ public class ComputeNextPermutaion {
 		int k = perm.size()-2;			
 		while(k >= 0 && (perm.get(k) >= perm.get(k+1))) {
 			k--;
-		}		
+		}
 		if(k < 0) {
 			return Collections.emptyList();
-		}		
+		}
 		for(int i = perm.size()-1; i > k; --i) {
 			
 			if(perm.get(i) > perm.get(k)) {

@@ -19,8 +19,10 @@ import java.util.Collections;
 public class ComputeAllUniquePermutations {
 
 	public static void main(String[] args) {
+		
 		//Integer[] arr = {2,2,3,0};
-		Integer[] arr = {1,1,2};
+		Integer[] arr = {1, 1, 2};
+		
 		for(List<Integer> perm : uniquePermutations(Arrays.asList(arr))) {
 			System.out.println(perm);
 		}		
@@ -34,7 +36,8 @@ public class ComputeAllUniquePermutations {
 	 * @return
 	 */
 	private static List<List<Integer>> uniquePermutations(List<Integer> perm) {
-		List<List<Integer>> perms = new ArrayList<List<Integer>>();
+		
+		List<List<Integer>> perms = new ArrayList<List<Integer>>();		
 		
 		Collections.sort(perm);
 		do {

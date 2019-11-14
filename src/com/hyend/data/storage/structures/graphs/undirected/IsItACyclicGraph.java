@@ -36,7 +36,7 @@ public class IsItACyclicGraph {
 		
 		visited[v] = true;
 		
-		for(Integer e : diGraph.getAdjacencyList(v)) {
+		for(Integer e : diGraph.getAdjacencySet(v)) {
 			if(!visited[e]) {
 				if(isCyclic(diGraph, visited, e))
 					return true;
@@ -67,7 +67,7 @@ public class IsItACyclicGraph {
 			int v = queue.poll();
 			marked[v] = true;
 			
-			for(int e : uGraph.getAdjacencyList(v)) {
+			for(int e : uGraph.getAdjacencySet(v)) {
 				
 				if(!marked[e]) {
 					marked[e] = true;

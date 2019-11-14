@@ -100,8 +100,9 @@ public class SeachPathInAMaze {
 				(maze[current.x][current.y] == color.W); 
 	}
 	
-	// Data Creation
-	//###########################################################//
+	//##########################################################//	
+	// 					Sample Maze Creation					//
+	//##########################################################//
 	private static color[][] createSmapleMaze() {
 		
 		color[][] maze = new color[10][10];

@@ -52,7 +52,7 @@ public class ReachablePathBetweenTwoVertices<V> {
 	
 	/**
 	 * Cricket World Cup 2019 matches outcomes,
-	 * Being first team defeats second team. 
+	 * Such that, first team defeated second team. 
 	 */
 	private static String[][] createSampleData() {
 		

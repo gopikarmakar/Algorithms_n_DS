@@ -66,7 +66,7 @@ public class TransformOneStringToAnother {
 		}
 		visited.add(source);
 		
-		for(String e : uGraph.getAdjacencyList(source)) {
+		for(String e : uGraph.getAdjacencySet(source)) {
 			if(dfs(uGraph, visited, e, dest))
 				return true;
 		}

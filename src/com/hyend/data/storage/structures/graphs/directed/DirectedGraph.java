@@ -22,6 +22,8 @@ public class DirectedGraph<V> {
 	
 	private Graph graph = null;	
 	
+	private Set<V> mGraph = null;
+	
 	private class Graph {
 
 		private Map<V, Set<V>> mapping = null;
@@ -47,17 +49,20 @@ public class DirectedGraph<V> {
 			// Since it's diGraph so V -> E is for sure but not E -> V.
 			/*if(!mapping.containsKey(e))				
 				mapping.put(e, new LinkedHashSet<>());*/
-		}
+		}				
 		
 		public void disconnectVertices(V v, V e) {
 			Set<V> set = mapping.get(v);
 			set.remove(e);
 			mapping.put(v, set);
 		}
+
+		
 	}
 	
 	public DirectedGraph() {
-		graph = new Graph();		
+		graph = new Graph();	
+		mGraph = new LinkedHashSet<>();
 	}
 	
 	public DirectedGraph(List<List<V>> vertices) {
@@ -85,13 +90,39 @@ public class DirectedGraph<V> {
 		return graph.getGraph();
 	}
 	
-	public void create(List<List<V>> list) {		
+	@SuppressWarnings("unchecked")
+	public void create(V[][] data) {		
 		
-		list.forEach(node -> {
+		if(data instanceof GraphVertex[][]) {
 			
-			for(int i = 1; i < node.size(); ++i) {
+			for(V[] v : data) {			
+								
+				V gv = v[0];
+				
+				for(int i = 1; i < v.length; ++i) {
+					
+					((GraphVertex<V>)gv).edges.add((GraphVertex<V>) v[i]);
+				}				
+				mGraph.add(gv);
+			}
+		}
+		else {
+			for(V[] v : data) {			
+				
+				for(int i = 1; i < v.length; ++i) {
+					graph.connectVertices(v[0], v[i]);
+				}
+			}
+		}
+	}
+	
+	public void create(List<List<V>> list) {				
+			
+		list.forEach(v -> {
+			
+			for(int i = 1; i < v.size(); ++i) {
 											
-				graph.connectVertices(node.get(0), node.get(i));
+				graph.connectVertices(v.get(0), v.get(i));
 				totalEdges += 1;
 			}
 		});
@@ -149,13 +180,21 @@ public class DirectedGraph<V> {
 		return graph.getGraph().keySet();
 	}
 	
+	public Set<V> getAllGraphVertexes() {
+		return mGraph;
+	}
+	
 	public Set<V> getAdjacencyList(V v) { 
-		//return graph.getGraph().get(v);
 		return graph.getGraph().getOrDefault(v, new LinkedHashSet<>());
 	}
 	
 	public void printGraph() {
 				
+		System.out.println(toString());
+	}
+	
+	public void printGraphVertex() {
+		
 		System.out.println(toString());
 	}
 }

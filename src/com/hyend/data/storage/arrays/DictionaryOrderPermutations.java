@@ -6,8 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class DictionaryOrderPermutations {
-	public static void main(String[] args) {		
-		Integer[] arr = {2,3,1,4};
+	public static void main(String[] args) {	
+		
+		Integer[] arr = {2, 3, 1, 4};
 		for(List<Integer> perm : permutation(Arrays.asList(arr))) {
 			System.out.println(perm);
 		}
@@ -16,9 +17,6 @@ public class DictionaryOrderPermutations {
 	/**
 	 * The time complexity is O(n X n!), since there are n! 
 	 * permutations and we spend O(n) time to store each one.
-	 * 
-	 * @param perm
-	 * @return
 	 */
 	private static List<List<Integer>> permutation(List<Integer> perm) {
 		List<List<Integer>> perms = new ArrayList<>();		
@@ -27,6 +25,7 @@ public class DictionaryOrderPermutations {
 			//Adding first dictionary order permutation.
 			perms.add(new ArrayList<>(perm));
 			perm = ComputeNextPermutaion.nextPermutation(perm);
+			
 		} while(!perm.isEmpty());
 		return perms;
 	}

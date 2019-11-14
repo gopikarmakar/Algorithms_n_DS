@@ -40,8 +40,17 @@ public class BuildDirectedGraph<V> {
 	public DirectedGraph<V> buildGraph(V[][] data) {
 		
 		DirectedGraph<V> diGraph = new DirectedGraph<>();
+	
+		diGraph.create(data);
 		
-		diGraph.create(new BuildDirectedGraph<V>().convertInToList(data));
+		return diGraph;
+	}
+	
+	public DirectedGraph<GraphVertex<V>> buildWithGraphVertex(GraphVertex<V>[][] data) {
+		
+		DirectedGraph<GraphVertex<V>> diGraph = new DirectedGraph<>();
+		
+		diGraph.create(data);
 		
 		return diGraph;
 	}
@@ -55,16 +64,31 @@ public class BuildDirectedGraph<V> {
 		return diGraph;
 	}
 	
+	public DirectedGraph<GraphVertex<V>> buildWithGraphVertex(List<List<GraphVertex<V>>> data) {
+		
+		DirectedGraph<GraphVertex<V>> diGraph = new DirectedGraph<>();
+		
+		diGraph.create(data);
+		
+		return diGraph;
+	}
+	
 	//////////////////////////////Helper Methods //////////////////////////////////////
 	
-	private List<List<V>> convertInToList(V[][] data) {
+	private List<List<GraphVertex<V>>> convertInToGraphVertexList(GraphVertex<V>[][] data) {
 		
-		List<List<V>> list = new ArrayList<>();
+		List<List<GraphVertex<V>>> list = new ArrayList<>();
 		
-		for(int i = 0; i < data.length; ++i) {
+		for(GraphVertex<V>[] v : data) {
 			
-			list.add(Arrays.asList(data[i]));
-		}
+			List<GraphVertex<V>> l = new ArrayList<>();
+			
+			for(GraphVertex<V> e : v) {
+				
+				l.add(e);
+			}
+			list.add(l);
+		}		
 		return list;
 	}
 }

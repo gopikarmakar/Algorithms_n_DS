@@ -1,0 +1,59 @@
+
+class Permutations {
+
+	public static void main(String[] a) {
+
+		Set<String> set = new LinkedHashSet<>();
+
+		perms("", "abc", set);		
+	}
+	
+	private static void perms(String prefix, String word, Set<String> set) {
+
+		int n = word.length();
+		if(n == 0) {
+			set.add(prefix);
+			return;
+		}
+		else {
+			for(int i = 0; i < n; ++i) {
+
+				String s1 = word.substring(0, i);
+				String s2 = word.substring(i+1, word.length());
+				char ch = word.charAt(i);
+
+				perms(prefix + ch, s1+s2, set);
+			}
+		}
+	}
+}
+
+Class NummericPermuattions {
+	
+	public static void main(String args[]) {
+
+		Integer[] vals = {1, 2, 3, 4};	// 1,2,3,4 | 1,2,4,3 | 1,3,2,4 | 1,3,4,2 .....
+
+		List<List<Integer>> perms = new ArrayList<>();
+		perms(0, Arrays.asList(vals), perms);
+
+		for(List<Integer> perm : perms) {
+			system.out.println(perm);
+		}		
+	}
+
+	public static void perms(int i, List<Integer> perm, List<List<Integer>> perms) {
+
+		if(i == perm.size()-1) {
+			perms.add(new ArrayList<>(perm));
+			return;
+		}
+
+		for(int j = i; j < perm.size(); ++j) {
+
+			Collections.swap(perm, i, j);
+			perms(i+1, perm, perms);
+			Collections.swap(perm, i, j);
+		}
+	}
+}

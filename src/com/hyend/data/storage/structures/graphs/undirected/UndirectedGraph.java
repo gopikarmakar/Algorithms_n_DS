@@ -4,8 +4,10 @@ import java.util.Set;
 import java.util.Map;
 import java.util.List;
 import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 
 /**
  * An Undirected Graph Implementation
@@ -33,9 +35,8 @@ public class UndirectedGraph<V> {
 			return mapping;
 		}
 		
-		private void connectVertices(V v, V e) {
-			
-			Set<V> edges = mapping.getOrDefault(v, new HashSet<V>());
+		private void connectVertices(V v, V e) {			
+			Set<V> edges = mapping.getOrDefault(v, new HashSet<V>());			
 			edges.add(e);
 			mapping.put(v, edges);
 		}
@@ -61,7 +62,7 @@ public class UndirectedGraph<V> {
 		
 		for(V v : graph.getGraph().keySet()) {
 			
-			message += v + "\t->\t" + getAdjacencyList(v) + "\n";
+			message += v + "\t->\t" + getAdjacencySet(v) + "\n";
 		}		
 		return message;
 	}
@@ -108,8 +109,12 @@ public class UndirectedGraph<V> {
 		return graph.getGraph();		
 	}
 	
-	public Set<V> getAdjacencyList(V v) {	
+	public Set<V> getAdjacencySet(V v) {	
 		return graph.getGraph().get(v);
+	}
+	
+	public List<V> getAdjacencyList(V v) {	
+		return new ArrayList<V>(getGraph().get(v));
 	}
 	
 	public void printGraph() {

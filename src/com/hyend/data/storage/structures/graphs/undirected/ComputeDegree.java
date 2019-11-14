@@ -49,6 +49,6 @@ public class ComputeDegree<V> {
 	 */
 	private static int getDegreeOfAVertex(UndirectedGraph<Integer> uGraph, int source) {		
 				
-		return uGraph.getAdjacencyList(source).size();
+		return uGraph.getAdjacencySet(source).size();
 	}
 }
