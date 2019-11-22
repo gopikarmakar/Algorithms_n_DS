@@ -15,7 +15,7 @@ public class ReachablePathBetweenTwoVertices<V> {
 
 	public static void main(String[] args) {
 		
-		DirectedGraph<String> diGraph = new BuildDirectedGraph<String>().buildGraph(createSampleData());
+		DirectedGraph<String> diGraph = BuildDirectedGraph.buildGraph(createSampleData());
 		
 		diGraph.printGraph();
 		
@@ -23,7 +23,7 @@ public class ReachablePathBetweenTwoVertices<V> {
 		
 		String teamA = "India";
 		String teamB = "England";		
-		System.out.println(new ReachablePathBetweenTwoVertices<String>().dfs(diGraph, teamA, teamB, visited));
+		System.out.println(dfs(diGraph, teamA, teamB, visited));
 		System.out.println(visited);
 	}
 	
@@ -31,9 +31,9 @@ public class ReachablePathBetweenTwoVertices<V> {
 	 * The time complexity and space complexity are both O(E), 
 	 * where E is the number of outcomes.
 	 */
-	private boolean dfs(DirectedGraph<V> diGraph, V teamA, V teamB, Set<V> visited) {
+	private static <V> boolean dfs(DirectedGraph<V> diGraph, V teamA, V teamB, Set<V> visited) {
 	
-		if(visited.contains(teamA) || diGraph.getAdjacencyList(teamA).isEmpty())
+		if(visited.contains(teamA) || diGraph.getAdjacencySet(teamA).isEmpty())
 			return false;
 		
 		visited.add(teamA);
@@ -42,7 +42,7 @@ public class ReachablePathBetweenTwoVertices<V> {
 			return true;
 		}
 		
-		for(V team : diGraph.getAdjacencyList(teamA)) {
+		for(V team : diGraph.getAdjacencySet(teamA)) {
 			
 			if(dfs(diGraph, team, teamB, visited))
 				return true;

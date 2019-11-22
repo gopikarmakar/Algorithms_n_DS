@@ -1,34 +1,35 @@
-package com.hyend.data.storage.structures.graphs.directed;
+package com.hyend.data.storage.structures.graphs;
 
 import java.util.Set;
 import java.util.Objects;
 import java.util.LinkedHashSet;
 
-public class GraphVertex<V> {
+abstract public class Vertex<V> {
 	
 	public static enum Color { WHITE, GRAY, BLACK }
 	
 	public V v = null;
-	public Color color = null;	
-	public Set<GraphVertex<V>> edges = null;
+	public Color color = null;
+	public boolean visited = false;
+	public Set<Vertex<V>> edges = null;
 	
-	public GraphVertex(V v) {
+	public Vertex(V v) {
 		this.v = v;
-		this.color = Color.WHITE;
-		edges = new LinkedHashSet<GraphVertex<V>>();
+		this.visited = false;
+		edges = new LinkedHashSet<Vertex<V>>();
 	}
 	
 	@Override
 	public boolean equals(Object obj) {			
 		
+		if(obj == null || !(obj instanceof Vertex)) 
+			return false;
+		
 		if(this == obj)
 			return true;
 		
-		if(obj == null || !(obj instanceof GraphVertex)) 
-			return false;
-		
 		@SuppressWarnings("unchecked")
-		GraphVertex<V> that = (GraphVertex<V>) obj;
+		Vertex<V> that = (Vertex<V>) obj;
 		if(this.v.equals(that.v))
 			return true;		
 		
@@ -37,14 +38,14 @@ public class GraphVertex<V> {
 	
 	@Override
 	public int hashCode() {		
-		return Objects.hashCode(v); 
+		return Objects.hash(v); 
 	}
 	
 	@Override
 	public String toString() {
 		
 		String msg = "v = " + this.v + " Color = " + this.color + "\t->\t";
-		for(GraphVertex<V> e: edges) {
+		for(Vertex<V> e: edges) {
 			
 			String edgeMsg = "e = " + e.v + " Color = " + this.color + ", ";
 			msg += edgeMsg;

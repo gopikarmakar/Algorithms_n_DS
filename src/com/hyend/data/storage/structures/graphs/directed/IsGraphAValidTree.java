@@ -6,7 +6,7 @@ import java.util.Queue;
 /**
  * A Amazon Interview Question
  * 
- * Check whether the given graph is a tree
+ * Check whether the given graph is a valid tree
  *  
  * NOTE: An acyclic connected graph is also known to be a Tree.
  * 
@@ -21,7 +21,7 @@ public class IsGraphAValidTree {
 		Integer[][] validTree = {{1, 0}, {0, 2}, {0, 3}, {3, 4}};
 		Integer[][] invalidTree = {{1, 0}, {0, 2}, {2, 1}, {0, 3}, {3, 4}};
 		
-		DirectedGraph<Integer> diGraph = new BuildDirectedGraph<Integer>().buildGraph(invalidTree);
+		DirectedGraph<Integer> diGraph = BuildDirectedGraph.buildGraph(invalidTree);
 				
 		System.out.println(!isItATree(diGraph, new boolean[2*diGraph.vertices()], 
 							diGraph.getAllVertices().iterator().next()));
@@ -36,12 +36,12 @@ public class IsGraphAValidTree {
 	 */
 	private static boolean isItATree(DirectedGraph<Integer> diGraph, boolean[] visited, Integer v) {
 		
-		if(diGraph.getAdjacencyList(v).isEmpty())
+		if(diGraph.getAdjacencySet(v).isEmpty())
 			return false;
 		
 		visited[v] = true;
 		
-		for(Integer e : diGraph.getAdjacencyList(v)) {
+		for(Integer e : diGraph.getAdjacencySet(v)) {
 			if(!visited[e]) {
 				if(isItATree(diGraph, visited, e))
 					return true;
@@ -72,7 +72,7 @@ public class IsGraphAValidTree {
 			int v = queue.poll();
 			marked[v] = true;
 			
-			for(int e : diGraph.getAdjacencyList(v)) {
+			for(int e : diGraph.getAdjacencySet(v)) {
 				
 				if(!marked[e]) {
 					marked[e] = true;

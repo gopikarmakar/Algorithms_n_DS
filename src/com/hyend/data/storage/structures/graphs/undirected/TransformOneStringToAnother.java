@@ -6,6 +6,16 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 
+/**
+ * Given a dictionary D and two strings s and t, write a program to determine if s produces t. 
+ * Assume that all characters are lower case alphabets. If s does produce t, 
+ * output the path of a shortest production sequence; otherwise, output "".
+ * 
+ * For e.g: {bat, cot dog, dag, dot, cat} input {cat, dog}
+ * Output: {cat, cot, dot, dog}
+ *
+ * @author gopi_karmakar
+ */
 public class TransformOneStringToAnother {
 
 	public static void main(String[] args) {		
@@ -26,9 +36,13 @@ public class TransformOneStringToAnother {
 		
 		System.out.println(visited);
 		
-		scanner.close();								
+		scanner.close();
 	}
 	
+	/**
+	 * The max time complexity will be O(n ^ 2) to create a graph of neighbor strings.	 
+	 * Space complexity will be O(n) where n is the length of dictionary. 
+	 */
 	private static UndirectedGraph<String> buildGraph(String...words) {
 							
 		Map<String, Set<String>> map = new HashMap<>();

@@ -14,10 +14,13 @@ public class IsItACyclicGraph<V> {
 	public static void main(String[] args) {
 		
 		DirectedGraph<Integer> diGraph = BuildDirectedGraph.buildDefaultGraph();		
-				
+		
 		System.out.println(isCyclic(diGraph));
 	}
 	
+	/**
+	 * Time complexity O(v + e)
+	 */
 	private static boolean isCyclic(DirectedGraph<Integer> diGraph) {
 		
 		diGraph.printGraph();
@@ -40,7 +43,7 @@ public class IsItACyclicGraph<V> {
 			v = queue.poll();
 			marked[v] = true;
 			
-			for(int e : diGraph.getAdjacencyList(v)) {
+			for(int e : diGraph.getAdjacencySet(v)) {
 				
 				if(!marked[e]) {
 					

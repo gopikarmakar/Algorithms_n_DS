@@ -1,6 +1,9 @@
 package com.hyend.data.storage.structures.graphs.directed;
 
 import java.util.List;
+
+import com.hyend.data.storage.structures.graphs.Vertex;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 
@@ -34,10 +37,10 @@ public class BuildDirectedGraph<V> {
 							{6, 0, 4, 9}, {7, 6, 8}, {8, 7, 9}, {9, 10, 11}, 
 							{10, 12}, {11, 4, 12}, {12, 9}};		
 		
-		return new BuildDirectedGraph<Integer>().buildGraph(data);			
+		return BuildDirectedGraph.buildGraph(data);			
 	}
 	
-	public DirectedGraph<V> buildGraph(V[][] data) {
+	public static <V> DirectedGraph<V> buildGraph(V[][] data) {
 		
 		DirectedGraph<V> diGraph = new DirectedGraph<>();
 	
@@ -46,16 +49,7 @@ public class BuildDirectedGraph<V> {
 		return diGraph;
 	}
 	
-	public DirectedGraph<GraphVertex<V>> buildWithGraphVertex(GraphVertex<V>[][] data) {
-		
-		DirectedGraph<GraphVertex<V>> diGraph = new DirectedGraph<>();
-		
-		diGraph.create(data);
-		
-		return diGraph;
-	}
-	
-	public DirectedGraph<V> buildGraph(List<List<V>> data) {
+	public static <V> DirectedGraph<V> buildGraph(List<List<V>> data) {
 		
 		DirectedGraph<V> diGraph = new DirectedGraph<>();
 		
@@ -64,26 +58,35 @@ public class BuildDirectedGraph<V> {
 		return diGraph;
 	}
 	
-	public DirectedGraph<GraphVertex<V>> buildWithGraphVertex(List<List<GraphVertex<V>>> data) {
+	public static <V> DirectedGraph<V> buildWithGraphVertex(Vertex<V>[][] data) {
 		
-		DirectedGraph<GraphVertex<V>> diGraph = new DirectedGraph<>();
+		DirectedGraph<V> diGraph = new DirectedGraph<>();
 		
 		diGraph.create(data);
+		
+		return diGraph;
+	}
+	
+	public static <V> DirectedGraph<V> buildWithGraphVertex(List<List<Vertex<V>>> data) {
+		
+		DirectedGraph<V> diGraph = new DirectedGraph<>();
+		
+		diGraph.createWithGraphVertex(data);
 		
 		return diGraph;
 	}
 	
 	//////////////////////////////Helper Methods //////////////////////////////////////
 	
-	private List<List<GraphVertex<V>>> convertInToGraphVertexList(GraphVertex<V>[][] data) {
+	public static <V> List<List<Vertex<V>>> convertInToList(Vertex<V>[][] data) {
 		
-		List<List<GraphVertex<V>>> list = new ArrayList<>();
+		List<List<Vertex<V>>> list = new ArrayList<>();
 		
-		for(GraphVertex<V>[] v : data) {
+		for(Vertex<V>[] v : data) {
 			
-			List<GraphVertex<V>> l = new ArrayList<>();
+			List<Vertex<V>> l = new ArrayList<>();
 			
-			for(GraphVertex<V> e : v) {
+			for(Vertex<V> e : v) {
 				
 				l.add(e);
 			}

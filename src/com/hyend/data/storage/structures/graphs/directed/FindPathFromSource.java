@@ -44,7 +44,7 @@ public class FindPathFromSource<V> {
 		
 		visited.add(source);
 				
-		for(V e : diGraph.getAdjacencyList(source)) {
+		for(V e : diGraph.getAdjacencySet(source)) {
 			
 			if(!visited.contains(e)) {
 				
@@ -70,7 +70,7 @@ public class FindPathFromSource<V> {
 			V v = queue.remove();
 			visited.add(v);
 			
-			for(V e : diGraph.getAdjacencyList(v)) {
+			for(V e : diGraph.getAdjacencySet(v)) {
 				
 				if(!visited.contains(e)) {
 					queue.add(e);

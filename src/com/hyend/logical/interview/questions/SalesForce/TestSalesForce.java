@@ -1,8 +1,5 @@
 package com.hyend.logical.interview.questions.SalesForce;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class TestSalesForce {
 
 	public static void main(String[] args) {
@@ -15,7 +12,7 @@ public class TestSalesForce {
                 "DEPEND BROWSER TCPIP HTML\n",
                 "INSTALL NETCARD\n",
                 "INSTALL TELNET\n",
-                "INSTALL foo\n",
+                "INSTALL NFC\n",
                 "REMOVE NETCARD\n",
                 "INSTALL BROWSER\n",
                 "INSTALL DNS\n",
@@ -32,25 +29,10 @@ public class TestSalesForce {
                 "END\n"
         };
 		
-		/*for(String line : input)
-			System.out.print(line);*/
-		
 		SalesForceProblem sp = new SalesForceProblem();
 		sp.readInput(input);
-		sp.printMappings();
+		//sp.printGraph();
+		//System.out.println("\n");
 		sp.printLogs();
-		
-		/*Solution s = new Solution();
-		for(String line : input) {
-			s.readInput(line);
-		}
-		s.printGraph();*/
-		
-		LinkedHashMap<String, String> l = new LinkedHashMap<String, String>(10, 1.0F, true) {
-			@Override
-			protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {
-				return false;
-			};
-		};
 	}
 }

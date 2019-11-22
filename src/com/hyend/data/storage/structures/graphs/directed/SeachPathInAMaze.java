@@ -1,8 +1,8 @@
 package com.hyend.data.storage.structures.graphs.directed;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.ArrayList;
 
 /**
  * Search for a path in a maze if exist any.

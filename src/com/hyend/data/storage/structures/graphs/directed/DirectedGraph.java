@@ -1,8 +1,12 @@
 package com.hyend.data.storage.structures.graphs.directed;
 
 import java.util.Set;
+
+import com.hyend.data.storage.structures.graphs.Vertex;
+
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -20,9 +24,9 @@ public class DirectedGraph<V> {
 	
 	private int totalEdges = 0;
 	
-	private Graph graph = null;	
+	private Graph graph = null;
 	
-	private Set<V> mGraph = null;
+	private Set<Vertex<V>> vertexGraph = null;
 	
 	private class Graph {
 
@@ -56,13 +60,11 @@ public class DirectedGraph<V> {
 			set.remove(e);
 			mapping.put(v, set);
 		}
-
-		
 	}
 	
 	public DirectedGraph() {
 		graph = new Graph();	
-		mGraph = new LinkedHashSet<>();
+		vertexGraph = new LinkedHashSet<>();
 	}
 	
 	public DirectedGraph(List<List<V>> vertices) {
@@ -81,50 +83,63 @@ public class DirectedGraph<V> {
 		
 		for(V v : graph.getGraph().keySet()) {
 			
-			message += v + "\t->\t" + getAdjacencyList(v) + "\n";
+			message += v + "\t->\t" + getAdjacencySet(v) + "\n";
 		}		
 		return message;
 	}
 	
-	public Map<V, Set<V>> getGraph() {
-		return graph.getGraph();
-	}
-	
-	@SuppressWarnings("unchecked")
-	public void create(V[][] data) {		
+	public V addEdge(V v1, V v2) {
 		
-		if(data instanceof GraphVertex[][]) {
-			
-			for(V[] v : data) {			
-								
-				V gv = v[0];
-				
-				for(int i = 1; i < v.length; ++i) {
-					
-					((GraphVertex<V>)gv).edges.add((GraphVertex<V>) v[i]);
-				}				
-				mGraph.add(gv);
-			}
-		}
-		else {
-			for(V[] v : data) {			
-				
-				for(int i = 1; i < v.length; ++i) {
-					graph.connectVertices(v[0], v[i]);
-				}
-			}
-		}
+		graph.connectVertices(v1, v2);		
+		return v1;
 	}
 	
-	public void create(List<List<V>> list) {				
+	public Vertex<V> addEdge(Vertex<V> v1, Vertex<V> v2) {
+		
+		v1.edges.add(v2);
+		vertexGraph.add(v1);		
+		return v1;
+	}
+	
+	public void create(V[][] data) {				
+		for(V[] v : data) {						
+			for(int i = 1; i < v.length; ++i) {
+				graph.connectVertices(v[0], v[i]);
+			}
+		}		
+	}
+	
+	public void create(Vertex<V>[][] data) {		
+		for(Vertex<V>[] v : data) {
 			
-		list.forEach(v -> {
-			
-			for(int i = 1; i < v.size(); ++i) {
-											
+			Vertex<V> gv = v[0];			
+			for(int i = 1; i < v.length; ++i) {
+				
+				gv.edges.add(v[i]);
+			}				
+			vertexGraph.add(gv);				
+		}		
+	}
+	
+	public void create(List<List<V>> list) {			
+		list.forEach(v -> {			
+			for(int i = 1; i < v.size(); ++i) {											
 				graph.connectVertices(v.get(0), v.get(i));
 				totalEdges += 1;
 			}
+		});
+	}
+	
+	public void createWithGraphVertex(List<List<Vertex<V>>> list) {			
+		list.forEach(v -> {
+			
+			Vertex<V> gv = v.get(0);
+			for(int i = 1; i < v.size(); ++i) {											
+				
+				gv.edges.add(v.get(i));
+				totalEdges += 1;
+			}
+			vertexGraph.add(gv);
 		});
 	}
 	
@@ -146,7 +161,7 @@ public class DirectedGraph<V> {
 		
 		getAllVertices().forEach(v -> {
 			
-			getAdjacencyList(v).forEach(e -> {
+			getAdjacencySet(v).forEach(e -> {
 				
 				diGraph.graph.connectVertices(e, v);
 			});
@@ -165,7 +180,7 @@ public class DirectedGraph<V> {
 	 * vertices which have no outgoing edges are referred to as sinks.
 	 */
 	public boolean isItASink(V v) {
-		return (getAdjacencyList(v) == null);
+		return (getAdjacencySet(v) == null);
 	}
 	
 	public int edges() {
@@ -176,16 +191,24 @@ public class DirectedGraph<V> {
 		return graph.getGraph().size();
 	}
 	
+	public Map<V, Set<V>> getGraph() {
+		return graph.getGraph();
+	}
+	
 	public Collection<V> getAllVertices() {
 		return graph.getGraph().keySet();
 	}
 	
-	public Set<V> getAllGraphVertexes() {
-		return mGraph;
+	public Set<Vertex<V>> getAllGraphVertexes() {
+		return vertexGraph;
 	}
 	
-	public Set<V> getAdjacencyList(V v) { 
+	public Set<V> getAdjacencySet(V v) { 
 		return graph.getGraph().getOrDefault(v, new LinkedHashSet<>());
+	}
+	
+	public List<V> getAdjacencyList(V v) {	
+		return new ArrayList<V>(getGraph().getOrDefault(v, new LinkedHashSet<>()));
 	}
 	
 	public void printGraph() {

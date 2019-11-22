@@ -29,7 +29,7 @@ public class RectifyInvalidBinaryTree<V> {
 		
 		Integer[][] tree = {{1, 2}, {1, 3}, {2, 4}, {2, 5}, {3, 5}};						
 		
-		DirectedGraph<Integer> diGraph = new BuildDirectedGraph<Integer>().buildGraph(tree);
+		DirectedGraph<Integer> diGraph = BuildDirectedGraph.buildGraph(tree);
 		System.out.println("Tree Before Fixed:");
 		diGraph.printGraph();
 		
@@ -61,7 +61,7 @@ public class RectifyInvalidBinaryTree<V> {
 			int v = queue.poll();
 			marked[v] = true;
 			
-			for(int e : diGraph.getAdjacencyList(v)) {
+			for(int e : diGraph.getAdjacencySet(v)) {
 				
 				if(!marked[e]) {
 					marked[e] = true;

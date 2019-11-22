@@ -1,9 +1,9 @@
 package com.hyend.data.storage.structures.graphs.directed;
 
-import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.hyend.data.storage.structures.graphs.directed.GraphVertex.Color;
+import com.hyend.data.storage.structures.graphs.Vertex;
+import com.hyend.data.storage.structures.graphs.Vertex.Color;
 
 /**
  * High performance database systems use multiple processes and resource locking.
@@ -39,17 +39,15 @@ public class DeadlockDetection {
 		 * depicted in wait for graph .
 		 */		
 		
-		/**
-		 * Every process will be a Graph Vertex with default white color. 	 
-		 */
-		//DirectedGraph<GraphVertex<String>> diGraph = new BuildDirectedGraph<String>().buildWithGraphVertex(createSampleData());
+		/*DirectedGraph<String> diGraph = new BuildDirectedGraph<String>().buildWithGraphVertex(
+				BuildDirectedGraph.convertInToList(createSampleData()));*/
 		
-		//Set<GraphVertex<String>> set = diGraph.getAllGraphVertexes();
+		DirectedGraph<String> diGraph = BuildDirectedGraph.buildWithGraphVertex(createSampleData());				
 		
-		Set<GraphVertex<String>> graph = createGraph(createSampleData());
+		Set<Vertex<String>> graph = diGraph.getAllGraphVertexes();		
 		
-		for(GraphVertex<String> v: graph)
-			System.out.println(v);		
+		for(Vertex<String> v: graph)
+			System.out.println(v);	
 		
 		System.out.println("\nIs There Any Deadlock = " + detectDeadlock(graph));
 	}
@@ -62,9 +60,9 @@ public class DeadlockDetection {
 	 * The space complexity is O(V), which is the maximum stack depth—if we go deeper than |V| calls, 
 	 * some vertex must repeat, implying a cycle in the graph, which leads to early termination.	 
 	 */
-	private static boolean detectDeadlock(Set<GraphVertex<String>> set) {
+	private static boolean detectDeadlock(Set<Vertex<String>> set) {
 		
-		for(GraphVertex<String> v : set) {
+		for(Vertex<String> v : set) {
 			
 			if(v.color == Color.WHITE && hasCycle(v))
 				return true;						
@@ -72,53 +70,55 @@ public class DeadlockDetection {
 		return false;
 	}
 	
-	private static boolean hasCycle(GraphVertex<String> v) {
+	private static boolean hasCycle(Vertex<String> v) {
 		
-		if(v.color == GraphVertex.Color.GRAY)
+		if(v.color == Vertex.Color.GRAY)
 			return true;
 							
-		v.color = GraphVertex.Color.GRAY;
-		for(GraphVertex<String> e : v.edges) {
+		v.color = Vertex.Color.GRAY;
+		for(Vertex<String> e : v.edges) {
 			
-			if(e.color != GraphVertex.Color.BLACK)
+			if(e.color != Vertex.Color.BLACK)
 				if(hasCycle(e))
 					return true;
 		}
 		
-		v.color = GraphVertex.Color.BLACK;
+		v.color = Vertex.Color.BLACK;
 		return false;
 	}
-	
-	private static Set<GraphVertex<String>> createGraph(GraphVertex<String>[][] data) {
-		
-		Set<GraphVertex<String>> graph = new LinkedHashSet<>();
-		
-		for(GraphVertex<String>[] v : data) {			
-			
-			GraphVertex<String> gv = v[0];
-			
-			for(int i = 1; i < v.length; ++i) {
+
+	/**
+	 * Every process will be a Graph Vertex with default white color. 	 
+	 */
+	public static class GraphVertex<V> extends Vertex<V> {
 				
-				gv.edges.add((GraphVertex<String>) v[i]);
-			}				
-			graph.add(gv);
+		public GraphVertex(V v) {
+			super(v);
+			this.color = Color.WHITE;
 		}
-		
-		return graph;
 	}
 	
 	@SuppressWarnings("unchecked")
-	private static GraphVertex<String>[][] createSampleData() {
+	private static Vertex<String>[][] createSampleData() {
 		
-		GraphVertex<String> p1 = new GraphVertex<>("P1");
-		GraphVertex<String> p2 = new GraphVertex<>("P2");
-		GraphVertex<String> p3 = new GraphVertex<>("P3");
-		GraphVertex<String> p4 = new GraphVertex<>("P4");
-		GraphVertex<String> p5 = new GraphVertex<>("P5");	
+		Vertex<String> p1 = new GraphVertex<>("P1");
+		Vertex<String> p2 = new GraphVertex<>("P2");
+		Vertex<String> p3 = new GraphVertex<>("P3");
+		Vertex<String> p4 = new GraphVertex<>("P4");
+		Vertex<String> p5 = new GraphVertex<>("P5");	
 		
 		@SuppressWarnings("rawtypes")
-		GraphVertex[][] waitForGraph = {{p1, p2}, {p2, p3, p4, p5}, {p4, p1}};
+		Vertex[][] waitForGraph = {{p1, p2}, {p2, p3, p4, p5}, {p4, p1}};				
 		
+		// Or we can do below thing too!
+		/*DirectedGraph<String> diGraph = new DirectedGraph<>();
+		diGraph.addEdge(p1, p2);
+		diGraph.addEdge(p2, p3);
+		diGraph.addEdge(p2, p4);
+		diGraph.addEdge(p2, p5);
+		diGraph.addEdge(p4, p1);		
+		Set<Vertex<String>> set = diGraph.getAllGraphVertexes();*/
+				
 		return waitForGraph;
 	}
 }

@@ -1,52 +1,76 @@
 package com.hyend.logical.interview.questions.SalesForce;
 
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.List;
+import java.util.Stack;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
 
+/**
+ * An efficient solution
+ * Max complexity will be O(V + E) for finding dependents 
+ * and non dependents, else mostly it is O(n). 
+ * 
+ * @author gopi_karmakar
+ */
 public class SalesForceProblem {
 	
-	private List<String> logs;
-	private Stack<String> installing;	
-	private LinkedHashSet<String> installed;	
-	private LinkedHashMap<String, LinkedList<String>> map;
-	private LinkedHashMap<String, LinkedList<String>> reverseMap;
+	private List<String> logs;		
+	private Map<String, List<String>> graph;
+	private Map<String, GraphVertex<String>> pool;	
 	
-	public SalesForceProblem() {				
-		logs = new ArrayList<>();
-		installing = new Stack<>();	
-		map = new LinkedHashMap<>();		
-		installed = new LinkedHashSet<>();
-		reverseMap = new LinkedHashMap<>();
+	private class GraphVertex<V> {
+		
+		V component;
+		boolean isInstalled;
+		
+		public GraphVertex(V component) {
+			this.component = component;			
+			isInstalled = false;
+		}
 	}
 	
-	public void readInput(String[] input) {		
-		for(String line : input) {						
-			if(line.equals("LIST\n")) {
+	public SalesForceProblem() {
+		
+		logs = new ArrayList<>();		
+		pool = new LinkedHashMap<>();
+		graph = new LinkedHashMap<>();
+	}
+	
+	public void readInput(String[] input) {
+		
+		for(String line : input) {	
+			
+			if(line.equals("END\n")) {
 				logs.add(line);
-				listInstalled();
 			}
+			else if(line.equals("LIST\n")) {
+				
+				logs.add(line);
+				listAllInstalledComponent();
+			}			
 			else {
+				
 				String mLine = line.replace("\n", "");
 				String[] cmds = mLine.split(" ");
-				switch(cmds[0]) {			
-					case "DEPEND":
-						logs.add(line);
-						createMapping(Arrays.copyOfRange(cmds, 1, cmds.length));
-						createmapping(Arrays.copyOfRange(cmds, 1, cmds.length));
+				
+				switch(cmds[0]) {		
+				
+					case "DEPEND":						
+						String[] cmpnts = Arrays.copyOfRange(cmds, 1, cmds.length); 
+						createObjectPool(cmpnts);												
+						
+						if(createDiGraph(Arrays.asList(cmpnts)))	{					
+							logs.add(line);
+						}																
 						break;
 					case "INSTALL":
-						logs.add(line);
 						installComponent(cmds[1]);
 						break;
 					case "REMOVE":
-						logs.add(line);
 						removeComponent(cmds[1]);
 						break;
 				}
@@ -54,164 +78,167 @@ public class SalesForceProblem {
 		}
 	}
 	
-	public void printMappings() {
-		Iterator<Map.Entry<String, LinkedList<String>>> itr = map.entrySet().iterator();
-		while(itr.hasNext()) {
-			Map.Entry<String, LinkedList<String>> e = itr.next();
-			System.out.print(e.getKey());
-			for(String s : e.getValue()) {
-				System.out.print(" -> " + s);
-			}
-			System.out.println();
+	private void createObjectPool(String...components) {
+		
+		for(String c:  components) {
+			GraphVertex<String> gv = pool.getOrDefault(c, new GraphVertex<String>(c));
+			pool.put(c, gv);
 		}
-		System.out.println();		
-		Iterator<Map.Entry<String, LinkedList<String>>> ritr = reverseMap.entrySet().iterator();
-		while(ritr.hasNext()) {
-			Map.Entry<String, LinkedList<String>> e = ritr.next();
-			System.out.print(e.getKey());
-			for(String s : e.getValue()) {
-				System.out.print(" -> " + s);
+	}	
+	
+	private boolean createDiGraph(List<String> vertices) {
+		
+		if(isValid(vertices)) {
+			
+			if(vertices.size() < 1) {
+				graph.put(vertices.get(0), new ArrayList<>());
 			}
-			System.out.println();
-		}
-		System.out.println();
+			graph.put(vertices.get(0), vertices.subList(1, vertices.size())); 
+				
+			return true;
+		}			
+		return false;
 	}
 	
-	public void printLogs() {
-		for(String log : logs) {
-			System.out.print(log);
-		}
+	private boolean isValid(List<String> vertices) {				
+		
+		for(int i = 0; i < vertices.size()-1; ++i) {			
+
+			int j = i + 1;
+			List<String> e = graph.get(vertices.get(j));
+			
+			if(e != null) {
+				
+				if(e.contains(vertices.get(i))) {
+					
+					String log = vertices.get(i) + " depends on " + vertices.get(j) + " ignoring command\n";
+					logs.add(log);
+					return false;
+				}						
+			}
+		}		
+		return true;
 	}
 	
-	private void createMapping(String...components) {
-		String log = "";
-		boolean isValid = false;
-		LinkedList<String> adjList = new LinkedList<>();
-		for(int i = 1; i < components.length; i++) {			
-			if(!map.containsKey(components[i])) {
-				isValid = true;
-				adjList.add(components[i]);
+	private void installComponent(String component) {
+		
+		Stack<String> path = new Stack<>();
+		
+		if(pool.containsKey(component)) {
+			
+			if(pool.get(component).isInstalled)	{
+				logs.add(component + " Already Installed\n");
+				return;
+			}
+			else if(graph.containsKey(component)) {
+				// Dependents Case			
+				findDependents(component, path);
 			}
 			else {
-				for(String s : map.get(components[i])) {
-					if(s.equals(components[i-1])) {
-						log = components[i] + " depends on " + components[i-1] + " ignoring command\n";
-						isValid = false;
-						logs.add(log);						
-					}
-					else {
-						isValid = true;
-						adjList.add(components[i]);
-					}
-				}
+				// Non Dependents Case
+				String root = graph.entrySet().iterator().next().getKey();
+				findNonDependents(root, component, path);							
 			}
 		}
-		if(isValid) map.put(components[0], adjList);
-	}
-
-	private void installComponent(String component) {
-		String log = "";
-		if(installed.contains(component)) {
-			log = component + " is already installed\n";
-			logs.add(log);
-			return;
+		else {
+			// New component installation case
+			path.push(component);
+			createObjectPool(component);
+			createDiGraph(new ArrayList<>(path));				
 		}
-		crawlMap(component);		
-		while(!installing.isEmpty()) {
-			String item = installing.pop();
-			if(installed.add(item)) {
-				log = "Installing " + item + "\n";
-				logs.add(log);
-			}
-		}
-	}
-	
-	private void crawlMap(String item) {
-		if(!installed.contains(item)) {			
-			installing.push(item);
-		}
-		LinkedList<String> adjList = map.get(item);
-		if(adjList == null) return;
+		
+		String e;
+		do {
+		
+			e = path.pop();
+			if(!pool.get(e).isInstalled) {
 				
-		for(String s : adjList) {			
-			crawlMap(s);
-		}
+				pool.get(e).isInstalled = true;
+				logs.add("INSTALL " + e + "\n");
+			}
+			
+		} while(!e.equals(component));
 	}
 	
 	private void removeComponent(String component) {
-		String log = "";
-		if(!installed.contains(component)) {
-			log = component + " is not installed\n";
-			logs.add(log);
+		
+		if(!pool.containsKey(component))	{
+			logs.add(component + " Doesn't Exist Already Removed\n");
 			return;
-		}
-		remove(component);
-		if(installing.isEmpty()) {
-			log = component + " is still needed\n";
-			logs.add(log);
 		}
 		else {
-			while(!installing.isEmpty()) {
-				String s = installing.pop();				
-				installed.remove(s);
-				log = "Removing " + component + "\n";
-				logs.add(log);
-				System.out.println("### " + s + " ###");				
-			}
-		}
-	}
-	
-	private void remove(String component) {		
-		installing.push(component);
-		LinkedList<String> adjList = map.get(component);
-		if(adjList == null) {
-			installing.pop();
-			return;
-		}			
-		for(String s : adjList) {
-			crawlMap(s);
-		}
-	}
-	
-	private boolean hasDependency(String item) {
-		boolean any = false;
-		return any;
-	}
 
-	private void listInstalled() {		
-		for(String s : installed) {
-			String log = s + "\n";
-			logs.add(log);
-		}
-	}
-	
-	private void createmapping(String...items) {		
-		for(int i = 0; i < items.length-1; i++) {			
-			if(!reverseMap.containsKey(items[i+1])) {
-				LinkedList<String> adjList;
-				if(reverseMap.get(items[i]) == null) { 
-					adjList = new LinkedList<>();
-				}
-				else {
-					adjList = reverseMap.get(items[i]);
-					if(adjList.contains(items[i+1])) 
-						continue;					
-				}
-				adjList.add(items[i+1]);
-				reverseMap.put(items[i], adjList);
+			if(graph.containsKey(component)) {
+				
+				// Non Dependent Case
+				graph.remove(component);
+				pool.remove(component);
+				logs.add("REMOVE " + component + "\n");
 			}
 			else {
-				for(String s : reverseMap.get(items[i+1])) {
-					if(!s.equals(items[i])) {
-						LinkedList<String> adjList = new LinkedList<>();
-						adjList.add(items[i+1]);
-						reverseMap.put(items[i], adjList);
-					}
-					else {
-						
-					}
-				}
+				
+				// Dependent Case
+				logs.add("Can't Remove " + component + " Still Required\n");
 			}
+		}		
+	}
+	
+	private void listAllInstalledComponent() {
+		pool.values().forEach(e -> {			
+			if(e.isInstalled)
+				logs.add(e.component + "\n");
+		});
+	}
+	
+	private void findDependents(String vertex, Collection<String> path) {			
+		
+		if(!path.contains(vertex)) {
+			path.add(vertex);
+		}				
+		
+		for(String e : graph.getOrDefault(vertex, new ArrayList<>())) {			
+			findDependents(e, path);
 		}
+	}
+
+	private boolean findNonDependents(String vertex, String searchingFor, Collection<String> path) {
+		
+		if(!path.contains(vertex)) 
+			path.add(vertex);
+		
+		if(vertex.equals(searchingFor)) {
+			return true;
+		}				
+		
+		for(String e : graph.getOrDefault(vertex, new ArrayList<>())) {					
+			if(findNonDependents(e, searchingFor, path))
+				return true;
+		}
+		return false;
+	}
+	
+	public void printLogs() {
+		
+		logs.forEach( log -> {
+			System.out.print(log);
+		});
+	}
+	
+	public void printGraph() {
+		
+		Iterator<Map.Entry<String, List<String>>> itr = graph.entrySet().iterator();
+		
+		while(itr.hasNext()) {
+			
+			Map.Entry<String, List<String>> entry = itr.next();
+			
+			System.out.print(entry.getKey() + " -> ");
+			
+			entry.getValue().forEach(e -> {
+				
+				System.out.print(e + "  ");
+			});
+			System.out.println();
+		}		
 	}
 }
