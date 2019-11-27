@@ -4,19 +4,33 @@ import java.util.Set;
 import java.util.Objects;
 import java.util.LinkedHashSet;
 
-abstract public class Vertex<V> {
+public class Vertex<V extends Comparable<V>> {
 	
 	public static enum Color { WHITE, GRAY, BLACK }
-	
-	public V v = null;
+		
+	public V v = null;	
 	public Color color = null;
+	
 	public boolean visited = false;
+	
+	public int distance;
+	public int totalDirectVisits = 0;
+	public int totalIndirectVisits = 0;
+	
+	public Vertex<V> parent = null;
 	public Set<Vertex<V>> edges = null;
+	
+	public Vertex() {}		
 	
 	public Vertex(V v) {
 		this.v = v;
 		this.visited = false;
+		this.color = Color.WHITE;
 		edges = new LinkedHashSet<Vertex<V>>();
+	}
+	
+	public Vertex(Vertex<V> v) {
+		this(v.v);
 	}
 	
 	@Override
@@ -44,13 +58,12 @@ abstract public class Vertex<V> {
 	@Override
 	public String toString() {
 		
-		String msg = "v = " + this.v + " Color = " + this.color + "\t->\t";
+		String msg = this.v + "\t->\t";
 		for(Vertex<V> e: edges) {
 			
-			String edgeMsg = "e = " + e.v + " Color = " + this.color + ", ";
+			String edgeMsg = e.v + " ";
 			msg += edgeMsg;
-		}
-		
+		}		
 		return msg;
-	}	
+	}
 }

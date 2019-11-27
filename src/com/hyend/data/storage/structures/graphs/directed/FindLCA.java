@@ -20,6 +20,7 @@ public class FindLCA {
 	/**
 	 * TODO: Complete It.
 	 */
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		Integer[] keys = {1,2,3,4,5,null,null,null,null,null,null};

@@ -10,26 +10,20 @@ import java.util.Queue;
  * 
  * @author gopi_karmakar
  */
-public class FindPathFromSource<V> {
-
-	private Set<V> visited = null;
-	
-	public FindPathFromSource() {
-		
-		visited = new LinkedHashSet<>();
-	}
+public class FindPathFromSource {
 	
 	public static void main(String[] args) {
 		
-		FindPathFromSource<Integer> path = new FindPathFromSource<>();
+		Set<Integer> visited = new LinkedHashSet<>();
 		
 		DirectedGraph<Integer> diGraph = BuildDirectedGraph.buildDefaultGraph();
 		
-		//path.dfs(diGraph, 2);
+		Integer source = 2;
+		dfs(diGraph, visited, source);
 		
-		path.bfs(diGraph, 2);
+		//bfs(diGraph, visited, 2);
 		
-		System.out.println(path.visited);
+		System.out.println(visited);
 	}
 	
 	/**
@@ -40,15 +34,15 @@ public class FindPathFromSource<V> {
 	 * Time complexity is O(v + e) where v = number of vertices and
 	 * e = maximum degree of any vertex called edges.
 	 */
-	private void dfs(DirectedGraph<V> diGraph, V source) {		
+	private static void dfs(DirectedGraph<Integer> diGraph, Set<Integer> visited, Integer source) {		
 		
 		visited.add(source);
 				
-		for(V e : diGraph.getAdjacencySet(source)) {
+		for(int e : diGraph.getAdjacencySet(source)) {
 			
 			if(!visited.contains(e)) {
 				
-				dfs(diGraph, e);
+				dfs(diGraph, visited, e);
 			}
 		}
 	}
@@ -59,18 +53,18 @@ public class FindPathFromSource<V> {
 	 * Time complexity is O(v + e) where v = number of vertices and
 	 * e = maximum degree of any vertex called edges.
 	 */
-	private void bfs(DirectedGraph<V> diGraph, V source) {
+	private void bfs(DirectedGraph<Integer> diGraph, Set<Integer> visited, Integer source) {
 		
-		Queue<V> queue = new LinkedList<>();
+		Queue<Integer> queue = new LinkedList<>();
 		
 		queue.add(source);
 		
 		while(!queue.isEmpty()) {
 			
-			V v = queue.remove();
+			int v = queue.remove();
 			visited.add(v);
 			
-			for(V e : diGraph.getAdjacencySet(v)) {
+			for(int e : diGraph.getAdjacencySet(v)) {
 				
 				if(!visited.contains(e)) {
 					queue.add(e);

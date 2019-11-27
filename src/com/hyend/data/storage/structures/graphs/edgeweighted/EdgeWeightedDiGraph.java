@@ -1,98 +1,53 @@
 package com.hyend.data.storage.structures.graphs.edgeweighted;
 
-import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 
-public class EdgeWeightedDiGraph {
+public class EdgeWeightedDiGraph<V extends Comparable<V>> {
 	
-	private final int V = 0;
-	private int E = 0;
+	private Set<VertexWithDistance<V>> graph = null;
 	
-	private LinkedList<DirectedEdge>[] adjList;
-	
-	class DirectedEdge {
+	public EdgeWeightedDiGraph() {
 		
-		private final int v;
-		private final int w;
-		private final double weight;
-		
-		public DirectedEdge(int v, int w, double weight) {
-			this.v = v;
-			this.w = w;
-			this.weight = weight;
-		}
-		
-		public double weight() {
-			return weight;
-		}
-		
-		public int from() {
-			return v;
-		}
-		
-		public int to() {
-			return w;
-		}
-		
-		public String toString() {
-			return String.format("%d->%d %.2f", v, w, weight);
-		}		
+		graph = new LinkedHashSet<>();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public EdgeWeightedDiGraph(int V) {
-		adjList = new LinkedList[V];
-		for(int v = 0; v < V; v++) {
-			adjList[v] = new LinkedList<DirectedEdge>();
-		}
-	}
-	
-	public EdgeWeightedDiGraph(int[][] graph) {
-		this(graph.length);
-	}
-	
-	public int V() {
-		return this.V;
-	}
-	
-	public int E() {
-		return this.E;
-	}	
-	
-	public void addEdge(DirectedEdge edge) {
-		adjList[edge.from()].add(edge);
-		E += 1;
-	}
-	
-	public Iterable<DirectedEdge> getAdjacencyList(int V) {
-		return adjList[V];
-	}
-	
-	public Iterable<DirectedEdge> edges() {
-		LinkedList<DirectedEdge> edges = new LinkedList<>();
-		for(int v = 0; v < this.V; v++) {
-			for(DirectedEdge edge : adjList[v]) {
-				edges.add(edge);
-			}
-		}
-		return edges;
-	}	
-	
-	class ShortestPath {
+	public void addEdge(V v, V e, Integer distance) {
 		
-		public ShortestPath(int source) {
-			
-		}
+		convertToGraphVertex(v, e);
 		
-		public double distTo(int v) {
-			return 0.0;
-		}
+		VertexWithDistance<V> v1 = new VertexWithDistance<>(getGraphVertex(v));
+		VertexWithDistance<V> v2 = new VertexWithDistance<>(getGraphVertex(e), distance);
+				
+		v1.vertex.edges.add(v2);
 		
-		public boolean hasPathTo(int v) {
-			return false; 
-		}
+		graph.add(v1);
+	}
+	
+	public Set<VertexWithDistance<V>> getGraph() {
+		return graph;
+	}
+	
+	public void printGraph(Set<VertexWithDistance<V>> graph) {
 		
-		public Iterable<DirectedEdge> pathTo(int v) {
-			return null;
-		}
+		for(VertexWithDistance<V> v : graph)
+			System.out.println(v);
+	}
+	
+	
+	////////////////////////////// Helper Methods //////////////////////////////////////
+	
+	private Map<V, GraphVertex<V>> map = new HashMap<>();
+	
+	private void convertToGraphVertex(V v, V e) {
+
+		map.putIfAbsent(v, new GraphVertex<V>(v));
+		map.putIfAbsent(e, new GraphVertex<V>(e));		
+	}
+	
+	public GraphVertex<V> getGraphVertex(V key) {
+		return map.get(key);
 	}
 }

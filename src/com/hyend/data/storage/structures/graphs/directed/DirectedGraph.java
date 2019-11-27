@@ -20,7 +20,7 @@ import java.util.LinkedHashSet;
  * 
  * @author gopi_karmakar
  */
-public class DirectedGraph<V> {
+public class DirectedGraph<V extends Comparable<V>> {
 	
 	private int totalEdges = 0;
 	
@@ -67,16 +67,6 @@ public class DirectedGraph<V> {
 		vertexGraph = new LinkedHashSet<>();
 	}
 	
-	public DirectedGraph(List<List<V>> vertices) {
-		this();
-		create(vertices);
-	}	
-	
-	public DirectedGraph(Map<V, List<V>> vertices) {				
-		this();
-		create(vertices);
-	}
-	
 	@Override
 	public String toString() {		
 		String message = "";
@@ -90,14 +80,18 @@ public class DirectedGraph<V> {
 	
 	public V addEdge(V v1, V v2) {
 		
-		graph.connectVertices(v1, v2);		
+		graph.connectVertices(v1, v2);	
+		
+		totalEdges += 1;
 		return v1;
 	}
 	
 	public Vertex<V> addEdge(Vertex<V> v1, Vertex<V> v2) {
 		
 		v1.edges.add(v2);
-		vertexGraph.add(v1);		
+		vertexGraph.add(v1);
+		
+		totalEdges += 1;
 		return v1;
 	}
 	
@@ -105,6 +99,7 @@ public class DirectedGraph<V> {
 		for(V[] v : data) {						
 			for(int i = 1; i < v.length; ++i) {
 				graph.connectVertices(v[0], v[i]);
+				totalEdges += 1;
 			}
 		}		
 	}
@@ -116,6 +111,7 @@ public class DirectedGraph<V> {
 			for(int i = 1; i < v.length; ++i) {
 				
 				gv.edges.add(v[i]);
+				totalEdges += 1;
 			}				
 			vertexGraph.add(gv);				
 		}		
@@ -164,6 +160,7 @@ public class DirectedGraph<V> {
 			getAdjacencySet(v).forEach(e -> {
 				
 				diGraph.graph.connectVertices(e, v);
+				totalEdges += 1;
 			});
 		});
 		return diGraph;
@@ -195,12 +192,12 @@ public class DirectedGraph<V> {
 		return graph.getGraph();
 	}
 	
-	public Collection<V> getAllVertices() {
-		return graph.getGraph().keySet();
+	public Set<Vertex<V>> getVertexGraph() {
+		return vertexGraph;
 	}
 	
-	public Set<Vertex<V>> getAllGraphVertexes() {
-		return vertexGraph;
+	public Collection<V> getAllVertices() {
+		return graph.getGraph().keySet();
 	}
 	
 	public Set<V> getAdjacencySet(V v) { 
@@ -216,8 +213,9 @@ public class DirectedGraph<V> {
 		System.out.println(toString());
 	}
 	
-	public void printGraphVertex() {
+	public void printVertexGraph() {
 		
-		System.out.println(toString());
+		for(Vertex<V> v: vertexGraph)
+			System.out.println(v);
 	}
 }

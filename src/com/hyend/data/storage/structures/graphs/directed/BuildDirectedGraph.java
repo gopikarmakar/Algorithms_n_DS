@@ -1,11 +1,10 @@
 package com.hyend.data.storage.structures.graphs.directed;
 
 import java.util.List;
-
-import com.hyend.data.storage.structures.graphs.Vertex;
-
-import java.util.Arrays;
+import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
+import com.hyend.data.storage.structures.graphs.Vertex;
 
 /**
  * A Directed Graph Builder Wrapper
@@ -16,7 +15,7 @@ import java.util.ArrayList;
  * 
  * @author gopi_karmakar
  */
-public class BuildDirectedGraph<V> {
+public class BuildDirectedGraph<V extends Comparable<V>> {
 
 	public static void main(String[] args) {
 		
@@ -40,7 +39,7 @@ public class BuildDirectedGraph<V> {
 		return BuildDirectedGraph.buildGraph(data);			
 	}
 	
-	public static <V> DirectedGraph<V> buildGraph(V[][] data) {
+	public static <V extends Comparable<V>> DirectedGraph<V> buildGraph(V[][] data) {
 		
 		DirectedGraph<V> diGraph = new DirectedGraph<>();
 	
@@ -49,7 +48,7 @@ public class BuildDirectedGraph<V> {
 		return diGraph;
 	}
 	
-	public static <V> DirectedGraph<V> buildGraph(List<List<V>> data) {
+	public static <V extends Comparable<V>> DirectedGraph<V> buildGraph(List<List<V>> data) {
 		
 		DirectedGraph<V> diGraph = new DirectedGraph<>();
 		
@@ -57,17 +56,25 @@ public class BuildDirectedGraph<V> {
 		
 		return diGraph;
 	}
-	
-	public static <V> DirectedGraph<V> buildWithGraphVertex(Vertex<V>[][] data) {
+		
+	public static <V  extends Comparable<V>> DirectedGraph<V> buildVertexGraph(V[][] data) {
 		
 		DirectedGraph<V> diGraph = new DirectedGraph<>();
+		BuildDirectedGraph<V> helper = new BuildDirectedGraph<V>();
 		
-		diGraph.create(data);
+		for(V[] v: data) {
+			
+			for(int i = 1; i < v.length; ++i) {
+				
+				helper.convertToGraphVertex(v[0], v[i]);
+				diGraph.addEdge(helper.getGraphVertex(v[0]), helper.getGraphVertex(v[i]));
+			}
+		}
 		
 		return diGraph;
 	}
 	
-	public static <V> DirectedGraph<V> buildWithGraphVertex(List<List<Vertex<V>>> data) {
+	public static <V  extends Comparable<V>> DirectedGraph<V> buildVertexGraph(List<List<Vertex<V>>> data) {
 		
 		DirectedGraph<V> diGraph = new DirectedGraph<>();
 		
@@ -76,9 +83,21 @@ public class BuildDirectedGraph<V> {
 		return diGraph;
 	}
 	
-	//////////////////////////////Helper Methods //////////////////////////////////////
+	////////////////////////////// Helper Methods //////////////////////////////////////
 	
-	public static <V> List<List<Vertex<V>>> convertInToList(Vertex<V>[][] data) {
+	private Map<V, Vertex<V>> map = new HashMap<>();
+	
+	private void convertToGraphVertex(V v1, V v2) {
+
+		map.putIfAbsent(v1, new Vertex<V>(v1));
+		map.putIfAbsent(v2, new Vertex<V>(v2));
+	}
+	
+	public Vertex<V> getGraphVertex(V key) {
+		return map.get(key);
+	}
+	
+	public static <V  extends Comparable<V>> List<List<Vertex<V>>> convertInToList(Vertex<V>[][] data) {
 		
 		List<List<Vertex<V>>> list = new ArrayList<>();
 		

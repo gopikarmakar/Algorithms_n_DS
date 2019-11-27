@@ -11,7 +11,7 @@ import java.util.LinkedHashSet;
  * 
  * @author gopi_karmakar
  */
-public class ReachablePathBetweenTwoVertices<V> {
+public class ReachablePathBetweenTwoVertices<V extends Comparable<V>> {
 
 	public static void main(String[] args) {
 		
@@ -31,7 +31,7 @@ public class ReachablePathBetweenTwoVertices<V> {
 	 * The time complexity and space complexity are both O(E), 
 	 * where E is the number of outcomes.
 	 */
-	private static <V> boolean dfs(DirectedGraph<V> diGraph, V teamA, V teamB, Set<V> visited) {
+	private static <V extends Comparable<V>> boolean dfs(DirectedGraph<V> diGraph, V teamA, V teamB, Set<V> visited) {
 	
 		if(visited.contains(teamA) || diGraph.getAdjacencySet(teamA).isEmpty())
 			return false;

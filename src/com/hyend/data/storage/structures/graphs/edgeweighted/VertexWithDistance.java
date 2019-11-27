@@ -3,9 +3,9 @@ package com.hyend.data.storage.structures.graphs.edgeweighted;
 import java.util.Objects;
 
 public class VertexWithDistance<V extends Comparable<V>> {
-
-	public int distance;
-	public GraphVertex<V> vertex;
+	
+	int distance;
+	GraphVertex<V> vertex;		
 	
 	public VertexWithDistance(GraphVertex<V> vertex) {
 		this(vertex, 0);
@@ -37,9 +37,7 @@ public class VertexWithDistance<V extends Comparable<V>> {
 	
 	@Override
 	public String toString() {
-		
 		String msg = "v = " + this.vertex.v + " d = " + this.distance + "\t->\t";
-		
 		for(VertexWithDistance<V> e: this.vertex.edges) {
 			
 			String edgeMsg = " v = " + e.vertex.v + ", d = " + e.distance;

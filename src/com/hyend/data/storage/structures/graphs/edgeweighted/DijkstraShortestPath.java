@@ -81,15 +81,15 @@ public class DijkstraShortestPath {
 		}
 	}
 	
-	private static class VertexWithDistance<V> {
+	private static class VertexWithDistance<V extends Comparable<V>> {
 		int distance;
-		GraphVertex<String> vertex;		
+		GraphVertex<V> vertex;		
 		
-		public VertexWithDistance(GraphVertex<String> vertex) {
+		public VertexWithDistance(GraphVertex<V> vertex) {
 			this(vertex, 0);
 		}
 		
-		public VertexWithDistance(GraphVertex<String> vertex, int distance) {
+		public VertexWithDistance(GraphVertex<V> vertex, int distance) {
 			this.vertex = vertex;
 			this.distance = distance;
 		}
@@ -116,7 +116,7 @@ public class DijkstraShortestPath {
 		@Override
 		public String toString() {
 			String msg = "v = " + this.vertex.v + " d = " + this.distance + "\t->\t";
-			for(VertexWithDistance<String> e: this.vertex.edges) {
+			for(VertexWithDistance<V> e: this.vertex.edges) {
 				
 				String edgeMsg = " v = " + e.vertex.v + ", d = " + e.distance;
 				msg += edgeMsg;
@@ -135,7 +135,7 @@ public class DijkstraShortestPath {
 		}
 	}
 	
-	private static class GraphVertex<V extends Comparable<V>> extends Vertex<V> implements Comparable<GraphVertex<V>> {
+	private static class GraphVertex<V extends Comparable<V>> implements Comparable<GraphVertex<V>> {
 		
 		public V v;				
 		
@@ -148,7 +148,6 @@ public class DijkstraShortestPath {
 				new DistanceWithFewestEdges(Integer.MAX_VALUE, 0);
 		
 		public GraphVertex(V v) {
-			super(v);
 			this.v = v;			
 			edges = new ArrayList<>();
 		}				
@@ -166,7 +165,7 @@ public class DijkstraShortestPath {
 				return Integer.compare(distanceWithFewestEdges.minNumEdges, vertex.distanceWithFewestEdges.minNumEdges);
 			}
 			
-			return v.compareTo(v);
+			return v.compareTo(vertex.v);
 		}
 		
 		@Override
@@ -196,7 +195,7 @@ public class DijkstraShortestPath {
 	
 	private static Set<VertexWithDistance<String>> createGraph(int[][] data) {
 				
-		Set<VertexWithDistance<String>> list = new LinkedHashSet<>();				
+		Set<VertexWithDistance<String>> graph = new LinkedHashSet<>();				
 		
 		/**
 		 * Graph Creation
@@ -207,9 +206,9 @@ public class DijkstraShortestPath {
 			VertexWithDistance<String> v2 = new VertexWithDistance<>(getGraphVertex(col[1]), col[2]);
 			
 			v1.vertex.edges.add(v2);			
-			list.add(v1);						
+			graph.add(v1);						
 		}		
-		return list;
+		return graph;
 	}
 	
 	private static Map<Integer, GraphVertex<String>> map = new HashMap<>();
@@ -219,10 +218,8 @@ public class DijkstraShortestPath {
 						
 			for(int e = 0; e < col.length-1; ++e) {
 			
-				String v = col[e] >= 0 && col[e] <= 26 ? String.valueOf((char)(col[e] + 65)) : null; 
-				
-				GraphVertex<String> gv = map.getOrDefault(col[e], new GraphVertex<String>(v));
-				map.put(col[e], gv);
+				String v = col[e] >= 0 && col[e] <= 26 ? String.valueOf((char)(col[e] + 65)) : null; 				
+				map.putIfAbsent(col[e], new GraphVertex<String>(v));
 			}
 		}
 	}

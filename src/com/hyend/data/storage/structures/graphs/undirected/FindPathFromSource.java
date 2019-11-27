@@ -10,7 +10,7 @@ import java.util.LinkedHashSet;
  * 
  * @author gopi_karmakar
  */
-public class FindPathFromSource<V> {
+public class FindPathFromSource<V extends Comparable<V>> {
 
 	private Set<V> visitedPath = null;
 	

@@ -39,17 +39,16 @@ public class DeadlockDetection {
 		 * depicted in wait for graph .
 		 */		
 		
-		/*DirectedGraph<String> diGraph = new BuildDirectedGraph<String>().buildWithGraphVertex(
-				BuildDirectedGraph.convertInToList(createSampleData()));*/
+		String[][] waitForGraph = {{"p1", "p2"}, {"p2", "p3", "p4", "p5"}, {"p4", "p1"}};
 		
-		DirectedGraph<String> diGraph = BuildDirectedGraph.buildWithGraphVertex(createSampleData());				
+		/**
+		 * Every process will be a Graph Vertex with default color as white. 	 
+		 */
+		DirectedGraph<String> diGraph = BuildDirectedGraph.buildVertexGraph(waitForGraph);
 		
-		Set<Vertex<String>> graph = diGraph.getAllGraphVertexes();		
+		diGraph.printVertexGraph();
 		
-		for(Vertex<String> v: graph)
-			System.out.println(v);	
-		
-		System.out.println("\nIs There Any Deadlock = " + detectDeadlock(graph));
+		System.out.println("\nIs There Any Deadlock = " + detectDeadlock(diGraph.getVertexGraph()));
 	}
 	
 	/**
@@ -85,40 +84,5 @@ public class DeadlockDetection {
 		
 		v.color = Vertex.Color.BLACK;
 		return false;
-	}
-
-	/**
-	 * Every process will be a Graph Vertex with default white color. 	 
-	 */
-	public static class GraphVertex<V> extends Vertex<V> {
-				
-		public GraphVertex(V v) {
-			super(v);
-			this.color = Color.WHITE;
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
-	private static Vertex<String>[][] createSampleData() {
-		
-		Vertex<String> p1 = new GraphVertex<>("P1");
-		Vertex<String> p2 = new GraphVertex<>("P2");
-		Vertex<String> p3 = new GraphVertex<>("P3");
-		Vertex<String> p4 = new GraphVertex<>("P4");
-		Vertex<String> p5 = new GraphVertex<>("P5");	
-		
-		@SuppressWarnings("rawtypes")
-		Vertex[][] waitForGraph = {{p1, p2}, {p2, p3, p4, p5}, {p4, p1}};				
-		
-		// Or we can do below thing too!
-		/*DirectedGraph<String> diGraph = new DirectedGraph<>();
-		diGraph.addEdge(p1, p2);
-		diGraph.addEdge(p2, p3);
-		diGraph.addEdge(p2, p4);
-		diGraph.addEdge(p2, p5);
-		diGraph.addEdge(p4, p1);		
-		Set<Vertex<String>> set = diGraph.getAllGraphVertexes();*/
-				
-		return waitForGraph;
 	}
 }
