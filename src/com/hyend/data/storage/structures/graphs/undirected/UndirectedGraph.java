@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
 import com.hyend.data.storage.structures.graphs.Vertex;
+import com.hyend.data.storage.structures.graphs.directed.DirectedGraph;
 
 /**
  * An Undirected Graph Implementation
@@ -151,6 +152,21 @@ public class UndirectedGraph<V extends Comparable<V>> {
 				totalEdges += 1;
 			});
 		});
+	}
+	
+	public DirectedGraph<V> reverse() {
+		
+		DirectedGraph<V> diGraph = new DirectedGraph<>();
+		
+		getAllVertices().forEach(v -> {
+			
+			getAdjacencySet(v).forEach(e -> {
+				
+				graph.connectVertices(e, v);
+				totalEdges += 1;
+			});
+		});
+		return diGraph;
 	}
 	
 	public int edges() {

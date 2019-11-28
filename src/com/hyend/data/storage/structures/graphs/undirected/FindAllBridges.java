@@ -6,7 +6,7 @@ import java.util.LinkedHashSet;
 import com.hyend.data.storage.structures.graphs.Vertex;
 
 /**
- * Find bridges in a connected undirected graph.
+ * Find all the bridges in a connected undirected graph.
  * An edge in an undirected connected graph is a bridge if removing it disconnects the graph.
  * 
  * For e.g: In the below graph C->D, D->E and F->H are the bridges because removing any edge out of 
@@ -18,6 +18,9 @@ import com.hyend.data.storage.structures.graphs.Vertex;
  * 						|	|	|		  \	|
  * 						B---|	D-----------E
  * 
+ * Variant: Find all the weak links in a connected network such that removing any of those links can 
+ * disconnect and isolate the entire single connected network in to two connected networks. 
+ * 
  * @author gopi_karmakar
  */
 public class FindAllBridges {
@@ -26,7 +29,7 @@ public class FindAllBridges {
 	
 	public static void main(String[] args) {
 		
-		String[][] data = {{"A", "B", "C"}, {"C", "B", "D"}, {"D", "E"}, {"E", "F"}, {"F", "G", "H"}, {"G", "E"}};
+		String[][] data = {{"A", "C", "B"}, {"C", "B", "D"}, {"D", "E"}, {"E", "F"}, {"F", "G", "H"}, {"G", "E"}};
 		
 		//String[][] data = {{"A", "B"}, {"B", "C"}, {"C", "A"}, {"B", "D"}, {"B", "E"}, {"B", "G"}, {"D", "F"}, {"E", "F"}};
 		
@@ -38,7 +41,7 @@ public class FindAllBridges {
 		
 		dfs(uDiGraph.getVertexGraph().iterator().next(), result);
 		
-		System.out.println("\nBridges Are : " + result.size());		
+		System.out.println("\nTotal Bridges Are : " + result.size());		
 		
 		result.forEach(v -> {
 			
@@ -56,8 +59,8 @@ public class FindAllBridges {
 	private static void dfs(Vertex<String> v, Set<Vertex<String>> result) {
 		
 		v.visited = true;
-		v.totalDirectVisits = visitCount;
-		v.totalIndirectVisits = visitCount;
+		v.lowerTime = visitCount;
+		v.discoveryTime = visitCount;		
 		
 		visitCount += 1;
 		
@@ -66,21 +69,22 @@ public class FindAllBridges {
 			if(!e.visited) {
 				
 				e.parent = v;
-				dfs(e, result);
+				dfs(e, result);								
 				
-				v.totalIndirectVisits = Math.min(v.totalIndirectVisits, e.totalIndirectVisits);
-				
-				if(e.totalIndirectVisits > v.totalDirectVisits) {
+				if(e.lowerTime > v.discoveryTime) {
 				
 					Vertex<String> edge = new Vertex<>(v);
 					edge.edges.add(e);
 					result.add(edge);								
-				}								
+				}				
+				v.lowerTime = Math.min(v.lowerTime, e.lowerTime);
 			}
 			else {
 				
+				//It's a cycle and if it's not from it's own parent then it's a back edge.
 				if(!e.equals(v.parent)) {
-					v.totalIndirectVisits = Math.min(v.totalDirectVisits, e.totalIndirectVisits);
+					
+					v.lowerTime = Math.min(v.lowerTime, e.discoveryTime);
 				}
 			}		
 		}		

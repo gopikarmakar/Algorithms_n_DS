@@ -23,11 +23,11 @@ import com.hyend.data.storage.structures.graphs.Vertex;
  */
 public class FindArticulationPoints {
 
-	private static int visitCount = 0;
+	private static int visitTime = 0;
 	
 	public static void main(String[] args) {
 		
-		String[][] data = {{"A", "B", "C"}, {"C", "B", "D"}, {"D", "E"}, {"E", "F"}, {"F", "G", "H"}, {"G", "E"}};
+		String[][] data = {{"A", "C", "B"}, {"C", "B", "D"}, {"D", "E"}, {"E", "F"}, {"F", "G", "H"}, {"G", "E"}};
 		
 		UndirectedGraph<String> uDiGraph = BuildUndirectedGraph.buildVertexGraph(data);
 		
@@ -52,39 +52,45 @@ public class FindArticulationPoints {
 	private static void dfs(Vertex<String> v, Set<Vertex<String>> result) {
 		
 		v.visited = true;
-		v.totalDirectVisits = visitCount;
-		v.totalIndirectVisits = visitCount;
+		//lower time is back for edge
+		v.lowerTime = visitTime;
+		v.discoveryTime = visitTime;
 		
-		visitCount += 1;
+		visitTime += 1;
 		
 		int childCount = 0;
 		boolean isArticulationPoint = false;
 		
-		for(Vertex<String> e: v.edges) {
-			
-			if(!e.equals(v.parent)) {												
+		for(Vertex<String> e: v.edges) {												
 				
-				if(!e.visited) {									
-					
-					e.parent = v;
-					childCount += 1;
-					dfs(e, result);
-					
-					if(v.totalDirectVisits <= e.totalIndirectVisits) {
-						isArticulationPoint = true;
-					}
-					else {
-						
-						v.totalIndirectVisits = Math.min(v.totalIndirectVisits, e.totalIndirectVisits);
-					}
+			if(!e.visited) {									
+				
+				e.parent = v;
+				childCount += 1;
+				dfs(e, result);
+				
+				if(e.lowerTime >= v.discoveryTime) {
+					isArticulationPoint = true;
 				}
 				else {
 					
-					v.totalIndirectVisits = Math.min(e.totalDirectVisits, v.totalIndirectVisits);
+					v.lowerTime = Math.min(v.lowerTime, e.lowerTime);
 				}
 			}
+			else {
+								
+				//It's a cycle and if it's not from it's own parent then it's a back edge.				 
+				if(!e.equals(v.parent)) {	
+					
+					v.lowerTime = Math.min(v.lowerTime, e.discoveryTime);
+				}
+			}			
 		}
 		
+		/**
+		 * (v.parent == null && childCount == 2) condition for root vertex because  
+		 * we can start traversal from any vertex.
+		 */
 		if((v.parent == null && childCount == 2) || v.parent != null && isArticulationPoint)
 			result.add(v);
 	}

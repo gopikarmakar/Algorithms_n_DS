@@ -14,23 +14,35 @@ public class Vertex<V extends Comparable<V>> {
 	public boolean visited = false;
 	
 	public int distance;
-	public int totalDirectVisits = 0;
-	public int totalIndirectVisits = 0;
+	
+	// For Bridges and Articulation Points
+	public int lowerTime = 0;
+	public int discoveryTime = 0;	
 	
 	public Vertex<V> parent = null;
 	public Set<Vertex<V>> edges = null;
 	
-	public Vertex() {}		
+	public Vertex() {
+		edges = new LinkedHashSet<Vertex<V>>();
+	}		
 	
 	public Vertex(V v) {
+		this(v, false);
+	}
+	
+	public Vertex(V v, boolean isVisited) {
 		this.v = v;
-		this.visited = false;
+		this.visited = isVisited;
 		this.color = Color.WHITE;
 		edges = new LinkedHashSet<Vertex<V>>();
 	}
 	
 	public Vertex(Vertex<V> v) {
 		this(v.v);
+	}
+	
+	public void setVertex(Vertex<V> vertex) {
+		this.v = vertex.v;
 	}
 	
 	@Override

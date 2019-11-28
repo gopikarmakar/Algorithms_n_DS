@@ -33,15 +33,9 @@ public class RectifyInvalidBinaryTree<V> {
 		System.out.println("Tree Before Fixed:");
 		diGraph.printGraph();
 		
-		System.out.println("Reverse Tree Before Fixed:");
-		diGraph.reverse().printGraph();
-		
 		System.out.println("Tree After Fixed:");
 		DirectedGraph<Integer> rectifiedDiGraph = rectifyTree(diGraph);
 		rectifiedDiGraph.printGraph();
-		
-		System.out.println("Reverse Tree After Fixed:");
-		rectifiedDiGraph.reverse().printGraph();
 	}
 	
 	 /**

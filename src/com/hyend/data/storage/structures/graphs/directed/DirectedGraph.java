@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
@@ -24,9 +25,11 @@ public class DirectedGraph<V extends Comparable<V>> {
 	
 	private int totalEdges = 0;
 	
-	private Graph graph = null;
+	private Graph mGraph = null;
 	
-	private Set<Vertex<V>> vertexGraph = null;
+	private Set<Vertex<V>> mVertexGraph = null;
+	
+	Map<V, Vertex<V>> mappedVertexGraph = null;
 	
 	private class Graph {
 
@@ -63,15 +66,16 @@ public class DirectedGraph<V extends Comparable<V>> {
 	}
 	
 	public DirectedGraph() {
-		graph = new Graph();	
-		vertexGraph = new LinkedHashSet<>();
+		mGraph = new Graph();	
+		mappedVertexGraph = new HashMap<>();
+		mVertexGraph = new LinkedHashSet<>();		
 	}
 	
 	@Override
 	public String toString() {		
 		String message = "";
 		
-		for(V v : graph.getGraph().keySet()) {
+		for(V v : mGraph.getGraph().keySet()) {
 			
 			message += v + "\t->\t" + getAdjacencySet(v) + "\n";
 		}		
@@ -80,7 +84,7 @@ public class DirectedGraph<V extends Comparable<V>> {
 	
 	public V addEdge(V v1, V v2) {
 		
-		graph.connectVertices(v1, v2);	
+		mGraph.connectVertices(v1, v2);	
 		
 		totalEdges += 1;
 		return v1;
@@ -89,7 +93,7 @@ public class DirectedGraph<V extends Comparable<V>> {
 	public Vertex<V> addEdge(Vertex<V> v1, Vertex<V> v2) {
 		
 		v1.edges.add(v2);
-		vertexGraph.add(v1);
+		mVertexGraph.add(v1);
 		
 		totalEdges += 1;
 		return v1;
@@ -98,7 +102,7 @@ public class DirectedGraph<V extends Comparable<V>> {
 	public void create(V[][] data) {				
 		for(V[] v : data) {						
 			for(int i = 1; i < v.length; ++i) {
-				graph.connectVertices(v[0], v[i]);
+				mGraph.connectVertices(v[0], v[i]);
 				totalEdges += 1;
 			}
 		}		
@@ -113,20 +117,20 @@ public class DirectedGraph<V extends Comparable<V>> {
 				gv.edges.add(v[i]);
 				totalEdges += 1;
 			}				
-			vertexGraph.add(gv);				
+			mVertexGraph.add(gv);				
 		}		
 	}
 	
 	public void create(List<List<V>> list) {			
 		list.forEach(v -> {			
 			for(int i = 1; i < v.size(); ++i) {											
-				graph.connectVertices(v.get(0), v.get(i));
+				mGraph.connectVertices(v.get(0), v.get(i));
 				totalEdges += 1;
 			}
 		});
 	}
 	
-	public void createWithGraphVertex(List<List<Vertex<V>>> list) {			
+	public void createVertexGraph(List<List<Vertex<V>>> list) {			
 		list.forEach(v -> {
 			
 			Vertex<V> gv = v.get(0);
@@ -135,7 +139,7 @@ public class DirectedGraph<V extends Comparable<V>> {
 				gv.edges.add(v.get(i));
 				totalEdges += 1;
 			}
-			vertexGraph.add(gv);
+			mVertexGraph.add(gv);
 		});
 	}
 	
@@ -145,10 +149,24 @@ public class DirectedGraph<V extends Comparable<V>> {
 			
 			entry.getValue().forEach(e -> {
 								
-				graph.connectVertices(entry.getKey(), e);
+				mGraph.connectVertices(entry.getKey(), e);
 				totalEdges += 1;
 			});
 		});
+	}
+	
+	public void createMappedVertexGraph(V[][] data) {					
+		
+		for(V[] v : data) {
+			
+			Vertex<V> gv = mappedVertexGraph.getOrDefault(v[0], new Vertex<V>(v[0]));			
+			for(int i = 1; i < v.length; ++i) {
+				
+				gv.edges.add(new Vertex<>(v[i]));
+				totalEdges += 1;
+			}				
+			mappedVertexGraph.put(gv.v, gv);				
+		}
 	}
 	
 	public DirectedGraph<V> reverse() {
@@ -159,16 +177,34 @@ public class DirectedGraph<V extends Comparable<V>> {
 			
 			getAdjacencySet(v).forEach(e -> {
 				
-				diGraph.graph.connectVertices(e, v);
+				mGraph.connectVertices(e, v);
 				totalEdges += 1;
 			});
 		});
 		return diGraph;
 	}
 	
+	public Collection<Vertex<V>> reverseVertexGraph() {
+		
+		
+		Map<V, Vertex<V>> map = new HashMap<>();
+		
+		mappedVertexGraph.values().forEach(v -> {
+			
+			v.edges.forEach(e -> {
+				
+				Vertex<V> reversed = map.getOrDefault(e.v, new Vertex<>(e));
+				reversed.edges.add(v);
+				map.put(e.v, reversed);
+			});			
+			
+		});
+		return map.values();
+	}
+	
 	public DirectedGraph<V> disconnectVertices(V v, V e) {
 		
-		graph.disconnectVertices(v, e);		
+		mGraph.disconnectVertices(v, e);		
 		return this;
 	}
 	
@@ -185,23 +221,28 @@ public class DirectedGraph<V extends Comparable<V>> {
 	}
 	
 	public int vertices() {
-		return graph.getGraph().size();
+		return mGraph.getGraph().size();
 	}
 	
 	public Map<V, Set<V>> getGraph() {
-		return graph.getGraph();
+		return mGraph.getGraph();
 	}
 	
 	public Set<Vertex<V>> getVertexGraph() {
-		return vertexGraph;
+		return mVertexGraph;
+	}
+	
+	public Map<V, Vertex<V>> getMappedVertexGraph() {
+		
+		return mappedVertexGraph;
 	}
 	
 	public Collection<V> getAllVertices() {
-		return graph.getGraph().keySet();
+		return mGraph.getGraph().keySet();
 	}
 	
 	public Set<V> getAdjacencySet(V v) { 
-		return graph.getGraph().getOrDefault(v, new LinkedHashSet<>());
+		return mGraph.getGraph().getOrDefault(v, new LinkedHashSet<>());
 	}
 	
 	public List<V> getAdjacencyList(V v) {	
@@ -215,7 +256,13 @@ public class DirectedGraph<V extends Comparable<V>> {
 	
 	public void printVertexGraph() {
 		
-		for(Vertex<V> v: vertexGraph)
+		for(Vertex<V> v: mVertexGraph)
+			System.out.println(v);
+	}
+	
+	public void printMappedVertexGraph() {
+		
+		for(Vertex<V> v: mappedVertexGraph.values())
 			System.out.println(v);
 	}
 }
