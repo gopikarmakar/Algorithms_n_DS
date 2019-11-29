@@ -19,6 +19,7 @@ public class ShortestPath<V extends Comparable<V>> {
 		
 		SortedSet<GraphVertex<V>> bst = new TreeSet<>();
 		
+		// Initializing the source vertex with 0 before begin the traversal.
 		s.distanceWithFewestEdges = new DistanceWithFewestEdges(0, 0);
 		bst.add(s);				
 		

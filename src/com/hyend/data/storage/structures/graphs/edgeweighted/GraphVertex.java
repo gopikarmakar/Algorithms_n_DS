@@ -1,26 +1,22 @@
 package com.hyend.data.storage.structures.graphs.edgeweighted;
 
-import java.util.Set;
 import java.util.List;
 import java.util.Objects;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 
 public class GraphVertex<V extends Comparable<V>> implements Comparable<GraphVertex<V>> {
 
 	public V v; 
 	public GraphVertex<V> parent;
 	
-	//public Set<VertexWithDistance<V>> edges = null;
-	
 	public List<VertexWithDistance<V>> edges = null;
 	
+ 	// Required to start every source vertex with a initial value.
 	public DistanceWithFewestEdges distanceWithFewestEdges = 
 			new DistanceWithFewestEdges(Integer.MAX_VALUE, 0); 	
 	
 	public GraphVertex(V v) {
 		this.v = v;
-		//edges = new LinkedHashSet<>();
 		edges = new ArrayList<>();
 	}
 

@@ -2,6 +2,12 @@ package com.hyend.data.storage.structures.graphs.edgeweighted;
 
 import java.util.Objects;
 
+/**
+ * Required to initialize every self vertex distance with 0
+ * an edge to other Vertex will have the distance.  
+ * 
+ * @author gopi_karmakar
+ */
 public class VertexWithDistance<V extends Comparable<V>> {
 	
 	int distance;
@@ -37,10 +43,10 @@ public class VertexWithDistance<V extends Comparable<V>> {
 	
 	@Override
 	public String toString() {
-		String msg = "v = " + this.vertex.v + " d = " + this.distance + "\t->\t";
+		String msg = this.vertex.v + " = " + this.distance + "\t->\t";
 		for(VertexWithDistance<V> e: this.vertex.edges) {
 			
-			String edgeMsg = " v = " + e.vertex.v + ", d = " + e.distance;
+			String edgeMsg = e.vertex.v + " = " + e.distance + ",  ";
 			msg += edgeMsg;
 		} 
 		return msg;

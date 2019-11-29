@@ -34,7 +34,7 @@ public class DijkstraShortestPathWithMinEdges<V extends Comparable<V>> {
 		
 		Set<VertexWithDistance<String>> graph = eDiGraph.getGraph();
 		
-		eDiGraph.printGraph(graph);
+		eDiGraph.printGraph();
 		
 		GraphVertex<?> v = ShortestPath.shortestPath(graph, eDiGraph.getGraphVertex("S"), eDiGraph.getGraphVertex("T"));
 		

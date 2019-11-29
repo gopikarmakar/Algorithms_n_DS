@@ -30,7 +30,7 @@ public class EdgeWeightedDiGraph<V extends Comparable<V>> {
 		return graph;
 	}
 	
-	public void printGraph(Set<VertexWithDistance<V>> graph) {
+	public void printGraph() {
 		
 		for(VertexWithDistance<V> v : graph)
 			System.out.println(v);
