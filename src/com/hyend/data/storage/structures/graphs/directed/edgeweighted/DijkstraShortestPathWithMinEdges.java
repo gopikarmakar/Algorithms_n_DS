@@ -6,6 +6,8 @@ import java.util.Set;
  * Find the shortest path with least distance between 
  * a source and a destination with least edges.
  * 
+ * NOTE: Assuming it's a DAG, So not checking for cyclicity.
+ * 
  * Kindly see the below link for the Graph data and design:
  * https://www.geeksforgeeks.org/algorithms-gq/graph-shortest-paths-gq/
  * 

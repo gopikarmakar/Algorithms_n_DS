@@ -12,8 +12,13 @@ import java.util.ArrayList;
  * or any given subgraph should be visited such that the visited path should be the 
  * shortest path with least edges required.  
  * 
+ * NOTE: Assuming it's a DAG, So not checking for cyclicity.
+ * 
  * Kindly see the below link for the Graph data and design:
  * https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/ 
+ * 
+ * Variant: A Salesman Travelling problem. A salesman wants to reach to each n every house  
+ * such that the salesman takes the shortest route to cover all houses. 
  *  
  * @author gopi_karmakar
  */
