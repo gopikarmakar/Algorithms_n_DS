@@ -1,10 +1,13 @@
-package com.hyend.data.storage.structures.graphs.edgeweighted;
+package com.hyend.data.storage.structures.graphs.directed.edgeweighted;
 
 import java.util.Set;
 
 /**
  * Find the shortest path with least distance between 
  * a source and a destination with least edges.
+ * 
+ * Kindly see the below link for the Graph data and design:
+ * https://www.geeksforgeeks.org/algorithms-gq/graph-shortest-paths-gq/
  * 
  * Time complexity O((|E| + |V|)log|V|).
  * 

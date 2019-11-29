@@ -1,4 +1,4 @@
-package com.hyend.data.storage.structures.graphs.edgeweighted;
+package com.hyend.data.storage.structures.graphs.directed.edgeweighted;
 
 public class DistanceWithFewestEdges {
 
