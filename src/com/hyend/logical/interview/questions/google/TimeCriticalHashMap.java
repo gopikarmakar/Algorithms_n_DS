@@ -1,7 +1,7 @@
 package com.hyend.logical.interview.questions.google;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.ConcurrentHashMap;
-
 
 /**
  * A google telephonic screening phone interview question.
@@ -11,24 +11,29 @@ import java.util.concurrent.ConcurrentHashMap;
  * must not return any value. This should be strictly implemented as an Object Oriented code.
  * 
  * @author gopi_karmakar
- *
- * @param <K>
- * @param <V>
  */
-public class TimeCriticalHashMap<K, V> {
+public class TimeCriticalHashMap<K extends Comparable<K>, V> {
 
 	private transient int limit = 0;
 	private ConcurrentHashMap<K, WeightedValue> myMap;
 	
-	class WeightedValue {		
+	class WeightedValue {
+		
 		V value;
 		transient long time = 0;
+		
 		public WeightedValue(V value) {			
 			this.value = value;
 			this.time = System.currentTimeMillis();
 		}
-		public V getValue() { return value; }
-		public long getCurrentTime() { return time; }
+		
+		public V getValue() { 
+			return value; 
+		}
+		
+		public long getTime() { 
+			return time; 
+		}
 	}
 	
 	public TimeCriticalHashMap(int limit) {
@@ -36,16 +41,22 @@ public class TimeCriticalHashMap<K, V> {
 		myMap = new ConcurrentHashMap<K, WeightedValue>();
 	}
 	
-	public V put(K key, V value) {		
-		myMap.put(key, new WeightedValue(value));
+	public V put(K key, V value) {
+		
+		myMap.putIfAbsent(key, new WeightedValue(value));
 		return value;
 	}	
 	
-	public V get(K key) {
+	public V get(K key) throws NoSuchElementException {
+		
+		if(!myMap.contains(key))
+			throw new NoSuchElementException("Element Not Found");
+		
 		WeightedValue wv = myMap.get(key);
-		if(wv.getCurrentTime() - getCurrentTime() <= limit)
-			return wv.getValue();
-		else return null;
+		if(getCurrentTime() - wv.getTime() <= limit)
+			return wv.getValue();		
+		
+		throw new NoSuchElementException("Element Expired");
 	}
 	
 	private synchronized long getCurrentTime() {

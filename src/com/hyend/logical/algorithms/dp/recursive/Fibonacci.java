@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.dp;
+package com.hyend.logical.algorithms.dp.recursive;
 
 import java.util.HashMap;
 import java.util.Map;

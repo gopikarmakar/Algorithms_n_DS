@@ -33,8 +33,8 @@ import com.hyend.data.storage.structures.trees.SelfBalancedBST.SelfBalancedBSTre
 import com.hyend.data.storage.structures.trie.TrieDictionary;
 import com.hyend.data.storage.structures.trie.TrieDictionary.Node;
 import com.hyend.logical.algorithms.dp.AmountInWords;
-import com.hyend.logical.algorithms.dp.Fibonacci;
 import com.hyend.logical.algorithms.dp.geometry.FindLargestSquareInMatrix;
+import com.hyend.logical.algorithms.dp.recursive.Fibonacci;
 import com.hyend.logical.algorithms.dp.recursive.Staircase;
 import com.hyend.logical.algorithms.dp.recursive.StudentAttendance;
 import com.hyend.logical.algorithms.strings.FindFirstUniqueChar;

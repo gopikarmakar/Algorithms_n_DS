@@ -1,105 +1,49 @@
 package com.hyend.logical.algorithms.dp.recursive;
 
 /**
+ * You are climbing stairs. You can advance 1 to k steps at a time. Your destination is exactly n steps up.
  * 
- * @author karmakargopi
+ * Write a program which takes as inputs n and k and returns the number of ways 
+ * in which you can get to your destination. For example, if n = 4 and k = 2, 
+ * there are five ways in which to get to the destination:
+ * 1) Four single stair advances,
+ * 2) Two single stair advances followed by a double stair advance,
+ * 3) A single stair advance followed by a double stair advance followed by a single stair advance,
+ * 4) A double stair advance followed by two single stairs advances, and • two double stair advances.
+ * 5) Two double stair advances.
  * 
- * Prob: Find out the number of ways,
- * to climb the top of the staircase
- * for n given steps in staircase
- * 
- * 
+ * @author gopi_karmakar
  */
 public class Staircase {
 	
-	int totalWays = 0;
-	
-	public Staircase() {}
-	
-	public Staircase(int n) {
-		//cache = new int[n+1];
-	}	
-	
-	/**
-	 * Highly inefficient recursive approach.
-	 * By every time calculating the same
-	 * recursive calls. 
-	 * @param n
-	 * @return
-	 */
-	public int numberOfWays(int n) {
+	public static void main(String[] args) {
 		
-		if(n == 0 || n == 1) return 1;
-		else {
-			totalWays = numberOfWays(n-1) + numberOfWays(n-2);
-		}	
-		return totalWays;
+		int result = numberOfWays(4, 2, new int[4 + 1]);
+		
+		System.out.println(result);
 	}
 	
 	/**
-	 * Efficient recursive approach.
-	 * Where we store the previous value 
-	 * and use it again whenever same value 
-	 * recursively being called again.
-	 * @param n
-	 * @param temp
-	 * @return
+	 * An Efficient recursive approach. 
+	 * In the program below, we cache value of F(i,k), 0 <= i <= n
+	 * and use it again whenever same value recursively being called 
+	 * again to improve time complexity. 	 
+	 * 
+	 * We take O(k) time to fill in each entry, so the total time complexity is O(K * n). 
+	 * The space complexity is O(n).
 	 */
-	public int numberOfWays(int n, int[] cache) {
+	private static int numberOfWays(int n, int maxSteps, int[] totalWays) {
 		
-		if(cache[n] != 0) return cache[n];
-		if(n == 0 || n == 1) return 1;
-		else {
-			totalWays = numberOfWays(n-1, cache) + numberOfWays(n-2, cache);
-			cache[n] = totalWays;
-		}	
-		return cache[n];
-	}
-	
-	/**
-	 * Bottoms up approach to find the
-	 * number of ways to climb the staircase
-	 * @param n
-	 * @return
-	 */
-	public int bottomsUpNumOfWays(int n) {
+		if(n <= 1) 
+			return 1;
 		
-		int i = 2;
-		int[] temp = new int[n+1];
-		temp[0] = 1;
-		temp[1] = 1;
-		if(n == 0 || n == 1) return temp[n];
-		
-		for(; i <= n; i++) {
-			temp[i] = temp[n-1] + temp[n-2];
-		}
-		return temp[i-1];
-	}
-	
-	/**
-	 * Bottoms up approach to find the number of ways
-	 * with in the given range of steps can be taken.
-	 * @param n
-	 * @param range
-	 * @return
-	 */
-	public int numOfWaysWithInRange(int n, int[] range) {
-		
-		
-		int[] temp = new int[n+1];
-		temp[0] = 1;
-		
-		if(n == 0) return 1;
-		
-		int i = 1;
-		for(; i<= n; i++) {
-			totalWays = 0;
-			for(int j : range) {
-				if(i-j >= 0) 
-					totalWays += temp[i-j];
+		if(totalWays[n] == 0) {
+			
+			for(int i = 1; i <= maxSteps && n - i >= 0; ++i) {
+				
+				totalWays[n] += numberOfWays(n - i, maxSteps, totalWays);
 			}
-			temp[i] = totalWays;
-		}
-		return temp[n];
+		}		
+		return totalWays[n];
 	}
 }
