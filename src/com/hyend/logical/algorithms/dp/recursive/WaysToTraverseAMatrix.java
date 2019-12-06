@@ -16,6 +16,10 @@ public class WaysToTraverseAMatrix {
 		System.out.println("Total Ways to Traverse A " + n + " X " + m + " Matrix = " + totalWays);
 	}
 	
+	/**
+	 * The time complexity is O(n * m)
+	 * the space complexity is O(n * m)
+	 */
 	private static int numberOfWays(int row, int column, int[][] matrix) {
 		
 		if(row == 0 || column == 0)
