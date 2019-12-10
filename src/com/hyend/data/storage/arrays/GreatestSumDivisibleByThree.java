@@ -16,9 +16,9 @@ public class GreatestSumDivisibleByThree {
 		
 		//int[] arr = {4};
 		
-		int[] arr = {3, 6, 5, 1, 8};
+		//int[] arr = {3, 6, 5, 1, 8};
 		
-		//int[] arr = {1, 2, 3, 4, 4};
+		int[] arr = {1, 2, 3, 4, 4};
 		
 		System.out.println(find(arr));
 		
@@ -47,12 +47,12 @@ public class GreatestSumDivisibleByThree {
 					continue;
 				
 				sum += arr[j];
-			}
-			
-			if(sum > max && (sum % 3) == 0) {
 				
-				max = sum;				
-			}			
+				if(sum > max && (sum % 3) == 0) {
+					
+					max = sum;				
+				}
+			}								
 		}		
 		return max;
 	}
