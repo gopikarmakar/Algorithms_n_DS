@@ -20,7 +20,9 @@ public class InterleavingStrings {
 		
 		String b = "dbbca";
 		
-		String c = "aadbbbaccc";
+		String c = "aadbbcbcac";
+		
+		String d = "aadbbbaccc";
 		
 		boolean result = compute(a, c, new LinkedHashSet<Character>()) && compute(b, c, new LinkedHashSet<Character>());
 		

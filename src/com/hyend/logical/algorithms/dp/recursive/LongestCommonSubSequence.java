@@ -9,16 +9,18 @@ import java.util.Arrays;
  * 
  * @author gopi_karmakar
  */
-public class LongestSubSequence {
+public class LongestCommonSubSequence {
 
 	public static void main(String[] args) {
 		
 		//String a = "AGGTAB";
-		String a = "aabcc";
+		//String a = "aabcc";
+		String a = "abac";
 		int a_Idx = a.length();
 		
 		//String b = "GXTXAYB";
-		String b = "aadbbcbcac";
+		//String b = "aadbbcbcac";
+		String b = "cab";
 		int b_idx = b.length();
 		
 		int[][] cache = new int[a_Idx][b_idx];
@@ -55,6 +57,9 @@ public class LongestSubSequence {
 			if(a.charAt(a_Idx) == b.charAt(b_Idx)) {
 				
 				cache[a_Idx][b_Idx] = 1 + lss(a, a_Idx - 1, b, b_Idx - 1, cache);
+				System.out.println("a_Idx = " + a_Idx + " b_Idx = " + b_Idx);
+				
+				System.out.println("a = " + a.charAt(a_Idx) + " b = " + b.charAt(b_Idx));
 			}
 			else {
 				
