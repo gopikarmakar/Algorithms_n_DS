@@ -42,7 +42,9 @@ public class ShortestPath<V extends Comparable<V>> {
 					
 					bst.remove(e.vertex);
 					e.vertex.parent = v;
-					e.vertex.distanceWithFewestEdges = new DistanceWithFewestEdges(eDistance, eNumEdges);
+					//e.vertex.distanceWithFewestEdges = new DistanceWithFewestEdges(eDistance, eNumEdges);
+					e.vertex.distanceWithFewestEdges.distance = eDistance;
+					e.vertex.distanceWithFewestEdges.minNumEdges = eNumEdges;
 					bst.add(e.vertex);
 				}
 			}

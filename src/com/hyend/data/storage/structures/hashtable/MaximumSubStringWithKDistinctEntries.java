@@ -5,29 +5,30 @@ import java.util.Map;
 
 /**
  * A Google Interview Question
- * Given a string S and an integer K, find the longest window in S 
- * which should contain all the K distinct entries.
+ * Find the longest substring with K distinct entries in a given string s 
  * 
- * For e.g: S = "aadbbccd" k = 2 
- * return "bbcc" since it's the longest substring with 2 distinct entries
+ * For e.g: S = "aadbbccd" k = 3 
+ * return "dbbccd" since it's the longest substring with 2 distinct entries
  * 
  * S = "aadbbccd" k = 3
  * return "dbbccd" since it's the longest substring with 3 distinct entries
  * 
  * @author gopi_karmakar
  */
-public class LongestSubStringWindowOfKDistinctEntries {
+public class MaximumSubStringWithKDistinctEntries {
 
 	public static void main(String[] args) {
 	
 		int k = 3;
+
 		//String s = "aadbbccd";
 		
 		String s = "aabacbebebe";
 		
 		SubArray subArray = findSubString(s, k);
 		//System.out.println("Start = " + subArray.start + " End = " + subArray.end);
-		System.out.println("Longest SubString With " + k + " Distinct Entries = " + s.substring(subArray.start, subArray.end+1));
+		//System.out.println("Longest SubString With " + k + " Distinct Entries = " + s.substring(subArray.start, subArray.end+1));
+		System.out.println("" + s.substring(subArray.start, subArray.end+1));
 	}
 	
 	static class SubArray {
@@ -50,6 +51,7 @@ public class LongestSubStringWindowOfKDistinctEntries {
 	private static SubArray findSubString(String s, int k) {
 		
 		int idx = 0, startIdx = 0;
+		
 		SubArray subArray = new SubArray(-1, -1);
 		
 		Map<String, Integer> map = new LinkedHashMap<String, Integer>();			
@@ -62,12 +64,14 @@ public class LongestSubStringWindowOfKDistinctEntries {
 			map.put(ch, idx);
 			
 			if(map.size() > k) {
+				
 				removeEldestEntry(map);
 				startIdx = getValueForFirstEntry(map);
 			}
 			
-			if(map.size() == k) {
+			if(map.size() == k) {																			
 				
+				//For minimum window change the condition
 				if(subArray.start == -1 && subArray.end == -1 || 
 						idx - startIdx > subArray.end - subArray.start) {
 									
@@ -84,6 +88,8 @@ public class LongestSubStringWindowOfKDistinctEntries {
 		
 		int v = 0;
 		
+		System.out.println(m);
+		
 		for(Map.Entry<String, Integer> entry : m.entrySet()) {
 			v = entry.getValue();
 			break;
@@ -93,6 +99,8 @@ public class LongestSubStringWindowOfKDistinctEntries {
 	
 	private static void removeEldestEntry(Map<String, Integer> m) {		
 			
+		System.out.println(m);
+		
 		for(Map.Entry<String, Integer> entry : m.entrySet()) {
 			m.remove(entry.getKey());
 			break;

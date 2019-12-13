@@ -13,7 +13,7 @@ public class GenerateValidParentheses {
 
 	public static void main(String[] args) {
 		
-		int numPairs = 2;
+		int numPairs = 3;
 		
 		List<String> result = new ArrayList<>();
 		

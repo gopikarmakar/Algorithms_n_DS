@@ -19,12 +19,15 @@ public class PalindromePartitioning {
 	public static void main(String[] args) {
 		
 		String s = "aab";
+		String s2 = "aabbc";
+		
 		Map<String, Integer> map = new HashMap<>();
-		partition(0, s, new ArrayList<>(), map);
+
+		partition(0, s2, new ArrayList<>(), map);
 		
 		System.out.println(map);
 		
-		System.out.println("Minimum Cut Required = " + Collections.min(map.values()));
+		System.out.println("Minimum Cuts Required = " + Collections.min(map.values()));
 	}
 	
 	/**
@@ -43,7 +46,7 @@ public class PalindromePartitioning {
 		
 		for(int i = offset + 1; i <= s.length(); ++i) {
 			
-			String prefix = s.substring(offset, i);
+			String prefix = s.substring(offset, i);	
 			
 			if(isPalindrome(prefix)) {
 				

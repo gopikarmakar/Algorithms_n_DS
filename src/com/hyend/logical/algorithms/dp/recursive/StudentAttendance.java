@@ -65,16 +65,42 @@ public class StudentAttendance {
 	
 	public static void main(String[] args) {
 		
-		System.out.println(new StudentAttendance().waysToGetPenalty(3));
+		System.out.println(waysToGetPenalty(3));
 	}
 	
-	private int factorial(int days) {
-		
-		if(days == 0) return 1;
-		return days * factorial(days-1);
-	}
-	
-	public int getTotalWaysOfPenalty(int days) {
+	private static int waysToGetPenalty(int days){
+        return getPenaltyWays(days, 0, '#', '#', 0, false, "");
+    }
+
+    private static int getPenaltyWays(int days, int currDay, char prev, char prev2, 
+            							int aCount, boolean penalty, String prefix) {
+    	
+        if(currDay == days){
+            if(penalty){
+            	System.out.println(prefix);
+                return 1;
+            }
+            return 0;
+        }
+
+        int count = 0;
+        // add L
+        count += getPenaltyWays(days, currDay + 1, 'L', prev, aCount, 
+        penalty || (prev == 'L' && prev2 == 'L'), prefix + "L");
+
+        // add O
+        count += getPenaltyWays(days, currDay + 1, 'O', prev, aCount, penalty, prefix + "O");
+
+        // add A
+        count += getPenaltyWays(days, currDay + 1, 'A', prev, aCount + 1, 
+        penalty || (aCount + 1 >= 2), prefix + "A");
+
+        return count;        
+    }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    private static int getTotalWaysOfPenalty(int days) {
 		
 		if(days < 2) return 0;
 		
@@ -87,7 +113,7 @@ public class StudentAttendance {
 			case 3:
 				// totalWays += (AO)/2 + (AL)/2
 				//totalWays += factorial(days)/2 + factorial(days)/2;
-				totalWays += 2*(factorial(days)/2);
+				totalWays += 2 * (factorial(days) / 2);
 				break;
 			default:
 				// totalways += (A)/2 + (L)/2 + (AL)/2 
@@ -95,38 +121,15 @@ public class StudentAttendance {
 				//				  10  +   60  +    30   +   40 
 				//			       15     360 +    60   +   
 				//totalWays += factorial(days)/2 + factorial(days)/2 + factorial(days)/2;
-				totalWays += 3*(factorial(days)/2);
+				totalWays += 3 * (factorial(days) / 2);
 				break;
 		}
 		return totalWays;
 	}
-	
-	public int waysToGetPenalty(int days){
-        return getPenaltyWays(days, 1, '#', '#', 0, false);
-    }
-
-    private int getPenaltyWays(int days, int currDay, char prev, char prev2, 
-            int aCount, boolean penalty) {
-        if(currDay > days){
-            if(penalty){
-                return 1;
-            }
-            return 0;
-        }
-
-        int count = 0;
-        // add L
-        count += getPenaltyWays(days, currDay + 1, 'L', prev, aCount, 
-        penalty || (prev == 'L' && prev2 == 'L'));
-
-        // add O
-        count += getPenaltyWays(days, currDay + 1, 'O', prev, aCount, 
-        penalty);
-
-        // add A
-        count += getPenaltyWays(days, currDay + 1, 'A', prev, aCount + 1, 
-        penalty || (aCount + 1 >= 2));
-
-        return count;        
-    }
+    
+    private static int factorial(int days) {
+		
+		if(days == 0) return 1;
+		return days * factorial(days-1);
+	}
 }

@@ -43,6 +43,8 @@ public class DijkstraShortestPathWithMinEdges<V extends Comparable<V>> {
 		
 		GraphVertex<?> v = ShortestPath.shortestPath(graph, eDiGraph.getGraphVertex("S"), eDiGraph.getGraphVertex("T"));
 		
+		System.out.println("\nShortest Path With Minimum Edges:");
+		
 		outputShortestPath(v);
 	}	
 	
@@ -50,7 +52,7 @@ public class DijkstraShortestPathWithMinEdges<V extends Comparable<V>> {
 		
 		if(v != null) {
 			outputShortestPath(v.parent);
-			System.out.println(v.v + " ");
+			System.out.print(v.v + " ");
 		}
 	}
 }

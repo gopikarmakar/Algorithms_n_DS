@@ -42,8 +42,11 @@ public class DirectedNumericalPermutations {
 		
 		//Try every possibility for A[i].
 		for(int j = i; j < perm.size(); ++j) {
+			
 			Collections.swap(perm, i, j);
+			
 			permutations(i+1, perm, perms);
+			
 			Collections.swap(perm, i, j);
 		}
 	}

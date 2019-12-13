@@ -22,21 +22,21 @@ public class PermutationsWithContraint {
 	 * computation per call outside of the recursive calls and
 	 * permutations of any n takes n! time.
 	 */
-	public static int permutations(int n, int bCount, int cCount, String s) {
+	public static int permutations(int n, int bCount, int cCount, String prefix) {
 		if(n == 0) {
-			System.out.println(s);
+			System.out.println(prefix);
 			return 1;
 		}
 		
 		int total = 0;
 		
-		total += permutations(n-1, bCount, cCount, s + 'a');
+		total += permutations(n-1, bCount, cCount, prefix + 'a');
 		
 		if(bCount > 0) {
-			total += permutations(n-1, bCount-1, cCount, s + 'b');
+			total += permutations(n-1, bCount-1, cCount, prefix + 'b');
 		}
 		if(cCount > 0) {
-			total += permutations(n-1, bCount, cCount-1, s + 'c');
+			total += permutations(n-1, bCount, cCount-1, prefix + 'c');
 		}		
 		return total;
 	}

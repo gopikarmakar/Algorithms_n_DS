@@ -51,6 +51,7 @@ public class MinimumSubStringWindow {
 			
 			String ch = ""+c; 
 			if(dict.containsKey(ch)) {
+				
 				Integer v = dict.get(ch);
 				
 				if(v == null) seenSoFar += 1;
@@ -61,6 +62,7 @@ public class MinimumSubStringWindow {
 			
 			if(seenSoFar == dict.size()) {
 				
+				// For maximum window change the condition
 				if((subArray.start == -1 && subArray.end == -1) || 
 						idx - getValueForFirstEntry(dict) < subArray.end - subArray.start) {
 					
