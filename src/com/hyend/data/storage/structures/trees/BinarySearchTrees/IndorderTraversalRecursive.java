@@ -1,7 +1,5 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
-
 public class IndorderTraversalRecursive {
 	
 	public static void main(String[] args) {		

@@ -3,8 +3,6 @@ package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
-
 public class BFSOrLevelOrderTraversal {
 	
 	public static void main(String[] args) {

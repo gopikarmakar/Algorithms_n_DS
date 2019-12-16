@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Partitioning and sorting an array with many repeated entries. 
  * for e.g: arr = [b,a,c,b,d,a,b,d] then,
- * (a,a,b,b,b,c,d,d) or (a,a,b,b,b,c,d,d) or (c,d,d,b,b,b,a,a).
+ * (a,a,b,b,b,c,d,d) or (a,a,b,b,b,d,d,c) or (c,d,d,b,b,b,a,a).
  * is an acceptable reordering. Sortedness of the reordered entries dosn't matter. 
  * 
  * Variant: Implement a groupBy clause.
@@ -48,6 +48,10 @@ public class GroupByClause {
 	 */
 	private static List<Student> groupBy(List<Student> records) {
 		
+		records.forEach(e -> {
+			System.out.println(e);
+		});
+		
 		Map<Integer, Integer> sameAgeStudents = new HashMap<>();
 		
 		records.forEach(e -> {
@@ -55,6 +59,8 @@ public class GroupByClause {
 			int age = sameAgeStudents.getOrDefault(e.age, 0);
 			sameAgeStudents.put(e.age, age+1);
 		});
+		
+		System.out.println("\n" + sameAgeStudents + "\n");
 		
 		Map<Integer, Integer> ageToOffsets = new HashMap<>();
 		
@@ -65,26 +71,27 @@ public class GroupByClause {
 			offset += e.getValue();
 		}
 		
-		System.out.println(ageToOffsets.values());
+		System.out.println(ageToOffsets + "\n");
 		
 		while(!ageToOffsets.isEmpty()) {
 			
 			// Every time just fetching the first object from ageToOffsets set.
 			Map.Entry<Integer, Integer> from = ageToOffsets.entrySet().iterator().next();
 			
-			int toAge = records.get(from.getValue()).age;
-			int toValue = ageToOffsets.get(toAge);
-			Collections.swap(records, from.getValue(), toValue);
+			int studentAge = records.get(from.getValue()).age;
+			int offsetOfThatAge = ageToOffsets.get(studentAge);
+			
+			Collections.swap(records, from.getValue(), offsetOfThatAge);
 			
 			// Use sameAgeStudents to see when we are finished with a particular age.
-			int count = sameAgeStudents.get(toAge) - 1;
-			sameAgeStudents.put(toAge, count);
+			int count = sameAgeStudents.get(studentAge) - 1;
+			sameAgeStudents.put(studentAge, count);
 			
 			if(count > 0) {
-				ageToOffsets.put(toAge, toValue + 1);
+				ageToOffsets.put(studentAge, offsetOfThatAge + 1);
 			}
 			else {
-				ageToOffsets.remove(toAge);
+				ageToOffsets.remove(studentAge);
 			}
 		}			
 		return records;

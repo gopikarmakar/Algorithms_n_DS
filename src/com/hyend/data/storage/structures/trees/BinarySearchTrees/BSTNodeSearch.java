@@ -1,7 +1,5 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
-
 /**
  * Average-case cost (after N random search)	: 1.39 log(N)
  * Worst-case cost (after N random search)		: O(N)

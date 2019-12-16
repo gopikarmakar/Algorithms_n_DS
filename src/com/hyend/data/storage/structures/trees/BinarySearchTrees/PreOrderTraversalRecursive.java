@@ -1,13 +1,19 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
-
+/**
+ * Pre-Order traversal recursive
+ * 
+ * @author gopi_karmakar
+ */
 public class PreOrderTraversalRecursive {
 	
 	public static void main(String[] args) {		
 		print(BinarySearchTree.createDefault(), true);
 	}
 	
+	/**
+	 * O(h) time complexity
+	 */
 	public static void print(Node<?, ?> tree, boolean withParent) {
 		if(tree == null) //Base case
 			return;
@@ -18,5 +24,4 @@ public class PreOrderTraversalRecursive {
 		print(tree.left, withParent);
 		print(tree.right, withParent);
 	}
-
 }

@@ -1,8 +1,7 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
-
 /**
+ * Post Order Traversal Recursive
  * 
  * @author gopi_karmakar
  */
@@ -13,6 +12,9 @@ public class PostOrderTraversalRecursive {
 		print(BinarySearchTree.createDefault(), true);
 	}
 	
+	/**
+	 * O(h) time complexity
+	 */
 	public static void print(Node<?, ?> tree, boolean withParent) {
 		if(tree == null) //Base case
 			return;

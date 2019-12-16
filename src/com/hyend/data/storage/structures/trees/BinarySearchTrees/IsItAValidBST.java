@@ -1,7 +1,5 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
-
 /**
  * Validate if a given BST is a valid BST 
  * 
@@ -17,12 +15,8 @@ public class IsItAValidBST {
 	
 	/**
 	 * A PreOrder DFS O(n) time complexity solution.
-	 * A better BFS solution is given for Binary Tree.  
 	 * 
-	 * @param node
-	 * @param min
-	 * @param max
-	 * @return
+	 * Look into Binary Tree Package for a better BFS solution.  
 	 */
 	private static boolean isItAValidBST(Node<Integer, ?> node, int min, int max) {
 		

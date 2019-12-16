@@ -1,7 +1,5 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
-
 /**
  * Validate whether the given two BST nodes are an
  * ancestor and descendant of the given middle BST node 
@@ -11,7 +9,6 @@ import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTre
  */
 public class AreThreeBSTNodesTotallyOrdered {
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		Node<Integer, ?> tree = (Node<Integer, ?>) BinarySearchTree.createDefault();

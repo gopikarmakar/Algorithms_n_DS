@@ -4,7 +4,6 @@ package com.hyend.data.storage.structures.linkedlists.singly;
  * A stack with linked list
  * 
  * @author gopi_karmakar
- *
  */
 public class LinkedListStack {
 	

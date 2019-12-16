@@ -1,10 +1,8 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-
-import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
+import java.util.ArrayList;
 
 public class IndOrderTraversalIterative {
 

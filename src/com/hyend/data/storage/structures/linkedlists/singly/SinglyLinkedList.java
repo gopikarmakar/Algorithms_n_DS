@@ -9,35 +9,31 @@ import java.util.Iterator;
  */
 public class SinglyLinkedList<K> {
 	
-	public static void main(String[] args) {		
+	public int size = 0;
+	public Node<K> head; 
+	public Node<K> tail;
+	
+	public static void main(String[] args) {
+		
 		SinglyLinkedList<Integer> linkedList = createDefault();
+		
 		linkedList.print(linkedList);
 	}
 	
 	public static SinglyLinkedList<Integer> createDefault() {
+		
 		SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
+		
 		for(Integer i = 1; i <= 15; i++)
 			linkedList.add(i);
 		
 		return linkedList;
 	}
-
-	public int size = 0;
-	private Node head; 
-	private Node tail;
-	
-	public class Node {		
-		public K k;
-		public Node next;
-		public Node(K k) {
-			this.k = k;
-		}
-	}		
-	
+						
 	public void add(K k) {		
 		size += 1;
-		Node node = tail;
-		tail = new Node(k);		
+		Node<K> node = tail;
+		tail = new Node<>(k);		
 		if(head == null) {
 			head = tail;
 			return;
@@ -62,7 +58,7 @@ public class SinglyLinkedList<K> {
 		
 		Iterator<K> itr = new Iterator<K>() {
 
-			Node current = head;
+			Node<K> current = head;
 			
 			@Override
 			public boolean hasNext() {				

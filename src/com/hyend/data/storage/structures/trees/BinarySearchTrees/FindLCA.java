@@ -1,7 +1,5 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
-
 /**
  * Given a BST and two BST nodes, find the LCA of given nodes. 
  *
@@ -47,11 +45,6 @@ public class FindLCA {
 	
 	/**
 	 * Time complexity will is O(h) where h is the height of the BST.
-	 * 
-	 * @param tree
-	 * @param node1
-	 * @param node2
-	 * @return
 	 */
 	private static Node<Integer, ?> findLCA(Node<Integer, ?> tree, 
 											Node<Integer, ?> node1,

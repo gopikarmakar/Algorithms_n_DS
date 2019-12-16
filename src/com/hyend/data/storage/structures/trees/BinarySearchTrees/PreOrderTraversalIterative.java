@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import com.hyend.data.storage.structures.trees.BinarySearchTrees.BinarySearchTree.Node;
-
+/**
+ * Pre-Order traversal iterative
+ * 
+ * @author gopi_karmakar
+ */
 public class PreOrderTraversalIterative {
 
 	public static void main(String[] args) {
 		print(BinarySearchTree.createDefault(), true);
 	}
 	
+	/**
+	 * O(h) time complexity
+	 */
 	public static void print(Node<?, ?> tree, boolean withParent) {
 	
 		Stack<Node<?, ?>> stack = new Stack<>();
