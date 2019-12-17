@@ -12,6 +12,10 @@ public class Node<K> {
 		this(k, null);
 	}
 	
+	public Node(Node<K> node) {
+		this(node.k, node.next, node.jump);
+	}
+	
 	public Node(K k, Node<K> next) {
 		this(k, next, null);
 	}

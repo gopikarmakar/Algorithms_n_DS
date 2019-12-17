@@ -17,14 +17,14 @@ public class SinglyLinkedList<K> {
 		
 		SinglyLinkedList<Integer> linkedList = createDefault();
 		
-		linkedList.print(linkedList);
+		linkedList.print();
 	}
 	
 	public static SinglyLinkedList<Integer> createDefault() {
 		
 		SinglyLinkedList<Integer> linkedList = new SinglyLinkedList<>();
 		
-		for(Integer i = 1; i <= 15; i++)
+		for(Integer i = 1; i <= 10; i++)
 			linkedList.add(i);
 		
 		return linkedList;
@@ -45,12 +45,22 @@ public class SinglyLinkedList<K> {
 		return size;
 	}
 	
-	public void print(SinglyLinkedList<K> linkedList) {
+	public void print() {
 		
-		Iterator<K> itr = linkedList.getIterator();
+		Iterator<K> itr = getIterator();
 		while(itr.hasNext()) {			
 			K k = itr.next(); 
 			System.out.println("Key = " + k );
+		}
+	}
+	
+	public void print(Node<K> head) {
+		
+		Node<K> node = head;
+		while(node != null) {						
+			
+			System.out.println("Key = " + node.k);
+			node = node.next;
 		}
 	}
 	
