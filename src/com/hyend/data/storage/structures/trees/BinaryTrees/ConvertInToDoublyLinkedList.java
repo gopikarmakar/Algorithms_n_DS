@@ -10,15 +10,15 @@ import com.hyend.data.storage.structures.linkedlists.doubly.DoublyLinkedList;
  * @author gopi_karmakar
  */
 public class ConvertInToDoublyLinkedList {
-		
+	
+	private static DoublyLinkedList<Node<?>> dll = new DoublyLinkedList<>();
+	
 	public static void main(String[] args) {
 		
 		Node<Integer> tree = BinaryTree.buildDefault();
 		convert(tree);
 		print(DoublyLinkedList.FORWARD);
-	}
-	
-	private static DoublyLinkedList<Node<?>> dll = new DoublyLinkedList<>();
+	}	
 	
 	/**
 	 * O(n) time complexity recursive InOrder solution.
@@ -29,8 +29,8 @@ public class ConvertInToDoublyLinkedList {
 		
 		if(node == null) return;			
 		
-		convert(node.left);
 		dll.add(node);
+		convert(node.left);		
 		convert(node.right);		
 	}
 	
@@ -39,6 +39,7 @@ public class ConvertInToDoublyLinkedList {
 		Iterator<Node<?>> itr = dll.getIterator(order);
 		
 		while(itr.hasNext()) {
+			
 			Node<?> node = itr.next();
 			System.out.println("Key = " + node.key);
 		}

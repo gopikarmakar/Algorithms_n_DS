@@ -74,7 +74,7 @@ public class FindLCA {
 	/**
 	 * 2: Find LCA when there's a track of
 	 * parent node for every child node.
-	 * An iterative approach.x
+	 * An efficient iterative approach.x
 	 */
 	private static Node<Integer> findLCAWithParent(Node<Integer> node1, Node<Integer> node2) {
 		
@@ -82,7 +82,7 @@ public class FindLCA {
 		int depth2 = getDepth(node2);
 		
 		// Makes node1 as the deeper node in order to simplify the code.
-		if(depth2 > depth1) {
+		if(depth2 > depth1) {			
 			Node<Integer> temp = node1;
 			node1 = node2;
 			node2 = temp;

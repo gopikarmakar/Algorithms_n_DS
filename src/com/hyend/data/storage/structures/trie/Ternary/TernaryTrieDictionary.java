@@ -5,7 +5,7 @@ package com.hyend.data.storage.structures.trie.Ternary;
  * 
  * @author gopi_karmakar
  */
-public class TernaryTrieDictionary {
+public class TernaryTrieDictionary<V> {
 	
 	public final static int PREFIX = 1;
 	public final static int SUFFIX = 2;
@@ -34,16 +34,20 @@ public class TernaryTrieDictionary {
 	
 	public static Node<Character, String> createDefault(String[] keys) {		
 		
-		TrieDictionaryCreation trie = new TrieDictionaryCreation();
+		TrieDictionaryCreation<Character, String> trie = new TrieDictionaryCreation<>();
 		Node<Character, String> root = trie.create(keys);
 		
 		return root;
 	}
 	
-	private static TrieDictionaryCreation trie = new TrieDictionaryCreation();
+	private static TrieDictionaryCreation<Character, String> trie = new TrieDictionaryCreation<>();
 	
 	public static Node<Character, String> createDefault(String key) {
-		return trie.create(key);
+		return trie.createDefault(key);
+	}
+	
+	public static Node<Character, String> createDefault(String key, String keyToSave) {
+		return trie.createDefault(key, keyToSave);
 	}
 	
 	public static Node<Character, String> createPrefixTrie(String key, boolean saveEveryValue) {

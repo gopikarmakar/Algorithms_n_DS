@@ -1,9 +1,9 @@
 package com.hyend.logical.algorithms.dp.recursive;
 
-import java.util.Arrays;
-
 /**
  * Compute Levenshtein distance between two Strings.
+ * 
+ * https://leetcode.com/problems/k-similar-strings/
  *  
  * @author gopi_karmakar
  */
@@ -12,17 +12,16 @@ public class LevenshteinDistance {
 	public static void main(String[] args) {
 		
 		// Consider case sensitivity as one action too.
-		String a = "Carthorse";
-		String b = "Orchestra";
+		//String a = "Carthorse";
+		//String b = "Orchestra";
+		
+		String a = "AABC";
+		String b = "ABCA";
 		
 		int a_Idx = a.length();
 		int b_Idx = b.length();
 		
 		int[][] distanceBtwnPrefixes = new int[a_Idx][b_Idx];
-		/*for(int[] v : distanceBtwnPrefixes) {
-			
-			Arrays.fill(v, -1);
-		}*/
 		
 		int distance = computeDistance(a, a_Idx - 1, b, b_Idx - 1, distanceBtwnPrefixes);
 		

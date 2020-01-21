@@ -1,5 +1,7 @@
 package com.hyend.data.storage.structures.trie.Ternary;
 
+import java.util.ArrayList;
+
 /**
  * Ternary Trie Dictionary Insertion.
  * 
@@ -7,7 +9,7 @@ package com.hyend.data.storage.structures.trie.Ternary;
  * 
  * @author gopi_karmakar
  */
-public class TrieDictionaryCreation {
+public class TrieDictionaryCreation<K, V> {
 	
 	private Node<Character, String> root = null;
 	
@@ -18,9 +20,16 @@ public class TrieDictionaryCreation {
 		return root;
 	}
 	
-	public Node<Character, String> create(String key) {
+	public Node<Character, String> createDefault(String key) {
 		root = createDefault(root, key, 0);
 		return root;
+	}
+	
+	Node<Character, V> trie = null;
+	public Node<Character, V> createDefault(String key, V keyToSave) {
+		
+		trie = createDefault(trie, key, keyToSave, 0);		
+		return trie;
 	}
 	
 	
@@ -57,6 +66,34 @@ public class TrieDictionaryCreation {
 	}
 	
 	/**
+	 * Creation of Trie O(log n) time complexity
+	 */
+	private Node<Character, V> createDefault(Node<Character, V> node, String key, V keyToSave, int d) {
+		
+		Character ch = key.charAt(d);
+		
+		if(node == null) {		
+			node = new Node<Character, V>(ch,  null);
+			node.values = new ArrayList<V>();
+		}
+		
+		if(ch < node.k)			node.left = createDefault(node.left, key, keyToSave, d);
+		
+		else if(ch > node.k)	node.right = createDefault(node.right, key, keyToSave, d);
+		
+		else if(d < key.length() - 1) {
+					
+			node.mid = createDefault(node.mid, key, keyToSave, d + 1);
+		}
+		else {
+
+			node.values.add(keyToSave);		
+		}
+		
+		return node;
+	}
+	
+	/**
 	 * Prefix Trie Creation
 	 */	
 	private Node<Character, String> createPrefixTrie(Node<Character, String> node, 
@@ -72,12 +109,23 @@ public class TrieDictionaryCreation {
 			
 		else if(ch > node.k)			node.right = createPrefixTrie(node.right, prefix, key, d, saveEveryValue);			
 			
-		else if(d < key.length()-1)		node.mid = createPrefixTrie(node.mid, node.v, key, d+1, saveEveryValue);
+		else if(d < key.length()-1)	{
 			
-		else							node.v = key;					
-					
+			node.frequency += 1;
+			if(node.v != null) 	node.length = node.v.length();
+			node.mid = createPrefixTrie(node.mid, node.v, key, d+1, saveEveryValue);
+		}
+			
+		else {
+			node.v = key;
+			node.frequency += 1;
+			node.length = node.v.length();
+		}
+
 		return node;
 	}	
+	
+	
 	
 	/**
 	 * Suffix Trie Creation
@@ -95,9 +143,18 @@ public class TrieDictionaryCreation {
 			
 		else if(ch > node.k)			node.right = createSuffixTrie(node.right, sufix, key, d, saveEveryValue);			
 			
-		else if(d > 0)					node.mid = createSuffixTrie(node.mid, node.v, key, d-1, saveEveryValue);
+		else if(d > 0) {
 			
-		else 							node.v = key;			
+			node.frequency += 1;
+			if(node.v != null)	node.length = node.v.length();
+			node.mid = createSuffixTrie(node.mid, node.v, key, d-1, saveEveryValue);
+		}
+			
+		else {			
+			node.v = key;
+			node.frequency += 1;
+			node.length = node.v.length();
+		}
 			
 		return node;
 	}

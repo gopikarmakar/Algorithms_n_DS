@@ -3,7 +3,7 @@ package com.hyend.data.storage.structures.trie.Ternary;
 /**
  * Google Interview Question:
  * 
- * Find the longest common prefix of a given query from a dictionary of words.
+ * Find the longest common prefix for a given query from a dictionary of words.
  * 
  * @author gopi_karmakar
  */
@@ -30,7 +30,7 @@ public class LongestCommonPrefix {
 	 */
 	public static int find(Node<Character, String> node, String query) {
 		
-		int length = TrieDictionaryTraversals.crawlPrefixTrie(node, query, 0, 0);
+		int length = TrieDictionaryTraversals.longestPrefixLength(node, query, 0, 0);
 		 
 		return length;		
 	}

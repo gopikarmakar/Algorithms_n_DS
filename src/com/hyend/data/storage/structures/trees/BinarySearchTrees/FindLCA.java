@@ -13,23 +13,33 @@ public class FindLCA {
 	public static void main(String[] args) {
 		
 		Node<Integer, String> tree = BinarySearchTree.createDefault();
-		Node<Integer, ?> node1 = tree.left.right.left.left;
-		Node<Integer, ?> node2 = tree.left.right.right;
+		Node<Integer, ?> node2 = tree.left.right.left.left;
+		Node<Integer, ?> node1 = tree.left.right.right;
 				
 		Node<Integer, ?> lca = null;
+		
+		if(node1.key > node2.key) {			
+			Node<Integer, ?> temp = node1;
+			node1 = node2;
+			node2 = temp;
+		}
 		
 		/**
 		 * The basic four cases for a LCA in BST.
 		 */
-		if(node1.key == tree.key || node2.key == tree.key)
+		if(node1.key == tree.key || node2.key == tree.key) {
 			lca = tree;			
+		}
 		else if((node1.key < tree.key && node2.key > tree.key) ||
-				(node2.key < tree.key && node1.key > tree.key))
-			lca = tree;	
-		else if(node1.key < tree.key && node2.key < tree.key)
+				(node2.key < tree.key && node1.key > tree.key)) {
+			lca = tree;
+		}
+		else if(node1.key < tree.key && node2.key < tree.key) {
 			tree = tree.left;
-		else if(node1.key > tree.key && node2.key > tree.key)
+		}
+		else if(node1.key > tree.key && node2.key > tree.key) {
 			tree = tree.right;
+		}
 		
 		/**
 		 * If the first two cases didn't satisfy then,

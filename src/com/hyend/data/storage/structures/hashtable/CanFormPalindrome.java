@@ -16,7 +16,8 @@ public class CanFormPalindrome {
 		//String s = "geeksogeeks";
 		//String s = "abcabcd";
 		//String s = "abcabcde";
-		String s = "edifiedd";
+		String s = "edified";
+		String s2 = "palindrome";
 		System.out.println("Can it be formed = " + canFormPalindrome(s));
 	}
 	

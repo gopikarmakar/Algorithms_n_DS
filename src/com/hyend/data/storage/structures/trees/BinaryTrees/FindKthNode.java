@@ -5,9 +5,6 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 /**
  * Compute the Kth Node in an InOrder traversal.
  * 
- * NOTE: Assume that each node stores the number of nodes
- * in the subtree rooted at that node. 
- * 
  * @author gopi_karmakar
  */
 public class FindKthNode {
@@ -17,10 +14,13 @@ public class FindKthNode {
 		Node<Integer> tree = BinaryTree.buildDefault();	
 		BinaryTree.printBFS(tree, true);
 		
-		//System.out.println(compuetKTh(tree, 2).key);
+		System.out.println(compuetKTh(tree, 2).key);
 	}
 
 	/**
+	 * NOTE: Assume that each node stores the number of nodes
+	 * in the subtree rooted at that node. 
+	 * 
 	 * The brute-force approach is to perform an InOrder walk, 
 	 * keeping track of the number of visited nodes, 
 	 * stopping when the node being visited is the Kth node.

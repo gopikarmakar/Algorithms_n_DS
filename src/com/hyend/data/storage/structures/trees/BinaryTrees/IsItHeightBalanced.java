@@ -20,10 +20,10 @@ public class IsItHeightBalanced {
 		
 		Node<Integer> tree = BinaryTree.buildDefault();
 		
-		System.out.println("Is Height Balanced = " + (isHeightBalanced(tree) >= 0));
+		//System.out.println("Is Height Balanced = " + (isHeightBalanced(tree) >= 0));
 
-		//boolean status = isBalanced(tree);
-		//System.out.println("Is It Balanced = " + status);
+		boolean status = isBalanced(tree);
+		System.out.println("Is It Balanced = " + status);
 	}
 	
 	/**
@@ -60,17 +60,6 @@ public class IsItHeightBalanced {
 		return checkBalance(root).balanced;
 	}
 	
-	private static class BalanceStatusWithHeight {
-		
-		private int height;
-		private boolean balanced;
-		
-		public BalanceStatusWithHeight(boolean balanced, int height) {
-			this.height = height;
-			this.balanced = balanced;			
-		}
-	}
-	
 	/**
 	 * A better algorithm is we do not need to store the heights of all nodes 
 	 * at the same time. Once we are done with a subtree, all we need is whether 
@@ -84,7 +73,7 @@ public class IsItHeightBalanced {
 	 * from the root through the unique path to the current node, and the stack height 
 	 * is therefore bounded by the height of the tree, leading to an 0(h) space bound
 	 * 
-	 * The time complexity is the same as that for a PostOrder traversal, namely 0(n).
+	 * The time complexity is the same as that for a PostOrder traversal, namely O(n).
 	 * 
 	 * @param BinaryTree.Node<Key> node
 	 * @return
@@ -105,5 +94,16 @@ public class IsItHeightBalanced {
 		boolean isBalanced = (Math.abs(leftTreeResult.height - rightTreeResult.height) <= 1); 
 		int height = Math.max(leftTreeResult.height, rightTreeResult.height) + 1;
 		return new BalanceStatusWithHeight(isBalanced, height);
+	}
+	
+	private static class BalanceStatusWithHeight {
+		
+		private int height;
+		private boolean balanced;
+		
+		public BalanceStatusWithHeight(boolean balanced, int height) {
+			this.height = height;
+			this.balanced = balanced;			
+		}
 	}
 }

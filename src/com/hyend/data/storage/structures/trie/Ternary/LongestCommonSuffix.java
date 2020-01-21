@@ -30,7 +30,7 @@ public class LongestCommonSuffix {
 	 */
 	public static int find(Node<Character, String> node, String query) {
 		
-		int length = TrieDictionaryTraversals.crawlSuffixTrie(node, query, query.length()-1, 0);
+		int length = TrieDictionaryTraversals.longestSuffixLength(node, query, query.length()-1, 0);
 		 
 		return length;
 	}

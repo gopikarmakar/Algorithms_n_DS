@@ -16,15 +16,15 @@ public class InterleavingStrings {
 
 	public static void main(String[] args) {
 		
-		String a = "aabcc";
+		String s1 = "aabcc";
 		
-		String b = "dbbca";
+		String s2 = "dbbca";
 		
-		String c = "aadbbcbcac";
+		String s3 = "aadbbcbcac";
 		
-		String d = "aadbbbaccc";
+		String s4 = "aadbbbaccc";
 		
-		boolean result = compute(a, c, new LinkedHashSet<Character>()) && compute(b, c, new LinkedHashSet<Character>());
+		boolean result = compute(s1, s3, new LinkedHashSet<Character>()) && compute(s2, s3, new LinkedHashSet<Character>());
 		
 		System.out.println(result);
 	}
@@ -35,6 +35,8 @@ public class InterleavingStrings {
 			order.remove(c);
 			order.add(c);
 		}
+		
+		System.out.println(order.toString());
 		
 		int aIdx = a.length();
 		int bIdx = b.length();
@@ -51,8 +53,7 @@ public class InterleavingStrings {
 	}
 	
 	/**
-	 * Max time and space complexity is O(n * m)
-	 * 
+	 * Max time and space complexity is O(n * m) 
 	 */
 	private static int interleavingString(String a, int aIdx, String b, int bIdx, int[][] cache, Set<Character> order) {
 		

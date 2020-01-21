@@ -38,18 +38,6 @@ public class IsItAValidBST {
 		return isBST(node.left, min, node.key) && isBST(node.right, node.key, max);
 	}
 	
-	private static class QueueEntry {
-		
-		Integer min, max;
-		Node<Integer> node;
-		
-		public QueueEntry(Node<Integer> node, Integer min, Integer max) {
-			this.min = min;
-			this.max = max;
-			this.node = node;			
-		}
-	}
-	
 	/**
 	 * A BFS Algorithm to validate the BST property of a Binary Tree.
 	 * It's a quite better algorithm in comparison to DFS because it
@@ -78,7 +66,19 @@ public class IsItAValidBST {
 		return true;
 	}
 	
-	//#####################################################################################
+	private static class QueueEntry {
+		
+		Integer min, max;
+		Node<Integer> node;
+		
+		public QueueEntry(Node<Integer> node, Integer min, Integer max) {
+			this.min = min;
+			this.max = max;
+			this.node = node;			
+		}
+	}
+	
+	//##############################################################################################
 	
 	private static boolean isBSTPostOrder(Node<Integer> root) {		
 		return checkViaPostOrder(root).status;

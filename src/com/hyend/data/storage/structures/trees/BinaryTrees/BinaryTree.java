@@ -8,20 +8,12 @@ import java.util.LinkedList;
  * left and right child that's why it's called binary tree.
  * A complete family with parent and child called subtree.
  * 
- * 								1
- * 				2								3
- * 		4				5 				6	 			7
- * 	8   	9 		10		11  	12		13 		14		15
- * 
- * BinaryTree.Node<Integer> root = new BinaryTree.Node<Integer>(1);
- * root.left = new BinaryTree.Node<Integer>(2);
- * root.right = new BinaryTree.Node<Integer>(3);
- * root.left.left = new BinaryTree.Node<Integer>(4);
- * root.left.right = new BinaryTree.Node<Integer>(5);
- * root.right.left = new BinaryTree.Node<Integer>(6);
- * root.right.right = new BinaryTree.Node<Integer>(7);
- * root.left.left.left = new BinaryTree.Node<Integer>(8);
- * return root;
+ * 								341
+ * 				6								6
+ * 		271				561 			2	 			271
+ * 	28   	0 				3  				 1 				28
+ * 						17				401     257
+ * 										   641
  * 
  * @author gopi_karmakar
  */
@@ -90,7 +82,7 @@ public class BinaryTree {
 			Node<?> node = queue.poll();			
 			if(node != null)
 				System.out.println(node.key + ((withParent == true) ? 
-					((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : "") + " size = " + node.size);
+					((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : ""));
 			
 			if(node.left != null) queue.add(node.left);			
 			if(node.right != null) queue.add(node.right);
@@ -103,7 +95,7 @@ public class BinaryTree {
 		
 		printInOrderRecursive(tree.left, withParent);		
 		System.out.println(tree.key + ((withParent == true) ? 
-				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : "") + " size = " + tree.size);		
+				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));		
 		printInOrderRecursive(tree.right, withParent);
 	}	
 	
@@ -112,7 +104,7 @@ public class BinaryTree {
 			return;
 		
 		System.out.println(tree.key + ((withParent == true) ? 
-				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : "") + " size = " + tree.size);
+				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
 		printPreOrderRecursive(tree.left, withParent);
 		printPreOrderRecursive(tree.right, withParent);
 	}
@@ -124,6 +116,6 @@ public class BinaryTree {
 		printPostOrderRecursive(tree.left, withParent);
 		printPostOrderRecursive(tree.right, withParent);
 		System.out.println(tree.key + ((withParent == true) ? 
-				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : "") + " size = " + tree.size);
+				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
 	}
 }

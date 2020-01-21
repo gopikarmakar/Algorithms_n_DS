@@ -8,6 +8,8 @@ public class Node<K> {
 	
 	public Node<K> jump;
 	
+	public Node() {}
+	
 	public Node(K k) {
 		this(k, null);
 	}

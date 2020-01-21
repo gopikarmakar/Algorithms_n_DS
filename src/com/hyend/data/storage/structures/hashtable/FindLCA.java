@@ -20,8 +20,8 @@ public class FindLCA {
 		//Node<Integer> node1 = tree.left.left.right;
 		Node<Integer> node1 = tree.left.left.right;
 		//Node<Integer> node1 = tree.left.right.right;
-		//Node<Integer> node2 = tree.left.right.right.left;
-		Node<Integer> node2 = tree.right.left.right;
+		Node<Integer> node2 = tree.left.right.right.left;
+		//Node<Integer> node2 = tree.right.left.right;
 		
 		System.out.println("Common LCA = " + findLCA(node1, node2).key);		
 	}

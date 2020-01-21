@@ -18,12 +18,13 @@ public class DirectedAlphabeticalPermutations {
 				
 		List<String> permutations = new ArrayList<>();
 		
-		permutation("", "ABC", permutations);
+		permutation("", word, permutations);
 		
 		permutations.forEach(s -> {
 			System.out.println(s);
 		});
 		
+		//////// Another way //////
 		List<List<String>> listPermutations = new ArrayList<>();
 
 		List<String> list = new ArrayList<>();

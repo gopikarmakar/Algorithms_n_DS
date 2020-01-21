@@ -11,7 +11,7 @@ public class ConvertSortedDoublyLinkedListToBST {
 		
 		Node<Integer> root = convert(0, dll.size());
 		
-		preOrder(root);
+		preOrderTraversal(root);
 	}
 	
 	/**
@@ -37,13 +37,15 @@ public class ConvertSortedDoublyLinkedListToBST {
 		return current;
 	}
 	
-	private static void preOrder(Node<Integer> node) {
+	private static void preOrderTraversal(Node<Integer> node) {
 		
 		if (node == null) 
-            return; 
+            return; 		
 		
-		preOrder(node.prev);		
-		preOrder(node.next);
+		preOrderTraversal(node.prev);
+		
 		System.out.println(node.k);
+		
+		preOrderTraversal(node.next);		
 	}
 }

@@ -49,10 +49,11 @@ public class BuildABinaryTreeInLevelOrder<K> {
 	int size = 0;
 	private Node<K> build(K[] keys, Node<K> parent, Node<K> node, int i) {
 		
-		if(i <= keys.length) {	
-			if(node == null) {
-				
-				if(keys[i] == null) return node;
+		if(i < keys.length) {
+			
+			if(keys[i] == null) return null;
+			
+			if(node == null) {								
 				
 				node = new Node<K>(keys[i], parent);								
 			}				

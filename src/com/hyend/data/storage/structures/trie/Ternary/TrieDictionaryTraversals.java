@@ -76,7 +76,10 @@ public class TrieDictionaryTraversals {
 		if(trie == null)
 			return;
 		
-		if(trie.v != null) map.put(trie.v, trie.v.length());
+		if(trie.v != null) {
+			
+			map.put(trie.v, trie.v.length());	
+		}
 		
 		crawlTrie(trie.left, map);
 		crawlTrie(trie.mid, map);
@@ -84,21 +87,40 @@ public class TrieDictionaryTraversals {
 	}
 	
 	/**
+	 * Takes O(log n) time complexity for searching.	 
+	 */
+	public static Node<Character, String> getPrefixStartingPoint(Node<Character, String> trie, String prefix, int d) {				
+		
+		if(trie == null) 					return null;		
+		
+		Character ch = prefix.charAt(d);
+		
+		if(ch < trie.k)						return getPrefixStartingPoint(trie.left, prefix, d);
+			
+		else if(ch > trie.k)				return getPrefixStartingPoint(trie.right, prefix, d);
+			
+		else if(d < prefix.length()-1)		return getPrefixStartingPoint(trie.mid, prefix, d+1);
+			
+		else								return trie;			
+	}
+	
+	/**
 	 * Prefix Trie Traversal 
 	 * O(log n) time complexity
 	 */
-	public static int crawlPrefixTrie(Node<Character, String> trie, String query, int d, int length) {
+	public static int longestPrefixLength(Node<Character, String> trie, String query, int d, int length) {
 		
 		Character ch = query.charAt(d);
 		
 		if(trie == null)				return length;
+		
 		if(ch.equals(trie.k))			length = d;
 		
-		if(ch < trie.k)					return crawlPrefixTrie(trie.left, query, d, length);						
+		if(ch < trie.k)					return longestPrefixLength(trie.left, query, d, length);						
 							
-		else if(ch > trie.k)			return crawlPrefixTrie(trie.right, query, d, length);		
+		else if(ch > trie.k)			return longestPrefixLength(trie.right, query, d, length);		
 			
-		else if(d < query.length()-1) 	return crawlPrefixTrie(trie.mid, query, d+1, length);
+		else if(d < query.length()-1) 	return longestPrefixLength(trie.mid, query, d+1, length);
 			
 		else							return length;					
 	}
@@ -107,18 +129,18 @@ public class TrieDictionaryTraversals {
 	 * Suffix Trie Traversal 
 	 * O(log n) time complexity
 	 */
-	public static int crawlSuffixTrie(Node<Character, String> trie, String query, int d, int length) {
+	public static int longestSuffixLength(Node<Character, String> trie, String query, int d, int length) {
 		
 		Character ch = query.charAt(d);
 		
 		if(trie == null)				return length;
 		if(ch.equals(trie.k))			length = d;
 		
-		if(ch < trie.k)					return crawlSuffixTrie(trie.left, query, d, length);					
+		if(ch < trie.k)					return longestSuffixLength(trie.left, query, d, length);					
 							
-		else if(ch > trie.k)			return crawlSuffixTrie(trie.right, query, d, length);
+		else if(ch > trie.k)			return longestSuffixLength(trie.right, query, d, length);
 			
-		else if(d > 0)					return crawlSuffixTrie(trie.mid, query, d-1, length); 
+		else if(d > 0)					return longestSuffixLength(trie.mid, query, d-1, length); 
 			
 		else 							return length;		
 	}

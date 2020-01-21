@@ -1,10 +1,5 @@
 package com.hyend.data.storage.structures.trie.Ternary;
 
-import java.util.Map;
-import java.util.List;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-
 /**
  * A Google Interview Question:
  * 
@@ -21,99 +16,58 @@ public class SpellingChecker {
 		
 		String[] dict = {"how", "where", "who", "find", "country", "near", "restaurants", "me", "shop",
 						 "good", "music", "bar", "show", "why", "when", "capital", "india", "japan",
-						 "food", "prime", "minister", "is", "the", "what", "of", " "}; 	
+						 "food", "prime", "minister", "is", "the", "what", "of", "eat"}; 	
 							
 		//String query = "what is the capta of endia";
 		
 		String query = "find fod shoe nar me";
 		
-		check(dict, query);
+		Node<Character, String> trie = null;		
+		
+		for(String key : dict) {
+			trie = TernaryTrieDictionary.createPrefixTrie(key, false);			
+		}
+		
+		check(trie, dict, query);
 	}
 	
 	/**
-	 * Time complexity very close to O(n^2)
+	 * Time complexity will be O(n) log(n)
 	 */
-	private static void check(String[] dict, String query) {
-		
-		Node<Character, String> trie = null;		
-		
-		for(String key : dict)
-			trie = TernaryTrieDictionary.createPrefixTrie(key, false);
-		
+	private static void check(Node<Character, String> trie, String[] dict, String query) {
+						
 		String[] queryParts = query.split(" ");
 		
-		Map<String, List<String>> rectifiesWords = new LinkedHashMap<>();
+		System.out.println("\nRecommendations Are : ");
 		
-		for(String q : queryParts) {
+		for(String part : queryParts) {
 			
-			int length = LongestCommonPrefix.find(trie, q);
-			if(q.length() != length+1) {								
-				
-				Node<Character, String> node = getCommonPrefix(trie, q, length);
-				
-				List<String> queue = TrieDictionaryTraversals.getList(node.mid);
-																
-				rectifiesWords.put(q, queue);
-			}			
-		}		
-		print(rectifiesWords);
-	}
-	
-	private static Node<Character, String> getCommonPrefix(Node<Character, String> trie, String query, int length) {
-				
-		String prefix = query.substring(0, length+1);
-		Node<Character, String> node = getStartingPointFromPrefix(trie, prefix, 0);;		
-		
-		String nextPrefix = "";				
-		if(node == null) {			
-			do {				
-				
-				int i = 1;
-				nextPrefix = query.substring(i, length+i+1);
-				System.out.println("No word starts with " + prefix);
-				
-				node = getStartingPointFromPrefix(trie, nextPrefix, 0);
-				
-				i++;
-				
-			} while(node == null);
+			Node<Character, String> node = longestCommonPrefix(trie, null, part, 0);			
 			
-			System.out.println("But starts with " + nextPrefix + " so finally:");
-		}				
-		
-		return node;
-	}
-	
-	private static void print(Map<String, List<String>> rectifiesWords) {
-		
-		Iterator<Map.Entry<String, List<String>>> itr = rectifiesWords.entrySet().iterator();
-		
-		System.out.println();
-		
-		while(itr.hasNext()) {
-		
-			Map.Entry<String, List<String>> entry = itr.next();
-			
-			System.out.print(entry.getKey() + " should be ");
-			for(String v : entry.getValue()) {
-				System.out.print(v + " ");
+			if(node != null) {
+				
+				System.out.println(part + " should be:");
+				TrieDictionaryTraversals.printAllNodes(node.mid);
 			}
-			System.out.println();
+			System.out.print("\n");
 		}
 	}
 	
-	private static Node<Character, String> getStartingPointFromPrefix(Node<Character, String> node, String prefix, int d) {				
+	public static Node<Character, String> longestCommonPrefix(Node<Character, String> trie, 
+					Node<Character, String> parent, String query, int d) {
 		
-		if(node == null) 					return null;		
+		Character ch = query.charAt(d);
 		
-		Character ch = prefix.charAt(d);
+		if(trie == null)				return parent;
 		
-		if(ch < node.k)						return getStartingPointFromPrefix(node.left, prefix, d);
+		if(ch.equals(trie.k))			parent = trie;
+		
+		if(ch < trie.k)					return longestCommonPrefix(trie.left, parent, query, d);						
+							
+		else if(ch > trie.k)			return longestCommonPrefix(trie.right, parent, query, d);		
 			
-		else if(ch > node.k)				return getStartingPointFromPrefix(node.right, prefix, d);
+		else if(d < query.length()-1) 	return longestCommonPrefix(trie.mid, parent, query, d+1);
 			
-		else if(d < prefix.length()-1)		return getStartingPointFromPrefix(node.mid, prefix, d+1);
-			
-		else								return node;			
+		else							return null;		
 	}
 }

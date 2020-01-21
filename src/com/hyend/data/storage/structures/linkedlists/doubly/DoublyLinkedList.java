@@ -23,8 +23,10 @@ public class DoublyLinkedList<K> {
 	}
 	
 	public static DoublyLinkedList<Integer> createDefault() {
+		
 		DoublyLinkedList<Integer> dll = new DoublyLinkedList<>();
-		for(Integer i = 1; i <= 5; i++)
+		
+		for(Integer i = 1; i <= 10; i++)
 			dll.add(i);
 		
 		return dll;
