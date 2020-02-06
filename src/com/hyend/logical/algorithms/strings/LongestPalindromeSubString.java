@@ -1,10 +1,20 @@
 package com.hyend.logical.algorithms.strings;
 
+/**
+ * Find Longest Palindromic SubString
+ *  
+ * @author gopi_karmakar
+ */
 public class LongestPalindromeSubString {
 	
-	public LongestPalindromeSubString() {}
+	public static void main(String[] args) {
+		
+		String s = "babad";
+		//String s = "forgeeksskeegfor";
+		System.out.println(palindromicSubString(s));
+	}
 	
-	public String palindromicSubString(String s) {
+	public static String palindromicSubString(String s) {
 				
 		int length = s.length();
 		if(length == 0)
@@ -28,7 +38,7 @@ public class LongestPalindromeSubString {
 			high = i;
 			while(low >= 0 && high < length && s.charAt(low) == s.charAt(high)) {
 				
-				if(high-low+1 > totalLength) {
+				if((high-low)+1 > totalLength) {
 					start = low;
 					totalLength = high-low+1; 
 				}
@@ -40,7 +50,7 @@ public class LongestPalindromeSubString {
 			high = i+1;
 			while(low >= 0 && high < length && s.charAt(low) == s.charAt(high)) {
 				
-				if(high-low+1 > totalLength) {
+				if((high-low)+1 > totalLength) {
 					start = low;
 					totalLength = high-low+1;
 				}

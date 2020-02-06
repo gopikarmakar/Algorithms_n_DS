@@ -36,7 +36,9 @@ public class FindKthSmallestElement {
 			
 			int random = rand.nextInt(r - l + 1);
 			int pivotIdx = random + l;
-			int newPivotIdx = partitionAroundPivot(arr, l, r, pivotIdx, Compare.Smaller_Than);
+
+			//int newPivotIdx = partitionAroundPivot(arr, l, r, pivotIdx, Compare.Smaller_Than);
+			int newPivotIdx = partitionAroundPivot(arr, l, r, pivotIdx);
 			
 			if(newPivotIdx == k-1) {
 				result = arr[newPivotIdx];
@@ -52,7 +54,8 @@ public class FindKthSmallestElement {
 		return result;
 	}
 	
-	private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx, Comparator<Integer> cmp) {
+	//private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx, Comparator<Integer> cmp) {
+	private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx) {
 		
 		int newPivotIdx = l;
 		int pivotValue = arr[pivotIdx];
@@ -60,7 +63,10 @@ public class FindKthSmallestElement {
 		swap(arr, r, pivotIdx);		
 		for(int i = l; i < r; ++i) {
 			
-			if(cmp.compare(arr[i], pivotValue) < 0) {
+			/*if(cmp.compare(arr[i], pivotValue) < 0) {
+				swap(arr, i, newPivotIdx++);
+			}*/
+			if(Integer.compare(arr[i], pivotValue) < 0) {
 				swap(arr, i, newPivotIdx++);
 			}
 		}
@@ -79,7 +85,8 @@ public class FindKthSmallestElement {
 		private static class SmallerThan implements Comparator<Integer> {			
 			@Override
 			public int compare(Integer a, Integer b) {				
-				return (a < b) ? -1 : a.equals(b) ? 0 : 1; 
+				//return (a < b) ? -1 : a.equals(b) ? 0 : 1;
+				return Integer.compare(a, b);
 			}
 		}
 		public static final SmallerThan Smaller_Than = new SmallerThan();

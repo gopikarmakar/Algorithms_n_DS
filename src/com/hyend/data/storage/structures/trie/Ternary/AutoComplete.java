@@ -18,8 +18,8 @@ public class AutoComplete {
 		
 		String[] names = {"kiaan", "asuka", "keshav", "kia", "tulsi", "karan", "kunal", "kiran", "kabir", "krisha"};				
 		
-		//autoCompleteByPrefix(names, "ka");
-		//autoCompleteByPrefix(names, "ki");
+		//prefixAutoComplete(names, "ka");
+		//prefixAutoComplete(names, "ki");
 		
 		Node<Character, String> trie = createTrie(names);
 		

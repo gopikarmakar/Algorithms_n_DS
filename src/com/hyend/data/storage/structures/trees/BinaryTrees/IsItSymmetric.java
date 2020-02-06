@@ -4,6 +4,11 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
  * A solution to check whether a Binary Tree is symmetric.  
+ * 
+ * 								1
+ * 				2								2
+ * 		4				5 				5	 			4
+ * 	8   	9 		10		11  	11		10 		9		8	
  *  
  * @author gopi_karmakar
  */
@@ -16,6 +21,7 @@ public class IsItSymmetric {
 		//Integer[] wrongKeys = {1,2,3,4,5,5,4,8,9,9,8,10,11,11,10};		
 		
 		Node<Integer> tree = (Node<Integer>) BinaryTree.build(BinaryTree.LEVEL_ORDER, correctKeys);
+		BinaryTree.printBFS(tree, true);
 		System.out.println("Is It A Symmetry = " + isItASymmetry(tree.left, tree.right));
 	}
 	
@@ -31,16 +37,16 @@ public class IsItSymmetric {
 	 * @param BinaryTree.Node<key> rightSubTree
 	 * @return
 	 */
-	public static boolean isItASymmetry(Node<Integer> leftSubTree, Node<Integer> rightSubTree) { 
+	public static boolean isItASymmetry(Node<Integer> leftNode, Node<Integer> rightNode) { 
 		
-		if(leftSubTree == null && rightSubTree == null) {
+		if(leftNode == null && rightNode == null) {
 			return true; 
 		}
-		else if(leftSubTree != null && rightSubTree != null) {
+		else if(leftNode != null && rightNode != null) {
 			
-			 return (leftSubTree.key == rightSubTree.key) && 
-					 isItASymmetry(leftSubTree.left, rightSubTree.right) &&
-					 isItASymmetry(leftSubTree.right, rightSubTree.left);
+			 return (leftNode.key == rightNode.key) && 
+					 isItASymmetry(leftNode.left, rightNode.right) &&
+					 isItASymmetry(leftNode.right, rightNode.left);
 		}
 		// One subtree is empty, and the other is not.
 		return false;

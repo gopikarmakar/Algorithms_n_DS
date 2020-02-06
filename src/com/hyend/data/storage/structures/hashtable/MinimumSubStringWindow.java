@@ -17,14 +17,16 @@ public class MinimumSubStringWindow {
 		
 		String[] test = {"ADOBECODEBANC", "AAAAABCCCD", "AABACBEBEBE"};
 		String[] query = {"BCA", "CAB", "ACCCB", "ABE"};
-		String s = test[2];
-		String q = query[3];		
+		String s = test[0];
+		String q = query[0];		
 		
-		SubArray subArray = findWindow(s, q);		
+		MinimumSubStringWindow minWindow = new MinimumSubStringWindow();		
+		SubArray subArray = minWindow.findWindow(s, q);		
+		
 		System.out.println("Min Window Substring = " + s.substring(subArray.start, subArray.end+1));
 	}
 	
-	static class SubArray {
+	class SubArray {
 		int start;
 		int end;
 		public SubArray(int start, int end) {
@@ -37,7 +39,7 @@ public class MinimumSubStringWindow {
 	 * An efficient O(n) time with O(k) extra space complexity solution
 	 * where k = query.length
 	 */
-	private static SubArray findWindow(String s, String query) {
+	private SubArray findWindow(String s, String query) {
 		
 		int seenSoFar = 0, idx = 0;
 		SubArray subArray = new SubArray(-1, -1);

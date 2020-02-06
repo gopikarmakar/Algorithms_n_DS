@@ -8,10 +8,10 @@ import java.util.Map;
  * Find the longest substring with K distinct entries in a given string s 
  * 
  * For e.g: S = "aadbbccd" k = 3 
- * return "dbbccd" since it's the longest substring with 2 distinct entries
- * 
- * S = "aadbbccd" k = 3
  * return "dbbccd" since it's the longest substring with 3 distinct entries
+ * 
+ * S = "aabacbebebe" k = 3
+ * return "cbebebe" since it's the longest substring with 3 distinct entries
  * 
  * @author gopi_karmakar
  */
@@ -22,8 +22,8 @@ public class MaximumSubStringWithKDistinctEntries {
 		int k = 3;
 
 		//String s = "aadbbccd";
-		
-		String s = "aabacbebebe";
+				
+		String s = "aabacbebebe";				
 		
 		SubArray subArray = findSubString(s, k);
 		//System.out.println("Start = " + subArray.start + " End = " + subArray.end);

@@ -14,8 +14,9 @@ public class LRUCacheWithoutLinkedHashMap {
 	
 	public static void main(String[] args) {		
 								
-		LRUCache<String> lruCache = new LRUCacheWithoutLinkedHashMap().new LRUCache<>(5);
-		lruCache.add("One");
+		//LRUCache<String> lruCache = new LRUCacheWithoutLinkedHashMap().new LRUCache<>(5);
+		LRUCache<String> lruCache = new LRUCache<>(5);
+		lruCache.get("One");
 		lruCache.add("Two");
 		lruCache.add("Three");
 		lruCache.add("Four");
@@ -29,13 +30,14 @@ public class LRUCacheWithoutLinkedHashMap {
 		lruCache.get("Four");
 		lruCache.add("Nine");
 		lruCache.printCache();
+		lruCache.get(null);
 	}
 		
 	/**
 	 * The time complexity for each lookup is O(1) for the hash table lookup and
 	 * O(1) for updating the queue, i.e. Total time complexity is O(1) overall.
 	 */
-	private class LRUCache<K> {
+	private static class LRUCache<K> {
 		
 		private int mCapacity = 0;
 		private Set<K> items;
@@ -48,9 +50,13 @@ public class LRUCacheWithoutLinkedHashMap {
 			cache = new LinkedList<K>();			
 		}
 		
-		public void add(K item) {			
+		public K add(K item) throws UnsupportedOperationException {
+			
+			if(item == null)
+				throw new UnsupportedOperationException("Null Not Supported");
+			
 			if(!items.contains(item)) {				
-				if(cache.size() == mCapacity) {
+				if(cache.size() >= mCapacity) {
 					K expiredItem = cache.pollLast();
 					items.remove(expiredItem);
 				}
@@ -60,17 +66,25 @@ public class LRUCacheWithoutLinkedHashMap {
 			}
 			cache.addFirst(item);
 			items.add(item);
+			
+			return item;
 		}
 		
-		public K get(K item) {
-			if(!items.contains(item)) {				
+		public K get(K item) throws UnsupportedOperationException {
+			
+			/*if(item == null)
+				throw new UnsupportedOperationException("Null Not Supported");*/
+			
+			/*if(!items.contains(item)) {				
 				add(item);
 			}
 			else {
 				cache.remove(item);
-				cache.push(item);
+				cache.addFirst(item);
 			}
-			return item;
+			return item;*/
+			
+			return add(item);
 		}
 		
 		public void printCache() {			

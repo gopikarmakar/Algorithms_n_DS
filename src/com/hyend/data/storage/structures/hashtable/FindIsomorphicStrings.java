@@ -81,7 +81,7 @@ public class FindIsomorphicStrings {
 			if(!map.containsKey(c))
 				map.put(c, count++);
 			
-			//To differentiate between cases like: 12 and 12(1 and 2) 			
+			//# is To differentiate between cases like: 12 and 12(1 and 2) 			
 			hashed += map.get(c) + "#";
 		}		
 		return hashed;

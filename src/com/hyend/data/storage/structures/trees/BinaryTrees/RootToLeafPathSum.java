@@ -31,10 +31,12 @@ public class RootToLeafPathSum {
 	private static final int DECIMAL = 1;
 	private static final int BINARY_DIGIT = 2;
 	
-
 	public static void main(String[] args) {		
+		
 		int sum = 0;
-		//sum = testDecimalBinaryTree();		
+		sum = testDecimalBinaryTree();		
+		System.out.println("Root-To-Leaf Path Sum = " + sum);
+		
 		Integer keys[] = {1,0,1,0,1,0,0,0,1,0,1,0,0,1,0}; // Keys for Binary digit tree 
 		sum = testBinaryDigitBinaryTree(keys);		
 		System.out.println("Root-To-Leaf Path Sum = " + sum);

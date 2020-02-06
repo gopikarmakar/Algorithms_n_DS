@@ -1,7 +1,7 @@
 package com.hyend.data.storage.structures.hashtable;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.LinkedHashMap;
 
 /**
  * LRU (Least Recently Used) cache implementation with LinkedHashMap.
@@ -14,7 +14,8 @@ public class LRUCacheWithLinkedHashMap {
 
 	public static void main(String[] args) {
 		
-		LRUCache<String, String> lruCache = new LRUCacheWithLinkedHashMap().new LRUCache<>(5);
+		//LRUCache<String, String> lruCache = new LRUCacheWithLinkedHashMap().new LRUCache<>(5);
+		LRUCache<String, String> lruCache = new LRUCache<>(5);
 		lruCache.add("One", "one");
 		lruCache.add("Two", "Two");
 		lruCache.add("Three", "Three");
@@ -23,12 +24,13 @@ public class LRUCacheWithLinkedHashMap {
 		lruCache.printCache();
 		lruCache.add("Six", "Six");
 		lruCache.add("Seven", "Seven");		
-		lruCache.get("Four");		
+		lruCache.get("Four");
 		lruCache.printCache();
 		lruCache.add("Eight", "Eight");
 		lruCache.get("Four");
 		lruCache.add("Nine", "Nine");
 		lruCache.get("Five");
+		lruCache.get("Ten");
 		lruCache.printCache();
 	}
 	
@@ -36,7 +38,7 @@ public class LRUCacheWithLinkedHashMap {
 	 * The time complexity for each lookup is O(1) for the hash table lookup and
 	 * O(1) for updating the queue, i.e. Total time complexity is O(1) overall.	 
 	 */
-	private class LRUCache<K, V> {
+	private static class LRUCache<K, V> {
 		
 		int cacheSize = 0;
 		
@@ -44,9 +46,10 @@ public class LRUCacheWithLinkedHashMap {
 			this.cacheSize = cacheSize;
 		}
 		
+		@SuppressWarnings("serial")
 		private Map<K, V> cache = new LinkedHashMap<K, V>(cacheSize, 0.75f, true) {
 						
-			private static final long serialVersionUID = 1L;
+			//private static final long serialVersionUID = 1L;
 
 			@Override
 			public boolean removeEldestEntry(Map.Entry<K, V> e) {
@@ -62,8 +65,8 @@ public class LRUCacheWithLinkedHashMap {
 		
 		public V get(K key) {
 			
-			if(!cache.containsKey(key))
-				add(key, null);
+			//if(!cache.containsKey(key))
+			add(key, null);
 			
 			return cache.get(key);
 		}

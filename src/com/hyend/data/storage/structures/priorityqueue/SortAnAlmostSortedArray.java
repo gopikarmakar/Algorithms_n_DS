@@ -32,7 +32,7 @@ public class SortAnAlmostSortedArray {
 			minPQ.add(arr[i]);
 		}
 		
-		for(int i = k; i < arr.length; ++i) {			
+		for(int i = k; i < arr.length; ++i) {
 			minPQ.add(arr[i]);
 			System.out.println(minPQ.remove());
 		}

@@ -13,7 +13,7 @@ public class RootToLeafPathExistForSum {
 	public static void main(String[] args) {
 		
 		Node<Integer> root = BinaryTree.buildDefault();
-		System.out.println("Does path exist = " + hasPath(root, 23, 0));		
+		System.out.println("Does path exist = " + hasPath(root, 601, 0));		
 	}
 	
 	/**

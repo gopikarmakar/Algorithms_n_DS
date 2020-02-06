@@ -29,7 +29,7 @@ public class DijkstraShortestPathWithMinEdges<V extends Comparable<V>> {
 							{"E", "T", "4"}, {"G", "E", "2"}, {"G", "T", "3"}, 
 							{"T", "F", "5"}, {"S", "D", "7"}, {"S", "B", "3"}, 	
 							{"S", "A", "4"}};	
-				
+		
 		EdgeWeightedDiGraph<String> eDiGraph = new EdgeWeightedDiGraph<>();
 		
 		for(String[] row : data2) {			

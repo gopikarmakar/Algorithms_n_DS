@@ -15,14 +15,17 @@ public class KSmallElements {
 	public static void main(String[] args) {
 		
 		int[] arr = {5, -1, 7, 2, 4, 3, 9, 8, 1, 10, -2, 6};
+		
 		System.out.println(kSmallest(4, arr));
-		//System.out.println(kSmall(4, arr));
+		kSmall(4, arr);
 	}
 	
 	/**
-	 * An O(n Log k) solution with extra O(k) space
-	 * since, It doesn't change the original array.
-	 * Max priority queue never guarantees Sortedness. 
+	 * An optimal O(n Log K) time complexity solution.
+	 * But it uses extra O(K) space since It stores K value in 
+	 * a priority queue and doesn't modify the original array.
+	 * 
+	 * The sortedness won't be guaranteed for final output.
 	 */
 	private static Collection<Integer> kSmallest(int k, int...arr) {
 		

@@ -62,7 +62,7 @@ public class Elections {
 		}
 	}
 
-	public void put(List<CastedVotes> votesList) {
+	public void put(Collection<CastedVotes> votesList) {
 
 		for(CastedVotes x : votesList) {
 

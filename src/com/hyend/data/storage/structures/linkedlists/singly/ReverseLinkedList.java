@@ -21,28 +21,13 @@ public class ReverseLinkedList {
 		
 		Node<Integer> current = head, prev = null, next = null;
 		
-		Node<Integer> dummyHead = new Node<>();		
-		
-		int n = 0;
-		while(current.next != null) {
-			
-			next = current.next;
-			current.next = next.next;
-			next.next = dummyHead.next;
-			dummyHead.next = next;
-			
-		}
-		
-		//System.out.println(current.k);
-		return dummyHead.next;
-		
-		/*while(current != null) {
+		while(current != null) {
 			
 			next = current.next;
 			current.next = prev;
 			prev = current;
 			current = next;
-		}*/		
-		//return prev;
+		}		
+		return prev;
 	}
 }

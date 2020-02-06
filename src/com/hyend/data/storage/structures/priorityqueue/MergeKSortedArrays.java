@@ -1,6 +1,8 @@
 package com.hyend.data.storage.structures.priorityqueue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -18,7 +20,7 @@ public class MergeKSortedArrays {
 	
 	public static void main(String[] args) {
 		
-		int[][] files = {{3, 5, 7}, {0, 6}, {0, 6, 8}};		
+		Integer[][] files = {{3, 5, 7}, {0, 6}, {0, 6, 8}};		
 		
 		for(int x: mergeSortedArray(files)) {
 			System.out.println(x);
@@ -44,32 +46,16 @@ public class MergeKSortedArrays {
 	 * Merge Sorted Arrays
 	 * An O(n log k) time complexity solution.
 	 */
-	public static List<Integer> mergeSortedArray(int[][] files) {
+	public static List<Integer> mergeSortedArray(Integer[][] files) {
 		
-		List<Integer> merged = new ArrayList<>();
+		List<List<Integer>> lists = new ArrayList<>();
 		
-		/*PriorityQueue<Entry> minPQ = new PriorityQueue<Entry>(files.length, new Comparator<Entry>() {
-			@Override
-			public int compare(Entry e1, Entry e2) {
-				return Integer.compare(e1.key, e2.key);
-			}
-		});*/
-		
-		// Using lambda comparator
-		PriorityQueue<Entry> minPQ = new PriorityQueue<>(files.length, Comparator.comparing(Entry::getKey));
-		
-		for(int i = 0; i < files.length; i++) {
-			minPQ.add(new Entry(files[i][0], i, 0));
+		for(Integer[] list : files) {
+			lists.add(Arrays.asList(list));
 		}
-				
-		while(!minPQ.isEmpty()) {
-			Entry entry = minPQ.remove();
-			merged.add(entry.key);
-			
-			if(entry.ci < files[entry.ri].length-1) {
-				minPQ.add(new Entry(files[entry.ri][++entry.ci], entry.ri, entry.ci));
-			}
-		}
+		
+		List<Integer> merged = mergeSortedLists(lists);
+
 		return merged;
 	}
 	
@@ -81,12 +67,14 @@ public class MergeKSortedArrays {
 		
 		List<Integer> merged = new ArrayList<>();
 		
-		PriorityQueue<Entry> minPQ = new PriorityQueue<>(lists.size(), new Comparator<Entry>() {
+		/*PriorityQueue<Entry> minPQ = new PriorityQueue<>(lists.size(), new Comparator<Entry>() {
 			@Override
 			public int compare(Entry e1, Entry e2) {
 				return Integer.compare(e1.key, e2.key);
 			}
-		});
+		});*/
+		
+		PriorityQueue<Entry> minPQ = new PriorityQueue<>(lists.size(), Comparator.comparing(Entry::getKey));
 		
 		for(int i = 0; i < lists.size(); ++i) {
 			minPQ.add(new Entry(lists.get(i).get(0), i, 0));

@@ -22,15 +22,17 @@ public class FindLCA {
 		Node<Integer> node1 = tree.left.right.right;
 		//Node<Integer> node2 = tree.right.right;
 		Node<Integer> node2 = tree.left.left.right;
-
-		Node<Integer> lca = findLCAWithoutParent(tree, node1, node2).ancestor;	
 		
-		//Node<Integer> lca = findLCAWithParent(node1, node2);
+		FindLCA find = new FindLCA();
+
+		Node<Integer> lca = find.findLCAWithoutParent(tree, node1, node2).ancestor;	
+		
+		//Node<Integer> lca = find.findLCAWithParent(node1, node2);
 		
 		System.out.println("LCA for " + node1.key + " and " + node2.key + " = " + lca.key);
 	}
 	
-	private static class Status {
+	private class Status {
 	
 		public int numTargetNodes;
 		public Node<Integer> ancestor;
@@ -50,7 +52,7 @@ public class FindLCA {
 	 * The time complexity for this algorithm is O(n) 
 	 * and the space complexity is O(h) where h is the height of the tree.
 	 */
-	private static Status findLCAWithoutParent(Node<Integer> node, 
+	private Status findLCAWithoutParent(Node<Integer> node, 
 			Node<Integer> node1, Node<Integer> node2) {
 		
 		if(node == null) {
@@ -65,8 +67,11 @@ public class FindLCA {
 		if(rightResult.numTargetNodes == 2)
 			return rightResult;		//Found both nodes in the right subtree.
 		
+		/*int numTargetNodes = leftResult.numTargetNodes + rightResult.numTargetNodes +
+				((node == node1) ? 1 : 0) + ((node == node2) ? 1 : 0);*/
+		
 		int numTargetNodes = leftResult.numTargetNodes + rightResult.numTargetNodes +
-				((node == node1) ? 1 : 0) + ((node == node2) ? 1 : 0);
+				((node == node1 || node == node2) ? 1 : 0);
 		
 		return new Status(numTargetNodes, ((numTargetNodes == 2) ? node : null));
 	}
@@ -76,7 +81,7 @@ public class FindLCA {
 	 * parent node for every child node.
 	 * An efficient iterative approach.x
 	 */
-	private static Node<Integer> findLCAWithParent(Node<Integer> node1, Node<Integer> node2) {
+	private Node<Integer> findLCAWithParent(Node<Integer> node1, Node<Integer> node2) {
 		
 		int depth1 = getDepth(node1);
 		int depth2 = getDepth(node2);

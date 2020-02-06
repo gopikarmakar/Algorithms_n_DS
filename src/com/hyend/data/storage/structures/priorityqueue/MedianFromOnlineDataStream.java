@@ -45,17 +45,13 @@ public class MedianFromOnlineDataStream {
 		}
 		
 		public void add(int num) {		
-			if(minPQ.isEmpty()) {
+			
+			if(minPQ.isEmpty() || num >= minPQ.peek()) {
 				minPQ.add(num);
 			}
 			else {				
-				if(num >= minPQ.peek()) {
-					minPQ.add(num);
-				}
-				else {
-					maxPQ.add(num);
-				}					
-			}			
+				maxPQ.add(num);				
+			}		
 			if(minPQ.size() > maxPQ.size()+1) {
 				maxPQ.add(minPQ.remove());
 			}
