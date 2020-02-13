@@ -49,29 +49,33 @@ public class IsItAValidBST {
 	 */
 	private static boolean isBSTLevelOrder(Node<Integer> root) {
 		
-		Queue<QueueEntry> queue = new LinkedList<QueueEntry>();
-		queue.add(new QueueEntry(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
 		
-		QueueEntry headEntry = null;
-		while((headEntry = queue.poll()) != null) {
-			if(headEntry.node != null) {
-				if(headEntry.node.key < headEntry.min || headEntry.node.key > headEntry.max) {
+		queue.add(new TreeNode(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
+		
+		TreeNode treeNode = null;
+		
+		while((treeNode = queue.poll()) != null) {
+			
+			if(treeNode.node != null) {
+				
+				if(treeNode.node.key < treeNode.min || treeNode.node.key > treeNode.max) {
 					return false;
 				}
 				
-				queue.add(new QueueEntry(headEntry.node.left, headEntry.min, headEntry.node.key));
-				queue.add(new QueueEntry(headEntry.node.right, headEntry.node.key, headEntry.max));
+				queue.add(new TreeNode(treeNode.node.left, treeNode.min, treeNode.node.key));
+				queue.add(new TreeNode(treeNode.node.right, treeNode.node.key, treeNode.max));
 			}			
 		}
 		return true;
 	}
 	
-	private static class QueueEntry {
+	private static class TreeNode {
 		
 		Integer min, max;
 		Node<Integer> node;
 		
-		public QueueEntry(Node<Integer> node, Integer min, Integer max) {
+		public TreeNode(Node<Integer> node, Integer min, Integer max) {
 			this.min = min;
 			this.max = max;
 			this.node = node;			

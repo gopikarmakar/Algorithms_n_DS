@@ -36,18 +36,18 @@ public class CountUniValueSubTrees {
 	 * O(n) time complexity
 	 */
 	int count = 0;
-	public boolean countUniVal(Node<Integer> root) {
+	public boolean countUniVal(Node<Integer> node) {
 		
-		if(root == null)
+		if(node == null)
 			return true;
 		
-		boolean isLeft 	= countUniVal(root.left);
-		boolean isRight = countUniVal(root.right);
+		boolean isLeft 	= countUniVal(node.left);
+		boolean isRight = countUniVal(node.right);
 		
-		if(root.left != null && root.key != root.left.key) 
+		if(node.left != null && node.key != node.left.key) 
 			return false;
 
-		if(root.right != null && root.key != root.right.key)
+		if(node.right != null && node.key != node.right.key)
 			return false;
 		
 		if (!isLeft || !isRight) {

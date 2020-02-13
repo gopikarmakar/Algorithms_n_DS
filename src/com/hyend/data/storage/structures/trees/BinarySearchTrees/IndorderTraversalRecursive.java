@@ -11,8 +11,11 @@ public class IndorderTraversalRecursive {
 			return;
 		
 		print(tree.left, withParent);		
-		System.out.println("Key = " + tree.key + " Value = " + tree.value + ((withParent == true) ? 
-				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));				
+
+		System.out.println("Key = " + tree.key + 
+				((tree.value != null) ? " Value = " + tree.value : "") +
+				((withParent == true) ? ((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
+		
 		print(tree.right, withParent);
 	}
 }

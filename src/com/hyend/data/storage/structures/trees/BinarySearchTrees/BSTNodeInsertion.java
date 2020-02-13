@@ -1,8 +1,8 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
 /**
- * Constructing a Binary Search Tree Recursively
- * and Iteratively with the track of parent.
+ * A concrete Binary Search Tree Implementation Recursively and Iteratively 
+ * with the track of Parent node for every child node.
  * 
  * A Binary Search Tree guarantees O(log(n) time for Insertions.
  * Average-case cost (after N random inserts) 	:  	1.39 log(N)
@@ -24,8 +24,9 @@ public class BSTNodeInsertion<K extends Comparable<K>, V> {
 	private Node<K, V> root = null;
 	
 	public static void main(String[] args) {
+		
 		Node<?, ?> tree = createDefault();		
-	    BinarySearchTree.printInOrder(BinarySearchTree.RECURSIVE, tree, true);
+	    BinarySearchTree.printInOrder(BinarySearchTree.RECURSIVELY, tree, true);
 	}
 	
 	public static Node<Integer, String> createDefault() {
@@ -40,22 +41,20 @@ public class BSTNodeInsertion<K extends Comparable<K>, V> {
 		return tree;
 	}
 	
-	public Node<K, V> put(int type, K key, V value) {			
+	public Node<K, V> add(int type, K key, V value) {			
 		
-		if(type == BinarySearchTree.RECURSIVE)
+		if(type == BinarySearchTree.RECURSIVELY) {
 			root = addRecursively(root, null, key, value);
-		else if(type == BinarySearchTree.ITERATIVE)
+		}
+		else if(type == BinarySearchTree.ITERATIVELY) {
 			root = addIterarively(key, value, null);
+		}
 		
 		return root;
 	}
 	
 	/**
 	 * Iterative Binary Search Tree node insertion.
-	 * @param key
-	 * @param value
-	 * @param parent
-	 * @return
 	 */
 	private Node<K, V> addIterarively(K key, V value,
 			Node<K, V> parent) {		
@@ -84,12 +83,7 @@ public class BSTNodeInsertion<K extends Comparable<K>, V> {
 	}
 	
 	/**
-	 * Recursive Binary Search Tree node insertions.		 
-	 * @param node
-	 * @param parent
-	 * @param key
-	 * @param value
-	 * @return
+	 * Recursive Binary Search Tree node insertions.
 	 */
 	private Node<K, V> addRecursively(Node<K, V> node,  
 			Node<K, V> parent, K key, V value) {

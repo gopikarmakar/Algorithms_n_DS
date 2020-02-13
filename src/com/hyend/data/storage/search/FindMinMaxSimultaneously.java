@@ -33,7 +33,7 @@ public class FindMinMaxSimultaneously {
 	
 		MinMax globalMinMax = MinMax.minMax(arr[0], arr[1]);
 		
-		for(int i = 2; i + 1 < n; i += 2) {
+		for(int i = 2; i < n-1; i += 2) {
 			
 			MinMax localMinMax = MinMax.minMax(arr[i], arr[i+1]);
 			

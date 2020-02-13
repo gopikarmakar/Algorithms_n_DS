@@ -1,6 +1,8 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
 import java.util.Iterator;
+import java.util.LinkedList;
+
 import com.hyend.data.storage.structures.linkedlists.doubly.DoublyLinkedList;
 
 /**
@@ -10,36 +12,44 @@ import com.hyend.data.storage.structures.linkedlists.doubly.DoublyLinkedList;
  */
 public class ConvertBSTToSortedDoubleyLL {
 	
+	private static LinkedList<Node<Integer, ?>> ll = new LinkedList<>();
+	private static DoublyLinkedList<Node<Integer, ?>> dll = new DoublyLinkedList<>();
+	
 	public static void main(String[] args) {
 		
-		Node<Integer, String> tree = BinarySearchTree.createDefault();
+		Node<Integer, ?> tree = BinarySearchTree.createDefault();
 		convert(tree);
 		print(DoublyLinkedList.FORWARD);
-	}	
+	}
+	
+	public static LinkedList<Node<Integer, ?>> get(Node<Integer, ?> node) {
 		
-	private static DoublyLinkedList<Node<?, ?>> dll = new DoublyLinkedList<>();
+		convert(node);
+		return ll;
+	}
 	
 	/**
 	 * O(n) time complexity recursive InOrder solution.
-	 * 
-	 * @param node
 	 */
-	public static void convert(Node<?, ?> node) {
+	private static void convert(Node<Integer, ?> node) {
 	
 		if(node == null) return;
 		
 		convert(node.left);
-		dll.add(node);
+		ll.add(node);
+		dll.add(node);		
 		convert(node.right);
 	}
 	
-	public static void print(int order) {				
+	private static void print(int order) {				
 		
-		Iterator<Node<?, ?>> itr = dll.getIterator(order);
+		dll.printAllNodes(order);
+		
+		/*Iterator<Node<Integer, ?>> itr = dll.getIterator(order);
 		
 		while(itr.hasNext()) {
 			Node<?, ?> node = itr.next();
 			System.out.println("Key = " + node.key + " Value = " + node.value);
-		}
+		}*/
 	}
 }

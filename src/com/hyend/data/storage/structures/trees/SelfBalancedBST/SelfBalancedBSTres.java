@@ -308,8 +308,11 @@ public final class SelfBalancedBSTres<K extends Comparable<K>, V> {
 			if(cmp < 0) node = node.left;
 			else if(cmp > 0) node = node.right;
 			else node.value = value;
+			
 		} while(node != null);
+		
 		node = new Node(key, value, 1, RED);
+		
 		if(cmp < 0) {
 			parent.left = node;
 			parent.left.parent = parent;

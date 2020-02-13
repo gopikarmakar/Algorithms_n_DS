@@ -19,8 +19,10 @@ public class ReorderDoubleyLinkedList {
 		Node<Integer> head = reorderLinkedList(dll);
 		
 		Node<Integer> node = head;
+		
 		while(node != null) {
-			System.out.println(node.k);
+			
+			System.out.println(node.key);
 			node = node.next;
 		}
 	}

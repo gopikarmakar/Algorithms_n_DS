@@ -18,10 +18,12 @@ public class PreOrderTraversalRecursive {
 		if(tree == null) //Base case
 			return;
 		
-		System.out.println("Key = " + tree.key + "\tValue = " + tree.value + ((withParent == true) ? 
-				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
+		System.out.println("Key = " + tree.key + 
+				((tree.value != null) ? "\tValue = " + tree.value : "") + 
+				((withParent == true) ? ((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
 		
 		print(tree.left, withParent);
+		
 		print(tree.right, withParent);
 	}
 }

@@ -21,8 +21,9 @@ public class FindFirstMissingPositive {
 	public FindFirstMissingPositive() {}
 	
 	public static void main(String[] args) {
+		
 		int[] arr = {8, 12, 1, 7, 9, 11, 10, 2};
-		int val = findFirstMissingPositive(arr);		
+		int val = findFirstMissingPositive(arr);
 		System.out.println("First Missing Positive = " + val);
 	}
 	
@@ -30,9 +31,6 @@ public class FindFirstMissingPositive {
 	 * Solution 1: A full proof and most efficient O(n) solution.
 	 * 
 	 * The time complexity is O(n)
-	 * 
-	 * @param arr
-	 * @return
 	 */
 	private static int findFirstMissingPositive(int...arr) {
 			
@@ -46,6 +44,9 @@ public class FindFirstMissingPositive {
 			}
 			else i++;
 		}
+		
+		//for(int x : arr)
+			//System.out.println(x);
 		
 		for(i = 0; i < arr.length; i++) {
 			if(arr[i] != i+1)
@@ -86,7 +87,7 @@ public class FindFirstMissingPositive {
 	}
 	
 	/**
-	 * Solution 3: More inefficient O(n)log(n) solution.
+	 * Solution 3: Most inefficient O(n)log(n) solution.
 	 * 
 	 * @param arr
 	 * @return

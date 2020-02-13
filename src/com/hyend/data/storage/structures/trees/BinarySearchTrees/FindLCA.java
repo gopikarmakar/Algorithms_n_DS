@@ -12,9 +12,14 @@ public class FindLCA {
 
 	public static void main(String[] args) {
 		
-		Node<Integer, String> tree = BinarySearchTree.createDefault();
-		Node<Integer, ?> node2 = tree.left.right.left.left;
-		Node<Integer, ?> node1 = tree.left.right.right;
+		Node<Integer, ?> tree = BinarySearchTree.createDefault();
+		
+		Node<Integer, ?> node1 = tree.left.right.left.left;
+		System.out.println(node1.key);
+		
+		//Node<Integer, ?> node1 = tree.left.right.right;
+		Node<Integer, ?> node2 = tree.left.left.left;
+		System.out.println(node2.key);
 				
 		Node<Integer, ?> lca = null;
 		

@@ -22,8 +22,9 @@ public class BFSOrLevelOrderTraversal {
 			
 			if(current != null) {
 							
-				System.out.println("Key = " + current.key + " Value = " + current.value + ((withParent == true) ? 
-						((current.parent!= null) ? "\tParent = " + current.parent.key : "\tIt's Root") : ""));					
+				System.out.println("Key = " + current.key + 
+						((current.value != null) ? " Value = " + current.value : "") +
+						((withParent == true) ? ((current.parent!= null) ? "\tParent = " + current.parent.key : "\tIt's Root") : ""));					
 			}
 			
 			if(current.left != null)	queue.add(current.left);			

@@ -66,7 +66,10 @@ public class FindKthSmallestElement {
 			/*if(cmp.compare(arr[i], pivotValue) < 0) {
 				swap(arr, i, newPivotIdx++);
 			}*/
-			if(Integer.compare(arr[i], pivotValue) < 0) {
+			/*if(Integer.compare(arr[i], pivotValue) < 0) {
+				swap(arr, i, newPivotIdx++);
+			}*/
+			if(arr[i] < pivotValue) {
 				swap(arr, i, newPivotIdx++);
 			}
 		}

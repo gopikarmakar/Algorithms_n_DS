@@ -13,7 +13,7 @@ public class BSTNodeSearch {
 		
 		Node<Integer, ?> tree = (Node<Integer, ?>) BinarySearchTree.createDefault();
 		
-		Node<Integer, ?> node = contains(tree, 13, BinarySearchTree.RECURSIVE); 
+		Node<Integer, ?> node = contains(tree, 13, BinarySearchTree.RECURSIVELY); 
 		String msg = (node != null) ? ""+node.value : "Key Doesn't Exist"; 
 		System.out.println(msg);
 	}
@@ -21,9 +21,9 @@ public class BSTNodeSearch {
 	public static Node<Integer, ?> contains(Node<Integer, ?> tree, int key, int type) {
 		Node<Integer, ?> node = null;
 		
-		if(type == BinarySearchTree.RECURSIVE)
+		if(type == BinarySearchTree.RECURSIVELY)
 			node = recursive(tree, key);
-		else if(type == BinarySearchTree.ITERATIVE)
+		else if(type == BinarySearchTree.ITERATIVELY)
 			node = iterative(tree, key);
 		
 		return node;

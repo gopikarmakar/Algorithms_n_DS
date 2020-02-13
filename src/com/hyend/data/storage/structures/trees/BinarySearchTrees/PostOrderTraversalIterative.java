@@ -31,8 +31,9 @@ public class PostOrderTraversalIterative {
 		while(!nodes.isEmpty()) {
 			
 			Node<?, ?> node = nodes.pop();
-			System.out.println("Key = " + node.key + " Value = " + node.value + ((withParent == true) ? 
-					((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : ""));
+			System.out.println("Key = " + node.key + 
+					((node.value != null) ? " Value = " + node.value : "") + 
+					((withParent == true) ? ((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : ""));
 		}		
  	}
 }

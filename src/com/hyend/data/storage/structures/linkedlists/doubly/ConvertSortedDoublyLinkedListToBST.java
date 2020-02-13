@@ -1,5 +1,18 @@
 package com.hyend.data.storage.structures.linkedlists.doubly;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
+/**
+ * Convert a sorted double linked list to a balanced binary search tree
+ * for e.g: DLL: 1<==>2<==>3<==>4<==>5<==>6<==>7<==>8<==>9<==>10 
+ * BSTree:						6
+ * 				3								9	
+ * 		2				5				8				10
+ * 	1				4				7
+ * 
+ * @author gopi_karmakar
+ */
 public class ConvertSortedDoublyLinkedListToBST {
 
 	private static Node<Integer> head = null;
@@ -11,7 +24,9 @@ public class ConvertSortedDoublyLinkedListToBST {
 		
 		Node<Integer> root = convert(0, dll.size());
 		
-		preOrderTraversal(root);
+		levelOrderTraversal(root);
+		
+		inOrderTraversal(root);
 	}
 	
 	/**
@@ -28,7 +43,7 @@ public class ConvertSortedDoublyLinkedListToBST {
 		
 		Node<Integer> left = convert(start, mid);
 		
-		Node<Integer> current = new Node<>(head.k, left, null);
+		Node<Integer> current = new Node<>(head.key, left, null);
 		
 		head = head.next;
 		
@@ -37,15 +52,34 @@ public class ConvertSortedDoublyLinkedListToBST {
 		return current;
 	}
 	
-	private static void preOrderTraversal(Node<Integer> node) {
+	private static void inOrderTraversal(Node<Integer> node) {
 		
 		if (node == null) 
             return; 		
 		
-		preOrderTraversal(node.prev);
+		inOrderTraversal(node.prev);
 		
-		System.out.println(node.k);
+		System.out.println(node.key);
 		
-		preOrderTraversal(node.next);		
+		inOrderTraversal(node.next);		
+	}
+	
+	private static void levelOrderTraversal(Node<Integer> node) {
+		
+		Queue<Node<Integer>> queue = new LinkedList<>();
+		queue.add(node);
+		
+		while(!queue.isEmpty()) {
+			
+			Node<Integer> current = queue.poll();				
+			
+			if(current != null) {
+							
+				System.out.println("Item = " + current.key);					
+			}
+			
+			if(current.prev != null)	queue.add(current.prev);			
+			if(current.next != null)	queue.add(current.next);
+		}
 	}
 }

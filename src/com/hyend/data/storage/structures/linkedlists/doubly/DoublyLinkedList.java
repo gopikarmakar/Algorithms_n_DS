@@ -12,7 +12,7 @@ public class DoublyLinkedList<K> {
 	public static final int FORWARD = 1;
 	public static final int REVERSE = 2;
 	
-	public int size = 0;
+	private int size = 0;
 	public Node<K> head = null;
 	public Node<K> tail = null;
 	
@@ -54,10 +54,12 @@ public class DoublyLinkedList<K> {
 	}
 	
 	public void printAllNodes(int order) {
+		
 		Iterator<K> itr = getIterator(order); 
 		while(itr.hasNext()) {
+			
 			K k = itr.next();
-			System.out.println("Key = " + k);
+			System.out.println(k);
 		}
 	}
 	
@@ -74,9 +76,9 @@ public class DoublyLinkedList<K> {
 			
 			@Override
 			public K next() {
-				K k = current.k;
+				K item = current.key;
 				current = (order == REVERSE) ? current.prev : current.next;
-				return k;
+				return item;
 			}
 			
 			@Override

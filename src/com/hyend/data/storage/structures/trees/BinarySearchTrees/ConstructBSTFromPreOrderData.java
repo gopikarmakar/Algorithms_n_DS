@@ -13,7 +13,7 @@ public class ConstructBSTFromPreOrderData {
 		
 		Node<Integer, String> tree = toBST(preOrder, Integer.MIN_VALUE, Integer.MAX_VALUE);
 		
-		BinarySearchTree.printPreOrder(BinarySearchTree.RECURSIVE, tree, false);		
+		BinarySearchTree.printPreOrder(BinarySearchTree.RECURSIVELY, tree, false);		
 	}
 	
 	private static int index = 0;
@@ -26,12 +26,12 @@ public class ConstructBSTFromPreOrderData {
 		if(preOrder[index] < min && preOrder[index] >= max)
 			return null;
 		
-		Node<Integer, String> node = new Node<>(preOrder[index], String.valueOf(preOrder[index]));
+		Node<Integer, String> node = new Node<>(preOrder[index], null);
 		
 		index++;
 		
 		node.left = toBST(preOrder, min, node.key);
-		node.right = toBST(preOrder, node.key, max);		
+		node.right = toBST(preOrder, node.key, max);
 		
 		return node;
 	}

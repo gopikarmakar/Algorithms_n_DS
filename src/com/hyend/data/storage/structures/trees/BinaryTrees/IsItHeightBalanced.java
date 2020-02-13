@@ -20,7 +20,7 @@ public class IsItHeightBalanced {
 		
 		Node<Integer> tree = BinaryTree.buildDefault();
 		
-		//System.out.println("Is Height Balanced = " + (isHeightBalanced(tree) >= 0));
+		System.out.println("Is Height Balanced = " + (isHeightBalanced(tree) >= 0));
 
 		boolean status = isBalanced(tree);
 		System.out.println("Is It Balanced = " + status);
@@ -51,10 +51,8 @@ public class IsItHeightBalanced {
 	
 	//#####################################################################################
 	/**
-	 * An another li'l better Solution.
-	 * 
-	 * @param root
-	 * @return
+	 * An another quite better Solution.
+	 * Since we cache the intermediate results. 
 	 */
 	private static boolean isBalanced(Node<Integer> root) {
 		return checkBalance(root).balanced;
@@ -74,9 +72,6 @@ public class IsItHeightBalanced {
 	 * is therefore bounded by the height of the tree, leading to an 0(h) space bound
 	 * 
 	 * The time complexity is the same as that for a PostOrder traversal, namely O(n).
-	 * 
-	 * @param BinaryTree.Node<Key> node
-	 * @return
 	 */
 	private static BalanceStatusWithHeight checkBalance(Node<Integer> node) {
 		

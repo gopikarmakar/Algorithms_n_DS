@@ -25,11 +25,11 @@ public class FindFirstGreaterThanKElement {
 	 * i.e the total time complexity taken is dominated by sort O(n Log n)
 	 * but if the array is already sorted then the time complexity only be O(log n).
 	 */
-	private static int find(int[] keys, int k) {		
-		Arrays.sort(keys);		
+	private static int find(int[] keys, int k) {
+		Arrays.sort(keys);
 		if(k <= keys[0]) return keys[0];
 		else if(k >= keys[keys.length-1]) throw new NoSuchElementException();
-		else {		
+		else {
 			int index = find(keys, k, 0, keys.length);
 			return keys[index+1];
 		}

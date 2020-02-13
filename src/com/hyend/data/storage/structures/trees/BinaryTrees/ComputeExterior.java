@@ -27,15 +27,45 @@ public class ComputeExterior {
 		
 		List<Node<Integer>> exterior = new ArrayList<>();
 		if(tree != null) {
+			
 			exterior.add(tree);
-			exterior.addAll(leftBoundaryAndLeaves(tree.left, true));
-			exterior.addAll(rightBoundaryAndLeaves(tree.right, true));
-		}
-		
+			leftBoundaryAndLeaves(tree.left, true, exterior);
+			rightBoundaryAndLeaves(tree.right, true, exterior);
+			
+			/*exterior.addAll(leftBoundaryAndLeaves(tree.left, true));
+			exterior.addAll(rightBoundaryAndLeaves(tree.right, true));*/						
+		}		
 		return exterior;
 	}
 	
-	private List<Node<Integer>> leftBoundaryAndLeaves(Node<Integer> node, boolean isBoundary) {
+	private void leftBoundaryAndLeaves(Node<Integer> node, boolean isBoundary, List<Node<Integer>> leftResult) {		
+		
+		if(node != null) {
+			
+			if(isBoundary || isLeaf(node))
+				leftResult.add(node);
+					
+			leftBoundaryAndLeaves(node.left, isBoundary, leftResult);
+			leftBoundaryAndLeaves(node.right, (isBoundary && node.left == null), leftResult);
+		}		
+		return;
+	}
+	
+	private void rightBoundaryAndLeaves(Node<Integer> node, boolean isBoundary, List<Node<Integer>> rightResult) {		
+		
+		if(node != null) {						
+			
+			rightBoundaryAndLeaves(node.left, (isBoundary && node.right == null), rightResult);
+			rightBoundaryAndLeaves(node.right, isBoundary, rightResult);
+			
+			if(isBoundary || isLeaf(node))
+				rightResult.add(node);
+						
+		}		
+		return;		 
+	}
+	
+	/*private List<Node<Integer>> leftBoundaryAndLeaves(Node<Integer> node, boolean isBoundary) {
 		
 		List<Node<Integer>> leftResult = new ArrayList<>();
 		
@@ -62,7 +92,7 @@ public class ComputeExterior {
 				rightResult.add(node);
 		}		
 		return rightResult;
-	}
+	}*/
 	
 	private boolean isLeaf(Node<Integer> node) {
 		

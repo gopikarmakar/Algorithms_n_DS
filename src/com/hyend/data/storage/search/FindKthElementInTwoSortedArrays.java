@@ -17,7 +17,7 @@ public class FindKthElementInTwoSortedArrays {
 		//int[] arr2 = {1, 4, 6, 9, 10};
 		int[] a = {1, 3, 4, 9, 11};
 		int[] b = {2, 5, 6, 8};
-		System.out.println("Kth Element = " + findKth(a, b, 4));
+		System.out.println("Kth Element = " + findKth(a, b, 7));
 	}	
 	
 	/**
@@ -33,8 +33,8 @@ public class FindKthElementInTwoSortedArrays {
 		int u = Math.min(a.length, k);
 		
 		while(l < u) {
-			//Adding of l is necessary to be under b.length			
-			int x = l + ((u - l)/2);
+			
+			int x = l + ((u - l)/2); //Adding of l is to be under b.length
 			int ax1 = (x <= 0) ? Integer.MIN_VALUE : a[x-1];
 			int ax = (x >= a.length) ? Integer.MAX_VALUE : a[x];
 			int bkx1 = (k-x <= 0) ? Integer.MIN_VALUE : b[k-x-1];
@@ -53,7 +53,8 @@ public class FindKthElementInTwoSortedArrays {
 		}
 		
 		/**
-		 * If it comes here which means K = m+n. Handling such case.
+		 * Handling the cases like:
+		 * if (ax < bkx1) || (ax1 > bkx) and l >= u then,
 		 */
 		int ab1 = (l <= 0) ? Integer.MIN_VALUE : a[l - 1];
 		int bxkb1 = (k - l - 1 < 0) ? Integer.MIN_VALUE : b[k-l-1];

@@ -10,44 +10,56 @@ package com.hyend.data.storage.structures.linkedlists.doubly;
  * 
  * @author gopi_karmakar
  */
-public class LinkedListWithStackAndQueue<E> {
+public class LinkedListWithStackAndQueue<K> {
 	
-	Node head, tail;
-	class Node {
-		E item;
-		Node next;
-		Node previous;
-		Node(E item) {
-			this.item = item;
-		}
+	private Node<K> head;
+	private Node<K> tail;
+	
+	public static void main(String[] args) {
+		
+		LinkedListWithStackAndQueue<Integer> deque = new LinkedListWithStackAndQueue<>();
+		deque.pushOrEnqueue(1);
+		deque.pushOrEnqueue(2);
+		deque.pushOrEnqueue(3);
+		deque.pushOrEnqueue(4);
+		deque.pushOrEnqueue(5);		
+		System.out.println(deque.pop());
+		System.out.println(deque.pop());
+		System.out.println(deque.pop());
+		deque.pushOrEnqueue(6);
+		deque.pushOrEnqueue(7);
+		System.out.println(deque.pop());
+		System.out.println(deque.pop());
+		System.out.println(deque.pop());
 	}
 	
-	public void pushOrEnqueue(E item) {
-		Node node = new Node(item);
+	public void pushOrEnqueue(K item) {
+		
+		Node<K> node = new Node<>(item);
 		node.next = head;
 		if(tail == null && node.next == null) {
 			tail = node;
-			node.previous = null;
+			node.prev = null;
 		}
 		else {
-			node.next.previous = node;
+			node.next.prev = node;
 		}
 		head = node;
 	}
 	
-	public E dequeue() {
+	public K dequeue() {
 		
 		if(isEmpty()) return null;
-		E item = tail.item;
-		Node node = tail;
-		tail = tail.previous;
+		K item = tail.key;
+		tail = tail.prev;
+		tail.next = null;
 		return item;
 	}
 	
-	public Object pop() {
+	public K pop() {
 		
 		if(isEmpty()) return null;
-		E item = head.item;
+		K item = head.key;
 		head = head.next;
 		return item;
 	}

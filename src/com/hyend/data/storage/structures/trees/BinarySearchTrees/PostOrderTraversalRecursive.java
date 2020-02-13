@@ -20,10 +20,12 @@ public class PostOrderTraversalRecursive {
 			return;
 		
 		print(tree.left, withParent);
+		
 		print(tree.right, withParent);
 		
-		System.out.println("Key = " + tree.key + "Value = " + tree.value + ((withParent == true) ? 
-				((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
+		System.out.println("Key = " + tree.key + 
+				((tree.value != null) ? "Value = " + tree.value : "") + 
+				((withParent == true) ? ((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
 	}
 
 }
