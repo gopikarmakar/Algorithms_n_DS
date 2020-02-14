@@ -16,7 +16,9 @@ public class PreOrderTraversalIterative {
 	public static void main(String[] args) {
 		
 		Node<Integer> tree = BinaryTree.buildDefault();
+		
 		BinaryTree.printPreOrderRecursive(tree, true);
+		
 		System.out.println(traversePreOrder(tree));
 	}
 	

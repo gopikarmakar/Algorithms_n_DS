@@ -1,6 +1,5 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import com.hyend.data.storage.structures.linkedlists.doubly.DoublyLinkedList;
@@ -10,46 +9,50 @@ import com.hyend.data.storage.structures.linkedlists.doubly.DoublyLinkedList;
  * 
  * @author gopi_karmakar
  */
-public class ConvertBSTToSortedDoubleyLL {
-	
-	private static LinkedList<Node<Integer, ?>> ll = new LinkedList<>();
-	private static DoublyLinkedList<Node<Integer, ?>> dll = new DoublyLinkedList<>();
+public class ConvertBSTToSortedDoubleyLL<K extends Comparable<K>, V> {
 	
 	public static void main(String[] args) {
 		
 		Node<Integer, ?> tree = BinarySearchTree.createDefault();
-		convert(tree);
-		print(DoublyLinkedList.FORWARD);
+		
+		ConvertBSTToSortedDoubleyLL<Integer, ?> bst = new ConvertBSTToSortedDoubleyLL<>();
+		
+		DoublyLinkedList<Node<Integer, ?>> dll = new DoublyLinkedList<>();
+		
+		bst.convert(tree, dll);
+		bst.print(DoublyLinkedList.FORWARD, dll);
 	}
 	
-	public static LinkedList<Node<Integer, ?>> get(Node<Integer, ?> node) {
+	public LinkedList<Node<Integer, ?>> get(Node<Integer, ?> bst) {
 		
-		convert(node);
-		return ll;
+		LinkedList<Node<Integer, ?>> dll = new LinkedList<>();
+		convert(bst, dll);
+		return dll;
 	}
 	
 	/**
 	 * O(n) time complexity recursive InOrder solution.
 	 */
-	private static void convert(Node<Integer, ?> node) {
+	private void convert(Node<Integer, ?> node, DoublyLinkedList<Node<Integer, ?>> dll) {
 	
 		if(node == null) return;
 		
-		convert(node.left);
-		ll.add(node);
+		convert(node.left, dll);
 		dll.add(node);		
-		convert(node.right);
+		convert(node.right, dll);
 	}
 	
-	private static void print(int order) {				
+	private void convert(Node<Integer, ?> node, LinkedList<Node<Integer, ?>> dll) {
 		
-		dll.printAllNodes(order);
+		if(node == null) return;
 		
-		/*Iterator<Node<Integer, ?>> itr = dll.getIterator(order);
+		convert(node.left, dll);
+		dll.add(node);		
+		convert(node.right, dll);
+	}
+	
+	private void print(int order, DoublyLinkedList<Node<Integer, ?>> dll) {				
 		
-		while(itr.hasNext()) {
-			Node<?, ?> node = itr.next();
-			System.out.println("Key = " + node.key + " Value = " + node.value);
-		}*/
+		dll.printAllNodes(order);			
 	}
 }

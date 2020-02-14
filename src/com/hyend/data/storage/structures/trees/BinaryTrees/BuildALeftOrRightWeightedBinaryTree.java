@@ -8,42 +8,40 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
  * 
  * @author gopi_karmakar
  */
-public class BuildALeftOrRightWeightedBinaryTree {
-	
-	private static Node<Object> root = null;
-	private static Node<Object> parent = null;
+public class BuildALeftOrRightWeightedBinaryTree<K> {	
 	
 	public static void main(String[] args) {
-		//int[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};		
-		BinaryTree.printBFS(build(), true);
+		
+		Integer[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};		
+		
+		BuildALeftOrRightWeightedBinaryTree<Integer> tree = new BuildALeftOrRightWeightedBinaryTree<>();		
+		BinaryTree.printBFS(tree.build(keys), true);
 	}
 	
-	public static Node<?> build(Object...keys) {
-		if(keys == null || keys.length == 0) {
-			keys = new Object[15];
-			for(int i = 0; i < 15; i++)
-				keys[i] = i+1;
-		} 
-		for(Object x : keys)
+	public Node<K> build(K[] keys) {
+				
+		Node<K> root = null;
+		
+		for(K x : keys)
 			add(x);
 				
 		return root;		
 	}
 	
 	/**
-	 * Iteratively adding nodes 
-	 * 
-	 * @param key
-	 * @return
+	 * Iteratively adding nodes s
 	 */
-	public static Node<?> add(Object key) {
+	private Node<K> root = null;
+	private Node<K> parent = null;
+	
+	public Node<K> add(K key) {
 		
 		boolean isLeftImBalanced = false;
 		boolean isRightImBalanced = false;		
 		
-		Node<Object> node = root;
+		Node<K> node = root;
 		if(node == null) {
-			root = new Node<Object>(key);
+			root = new Node<>(key);
 			root.parent = parent;
 			root.weight += 1;
 			return root;
@@ -76,11 +74,11 @@ public class BuildALeftOrRightWeightedBinaryTree {
 			} while(node != null);
 			
 			if(isLeftImBalanced) {
-				node = parent.left = new Node<Object>(key);
+				node = parent.left = new Node<>(key);
 				node.parent = parent;
 			}
 			else if(isRightImBalanced) {
-				node = parent.right = new Node<Object>(key);
+				node = parent.right = new Node<>(key);
 				node.parent = parent;
 			}	
 			
@@ -90,15 +88,11 @@ public class BuildALeftOrRightWeightedBinaryTree {
 	
 	/**
 	 * Adding recursively
-	 * 
-	 * @param node
-	 * @param key
-	 * @return
 	 */
-	public static Node<Object> add(Node<Object> node, Object key) {
+	public Node<K> add(Node<K> node, K key) {
 		
 		if(node == null) {
-			node = new Node<Object>(key);
+			node = new Node<>(key);
 			node.parent = parent;
 			node.weight += 1;
 			return node;

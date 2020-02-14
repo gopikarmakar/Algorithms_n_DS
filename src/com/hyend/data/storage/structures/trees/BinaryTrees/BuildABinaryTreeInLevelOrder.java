@@ -14,7 +14,6 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
  * 						17				401     257
  * 										   641
  *  
- *  
  * Variant: Build a minimum height BT from an array/list of values.
  *  
  * @author gopi_karmakar
@@ -22,12 +21,10 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 public class BuildABinaryTreeInLevelOrder<K> {
 
 	public static void main(String[] args) {
-				
+						
 		Node<Integer> tree = buildDefault();
 		
 		BinaryTree.printBFS(tree, true);
-		//BinaryTree.printInOrderRecursive(tree, true);
-		//BinaryTree.printPreOrderRecursive(tree, true);
 	}
 	
 	public static Node<Integer> buildDefault() {	
@@ -36,6 +33,7 @@ public class BuildABinaryTreeInLevelOrder<K> {
 		
 		BuildABinaryTreeInLevelOrder<Integer> tree = new BuildABinaryTreeInLevelOrder<>();
 		Node<Integer> root = tree.build(keys);
+		
 		Node<Integer> parent = root.right.left.right.left;
 		parent.right = new Node<>(641, parent);
 		
@@ -57,8 +55,8 @@ public class BuildABinaryTreeInLevelOrder<K> {
 				
 				node = new Node<K>(keys[i], parent);								
 			}				
-			node.left = build(keys, node, node.left, (i*2)+1);			
-			node.right = build(keys, node, node.right, (i*2)+2);
+			node.left = build(keys, node, node.left, (i * 2) + 1);			
+			node.right = build(keys, node, node.right, (i * 2) + 2);
 		}
 		return node;
 	}

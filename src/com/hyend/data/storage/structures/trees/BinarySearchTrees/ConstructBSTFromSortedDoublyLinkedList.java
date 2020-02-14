@@ -13,7 +13,7 @@ import java.util.LinkedList;
  * 
  * @author gopi_karmakar
  */
-public class ConstructBSTFromSortedDoublyLinkedList {
+public class ConstructBSTFromSortedDoublyLinkedList<K extends Comparable<K>, V> {
 
 	public static void main(String[] args) {
 		
@@ -22,17 +22,20 @@ public class ConstructBSTFromSortedDoublyLinkedList {
 		// Java's LinkedList is basically a DoubleyLinkedList
 		LinkedList<Integer> dll = new LinkedList<>(Arrays.asList(arr)); 
 		
-		Node<Integer, ?> root = create(dll);
+		ConstructBSTFromSortedDoublyLinkedList<Integer, ?> bst = 
+				new ConstructBSTFromSortedDoublyLinkedList<>();
 		
-		BinarySearchTree.printLevelOrder(root, false);
+		Node<Integer, ?> root = bst.create(dll);
+		
+		BinarySearchTree.printLevelOrder(root);
 	}
 	
-	public static <K extends Comparable<K>, V> Node<K, V> create(LinkedList<K> dll) {
+	public Node<K, V> create(LinkedList<K> dll) {
 		
 		return construct(dll, 0, dll.size());
 	}
 	
-	private static <K extends Comparable<K>, V> Node<K, V> construct(LinkedList<K> dll, int start, int end) {
+	private Node<K, V> construct(LinkedList<K> dll, int start, int end) {
 		
 		if(start >= end)
 			return null;

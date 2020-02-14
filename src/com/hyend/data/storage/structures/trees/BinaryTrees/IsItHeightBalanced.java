@@ -27,9 +27,7 @@ public class IsItHeightBalanced {
 	}
 	
 	/**
-	 * An O(n) time complexity solution.
-	 * @param node
-	 * @return
+	 * An O(n) time complexity solution. 
 	 */
 	private static int isHeightBalanced(Node<Integer> node) {
 		

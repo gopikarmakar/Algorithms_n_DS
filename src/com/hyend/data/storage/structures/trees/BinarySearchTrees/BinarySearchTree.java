@@ -17,7 +17,7 @@ public class BinarySearchTree {
 	public static final int RECURSIVELY = 1;
 	public static final int ITERATIVELY = 2;
 	
-	public static Node<Integer, ?> createDefault() {
+	public static <K extends Comparable<K>, V> Node<Integer, V> createDefault() {
 		
 		Integer[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
 		
@@ -26,12 +26,17 @@ public class BinarySearchTree {
 	
 	public static <K extends Comparable<K>, V> Node<K, V> create(K[] arr) {
 		
-		return ConstructBSTFromSortedArray.create(arr);
+		ConstructBSTFromSortedArray<K, V> bst = new ConstructBSTFromSortedArray<>();
+		
+		return bst.create(arr);		
 	}
 	
 	public static <K extends Comparable<K>, V> Node<K, V> create(LinkedList<K> dll) {
 		
-		return ConstructBSTFromSortedDoublyLinkedList.create(dll);		
+		ConstructBSTFromSortedDoublyLinkedList<K, V> bst = 
+				new ConstructBSTFromSortedDoublyLinkedList<>();
+		
+		return bst.create(dll);		
 	}
 		
 	/**
@@ -42,7 +47,7 @@ public class BinarySearchTree {
 	 *    
 	 * Traversal Order : All nodes of each level.
 	 */
-	public static void printLevelOrder(Node<?, ?> tree, boolean withParent) {
+	public static void printLevelOrder(Node<?, ?> tree, boolean... withParent) {
 		BFSOrLevelOrderTraversal.print(tree, withParent);
 	}
 	
@@ -54,7 +59,7 @@ public class BinarySearchTree {
 	 *    
 	 * Traversal Order : Root-Left-Right
 	 */
-	public static void printPreOrder(int type, Node<?, ?> tree, boolean withParent) {
+	public static void printPreOrder(int type, Node<?, ?> tree, boolean... withParent) {
 		if(type == RECURSIVELY) {
 			PreOrderTraversalRecursive.print(tree, withParent);
 		}
@@ -71,12 +76,12 @@ public class BinarySearchTree {
 	 *    
 	 * Traversal Order : Left-Root-Right
 	 */
-	public static void printInOrder(int type, Node<?, ?> tree, boolean withParent) {
+	public static void printInOrder(int type, Node<?, ?> tree, boolean... withParent) {
 		if(type == RECURSIVELY) {
-			IndorderTraversalRecursive.print(tree, withParent);
+			IndorderTraversalRecursive.print(tree, withParent[0]);
 		}
 		else if(type == ITERATIVELY) {
-			IndOrderTraversalIterative.print(tree, withParent);
+			IndOrderTraversalIterative.print(tree, withParent[0]);
 		}
 	}
 	
@@ -88,12 +93,19 @@ public class BinarySearchTree {
 	 *    
 	 * Traversal Order : Left-Right-Root
 	 */
-	public static void printPostOrder(int type, Node<?, ?> tree, boolean withParent) {
+	public static void printPostOrder(int type, Node<?, ?> tree, boolean... withParent) {
 		if(type == RECURSIVELY) {
-			PostOrderTraversalRecursive.print(tree, withParent);
+			PostOrderTraversalRecursive.print(tree, withParent[0]);
 		}
 		else if(type == ITERATIVELY) {
-			PostOrderTraversalIterative.print(tree, withParent);
+			PostOrderTraversalIterative.print(tree, withParent[0]);
 		}
+	}
+	
+	public static void print(Node<?, ?> node, boolean... withParent) {
+		
+		System.out.println(node.toString() + 
+				((withParent.length > 0 && withParent[0]) ? ((node.parent!= null) ? 
+				"\tParent = " + node.parent.key : "\tIt's Root") : ""));
 	}
 }

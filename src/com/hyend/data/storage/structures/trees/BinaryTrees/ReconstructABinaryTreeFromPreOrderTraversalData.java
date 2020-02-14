@@ -15,19 +15,24 @@ public class ReconstructABinaryTreeFromPreOrderTraversalData {
 	
 	public static void main(String[] args) {
 		
-		String[] preOrderKeys = {"H", "B", "F", null, null, "E", "A", null, null, null, "C", null, "D", null, "G", "I", null, null, null};
+		//String[] preOrderKeys = {"H", "B", "F", null, null, "E", "A", null, null, null, "C", null, "D", null, "G", "I", null, null, null};
 		
 		String preOrder = "H-B-F---E-A----C--D--G-I";
 		
+		String input = "1-2--3--4-5--6--7";
+		
 		String[] preOrderKeys2 = preOrder.split("-");
+		
+		String[] preOrderKeys3 = input.split("-");
 		
 		Node<String> tree = construct(preOrderKeys2);
 		
 		System.out.println("PreOrder");
 		BinaryTree.printPreOrderRecursive(tree, false);
 		
-		System.out.println("InOrder");
-		BinaryTree.printInOrderRecursive(tree, false);
+		System.out.println("Level Order");
+		//BinaryTree.printInOrderRecursive(tree, false);
+		BinaryTree.printBFS(tree, false);
 	}
 	
 	public static Node<String> construct(String...keys) {

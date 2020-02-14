@@ -7,10 +7,10 @@ import java.util.ArrayList;
 public class IndOrderTraversalIterative {
 
 	public static void main(String[] args) {
-		print(BinarySearchTree.createDefault(), true);
+		print(BinarySearchTree.createDefault());
 	}
 	
-	public static void print(Node<?, ?> tree, boolean withParent) {
+	public static void print(Node<?, ?> tree, boolean... withParent) {
 	
 		Stack<Node<?, ?>> stack = new Stack<>();
 		List<Node<?, ?>> nodes = new ArrayList<>();
@@ -31,8 +31,6 @@ public class IndOrderTraversalIterative {
 		}
 		
 		for(Node<?, ?> node :  nodes)
-			System.out.println("Key = " + node.key + 
-					((node.value != null) ? " Value = " + node.value : "") +
-					((withParent == true) ? ((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : ""));
+			BinarySearchTree.print(node, withParent);
 	}
 }

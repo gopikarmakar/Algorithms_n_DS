@@ -20,11 +20,11 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
  */
 public class CountUniValueSubTrees {
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		Integer[] keys = {5,1,5,5,5,null,5,null,null,null,null,null,null,null,5};
-		Node<Integer> tree = (Node<Integer>) BinaryTree.build(BinaryTree.LEVEL_ORDER, keys);
+		
+		Node<Integer> tree = BinaryTree.build(BinaryTree.SHORT_HEIGHTED, keys);
 			
 		CountUniValueSubTrees uniVal = new CountUniValueSubTrees();
 		uniVal.countUniVal(tree);

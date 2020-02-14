@@ -18,9 +18,9 @@ public class ComputeExterior {
 		ComputeExterior boundary = new ComputeExterior();
 		List<Node<Integer>> boundaries = boundary.binaryTreeExterior(tree);
 		
-		for(Node<Integer> node : boundaries) {
-			System.out.println(node.key);
-		}
+		boundaries.forEach(e -> {
+			System.out.println(e.key);
+		});				
 	}
 	
 	private List<Node<Integer>> binaryTreeExterior(Node<Integer> tree) {

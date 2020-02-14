@@ -10,7 +10,6 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
  * 2: When a child node have track of it's parent node
  * 
  * @author gopi_karmakar
- *
  */
 public class FindLCA {
 	

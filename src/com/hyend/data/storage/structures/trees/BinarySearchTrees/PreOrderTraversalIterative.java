@@ -12,13 +12,13 @@ import java.util.Stack;
 public class PreOrderTraversalIterative {
 
 	public static void main(String[] args) {
-		print(BinarySearchTree.createDefault(), true);
+		print(BinarySearchTree.createDefault());
 	}
 	
 	/**
 	 * O(h) time complexity
 	 */
-	public static void print(Node<?, ?> tree, boolean withParent) {
+	public static void print(Node<?, ?> tree, boolean... withParent) {
 	
 		Stack<Node<?, ?>> stack = new Stack<>();
 		stack.add(tree);
@@ -36,8 +36,6 @@ public class PreOrderTraversalIterative {
 		}
 		
 		for(Node<?, ?> node :  nodes)
-			System.out.println("Key = " + node.key + 
-				((node.value != null) ? " Value = " + node.value : "") + 
-				((withParent == true) ? ((node.parent!= null) ? "\tParent = " + node.parent.key : "\tIt's Root") : ""));
+			BinarySearchTree.print(node, withParent);
 	}
 }

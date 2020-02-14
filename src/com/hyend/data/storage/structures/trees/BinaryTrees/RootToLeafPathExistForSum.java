@@ -17,12 +17,7 @@ public class RootToLeafPathExistForSum {
 	}
 	
 	/**
-	 * The time complexity and space complexity are 0(n) and 0(h), respectively.
-	 * 
-	 * @param node
-	 * @param targetSum
-	 * @param partialSum
-	 * @return
+	 * The time complexity and space complexity are 0(n) and 0(h), respectively.	 
 	 */
 	private static boolean hasPath(Node<Integer> node, int targetSum, int partialSum) {
 		

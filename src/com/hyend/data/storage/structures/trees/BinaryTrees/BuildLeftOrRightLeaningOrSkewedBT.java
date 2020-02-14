@@ -11,18 +11,22 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 public class BuildLeftOrRightLeaningOrSkewedBT<K> {
 
 	public static void main(String[] args) {
-		Node<Integer> root = build(BinaryTree.LEFT_SKEWED, null);
+		
+		Integer[] keys = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		
+		Node<Integer> root = build(BinaryTree.LEFT_SKEWED, keys);
 		BinaryTree.printBFS(root, true);
+		
 		//BinaryTree.printInOrderRecursive(root, true);
 		//BinaryTree.printPreOrderRecursive(root, true);		
 		//BinaryTree.printPostOrderRecursive(root, true);
 	}
 	
-	public static Node<Integer> build(int order, Integer[] keys) {
+	public static <K> Node<K> build(int order, K[] keys) {
 		
-		BuildLeftOrRightLeaningOrSkewedBT<Integer> tree = new BuildLeftOrRightLeaningOrSkewedBT<>(); 
+		BuildLeftOrRightLeaningOrSkewedBT<K> tree = new BuildLeftOrRightLeaningOrSkewedBT<>(); 
 		
-		Node<Integer> root = null;
+		Node<K> root = null;
 		
 		switch(order) {
 			case BinaryTree.LEFT_SKEWED:
@@ -48,11 +52,7 @@ public class BuildLeftOrRightLeaningOrSkewedBT<K> {
 	 * 				3				2
 	 * 			5		4
 	 * 		7		6
-	 * 	9		8		
-	 * 
-	 * @param node
-	 * @param key
-	 * @return
+	 * 	9		8
 	 */
 	private Node<K> buildLeftLeaning(Node<K> parent, Node<K> node, K[] keys, int i) {
 		
@@ -78,10 +78,6 @@ public class BuildLeftOrRightLeaningOrSkewedBT<K> {
 	 * 				4		5
 	 *					6		7
 	 * 						8		9
-	 * 		
-	 * @param node
-	 * @param key
-	 * @return
 	 */
 	private Node<K> buildRightLeaning(Node<K> parent, Node<K> node, K[] keys, int i) {
 		
@@ -108,12 +104,7 @@ public class BuildLeftOrRightLeaningOrSkewedBT<K> {
 	 * 				3		null
 	 * 			4		null
 	 * 		5		null
-	 * null		null
-	 * 
-	 * @param node
-	 * @param keys
-	 * @param i
-	 * @return
+	 * null		null	 
 	 */
 	private Node<K> buildLeftSkewed(Node<K> parent, Node<K> node, K[] keys, int i) {
 		
@@ -143,12 +134,7 @@ public class BuildLeftOrRightLeaningOrSkewedBT<K> {
 	 * 			null		3
 	 * 				null		4
 	 * 					null		5
-	 * 						null		null	
-	 * 
-	 * @param node
-	 * @param keys
-	 * @param i
-	 * @return
+	 * 						null		null
 	 */
 	private Node<K> buildRightSkewed(Node<K> parent, Node<K> node, 
 			K[] keys, int i) {

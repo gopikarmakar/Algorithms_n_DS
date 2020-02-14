@@ -8,10 +8,10 @@ public class BFSOrLevelOrderTraversal {
 	public static void main(String[] args) {
 		
 		Node<?, ?> tree = BinarySearchTree.createDefault();
-		print(tree, true);
+		print(tree, false);
 	}
 	
-	public static void print(Node<?, ?> tree, boolean withParent) {
+	public static void print(Node<?, ?> tree, boolean... withParent) {
 	
 		Queue<Node<?, ?>> queue = new LinkedList<>();
 		queue.add(tree);
@@ -20,11 +20,9 @@ public class BFSOrLevelOrderTraversal {
 			
 			Node<?, ?> current = queue.poll();				
 			
-			if(current != null) {
-							
-				System.out.println("Key = " + current.key + 
-						((current.value != null) ? " Value = " + current.value : "") +
-						((withParent == true) ? ((current.parent!= null) ? "\tParent = " + current.parent.key : "\tIt's Root") : ""));					
+			if(current != null) {											
+				
+				BinarySearchTree.print(current, withParent);
 			}
 			
 			if(current.left != null)	queue.add(current.left);			

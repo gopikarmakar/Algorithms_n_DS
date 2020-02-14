@@ -34,4 +34,9 @@ public class Node<K> {
 		this.right = right;
 		this.parent = parent;
 	}
+	
+	@Override
+	public String toString() {		
+		return "Key = " + key;
+	}
 }

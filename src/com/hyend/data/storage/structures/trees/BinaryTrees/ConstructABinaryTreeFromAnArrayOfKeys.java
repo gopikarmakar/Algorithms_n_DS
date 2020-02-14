@@ -16,9 +16,11 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
  */
 public class ConstructABinaryTreeFromAnArrayOfKeys {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 		
-		Node<Integer> tree = BinaryTree.buildDefault(); 
+		String[] keys = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"};
+		
+		Node<String> tree = BinaryTree.build(BinaryTree.SHORT_HEIGHTED, keys);
 		
 		BinaryTree.printBFS(tree, true);
 	} 

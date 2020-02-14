@@ -24,7 +24,7 @@ public class FindLCA {
 	public static void main(String[] args) {
 		
 		Integer[] keys = {1,2,3,4,5,null,null,null,null,null,null};
-		Node<Integer> tree = (Node<Integer>) BinaryTree.build(BinaryTree.LEVEL_ORDER, keys);
+		Node<Integer> tree = (Node<Integer>) BinaryTree.build(BinaryTree.SHORT_HEIGHTED, keys);
 		
 		BinaryTree.printBFS(tree, true);
 	}

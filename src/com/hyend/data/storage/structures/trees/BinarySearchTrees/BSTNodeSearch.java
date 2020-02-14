@@ -8,10 +8,9 @@ package com.hyend.data.storage.structures.trees.BinarySearchTrees;
  */
 public class BSTNodeSearch {
 	
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
-		Node<Integer, ?> tree = (Node<Integer, ?>) BinarySearchTree.createDefault();
+		Node<Integer, ?> tree = BinarySearchTree.createDefault();
 		
 		Node<Integer, ?> node = contains(tree, 13, BinarySearchTree.RECURSIVELY); 
 		String msg = (node != null) ? ""+node.value : "Key Doesn't Exist"; 

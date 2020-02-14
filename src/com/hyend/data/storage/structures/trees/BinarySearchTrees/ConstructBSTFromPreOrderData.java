@@ -1,7 +1,11 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
 /**
- * Construct a BST from preOrder data
+ * Construct a BST from preOrder data.
+ * 
+ * 					10
+ * 			5				40
+ * 		1		7				50	
  * 
  * @author gopi_karmakar
  */
@@ -11,27 +15,33 @@ public class ConstructBSTFromPreOrderData {
 
 		int[] preOrder = {10, 5, 1, 7, 40, 50};
 		
-		Node<Integer, String> tree = toBST(preOrder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+		ConstructBSTFromPreOrderData bst = new ConstructBSTFromPreOrderData();
 		
-		BinarySearchTree.printPreOrder(BinarySearchTree.RECURSIVELY, tree, false);		
+		Node<Integer, ?> tree = bst.create(preOrder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+		
+		System.out.println("Inorder Traversal");
+		BinarySearchTree.printPreOrder(BinarySearchTree.RECURSIVELY, tree);
+		
+		System.out.println("\nLevel Order Traversal");
+		BinarySearchTree.printLevelOrder(tree);
 	}
 	
-	private static int index = 0;
+	private int index = 0;
 	
-	private static Node<Integer, String> toBST(int[] preOrder, int min, int max) {
+	private Node<Integer, String> create(int[] preOrder, int min, int max) {
 		
 		if(index >= preOrder.length) 
 			return null;
 		
-		if(preOrder[index] < min && preOrder[index] >= max)
+		if(preOrder[index] < min || preOrder[index] >= max)
 			return null;
 		
 		Node<Integer, String> node = new Node<>(preOrder[index], null);
 		
 		index++;
 		
-		node.left = toBST(preOrder, min, node.key);
-		node.right = toBST(preOrder, node.key, max);
+		node.left = create(preOrder, min, node.key);
+		node.right = create(preOrder, node.key, max);
 		
 		return node;
 	}

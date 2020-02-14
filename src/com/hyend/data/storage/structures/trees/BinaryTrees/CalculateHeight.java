@@ -12,7 +12,7 @@ public class CalculateHeight {
 	public static void main(String[] args) {		
 		
 		Node<Integer> root = BinaryTree.buildDefault();
-		BinaryTree.printBFS(root, false);
+		BinaryTree.printBFS(root);
 		System.out.println("Height Of The Binary Tree = " + compute(root));		
 	}
 	
@@ -20,7 +20,8 @@ public class CalculateHeight {
 	 * An O(h) time complexity PostOrder traversal   
 	 * algorithm to calculate the height of a Binary Tree.	 
 	 */
-	private static int compute(Node<Integer> node) {		
+	private static int compute(Node<Integer> node) {
+		
 		if(node == null)
 			return 0;
 		

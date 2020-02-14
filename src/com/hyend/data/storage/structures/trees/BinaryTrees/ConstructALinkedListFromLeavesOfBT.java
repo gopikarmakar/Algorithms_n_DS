@@ -8,8 +8,7 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 /**
  * Solution to form a linked list from the leaves of the tree.
  * 
- * @author gopi_karmakar
- *
+ * @author gopi_karmakar 
  */
 public class ConstructALinkedListFromLeavesOfBT { 
 	
@@ -25,10 +24,7 @@ public class ConstructALinkedListFromLeavesOfBT {
 	}
 
 	/**
-	 * The time complexity is 0(n), where n is the number of nodes.
-	 * 
-	 * @param node
-	 * @param leaves
+	 * The time complexity is 0(n), where n is the number of nodes.	 
 	 */
 	private static void listOfLeaves(Node<Integer> node, List<Integer> leaves) {
 		

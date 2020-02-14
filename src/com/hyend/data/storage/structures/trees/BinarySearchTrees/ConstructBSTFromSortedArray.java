@@ -10,20 +10,22 @@ package com.hyend.data.storage.structures.trees.BinarySearchTrees;
  * 
  * @author gopi_karmakar
  */
-public class ConstructBSTFromSortedArray {
+public class ConstructBSTFromSortedArray<K extends Comparable<K>, V> {
 
-	private static int index = 0;
+	private int index = 0;
 
 	public static void main(String[] args) {
 
 		Integer[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};	
 		
-		Node<Integer, ?> root = create(arr);
+		ConstructBSTFromSortedArray<Integer, ?> bst = new ConstructBSTFromSortedArray<>();
 		
-		BinarySearchTree.printLevelOrder(root, false);
+		Node<Integer, ?> root = bst.create(arr);	
+		
+		BinarySearchTree.printLevelOrder(root);
 	}
 	
-	public static <K extends Comparable<K>, V> Node<K, V> create(K[] arr) {
+	public Node<K, V> create(K[] arr) {
 		
 		index = 0;
 		return construct(arr, 0, arr.length);
@@ -34,7 +36,7 @@ public class ConstructBSTFromSortedArray {
 	 * No dynamic memory allocation is required. The maximum number of call frames  
 	 * in the function call stack is log(n), yielding an O(log (n)) space complexity.
 	 */
-	private static <K extends Comparable<K>, V> Node<K, V> construct(K[] arr, int start, int end) {
+	private Node<K, V> construct(K[] arr, int start, int end) {
 
 		if(start >= end)
 			return null;

@@ -13,8 +13,8 @@ public class DiameterOfABinaryTree {
 			
 		//Node<Integer> tree = BinaryTree.build(BinaryTree.RIGHT_LEANING);
 		Node<Integer> tree = BinaryTree.buildDefault();
-		BinaryTree.printBFS(tree, true);
-		System.out.println("Diameter = " + diameter(tree, new Height()));
+		BinaryTree.printBFS(tree);
+		System.out.println("\nDiameter = " + diameter(tree, new Height()));
 	}
 	
 	private static class Height {

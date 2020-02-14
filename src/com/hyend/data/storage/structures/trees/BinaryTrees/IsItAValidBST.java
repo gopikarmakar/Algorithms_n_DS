@@ -5,18 +5,22 @@ import java.util.Queue;
 
 import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
+/**
+ * Check whether a given Binary Tree is a BST 
+ * 
+ * @author gopi_karmakar
+ */
 public class IsItAValidBST {
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		//Integer[] keys = {2, 1, 3};
-		//Integer[] keys = {0,-1};
-		Integer[] keys = {5,1,4,null,null,3,6};
+		//Integer[] keys = {0, -1};
+		Integer[] keys = {5, 1, 4, null, null, 3, 6};
 		
 		Node<Integer> tree = BinaryTree.buildDefault();
 		
-		BinaryTree.printPreOrderRecursive(tree, false);
+		BinaryTree.printPreOrderRecursive(tree);
 		//BinaryTree.printBFS(tree, true);
 		
 		//System.out.println(isItAValidBST(tree));

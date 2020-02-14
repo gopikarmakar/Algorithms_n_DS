@@ -9,13 +9,13 @@ public class PostOrderTraversalRecursive {
 	
 	public static void main(String[] args) {
 		
-		print(BinarySearchTree.createDefault(), true);
+		print(BinarySearchTree.createDefault());
 	}
 	
 	/**
 	 * O(h) time complexity
 	 */
-	public static void print(Node<?, ?> tree, boolean withParent) {
+	public static void print(Node<?, ?> tree, boolean... withParent) {
 		if(tree == null) //Base case
 			return;
 		
@@ -23,9 +23,7 @@ public class PostOrderTraversalRecursive {
 		
 		print(tree.right, withParent);
 		
-		System.out.println("Key = " + tree.key + 
-				((tree.value != null) ? "Value = " + tree.value : "") + 
-				((withParent == true) ? ((tree.parent!= null) ? "\tParent = " + tree.parent.key : "\tIt's Root") : ""));
+		BinarySearchTree.print(tree, withParent);
 	}
 
 }

@@ -14,13 +14,12 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
  */
 public class IsItSymmetric {
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		Integer[] correctKeys = {1,2,2,4,5,5,4,8,9,10,11,11,10,9,8};
 		//Integer[] wrongKeys = {1,2,3,4,5,5,4,8,9,9,8,10,11,11,10};		
 		
-		Node<Integer> tree = (Node<Integer>) BinaryTree.build(BinaryTree.LEVEL_ORDER, correctKeys);
+		Node<Integer> tree = BinaryTree.build(BinaryTree.SHORT_HEIGHTED, correctKeys);
 		BinaryTree.printBFS(tree, true);
 		System.out.println("Is It A Symmetry = " + isItASymmetry(tree.left, tree.right));
 	}

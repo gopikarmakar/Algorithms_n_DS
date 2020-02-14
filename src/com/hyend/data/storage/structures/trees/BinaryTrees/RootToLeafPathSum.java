@@ -28,9 +28,9 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
  */
 public class RootToLeafPathSum {
 	
-	private static final int DECIMAL = 1;
-	private static final int BINARY_DIGIT = 2;
-	
+	private static final int BINARY = 1;
+	private static final int DECIMAL = 2;	
+		
 	public static void main(String[] args) {		
 		
 		int sum = 0;
@@ -48,11 +48,10 @@ public class RootToLeafPathSum {
 		return sumRootToLeafPath(DECIMAL, root, 0);		
 	}
 	
-	@SuppressWarnings("unchecked")
 	private static int testBinaryDigitBinaryTree(Integer...keys) {
 		
-		Node<Integer> root = (Node<Integer>) BinaryTree.build(BinaryTree.LEVEL_ORDER, keys);		
-		return sumRootToLeafPath(BINARY_DIGIT, root, 0);
+		Node<Integer> root = BinaryTree.build(BinaryTree.SHORT_HEIGHTED, keys);		
+		return sumRootToLeafPath(BINARY, root, 0);
 	}
 	
 	/**
@@ -67,8 +66,8 @@ public class RootToLeafPathSum {
 		if(node == null)
 			return 0;
 		
-		if(type == DECIMAL) 			partialPathSum += node.key;		
-		else if(type == BINARY_DIGIT)	partialPathSum = partialPathSum * 2 + node.key;
+		if(type == DECIMAL) 		partialPathSum += node.key;		
+		else if(type == BINARY)		partialPathSum = partialPathSum * 2 + node.key;
 						
 		if(node.left == null && node.right == null)	//Leaf
 			return partialPathSum;
