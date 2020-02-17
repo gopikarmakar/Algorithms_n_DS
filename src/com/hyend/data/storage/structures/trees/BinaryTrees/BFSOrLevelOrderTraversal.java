@@ -6,6 +6,16 @@ public class BFSOrLevelOrderTraversal {
 		
 		Node<Integer> tree = BinaryTree.buildDefault();
 		
+		System.out.println("\nLevelOrder:");
+		
 		BinaryTree.printBFS(tree, true);
+		
+		System.out.println("\nPreOrder:");
+		
+		BinaryTree.printPreOrderRecursive(tree, true);
+		
+		System.out.println("\nPostOrder:");
+		
+		BinaryTree.printPostOrderRecursive(tree, true);
 	}
 }

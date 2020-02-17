@@ -20,10 +20,12 @@ public class BSTNodeSearch {
 	public static Node<Integer, ?> contains(Node<Integer, ?> tree, int key, int type) {
 		Node<Integer, ?> node = null;
 		
-		if(type == BinarySearchTree.RECURSIVELY)
+		if(type == BinarySearchTree.RECURSIVELY) {
 			node = recursive(tree, key);
-		else if(type == BinarySearchTree.ITERATIVELY)
+		}
+		else if(type == BinarySearchTree.ITERATIVELY) {			
 			node = iterative(tree, key);
+		}
 		
 		return node;
 	}
@@ -34,14 +36,18 @@ public class BSTNodeSearch {
 		
 		int cmp = Integer.compare(key, tree.key);		
 		if(cmp == 0) 
-			return tree;						
+			return tree;
+		
 		return (cmp < 0) ? recursive(tree.left, key) : recursive(tree.right, key);
 	}
 	
 	private static Node<Integer, ?> iterative(Node<Integer, ?> tree, int key) {
+		
 		int cmp = 0;
 		Node<Integer, ?> current = tree;		
-		while(current !=  null) {			
+		
+		while(current !=  null) {
+			
 			cmp = Integer.compare(key, current.key);			
 			if(cmp == 0) return current;			
 			current = ((cmp < 0) ? current.left : current.right);			

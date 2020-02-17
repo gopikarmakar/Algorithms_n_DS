@@ -8,12 +8,13 @@ package com.hyend.data.storage.structures.trees.BinarySearchTrees;
  * Average-case cost (after N random inserts) 	:  	1.39 log(N)
  * Worst-case cost (after N random inserts) 	: 	O(n)
  * 
- * 	       		       11
- *   		  5                15
- *   	 3        8         14    16
- *     2   4    7   9     13         19
- *  1         6		    12	     17      20
- *					               18       21 
+ * 									 19
+ *   		  		7             						43
+ *   		3        		11         			23    			47
+ *		2    	5    		  	17   			  	37    			53
+ *							13					29		41
+ *													31    	  	    	
+ * 
  * @author gopi_karmakar
  */
 public class BSTNodeInsertion<K extends Comparable<K>, V> {
@@ -26,17 +27,20 @@ public class BSTNodeInsertion<K extends Comparable<K>, V> {
 	public static void main(String[] args) {
 		
 		Node<?, ?> tree = createDefault();		
-	    BinarySearchTree.printInOrder(BinarySearchTree.RECURSIVELY, tree, true);
+	    
+		BinarySearchTree.printLevelOrder(tree, true);
+		//BinarySearchTree.printInOrder(BinarySearchTree.RECURSIVELY, tree, true);
 	}
 	
 	public static Node<Integer, String> createDefault() {
-		
-		Integer[] keys = {11, 15, 5, 16, 3, 14, 8, 13, 4, 19, 7, 12, 2, 17, 1, 18, 6, 20, 9, 21};		
+				
+		Integer[] keys = {19, 7, 43, 3, 11, 23, 47, 2, 5, 17, 37, 53, 13, 29, 41, 31};
 		
 		Node<Integer, String> tree = null;		
 		BSTNodeInsertion<Integer, String> bst = new BSTNodeInsertion<>();
+		
 		for(int x : keys)
-			tree = bst.addIterarively(x, ""+x, null);
+			tree = bst.addIterarively(x, null, null);
 		
 		return tree;
 	}

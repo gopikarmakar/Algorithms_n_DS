@@ -27,7 +27,7 @@ public class ConstructBSTFromSortedDoublyLinkedList<K extends Comparable<K>, V> 
 		
 		Node<Integer, ?> root = bst.create(dll);
 		
-		BinarySearchTree.printLevelOrder(root);
+		BinarySearchTree.printLevelOrder(root, true);
 	}
 	
 	public Node<K, V> create(LinkedList<K> dll) {
@@ -45,8 +45,16 @@ public class ConstructBSTFromSortedDoublyLinkedList<K extends Comparable<K>, V> 
 		Node<K, V> left = construct(dll, start, mid);
 		
 		Node<K, V> current = new Node<>(dll.poll(), null);
-		current.left = left;		
+		
+		current.left = left;
+		
+		if(current.left != null)
+			current.left.parent = current;
+		
 		current.right = construct(dll, mid + 1, end);
+		
+		if(current.right != null)
+			current.right.parent = current;
 		
 		return current;
 	}

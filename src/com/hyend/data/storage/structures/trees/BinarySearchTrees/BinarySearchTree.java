@@ -4,11 +4,13 @@ import java.util.LinkedList;
 
 /**
  * A concrete balanced Binary Search Tree Implementation.
- *									11
- *   		  		6             						17
- *   		3        		9         			14    			20
- *		2    	5    	8  		10   		13  	16    	19		21
- *	1     	  4    	  7				  	 12    	  15	  18  	
+ * 
+ * 									 19
+ *   		  		7             						43
+ *   		3        		11         			23    			47
+ *		2    	5    		  	17   			  	37    			53
+ *							13					29		41
+ *													31  	
  *								
  * @author gopi_karmakar
  */
@@ -17,11 +19,9 @@ public class BinarySearchTree {
 	public static final int RECURSIVELY = 1;
 	public static final int ITERATIVELY = 2;
 	
-	public static <K extends Comparable<K>, V> Node<Integer, V> createDefault() {
+	public static <K extends Comparable<K>, V> Node<Integer, ?> createDefault() {		
 		
-		Integer[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
-		
-		return create(arr);
+		return BSTNodeInsertion.createDefault();
 	}
 	
 	public static <K extends Comparable<K>, V> Node<K, V> create(K[] arr) {

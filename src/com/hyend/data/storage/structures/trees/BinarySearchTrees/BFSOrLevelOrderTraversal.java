@@ -3,14 +3,22 @@ package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * BFS or Level order Traversal of a BST 
+ * 
+ * @author gopi_karmakar
+ */
 public class BFSOrLevelOrderTraversal {
 	
 	public static void main(String[] args) {
 		
 		Node<?, ?> tree = BinarySearchTree.createDefault();
-		print(tree, false);
+		print(tree, true);
 	}
 	
+	/**
+	 * Takes O(n) time
+	 */
 	public static void print(Node<?, ?> tree, boolean... withParent) {
 	
 		Queue<Node<?, ?>> queue = new LinkedList<>();
