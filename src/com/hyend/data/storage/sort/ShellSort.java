@@ -12,7 +12,16 @@ package com.hyend.data.storage.sort;
  */
 public class ShellSort {
 	
-	public void sort(int[] arr) {
+	public static void main(String[] args) {
+		
+		int[] arr = {3, 1, 5, 2, 7, 4, 8, 6, 9, 0};
+		sort(arr);
+		
+		for(int x : arr)
+			System.out.println(x);
+	}
+	
+	public static void sort(int[] arr) {
 	
 		int j;
 	    for(int gap = arr.length/2; gap > 0; gap /= 2) {
@@ -21,6 +30,7 @@ public class ShellSort {
 	         
 	    		int tmp = arr[i];
 	    		for(j = i; j >= gap && (tmp < arr[j - gap]); j -= gap) {
+	    			
 	    			arr[ j ] = arr[ j - gap ];
 	    		}
 	    		arr[j] = tmp;

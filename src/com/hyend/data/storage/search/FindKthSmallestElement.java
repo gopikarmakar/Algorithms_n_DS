@@ -16,7 +16,7 @@ public class FindKthSmallestElement {
 	public static void main(String[] args) {
 		
 		int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5};
-		System.out.println("Smallest Kth Element = " + findKth(5, arr));
+		System.out.println("Smallest Kth Element = " + findKth(1, arr));
 	}
 	
 	/**
@@ -29,7 +29,11 @@ public class FindKthSmallestElement {
 	 */
 	public static int findKth(int k, int...arr) {
 		
-		int l = 0, r = arr.length-1, result = 0;		
+		int l = 0, r = arr.length-1, result = 0;
+		
+		if(k <= 0 || k > arr.length)
+			return result;		
+				
 		Random rand = new Random(0);
 		
 		while(l <= r) {
@@ -66,12 +70,10 @@ public class FindKthSmallestElement {
 			/*if(cmp.compare(arr[i], pivotValue) < 0) {
 				swap(arr, i, newPivotIdx++);
 			}*/
-			/*if(Integer.compare(arr[i], pivotValue) < 0) {
+			
+			if(Integer.compare(arr[i], pivotValue) < 0) {
 				swap(arr, i, newPivotIdx++);
-			}*/
-			if(arr[i] < pivotValue) {
-				swap(arr, i, newPivotIdx++);
-			}
+			}			
 		}
 		swap(arr, r, newPivotIdx);
 		
@@ -84,7 +86,8 @@ public class FindKthSmallestElement {
 		arr[b] = temp;
 	}
 	
-	private static class Compare {		
+	private static class Compare {
+		
 		private static class SmallerThan implements Comparator<Integer> {			
 			@Override
 			public int compare(Integer a, Integer b) {				

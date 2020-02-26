@@ -25,7 +25,7 @@ public class KSmallElements {
 	 * But it uses extra O(K) space since It stores K value in 
 	 * a priority queue and doesn't modify the original array.
 	 * 
-	 * The sortedness won't be guaranteed for final output.
+	 * NOTE: The sortedness won't be guaranteed for final output.
 	 */
 	private static Collection<Integer> kSmallest(int k, int...arr) {
 		
@@ -44,7 +44,8 @@ public class KSmallElements {
 	/**
 	 * An O(n) solution with O(1) extra space
 	 * Since it modifies the original array.
-	 * It doesn't guarantee the sortedness of final output.
+	 * 
+	 * NOTE: The sortedness won't be guaranteed for final output.
 	 */
 	private static void kSmall(int k, int...arr) {
 		

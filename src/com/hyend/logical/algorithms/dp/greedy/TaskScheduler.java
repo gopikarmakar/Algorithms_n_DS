@@ -14,6 +14,10 @@ import java.util.Arrays;
  *
  * Need to return the least number of intervals the CPU will take to finish all the given tasks.
  * 
+ * for e.g: {'A', 'A', 'A', 'B', 'B', 'B'}  n = 2
+ * 			A -> B -> Idle -> A -> B -> Idle A->B
+ * 
+ * 
  * @author gopi_karmakar
  */
 public class TaskScheduler {
@@ -34,19 +38,25 @@ public class TaskScheduler {
 	private static int leastInterval(int n, char...tasks) {
 		
         int[] map = new int[26];
+        
         for (char c: tasks) {
+        	
         	//map[c - 'A']++;
             map[c - 'A'] += 1;
         }               
         
         Arrays.sort(map);
+        
         for(int x : map)
         	System.out.println(x);
         
-        int max_val = map[25] - 1, idle_slots = max_val * n;
+        int max_val = map[25] - 1, idle_slots = max_val * n;               
+        
         for (int i = 24; i >= 0 && map[i] > 0; i--) {
+        	
             idle_slots -= Math.min(map[i], max_val);
         }
+                
         return idle_slots > 0 ? idle_slots + tasks.length : tasks.length;
     }
 }

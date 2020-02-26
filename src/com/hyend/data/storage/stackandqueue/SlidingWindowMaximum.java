@@ -1,4 +1,4 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.data.storage.stackandqueue;
 
 import java.util.ArrayList;
 import java.util.Deque;
@@ -24,9 +24,9 @@ public class SlidingWindowMaximum {
 		//int arr[] = {1,3,-1,-3,5,3,2,7};
 		//int arr[] = {1, 2, 3, 1, 4, 5, 2, 3, 6};
 
-		maxInSubArrayWindow(3, arr.length, arr);
+		//maxInSubArrayWindow(3, arr.length, arr);
 		System.out.println(); 
-		System.out.println(maxInSlidingWindow(1, arr));
+		System.out.println(maxInSlidingWindow(3, arr));
 	}
 	
 	/**
@@ -50,12 +50,12 @@ public class SlidingWindowMaximum {
 	 
 	        while(!deque.isEmpty() && arr[deque.peekLast()] < arr[i]){
 	            deque.removeLast();
-	        }  
-
-	        deque.addLast(i);
+	        }  	        
 	 
-	        if(i+1 >= w)
-	        	list.add(arr[deque.peek()]);
+	        deque.addLast(i);
+	        
+	        if(i >= w-1)
+	        	list.add(arr[deque.peek()]);	        	       
 	    }
 	    return list;
 	}

@@ -16,6 +16,7 @@ import java.util.PriorityQueue;
 public class KLongestSequenceOfString {
 
 	public static void main(String[] args) {
+		
 		String[] sequence = {"Republic-Of-India", "England", "Australia", "New-Zealand",
 			"South-Africa", "West-Indies", "Pakistan", "Bangladesh", "Sri-Lanka", "Afghanistan"};
 				

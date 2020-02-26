@@ -23,7 +23,7 @@ public class FindInOrderSuccessorOfAGivenNode {
 	 * The most efficient and simple successor finding solution.
 	 * 
 	 * Since the number of edges followed cannot be more than the tree height, 
-	 * the time complexity is 0(h), where h is the height of the tree
+	 * the time complexity is O(h), where h is the height of the tree
 	 */
 	private static Node<Integer> findSuccessor(Node<Integer> node) {
 		

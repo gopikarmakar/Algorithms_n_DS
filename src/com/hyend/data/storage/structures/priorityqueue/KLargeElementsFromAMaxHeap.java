@@ -26,7 +26,10 @@ public class KLargeElementsFromAMaxHeap {
 	 */
 	private static List<Integer> find(int k, List<Integer> maxHeap) {
 		
-		PriorityQueue<HeapEntry> maxPQ = new PriorityQueue<>(16, Compare.CMP_HEAP);
+		//PriorityQueue<HeapEntry> maxPQ = new PriorityQueue<>(16, Compare.CMP_HEAP);
+		
+		PriorityQueue<HeapEntry> maxPQ = new PriorityQueue<>(16, (a, b)->b.getValue()-a.getValue());
+		
 		maxPQ.add(new HeapEntry(0, maxHeap.get(0)));
 		
 		List<Integer> result = new ArrayList<>();
@@ -56,6 +59,11 @@ public class KLargeElementsFromAMaxHeap {
 		public HeapEntry(int index, int value) {
 			this.index = index;
 			this.value = value;
+		}
+		
+		public int getValue() {
+			
+			return value;
 		}
 	}
 	

@@ -19,7 +19,7 @@ public class ReconstructABinaryTreeFromPreOrderTraversalData {
 		
 		String preOrder = "H-B-F---E-A----C--D--G-I";
 		
-		String input = "1-2--3---4-5--6---7";
+		String input = "1-2--3--4-5--6--7";
 		
 		String[] preOrderKeys2 = preOrder.split("-");
 		

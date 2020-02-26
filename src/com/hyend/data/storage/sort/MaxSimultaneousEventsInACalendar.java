@@ -20,15 +20,8 @@ public class MaxSimultaneousEventsInACalendar {
 		//int[][] intervals = {{10, 12}, {11, 12}, {12, 14}};
 		int[][] intervals = {{10, 20}, {50, 60}, {10, 40}, {5, 15}, {5, 10}, {25, 55}};
 		//int[][] intervals = {{6, 10}, {9, 17}, {8, 9}, {4, 5}, {1, 5}, {12, 15}, {11, 13}, {2, 7}, {14, 15}};		
+		
 		MaxSimultaneousEventsInACalendar events = new MaxSimultaneousEventsInACalendar();
-		/*List<Integer> list = new ArrayList<>();
-		list.add(events.book(10, 20));
-		list.add(events.book(50, 60));
-		list.add(events.book(10, 40));		
-		list.add(events.book(5, 10));
-		list.add(events.book(5, 15));
-		list.add(events.book(25, 55));
-		System.out.println(list);*/
 		
 		System.out.println(events.find(intervals));			
 	}
@@ -37,6 +30,7 @@ public class MaxSimultaneousEventsInACalendar {
 		
 		int time;
 		boolean isStart;
+		
 		public EndPoint(int time, boolean isStart) {
 			this.time = time;
 			this.isStart = isStart;
@@ -60,19 +54,12 @@ public class MaxSimultaneousEventsInACalendar {
 	private int find(int[][] intervals) {
 		
 		List<EndPoint> list = new ArrayList<>();
+		
 		for(int i = 0; i < intervals.length; i++) {
+			
 			list.add(new EndPoint(intervals[i][0], true));
 			list.add(new EndPoint(intervals[i][1], false));
 		}		
-		return compute(list);
-	}
-	
-	List<EndPoint> list = new ArrayList<>();	
-	private int book(int start, int finish) {
-		
-		list.add(new EndPoint(start, true));
-		list.add(new EndPoint(finish, false));
-
 		return compute(list);
 	}
 	

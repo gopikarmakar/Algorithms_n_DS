@@ -28,22 +28,22 @@ public class PreOrderTraversalIterative {
 	 * The space complexity is 0(h), where h is the height of the tree, 
 	 * since, with the possible exception of the top of the stack, 
 	 * the nodes in the stack correspond to the right children of the nodes 
-	 * on a path beginning at the root.
-	 * 
-	 * @param tree
-	 * @return
+	 * on a path beginning at the root.	 
 	 */
-	private static List<Integer> traversePreOrder(Node<Integer> tree) {
+	public static <K> List<Node<K>> traversePreOrder(Node<K> tree) {
 		
-		Stack<Node<Integer>> path = new Stack<>();
+		Stack<Node<K>> path = new Stack<>();
 		path.push(tree);
-		List<Integer> preOrderList = new ArrayList<>();				
+		
+		List<Node<K>> preOrderList = new ArrayList<>();				
 		
 		while(!path.isEmpty()) {
 			
-			Node<Integer> current = path.pop();
+			Node<K> current = path.pop();
+			
 			if(current != null) {
-				preOrderList.add(current.key);
+				
+				preOrderList.add(current);
 				path.push(current.right);
 				path.push(current.left);
 			}			

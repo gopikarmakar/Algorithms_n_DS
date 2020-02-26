@@ -19,6 +19,13 @@ import java.util.LinkedList;
  * Insert : (N)
  * Search : (N)
  * 
+ * 	       		       11
+ *   		  5                15
+ *   	 3        8         14    16
+ *     2   4    7   9     13         19
+ *  1         6		    12	     17      20
+ *					               18       21
+ * 
  * @author gopi_karmakar
  *
  * @param <K>
@@ -32,8 +39,9 @@ public class BinarySearchTree_OLD {
 	
 	@SuppressWarnings("rawtypes")
 	private static void TestBinarySearchTree() {
+		
 		BST<Integer, String> bst = new BST<Integer, String>();	
-		int[][] keyValue = new int[20][1];		
+		
 	    bst.put(11, "Juu");
 	    bst.put(15, "JuIchi");
 	    bst.put(5, "Kyuu");
@@ -54,17 +62,11 @@ public class BinarySearchTree_OLD {
 	    bst.put(20, "Uno");	   
 	    bst.put(9, "Uno");
 	    bst.put(21, "twotwo");
-		/*bt.put(5, "f");
-		bt.put(2, "t");
-		bt.put(1, "s");
-		bt.put(3, "t");
-		bt.put(7, "s");		
-		bt.put(6, "s");
-		bt.put(8, "e");*/
+		
 	    //PrintMSG("Tree Size = " + bt.size());
-	    //PrintMSG("The Value For Deteletd Key 11 = " + bt.delete(11));
+	    System.out.println("The Value For Deteletd Key 14 = " + bst.delete(14));
 	    //PrintMSG("The Value For Key 2 = " + bt.contains(2));
-	    bst.printAllPostOrderNodes();
+	    //bst.printAllPostOrderNodes();
 	    //System.out.println("PreOrder Printing");
 	    //bst.printAllPreOrderNodes();
 	    //bt.printAllInOrderNodes(bt.NON_RECURSIVE);
@@ -72,7 +74,7 @@ public class BinarySearchTree_OLD {
 	    //bt.printAllRightDiagonalNodes();
 	    //bt.convertToDoubleLinkedList();
 	    //bt.printDoubleyLinkedList(bt.DESCENDING);
-	    //bt.printAllBFSNodesFromRoot();
+	    bst.printAllBFSNodesFromRoot();
 	    //System.out.println("Invert Printing");
 	    //bt.printAnInvertedTree();
 		
@@ -131,13 +133,7 @@ public class BinarySearchTree_OLD {
 		 * time for Insertions.
 		 * 
 		 * After adding the values to tree
-		 * the tree will become like:
-		 * 	       		       11
-		 *   		  5                15
-		 *   	 3        8         14    16
-		 *     2   4    7   9     13         19
-		 *  1         6		    12	     17      20
-		 *					               18       21 
+		 * the tree will become like: 
 		 * 
 		 * @param value
 		 * @return

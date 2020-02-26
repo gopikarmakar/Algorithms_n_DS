@@ -104,6 +104,14 @@ public class BinaryTree {
 		printPreOrderRecursive(tree.right, withParent);
 	}
 	
+	public static void printPreOrderIterative(Node<?> tree, boolean... withParent) {
+		
+		if(tree == null) //Base case
+			return;
+		
+		System.out.println(PreOrderTraversalIterative.traversePreOrder(tree));
+	}
+	
 	public static void printPostOrderRecursive(Node<?> tree, boolean... withParent) {
 		if(tree == null) //Base case
 			return;

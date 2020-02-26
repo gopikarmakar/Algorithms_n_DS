@@ -14,9 +14,10 @@ public class MedianOfAnUnsortedArray {
 
 	public static void main(String[] args) {
 	
-		int[] arr = {1, 3, 4, 2, 6, 5, 8, 7};
+		//int[] arr = {1, 3, 4, 2, 6, 5, 8, 7};
 		//int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5};
-		//int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3};
+		int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3};
+		//-3 -1 1 2 3 4 7 9 10
 		System.out.println(findMedian(arr));
 	}
 	
@@ -43,7 +44,10 @@ public class MedianOfAnUnsortedArray {
 			
 			if(newPivotIdx == k-1) {
 				
-				median = (n%2 == 0) ? (arr[newPivotIdx] + arr[k]) * 0.5 : arr[newPivotIdx]; 
+				for(int x : arr) 
+					System.out.println(x);
+				
+				median = (n%2 == 0) ? (arr[newPivotIdx] + arr[k]) * 0.5 : arr[k]; 
 				break;
 			}
 			else if(newPivotIdx > k-1) {

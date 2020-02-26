@@ -25,6 +25,8 @@ public class BuildABinaryTreeInLevelOrder<K> {
 		Node<Integer> tree = buildDefault();
 		
 		BinaryTree.printBFS(tree, true);
+		
+		BinaryTree.printPreOrderRecursive(tree, true);
 	}
 	
 	public static Node<Integer> buildDefault() {	
@@ -49,7 +51,8 @@ public class BuildABinaryTreeInLevelOrder<K> {
 		
 		if(i < keys.length) {
 			
-			if(keys[i] == null) return null;
+			//if(keys[i] == null) return null;
+			if(keys[i] == null) return node;
 			
 			if(node == null) {								
 				

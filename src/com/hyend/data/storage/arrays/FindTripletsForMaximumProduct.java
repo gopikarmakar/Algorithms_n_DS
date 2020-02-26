@@ -13,6 +13,7 @@ import java.util.List;
 public class FindTripletsForMaximumProduct {
 
 	public static void main(String[] args) {
+		
 		//int[] arr = {100, 2, 7, -20, -30, 5, -40};
 		int[] arr = {100, 2, 7, 20, 30, 5, -40};
 		System.out.println(maxProduct(arr));

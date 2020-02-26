@@ -36,6 +36,7 @@ public class FindFirstOccurrenceOfKToTheLeft {
 				r = mid - 1;
 			}
 			else if(arr[mid] == k) {
+				
 				index = mid;
 				// Nothing to the right of mid can be the first left occurrence of k.
 				r = mid - 1;

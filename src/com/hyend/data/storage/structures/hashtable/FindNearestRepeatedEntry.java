@@ -22,7 +22,7 @@ public class FindNearestRepeatedEntry {
 	public static class NearestRepeated {
 		
 		int distance;
-		String word = "";
+		String word = "";	
 		
 		public NearestRepeated(int distance, String word) {
 			this.word = word;

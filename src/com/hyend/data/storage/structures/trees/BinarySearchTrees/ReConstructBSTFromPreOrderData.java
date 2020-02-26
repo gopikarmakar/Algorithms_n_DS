@@ -9,13 +9,13 @@ package com.hyend.data.storage.structures.trees.BinarySearchTrees;
  * 
  * @author gopi_karmakar
  */
-public class ConstructBSTFromPreOrderData {
+public class ReConstructBSTFromPreOrderData {
 
 	public static void main(String[] args) {
 
 		int[] preOrder = {10, 5, 1, 7, 40, 50};
 		
-		ConstructBSTFromPreOrderData bst = new ConstructBSTFromPreOrderData();
+		ReConstructBSTFromPreOrderData bst = new ReConstructBSTFromPreOrderData();
 		
 		Node<Integer, ?> tree = bst.create(preOrder, Integer.MIN_VALUE, Integer.MAX_VALUE);
 		
@@ -36,9 +36,9 @@ public class ConstructBSTFromPreOrderData {
 		if(preOrder[index] < min || preOrder[index] >= max)
 			return null;
 		
-		Node<Integer, String> node = new Node<>(preOrder[index], null);
+		Node<Integer, String> node = new Node<>(preOrder[index++], null);
 		
-		index++;
+		//index++;
 		
 		node.left = create(preOrder, min, node.key);
 		node.right = create(preOrder, node.key, max);

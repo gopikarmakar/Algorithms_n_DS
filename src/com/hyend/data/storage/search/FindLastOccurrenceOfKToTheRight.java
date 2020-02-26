@@ -10,11 +10,13 @@ package com.hyend.data.storage.search;
 public class FindLastOccurrenceOfKToTheRight {
 
 	public static void main(String[] args) {
+		
 		int[] arr = {-14, -10, 2, 108, 108, 243, 285, 285, 285, 401};
 		System.out.println(find(arr, 285));
 	}
 	
-	public static int find(int[] arr, int k) {			
+	public static int find(int[] arr, int k) {
+		
 		return find(arr, k, 0, arr.length);
 	}
 	
@@ -33,6 +35,7 @@ public class FindLastOccurrenceOfKToTheRight {
 				l = mid + 1;
 			}
 			else if(arr[mid] == k) {
+				
 				index = mid;
 				// Nothing to the left of mid can be the last right occurrence of k.
 				l = mid + 1;

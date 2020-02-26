@@ -14,12 +14,11 @@ public class FindLCA {
 		
 		Node<Integer, ?> tree = BinarySearchTree.createDefault();
 		
-		Node<Integer, ?> node1 = tree.left.right.left.left;
-		System.out.println(node1.key);
+		Node<Integer, ?> node1 = tree.left.left.right;
+		//System.out.println(node1.key);
 		
-		//Node<Integer, ?> node1 = tree.left.right.right;
-		Node<Integer, ?> node2 = tree.left.left.left;
-		System.out.println(node2.key);
+		Node<Integer, ?> node2 = tree.left.right.right;
+		//System.out.println(node2.key);
 				
 		Node<Integer, ?> lca = null;
 		
@@ -65,10 +64,7 @@ public class FindLCA {
 											Node<Integer, ?> node1,
 											Node<Integer, ?> node2) {				
 		Node<Integer, ?> p = tree;
-		
-		/**
-		 * Assuming node1 <= node2
-		 */
+				
 		while(p.key < node1.key || p.key > node2.key) {
 			
 			while(p.key < node1.key) 

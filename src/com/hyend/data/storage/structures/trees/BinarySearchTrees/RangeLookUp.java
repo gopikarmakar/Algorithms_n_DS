@@ -45,7 +45,8 @@ public class RangeLookUp {
 		if(bst == null)
 			return;
 		
-		if(interval.left <= bst.key && interval.right >= bst.key) {
+		//if(interval.left <= bst.key && interval.right >= bst.key) {
+		if(bst.key >= interval.left && bst.key <= interval.right) {
 			
 			range(bst.left, interval, list);
 			
@@ -59,7 +60,7 @@ public class RangeLookUp {
 		}
 		else {
 			
-			range(bst.left, interval, list);
+			range(bst.left, interval, list);	
 		}
 	}
 }

@@ -9,6 +9,7 @@ package com.hyend.logical.algorithms.dp.greedy;
 public class MaxWaterTrapped {
 
 	public static void main(String[] args) {
+		
 		int[] heights = {1,2,1,3,4,4,5,6,2,1,3,1,3,2,1,2,4,1};
 		System.out.println("Max Water Trapped = " + getMaxWaterTrapped(heights));
 	}

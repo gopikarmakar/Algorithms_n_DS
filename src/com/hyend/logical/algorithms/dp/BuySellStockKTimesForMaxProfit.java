@@ -1,4 +1,4 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.logical.algorithms.dp;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -23,7 +23,9 @@ public class BuySellStockKTimesForMaxProfit {
 	private static double maxProfit(int k, int...arr) {
 		
 		List<Double> kSum = new ArrayList<>();
-		for(int i = 0; i < k*2; ++i) {
+		
+		for(int i = 0; i < k*2; ++i) {			
+			
 			kSum.add(Double.NEGATIVE_INFINITY);
 		}			
 		

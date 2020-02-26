@@ -11,7 +11,7 @@ import java.util.List;
  * 
  * @author gopi_karmakar
  */
-public class FindUniqueTripletsAddsUpToSum {
+public class FindTripletsAddsUpToSum {
 
 	public static void main(String[] args) {
 		
@@ -19,7 +19,7 @@ public class FindUniqueTripletsAddsUpToSum {
 		//int[] arr = {12, 3, 6, 1, 6, 9};
 		//int[] arr = {-2, 0, 1, 1, 2};
 		int[] arr = {0, -1, 2, -3, 1};
-		List<LinkedList<Integer>> list = uniqueTriplets(sum, arr);
+		List<List<Integer>> list = triplets(sum, arr);
 		
 		if(!list.isEmpty()) {
 			System.out.println(list);
@@ -33,13 +33,13 @@ public class FindUniqueTripletsAddsUpToSum {
 	 * Time taken to sort is 0(n Log n),
 	 * Total time complexity is 0(n^2) with O(1) extra space.
 	 */
-	public static List<LinkedList<Integer>> uniqueTriplets(int sum, int...arr) {
+	public static List<List<Integer>> triplets(int sum, int...arr) {
 		
 		Arrays.sort(arr);
-		List<LinkedList<Integer>> list = new ArrayList<>();
+		List<List<Integer>> list = new ArrayList<>();
 				
 		int l, r, n = arr.length;
-		for(int i = 0; i < n-2; i++) {
+		for(int i = 0; i < n-3; i++) {
 			
 			l = i+1;
 			r = n-1;
@@ -47,9 +47,11 @@ public class FindUniqueTripletsAddsUpToSum {
 				
 				int v = arr[i] + arr[l] + arr[r];
 				if(v == sum) {
-					LinkedList<Integer> ll = new LinkedList<>();
-					ll.add(arr[i]); ll.add(arr[l]); ll.add(arr[r]);									
+					
+					List<Integer> ll = new ArrayList<>();
+					ll.add(arr[i]); ll.add(arr[l]); ll.add(arr[r]);					
 					list.add(ll);
+					
 					l++;
 					r--;
 				}

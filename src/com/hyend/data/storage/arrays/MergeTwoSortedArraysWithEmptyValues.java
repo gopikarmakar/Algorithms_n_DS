@@ -1,9 +1,5 @@
 package com.hyend.data.storage.arrays;
 
-import java.util.Comparator;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
 /**
  * Merge two sorted arrays which can contain empty entries:
  * For e.g:
