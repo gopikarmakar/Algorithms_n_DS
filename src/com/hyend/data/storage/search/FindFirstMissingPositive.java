@@ -23,7 +23,9 @@ public class FindFirstMissingPositive {
 	public static void main(String[] args) {
 		
 		int[] arr = {8, 12, 1, 7, 9, 11, 10, 2};
+		
 		int val = findFirstMissingPositive(arr);
+		
 		System.out.println("First Missing Positive = " + val);
 	}
 	
@@ -36,8 +38,9 @@ public class FindFirstMissingPositive {
 			
 		int i = 0;
 		while(i < arr.length) {
-			
+					
 			if(arr[i] > 0 && arr[i] <= arr.length && arr[arr[i]-1] != arr[i]) {
+				
 				int x = arr[arr[i]-1];
 				arr[arr[i]-1] = arr[i];
 				arr[i] = x;
@@ -45,8 +48,8 @@ public class FindFirstMissingPositive {
 			else i++;
 		}
 		
-		//for(int x : arr)
-			//System.out.println(x);
+		for(int x : arr)
+			System.out.println(x);
 		
 		for(i = 0; i < arr.length; i++) {
 			if(arr[i] != i+1)

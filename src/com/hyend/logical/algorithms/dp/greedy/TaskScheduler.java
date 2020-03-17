@@ -3,6 +3,9 @@ package com.hyend.logical.algorithms.dp.greedy;
 import java.util.Arrays;
 
 /**
+ * Facebook interview question
+ * https://leetcode.com/discuss/interview-question/124710/rearrange-tasks/124157
+ * 
  * https://leetcode.com/problems/task-scheduler/
  * 
  * Given a char array representing tasks CPU need to do. It contains capital letters A to Z 
@@ -17,14 +20,15 @@ import java.util.Arrays;
  * for e.g: {'A', 'A', 'A', 'B', 'B', 'B'}  n = 2
  * 			A -> B -> Idle -> A -> B -> Idle A->B
  * 
- * 
  * @author gopi_karmakar
  */
 public class TaskScheduler {
 
 	public static void main(String[] args) {	
 		
-		System.out.println(leastInterval(2, 'A', 'A', 'A', 'B', 'B', 'B'));
+		//char[] tasks = {'A', 'A', 'A', 'B', 'B', 'B'};
+		char[] tasks = {'A', 'A', 'B'};
+		System.out.println("Least Interval = " + leastInterval(1, tasks));
 	}
 	
 	/**

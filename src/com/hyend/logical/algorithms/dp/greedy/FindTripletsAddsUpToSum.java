@@ -1,4 +1,4 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.logical.algorithms.dp.greedy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +49,9 @@ public class FindTripletsAddsUpToSum {
 				if(v == sum) {
 					
 					List<Integer> ll = new ArrayList<>();
-					ll.add(arr[i]); ll.add(arr[l]); ll.add(arr[r]);					
+					
+					ll.add(arr[i]); ll.add(arr[l]); ll.add(arr[r]);
+					
 					list.add(ll);
 					
 					l++;

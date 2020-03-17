@@ -1,4 +1,4 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.logical.algorithms.dp;
 
 import java.util.Arrays;
 import java.util.Collections;

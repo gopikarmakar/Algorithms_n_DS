@@ -31,7 +31,8 @@ import java.util.List;
 public class OptimumTaskAssignments {
 	
 	public static void main(String[] args) {
-		int[] durations = {5,2,1,6,4,4};
+		
+		int[] durations = {5, 2, 1, 6, 4, 4};
 		OptimumTaskAssignments tasks = new OptimumTaskAssignments();
 		List<PairedTasks> assignments = tasks.optimumTaskAssignment(durations);
 		

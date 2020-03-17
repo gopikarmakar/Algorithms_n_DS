@@ -1,8 +1,9 @@
 package com.hyend.logical.algorithms.dp.greedy;
 
 /**
- * Find the majority element from a pool of elements.
- *  
+ * Find the majority element from a pool of elements
+ * in O(n) time and without using any extra memory. 
+ * 
  * @author gopi_karmakar
  */
 public class MajorityElement {

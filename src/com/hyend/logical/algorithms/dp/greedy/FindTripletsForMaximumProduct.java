@@ -1,4 +1,4 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.logical.algorithms.dp.greedy;
 
 import java.util.ArrayList;
 import java.util.Arrays;

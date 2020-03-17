@@ -12,20 +12,22 @@ import java.util.Arrays;
  * Given service times for a set of queries, compute a schedule 
  * for processing the queries that minimizes the total waiting time
  * 
- * For e.g:For example, if the service times are (2,5,1,3) then the 
- * waiting time for executing query 3 can be 0+(2)+(2+5)+(2+5+1) = 17  
+ * For e.g: if the service times are (2, 5, 1, 3) then the 
+ * waiting time for executing of query 3 can be 0+(2)+(2+5)+(2+5+1) = 17
+ * but if we optimize then the waiting time can be 0 + 1 + 2  
  * 
  * @author gopi_karmakar
  */
 public class MinimizeWaitingTime {
 
 	public static void main(String[] args) {
+		
 		int[] queryServiceTimes = {2,5,1,3};		
 		System.out.println(minimizeWaitingTime(queryServiceTimes));
 	}
 	
 	/**	 
-	 * If we schedule queries in order of decreasing service times, 
+	 * Solution: If we schedule queries in order of decreasing service times, 
 	 * the total waiting time is 0+(5)+(5+3)+(5+3+2) = 23
 	 * 
 	 * We should sort the queries by their service times and then 
@@ -33,8 +35,6 @@ public class MinimizeWaitingTime {
 	 * 
 	 * The time complexity is dominated by the Sort time On(log n)
 	 * 
-	 * @param serviceTimes
-	 * @return
 	 */
 	private static int minimizeWaitingTime(int...serviceTimes) {
 
@@ -44,6 +44,7 @@ public class MinimizeWaitingTime {
 		int totalQueries = serviceTimes.length;
 		
 		for(int i = 0; i < totalQueries; ++i) {
+			
 			int query = totalQueries - (i+1);
 			totalWaitingTime += serviceTimes[i] * query; 
 		}		

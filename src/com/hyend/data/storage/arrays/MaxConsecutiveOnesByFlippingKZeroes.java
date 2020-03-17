@@ -1,4 +1,4 @@
-package com.hyend.data.storage.stackandqueue;
+package com.hyend.data.storage.arrays;
 
 /**
  * Google Interview Question
@@ -10,7 +10,7 @@ package com.hyend.data.storage.stackandqueue;
  * 
  * @author gopi_karmakar
  */
-public class MaxConsecutiveOnes {
+public class MaxConsecutiveOnesByFlippingKZeroes {
 
 	public static void main(String[] args) {
 		
