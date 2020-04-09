@@ -6,6 +6,8 @@ import java.util.Queue;
 import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
+ * https://leetcode.com/problems/validate-binary-search-tree/
+ * 
  * Check whether a given Binary Tree is a BST 
  * 
  * @author gopi_karmakar
@@ -20,11 +22,15 @@ public class IsItAValidBST {
 		
 		Node<Integer> tree = BinaryTree.buildDefault();
 		
-		BinaryTree.printPreOrderRecursive(tree);
+		Node<Integer> tree2 = BinaryTree.build(BinaryTree.SHORT_HEIGHTED, keys);
+		
+		//BinaryTree.printPreOrderRecursive(tree);
 		//BinaryTree.printBFS(tree, true);
+		System.out.println(Integer.MIN_VALUE);
+		System.out.println(Integer.MAX_VALUE);
 		
 		//System.out.println(isItAValidBST(tree));
-		System.out.println(isBSTLevelOrder(tree));
+		System.out.println(isBSTLevelOrder(tree2));
 		//System.out.println(isBST(tree, Integer.MIN_VALUE, Integer.MAX_VALUE));
 	}	
 	
@@ -55,7 +61,7 @@ public class IsItAValidBST {
 		
 		Queue<TreeNode> queue = new LinkedList<TreeNode>();
 		
-		queue.add(new TreeNode(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
+		queue.add(new TreeNode(root, null, null));
 		
 		TreeNode treeNode = null;
 		
@@ -63,12 +69,13 @@ public class IsItAValidBST {
 			
 			if(treeNode.node != null) {
 				
-				if(treeNode.node.key < treeNode.min || treeNode.node.key > treeNode.max) {
+				if((treeNode.min != null && treeNode.node.key < treeNode.min) || 
+					(treeNode.max != null && treeNode.node.key > treeNode.max)) {
 					return false;
 				}
 				
-				queue.add(new TreeNode(treeNode.node.left, treeNode.min, treeNode.node.key));
-				queue.add(new TreeNode(treeNode.node.right, treeNode.node.key, treeNode.max));
+				queue.add(new TreeNode(treeNode.node.left, treeNode.min, (long) treeNode.node.key-1));
+				queue.add(new TreeNode(treeNode.node.right, (long) treeNode.node.key+1, treeNode.max));
 			}			
 		}
 		return true;
@@ -76,53 +83,13 @@ public class IsItAValidBST {
 	
 	private static class TreeNode {
 		
-		Integer min, max;
+		Long min, max;
 		Node<Integer> node;
 		
-		public TreeNode(Node<Integer> node, Integer min, Integer max) {
+		public TreeNode(Node<Integer> node, Long min, Long max) {
 			this.min = min;
 			this.max = max;
 			this.node = node;			
 		}
-	}
-	
-	//##############################################################################################
-	
-	private static boolean isBSTPostOrder(Node<Integer> root) {		
-		return checkViaPostOrder(root).status;
-	}
-	
-	private static class Status {
-		
-		Node<Integer> node;
-		boolean status = false;
-		
-		public Status(boolean status, Node<Integer> node) {
-			this.node = node;
-			this.status = status;
-		}
-	}
-	
-	/**
-	 * Needs improvement
-	 */
-	private static Status checkViaPostOrder(Node<Integer> node) {
-		
-		if(node == null)
-			return new Status(true, null);
-		
-		Status leftResult = checkViaPostOrder(node.left);
-		Status rightResult = checkViaPostOrder(node.right);
-		
-		if(leftResult.status && rightResult.status)
-			if(leftResult.node == null && rightResult.node == null) {
-				return new Status(true, node);
-		}
-		else if((leftResult.node != null && leftResult.node.key <= node.key) && 
-				(rightResult.node != null && rightResult.node.key >= node.key)) {
-			
-			return new Status(true, node);
-		}
-		return new Status(false, node);
 	}
 }

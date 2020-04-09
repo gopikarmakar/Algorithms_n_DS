@@ -1,41 +1,30 @@
 package com.hyend.data.storage.arrays.matrix;
 
+/**
+ * https://leetcode.com/problems/minimum-path-sum/
+ * 
+ * @author gopi_karmakar
+ */
 public class MinimumPathSum {
 
-	int sum = 0, min = 0;
-	int[][] cache;
+	public static void main(String[] args) {
+		
+		int[][] grid = {{1, 3, 1},
+						{1, 5, 1},
+						{4, 2, 1}};
+		
+		System.out.println(minimumPathSum(grid));
+	}
 
-	public int minimumPathSum(int[][] grid) {
+	/**
+	 * Time and Space Complexity is O(nXm) 
+	 */
+	private static int minimumPathSum(int[][] grid) {
 		
 		int row = grid.length;
 		int col = grid[0].length;
-		
-		/*cache = new int[grid.length];
-		
-		for(int i = 0; i < grid.length; i++) {
-			
-			for(int j = 0; j < grid[i].length; j++) {
 				
-				if(j == grid[i].length-1) {
-					sum += Math.min(grid[i][j], (grid[i][j] + 
-							((i < grid.length-1) ? grid[i+1][j] : 0)));
-				}
-				else if(i == grid.length-1) {
-					sum += Math.min(grid[i][j], (grid[i][j] + 
-							((j < grid[i].length-1) ? grid[i][j+1] : 0)));
-				}
-				else {
-					sum += Math.min((grid[i][j] + grid[i][j+1]), (grid[i][j+1] + grid[i+1][j+1]));
-				}
-			}
-			cache[i] = sum;
-			if(i == 0)
-				min  = cache[i];			
-			sum = 0;
-			min = Math.min(min, cache[i]);
-		}*/
-		
-		cache = new int[row][col];
+		int[][] cache = new int[row][col];		
 		
 		for(int i = 0; i < row; i++) {
 			
@@ -54,8 +43,7 @@ public class MinimumPathSum {
 				}
 				else {
 					cache[i][j] = Math.min(cache[i][j-1], cache[i-1][j]) + grid[i][j];
-				}
-				
+				}				
 			}
 		}
 			

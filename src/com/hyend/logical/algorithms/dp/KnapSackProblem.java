@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.dp.recursive;
+package com.hyend.logical.algorithms.dp;
 
 import java.util.ArrayList;
 import java.util.Arrays;

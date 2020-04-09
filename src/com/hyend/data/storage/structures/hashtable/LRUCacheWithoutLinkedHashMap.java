@@ -67,7 +67,7 @@ public class LRUCacheWithoutLinkedHashMap {
 			cache.addFirst(item);
 			items.add(item);
 			
-			return item;
+			return item;			
 		}
 		
 		public K get(K item) throws UnsupportedOperationException {

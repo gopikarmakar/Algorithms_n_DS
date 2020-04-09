@@ -20,7 +20,7 @@ public class VideoStitching {
     
     private static int videoStitching(int[][] clips, int T) {
      
-    	int[] dp = new int[T+ 1];
+    	int[] dp = new int[T + 1];
         Arrays.fill(dp, T+1);
         dp[0] = 0;
         

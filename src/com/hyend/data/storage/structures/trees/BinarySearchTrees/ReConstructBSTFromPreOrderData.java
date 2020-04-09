@@ -19,7 +19,7 @@ public class ReConstructBSTFromPreOrderData {
 		
 		Node<Integer, ?> tree = bst.create(preOrder, Integer.MIN_VALUE, Integer.MAX_VALUE);
 		
-		System.out.println("Inorder Traversal");
+		System.out.println("Preorder Traversal");
 		BinarySearchTree.printPreOrder(BinarySearchTree.RECURSIVELY, tree);
 		
 		System.out.println("\nLevel Order Traversal");

@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.dp.geometry;
+package com.hyend.logical.algorithms.dp.greedy;
 
 import java.util.Deque;
 import java.util.LinkedList;

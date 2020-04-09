@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.dp;
+package com.hyend.logical.algorithms.dp.greedy;
 
 /**
  * It all started from here. My very first solution. 

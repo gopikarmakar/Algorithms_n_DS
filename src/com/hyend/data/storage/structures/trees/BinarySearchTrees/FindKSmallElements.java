@@ -2,6 +2,7 @@ package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Find the K small elements of BST
@@ -16,26 +17,54 @@ public class FindKSmallElements {
 		
 		List<Integer> list = new ArrayList<>();
 		
-		find(bst, list, 4);
+		find(bst, list, 4);			
 		
 		System.out.println(list);
+		
+		System.out.println(findKth(bst, 3));
 	}
 	
 	/**
 	 * The time complexity is O(h + k) 
 	 */
-	private static void find(Node<Integer, ?> bst, List<Integer> list, int k) {
+	private static void find(Node<Integer, ?> node, List<Integer> list, int k) {
 		
-		if(bst != null && list.size() < k) {
+		if(node != null && list.size() < k) {
 			
-			find(bst.left, list, k);
+			find(node.left, list, k);
 			
 			if(list.size() < k) {
 				
-				list.add(bst.key);
+				list.add(node.key);
 				
-				find(bst.right, list, k);
+				find(node.right, list, k);
 			}
 		}
 	}
+	
+	private static int findKth(Node<Integer, ?> root, int k) {
+        
+        Stack<Node<Integer, ?>> s = new Stack<>();
+        List<Integer> l = new ArrayList<>();
+        
+        Node<Integer, ?> e = root;
+        
+        while(!s.isEmpty() || e != null) {                    	
+        	
+            if(e != null) {
+                
+                s.push(e);
+                e = e.left;
+            }
+            else {
+                e = s.pop();
+                if(l.size() == k) {
+                	return l.get(k-1);                	                    
+                }                
+                l.add(e.key); 
+                e = e.right; 
+            }            
+        }
+        return l.get(k-1);
+    }
 }

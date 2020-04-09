@@ -16,7 +16,7 @@ public class FindCeilOfAGivenKey {
 		
 		Node<Integer, ?> bst = BinarySearchTree.createDefault();		
 		
-		System.out.println(findCeil(bst, 23));
+		System.out.println("Ceil " + findCeil(bst, 23));
 	}
 	
 	/**

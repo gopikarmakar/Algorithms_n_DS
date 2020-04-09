@@ -198,7 +198,7 @@ public class DirectedGraph<V extends Comparable<V>> {
 				map.put(e.v, reversed);
 			});			
 			
-		});
+		});		
 		return map.values();
 	}
 	

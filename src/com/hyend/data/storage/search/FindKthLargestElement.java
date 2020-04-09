@@ -9,14 +9,18 @@ import java.util.Comparator;
  * K = 5
  * {10, 9, 7, 4, 3, 2, 1, -1, -3, -5} = return 3
  * 
+ * https://leetcode.com/problems/kth-largest-element-in-an-array/
+ * 
  * @author gopi_karmakar
  */
 public class FindKthLargestElement {
 
 	public static void main(String[] args) {
 	
-		int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5};
-		System.out.println("Kth Largest = " + findKth(3, arr));
+		//int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5};
+		//int[] arr = {3, 2, 1, 5, 6, 4};
+		int[] arr = {3, 2, 3, 1, 2, 4, 5, 5, 6};
+		System.out.println("Kth Largest = " + findKth(4, arr));
 	}
 	
 	/**
@@ -36,7 +40,8 @@ public class FindKthLargestElement {
 			
 			int random = rand.nextInt(r - l + 1); 
 			int pivotIdx = random + l;
-			int newPivotIdx = partitionAroundPivot(arr, l, r, pivotIdx, Compare.Greater_Than);
+			//int newPivotIdx = partitionAroundPivot(arr, l, r, pivotIdx, Compare.Greater_Than);
+			int newPivotIdx = partitionAroundPivot(arr, l, r, pivotIdx);
 			
 			if(newPivotIdx == k-1) {
 				result = arr[newPivotIdx];
@@ -51,8 +56,9 @@ public class FindKthLargestElement {
 		}
 		return result;
 	}
-	
-	private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx, Comparator<Integer> cmp) {
+		
+	//private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx, Comparator<Integer> cmp) {
+	private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx) {
 		
 		int newPivotIdx = l;
 		int pivotValue = arr[pivotIdx];	
@@ -60,7 +66,7 @@ public class FindKthLargestElement {
 		swap(arr, pivotIdx, r);		
 		for(int i = l; i < r; ++i) {
 			
-			if(cmp.compare(arr[i], pivotValue) < 0) {
+			if(Integer.compare(arr[i], pivotValue) > 0) {
 				swap(arr, i, newPivotIdx++);
 			}
 		}

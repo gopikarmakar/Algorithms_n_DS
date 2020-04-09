@@ -15,9 +15,12 @@ public class FindKthElementInTwoSortedArrays {
 		
 		//int[] arr1 = {2, 3, 7, 8};
 		//int[] arr2 = {1, 4, 6, 9, 10};
-		int[] a = {1, 3, 4, 9, 11};
-		int[] b = {2, 5, 6, 8};
-		System.out.println("Kth Element = " + findKth(a, b, 7));
+		//int[] a = {1, 3, 4, 9, 11};
+		//int[] b = {2, 5, 6, 8};
+		
+		int[] a = {1, 3};
+		int[] b = {2};
+		System.out.println("Kth Element = " + findKth(a, b, 1));
 	}	
 	
 	/**
@@ -60,31 +63,5 @@ public class FindKthElementInTwoSortedArrays {
 		int bxkb1 = (k - l - 1 < 0) ? Integer.MIN_VALUE : b[k-l-1];
 		
 		return Math.max(ab1, bxkb1);
-	}
-	
-	/**
-	 * A Naive solution with O(K) time and extra space complexity. 
-	 */
-	private static int find(int[] arr1, int[] arr2, int k) {
-				
-		int[] merged = new int[k];
-		int i = 0, j = 0, m = arr1.length, n = arr2.length, writeIdx = 0;
-		
-		if(k > n+m) return k;
-		
-		/**
-		 * It fails if k = m+n. Needs to take care of that condition 
-		 */
-		while(writeIdx < k) {
-			
-			if(i < m && arr1[i] < arr2[j]) {
-				merged[writeIdx++] = arr1[i++];
-			}
-			else if(j < n && arr2[j] < arr1[i]) {
-				merged[writeIdx++] = arr2[j++];
-			}			
-		}
-		
-		return merged[k-1];
 	}
 }

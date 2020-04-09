@@ -37,7 +37,7 @@ public class HasRepeats {
 		
 		Collections.sort(q, (a, b)->b-a);
 		
-		Map<Integer, Integer> map = new HashMap<>();
+		Map<Integer, Integer> map = new HashMap<>();	
 		
 		nums.forEach(e -> {
 			

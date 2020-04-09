@@ -13,6 +13,8 @@ import java.util.Collections;
  * 
  * Therefore the longest subsequence length is of 4 so should return 4.
  * 
+ * https://leetcode.com/problems/longest-increasing-subsequence/
+ * 
  * @author gopi_karmakar
  */
 public class LongestIncreasingSubsequence {
@@ -20,6 +22,7 @@ public class LongestIncreasingSubsequence {
 	public static void main(String[] args) {
 		
 		int[] arr = {0, 8, 4, 12, 2, 10, 6, 14, 1, 9};
+		//int[] arr = {1, 1, 1, 1, 1};
 		System.out.println("Maximum Length = " + findSubSequence(arr));		
 	}
 	
@@ -44,7 +47,7 @@ public class LongestIncreasingSubsequence {
 					lss[i] = Math.max(lss[i], lss[j]+1);
 				}				
 			}
-		}
+		}		
 		return Collections.max(Arrays.asList(lss));
 	}
 }

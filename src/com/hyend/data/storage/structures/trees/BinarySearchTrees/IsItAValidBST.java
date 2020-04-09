@@ -10,7 +10,7 @@ public class IsItAValidBST {
 	public static void main(String[] args) {
 	
 		Node<Integer, ?> tree = BinarySearchTree.createDefault();		
-		System.out.println(isItAValidBST(tree, Integer.MIN_VALUE, Integer.MAX_VALUE));
+		System.out.println(isItAValidBST(tree, null, null));
 	}
 	
 	/**
@@ -18,12 +18,14 @@ public class IsItAValidBST {
 	 * 
 	 * Look into Binary Tree Package for a better BFS solution.  
 	 */
-	private static boolean isItAValidBST(Node<Integer, ?> node, int min, int max) {
+	private static boolean isItAValidBST(Node<Integer, ?> node, Long min, Long max) {
 		
 		if(node == null) return true;
 		
-		if(node.key < min || node.key > max) return false;
+		if((min != null && node.key < min) || (max != null && node.key > max)) 
+			return false;
 		
-		return isItAValidBST(node.left, min, node.key) && isItAValidBST(node.right, node.key, max);
+		return isItAValidBST(node.left, min, (long) node.key-1) && 
+				isItAValidBST(node.right, (long) node.key+1, max);
 	}
 }

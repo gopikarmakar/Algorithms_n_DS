@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.dp.geometry;
+package com.hyend.logical.algorithms.dp;
 
 /**
  * @author karmakargopi

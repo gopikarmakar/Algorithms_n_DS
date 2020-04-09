@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.dp.recursive;
+package com.hyend.logical.algorithms.dp;
 
 /**
  * Compute Levenshtein distance between two Strings.
@@ -17,6 +17,7 @@ public class LevenshteinDistance {
 		
 		String a = "AABC";
 		String b = "ABCA";
+		
 		
 		int a_Idx = a.length();
 		int b_Idx = b.length();

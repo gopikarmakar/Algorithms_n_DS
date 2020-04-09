@@ -2,6 +2,7 @@ package com.hyend.logical.interview.questions.google;
 
 import java.util.NoSuchElementException;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * A google telephonic screening phone interview question.
@@ -15,14 +16,14 @@ import java.util.concurrent.ConcurrentHashMap;
 public class TimeCriticalHashMap<K extends Comparable<K>, V> {
 
 	private transient int limit = 0;
-	private ConcurrentHashMap<K, WeightedValue> myMap;
+	private ConcurrentMap<K, Pair> myMap;
 	
-	class WeightedValue {
+	class Pair {
 		
 		V value;
 		transient long time = 0;
 		
-		public WeightedValue(V value) {			
+		public Pair(V value) {			
 			this.value = value;
 			this.time = System.currentTimeMillis();
 		}
@@ -31,32 +32,35 @@ public class TimeCriticalHashMap<K extends Comparable<K>, V> {
 			return value; 
 		}
 		
-		public long getTime() { 
+		public long getSavedTime() { 
 			return time; 
 		}
 	}
 	
 	public TimeCriticalHashMap(int limit) {
 		this.limit = limit;
-		myMap = new ConcurrentHashMap<K, WeightedValue>();
+		myMap = new ConcurrentHashMap<K, Pair>();
 	}
 	
 	public V put(K key, V value) {
 		
-		myMap.putIfAbsent(key, new WeightedValue(value));
+		myMap.put(key, new Pair(value));
 		return value;
 	}	
 	
 	public V get(K key) throws NoSuchElementException {
 		
-		if(!myMap.contains(key))
+		if(!myMap.containsKey(key))
 			throw new NoSuchElementException("Element Not Found");
 		
-		WeightedValue wv = myMap.get(key);
-		if(getCurrentTime() - wv.getTime() <= limit)
-			return wv.getValue();		
+		Pair wv = myMap.get(key);
+		if(getCurrentTime() - wv.getSavedTime() > limit) {
+			
+			myMap.remove(key);
+			throw new NoSuchElementException("Element Expired");
+		}
 		
-		throw new NoSuchElementException("Element Expired");
+		return wv.getValue();		
 	}
 	
 	private synchronized long getCurrentTime() {

@@ -1,6 +1,8 @@
 package com.hyend.data.storage.structures.linkedlists.singly;
 
 /**
+ * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+ * 
  * An Amazon interview question.
  * 
  * Remove the Kth node from the end of the linked list
@@ -11,11 +13,13 @@ public class RemoveKthNodeFromEnd {
 
 	public static void main(String[] args) {
 		
-		SinglyLinkedList<Integer> sll = SinglyLinkedList.createDefault();
+		//SinglyLinkedList<Integer> sll = SinglyLinkedList.createDefault();
+		SinglyLinkedList<Integer> sll = new SinglyLinkedList<>();
+		sll.add(1);
 		System.out.println("Before");
 		sll.print();
 		
-		Node<Integer> newList = removeKthNodeFromEnd(sll.head, 3);
+		Node<Integer> newList = removeKthNodeFromEnd(sll.head, 1);
 		System.out.println("\nAfter");
 		sll.print(newList);
 	}
@@ -26,26 +30,25 @@ public class RemoveKthNodeFromEnd {
 	 */
 	private static Node<Integer> removeKthNodeFromEnd(Node<Integer> head, int k) {
 		
-		Node<Integer> dummyHead = new Node(head);
+		// initializing
+		Node<Integer> dummyHead = new Node<>(-1);
+		dummyHead.next = head;
 		
-		//Setting first to dummyHead.next because we want to keep the second at k-1 position
-		Node<Integer> first = dummyHead.next;
-		
-		while(k-- > 0) {
-			
-			first = first.next;
-		}
-		
+		Node<Integer> first = dummyHead;
 		Node<Integer> second = dummyHead;
 		
-		while(first != null) {
+		while(k-- > 0) {		
+			first = first.next;
+		}
+					
+		while(first.next != null) {
 			
 			first = first.next;
 			second = second.next;			
 		}
 		
-		second.next = second.next.next;
+		second.next = second.next.next;			
 		
-		return dummyHead;				
+		return dummyHead.next;				
 	}
 }

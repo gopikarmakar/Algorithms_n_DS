@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms.dp.recursive;
+package com.hyend.logical.algorithms.dp;
 
 import java.util.Set;
 import java.util.LinkedHashSet;

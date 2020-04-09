@@ -11,13 +11,15 @@ public class CoinChange {
 
 	public static void main(String[] args) {
 		
-		int[] coins = {2, 1, 5};
-		int[] coins2 = {186, 419, 83, 408};		
-		System.out.println(coinChange(coins2, 6249));
+		int[] coins = {1, 2, 5};
+		System.out.println(coinChange(coins, 11));
+		//int[] coins2 = {186, 419, 83, 408};		
+		//System.out.println(coinChange(coins2, 6249));
 	}
 	
 	/**
-	 * 
+	 * Time complexity is O(mxn) and Space complexity is O(m) 
+	 * where m = amount and n = coins.length
 	 */
 	private static int coinChange(int[] coins, int amount) {
 		
@@ -37,6 +39,9 @@ public class CoinChange {
 					dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
 				}
 			}
+		}
+		for(int x : dp) {
+			System.out.println(x);
 		}
 		return dp[amount] > amount ? -1 : dp[amount];
 	}

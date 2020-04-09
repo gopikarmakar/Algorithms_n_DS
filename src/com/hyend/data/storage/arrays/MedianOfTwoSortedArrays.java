@@ -11,9 +11,13 @@ import com.hyend.data.storage.search.FindKthSmallestElement;
 public class MedianOfTwoSortedArrays {
 	
 	public static void main(String[] args) {
+		
 		//int[] a = {1, 3, 4, 9};
-		int[] a = {1, 3, 4, 9, 11};
-		int[] b = {2, 5, 6, 8, 10};
+		//int[] a = {1, 3, 4, 9, 11};
+		//int[] b = {2, 5, 6, 8, 10};
+		
+		int[] a = {1, 3};
+		int[] b = {2};
 		
 		System.out.println(findMedian(a, b));
 		System.out.println(median(a, b));
@@ -36,7 +40,7 @@ public class MedianOfTwoSortedArrays {
     	
     	return (s%2 == 0) ? (FindKthSmallestElement.findKth(k, merged) +
     						FindKthSmallestElement.findKth(k+1, merged)) * 0.5 :
-    						FindKthSmallestElement.findKth(k, merged);    	
+    						FindKthSmallestElement.findKth(k+1, merged);    	
     }
     
     /**

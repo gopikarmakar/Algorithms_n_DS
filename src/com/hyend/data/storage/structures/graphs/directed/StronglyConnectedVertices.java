@@ -85,7 +85,7 @@ public class StronglyConnectedVertices {
 	
 	private static void printConnectedComponent(Map<Integer, Vertex<Integer>> reversedGraph) {
 		
-		System.out.println("\nConnected Components");
+		System.out.println("\nStrongly Connected Components");
 		
 		for(Vertex<Integer> v : reversedGraph.values()) {
 			
