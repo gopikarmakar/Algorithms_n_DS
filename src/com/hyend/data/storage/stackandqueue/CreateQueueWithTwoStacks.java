@@ -3,6 +3,13 @@ package com.hyend.data.storage.stackandqueue;
 import java.util.Stack;
 
 /**
+ * A Google Interview Question
+ * 
+ * Create a queue with two stacks.
+ * 
+ * Add operation will take O(1) time but will take O(n) time after the remove operation.
+ * Remove operation will always take O(n) time.
+ * Peek operation will take O(1) time.
  * 
  * @author gopi_karmakar
  */
@@ -42,8 +49,8 @@ public class CreateQueueWithTwoStacks<K> {
 		System.out.println(q.remove());
 		System.out.println("Peek = " + q.peek());
 		System.out.println(q.remove());
-		//System.out.println(q.remove());
-		//System.out.println(q.remove());
+		//System.out.println("Peek = " + q.peek());
+		System.out.println(q.remove());
 	}
 	
 	private void add(K k) {	
@@ -52,6 +59,7 @@ public class CreateQueueWithTwoStacks<K> {
 	}
 	
 	private K remove() {		
+		
 		copyToS2();
 				
 		if(s2.isEmpty())
@@ -64,7 +72,7 @@ public class CreateQueueWithTwoStacks<K> {
 	
 	private K peek() {
 		
-		if(s2.isEmpty())
+		if(peek == null)
 			throw new AssertionError("Stack is empty");
 		
 		return peek;
