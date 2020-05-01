@@ -57,7 +57,7 @@ public class FindIsomorphicStrings {
 		for(String s : input) {
 						
 			String hashed = hash(s);
-			//System.out.println("String = " + s + " and hashedString = " + hashed);
+			System.out.println("String = " + s + " and hashedString = " + hashed);
 			
 			List<String> list = map.getOrDefault(hashed, new ArrayList<String>());
 			list.add(s);			

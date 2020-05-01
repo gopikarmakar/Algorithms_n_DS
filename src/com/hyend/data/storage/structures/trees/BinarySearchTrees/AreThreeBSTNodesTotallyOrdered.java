@@ -11,7 +11,7 @@ public class AreThreeBSTNodesTotallyOrdered {
 
 	public static void main(String[] args) {
 		
-		Node<Integer, ?> tree = (Node<Integer, ?>) BinarySearchTree.createDefault();
+		Node<Integer, ?> tree = BinarySearchTree.createDefault();
 		Node<Integer, ?> node1 = tree.left;
 		Node<Integer, ?> middle = tree.left.right;
 		//Node<Integer, ?> middle = tree.left.left;

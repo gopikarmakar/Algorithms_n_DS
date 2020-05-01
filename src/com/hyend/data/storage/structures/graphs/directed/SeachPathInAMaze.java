@@ -47,7 +47,7 @@ public class SeachPathInAMaze {
 			return true;			
 		}		
 		@Override
-		public int hashCode() {			
+		public int hashCode() {	
 			return Objects.hash(x, y);
 		}
 	}

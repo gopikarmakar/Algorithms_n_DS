@@ -4,8 +4,9 @@ import java.util.Set;
 import java.util.LinkedHashSet;
 
 /**
- * Given a list of the 2019 cricket world cup matches outcomes between pairs of teams, 
- * with each outcome being a win or loss. 
+ * Given a list of the 2019 cricket world cup matches outcomes
+ * between pairs of teams, with each outcome being a win or loss. 
+ * 
  * Given teams A and B, is there a sequence of teams starting with team A and 
  * ending with team B such that each team in the sequence has beaten the next team in the sequence.
  * 

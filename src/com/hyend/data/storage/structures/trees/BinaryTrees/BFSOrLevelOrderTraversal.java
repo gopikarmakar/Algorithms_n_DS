@@ -8,7 +8,7 @@ public class BFSOrLevelOrderTraversal {
 		
 		System.out.println("\nLevelOrder:");
 		
-		BinaryTree.printBFS(tree, true);
+		BinaryTree.printBFS(tree, false);
 		
 		System.out.println("\nPreOrder:");
 		

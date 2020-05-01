@@ -46,7 +46,7 @@ public class IsGraphAValidTree {
 				if(isItATree(diGraph, visited, e))
 					return true;
 			}
-			else if(v != e)
+			else if(v != e) // Checking for self cycles.
 				return true;
 		}
 		return false;				
@@ -79,7 +79,7 @@ public class IsGraphAValidTree {
 					queue.add(e);
 				}
 				else {
-					if(v != e) {
+					if(v != e) { // Checking for self cycles.
 						isCyclic = true;
 						break;						
 					}

@@ -75,7 +75,9 @@ public class BuildDirectedGraph<V extends Comparable<V>> {
 			for(int i = 1; i < v.length; ++i) {
 				
 				helper.convertToGraphVertex(v[0], v[i]);
+				//helper.convertToGraphVertex(v[i], v[i+1]);
 				diGraph.addEdge(helper.getGraphVertex(v[0]), helper.getGraphVertex(v[i]));
+				//diGraph.addEdge(helper.getGraphVertex(v[i]), helper.getGraphVertex(v[i+1]));
 			}
 		}
 		

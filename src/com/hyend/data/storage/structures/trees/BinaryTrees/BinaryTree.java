@@ -1,7 +1,12 @@
 package com.hyend.data.storage.structures.trees.BinaryTrees;
 
 import java.util.Queue;
+
+import javax.naming.spi.DirStateFactory.Result;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A Binary Tree structure is each node holds two children 
@@ -64,23 +69,44 @@ public class BinaryTree {
 	
 	/**
 	 * It's been called level order too.
-	 * @param tree
 	 */
 	public static void printBFS(Node<?> tree, boolean... withParent) {		
 		
 		Queue<Node<?>> queue = new LinkedList<>();
+		List<List<Node<?>>> nodes = new ArrayList<>();
+		
 		queue.add(tree);		
 		
-		while(!queue.isEmpty()) {			
+		while(!queue.isEmpty()) {	
 			
-			Node<?> node = queue.poll();
+			int size = queue.size();
+			List<Node<?>> list = new ArrayList<>();
 			
-			if(node != null)
-				print(node, withParent);
-			
-			if(node.left != null) queue.add(node.left);			
-			if(node.right != null) queue.add(node.right);
+			for(int i = 0; i < size; ++i) {
+				
+				Node<?> e = queue.poll();
+				
+				if(e != null) {
+					
+					list.add(e);
+					
+					if(e.left != null) queue.add(e.left);
+					if(e.right != null) queue.add(e.right);
+				}
+			}
+			nodes.add(list);						
 		}
+		
+		nodes.forEach(l -> {
+		
+			l.forEach(e -> {
+				
+				System.out.print("[" +e.key + 
+					((withParent.length > 0 && withParent[0]) ? ((e.parent!= null) ? 
+					"\tParent = " + e.parent.key : "\tIt's Root") : "") + "] ");
+			});
+			System.out.println();
+		});
 	}
 	
 	public static void printInOrderRecursive(Node<?> tree, boolean... withParent) {

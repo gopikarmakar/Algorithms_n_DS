@@ -6,6 +6,8 @@ import com.hyend.data.storage.structures.graphs.Vertex;
 import com.hyend.data.storage.structures.graphs.Vertex.Color;
 
 /**
+ * https://leetcode.com/problems/course-schedule/
+ * 
  * High performance database systems use multiple processes and resource locking.
  * These systems may not provide mechanisms to avoid or prevent deadlock.
  * A situation in which two or more competing actions are each waiting for
@@ -36,10 +38,12 @@ public class DeadlockDetection {
 		 * 
 		 * In resource allocation graph above P1 got R1 and waiting for R2 but P2 got R2.
 		 * Which means P1 is waiting for P2 to release R2. Which is finally 
-		 * depicted in wait for graph .
+		 * depicted in wait for graph.
 		 */		
 		
 		String[][] waitForGraph = {{"p1", "p2"}, {"p2", "p3", "p4", "p5"}, {"p4", "p1"}};
+		
+		//String[][] waitForGraph = {{"p1", "p2"}, {"p2", "p1"}};
 		
 		/**
 		 * Every process will be a Graph Vertex with default color as white. 	 
@@ -48,7 +52,9 @@ public class DeadlockDetection {
 		
 		diGraph.printVertexGraph();
 		
-		System.out.println("\nIs There Any Deadlock = " + detectDeadlock(diGraph.getVertexGraph()));
+		DeadlockDetection detect = new DeadlockDetection();
+		
+		System.out.println("\nIs There Any Deadlock = " + detect.isDeadlocked(diGraph.getVertexGraph()));
 	}
 	
 	/**
@@ -59,8 +65,8 @@ public class DeadlockDetection {
 	 * The space complexity is O(V), which is the maximum stack depth—if we go deeper than |V| calls, 
 	 * some vertex must repeat, implying a cycle in the graph, which leads to early termination.	 
 	 */
-	private static boolean detectDeadlock(Set<Vertex<String>> set) {
-		
+	private boolean isDeadlocked(Set<Vertex<String>> set) {
+					
 		for(Vertex<String> v : set) {
 			
 			if(v.color == Color.WHITE && hasCycle(v))
@@ -69,20 +75,20 @@ public class DeadlockDetection {
 		return false;
 	}
 	
-	private static boolean hasCycle(Vertex<String> v) {
-		
-		if(v.color == Vertex.Color.GRAY)
+	private boolean hasCycle(Vertex<String> v) {
+				
+		if(v.color == Color.GRAY)
 			return true;
 							
-		v.color = Vertex.Color.GRAY;
+		v.color = Color.GRAY;
 		for(Vertex<String> e : v.edges) {
 			
-			if(e.color != Vertex.Color.BLACK)
+			if(e.color != Color.BLACK)
 				if(hasCycle(e))
 					return true;
 		}
 		
-		v.color = Vertex.Color.BLACK;
+		v.color = Color.BLACK;
 		return false;
 	}
 }

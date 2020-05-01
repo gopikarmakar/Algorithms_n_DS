@@ -1,7 +1,13 @@
 package com.hyend.data.storage.structures.graphs.directed;
 
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Stack;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+
 import com.hyend.data.storage.structures.graphs.Vertex;
 
 /**
@@ -28,32 +34,31 @@ public class TopologicalSort {
 							  {"Linear Algebra", "Theoretical CS"},
 							  {"Calculus", "Linear Algebra"},
 							  {"Artificial Intelligence", "Neural Networks", "Robotics", "Machine Learning"},
-							  {"Machine Learning", "Neural Networks"}};		
+							  {"Machine Learning", "Neural Networks"}};			
 		
 		DirectedGraph<String> diGraph = BuildDirectedGraph.buildVertexGraph(courses);
 		
-		diGraph.printVertexGraph();
-						
-		Deque<Vertex<String>> stack = new ArrayDeque<>();
+		diGraph.printVertexGraph();					
+		
+		Stack<Vertex<String>> stack = new Stack<>();
 		
 		for(Vertex<String> v : diGraph.getVertexGraph()) {						
 				
 			if(!v.visited)
-				topologicalSort(diGraph, v, stack);
+				topologicalSort(v, stack);
 		}		
 		
 		System.out.println();
 		
-		stack.forEach(e -> {
-			
-			System.out.println(e.v);
-		});
+		while(!stack.isEmpty()) {
+			System.out.println(stack.pop().v);
+		}
 	}
 
 	/**
 	 * The topological ordering computation is O(V + E) and dominates the computation time.
 	 */
-	public static void topologicalSort(DirectedGraph<String> diGraph, Vertex<String> v, Deque<Vertex<String>> stack) {
+	public static void topologicalSort(Vertex<String> v, Stack<Vertex<String>> stack) {
 
 		v.visited = true;
 		
@@ -61,9 +66,9 @@ public class TopologicalSort {
 			
 			if(!e.visited) {
 				
-				topologicalSort(diGraph, e, stack);
+				topologicalSort(e, stack);
 			}
 		}		
-		stack.addFirst(v);
+		stack.push(v);
 	}	
 }

@@ -8,6 +8,8 @@ package com.hyend.data.storage.structures.linkedlists.singly;
  * 
  * Variant: Clone a linked list when a node's reference is also a value of any random node.  
  * 
+ * https://leetcode.com/problems/copy-list-with-random-pointer/
+ * 
  * @author gopi_karmakar
  */
 public class PostingsList {
@@ -57,7 +59,7 @@ public class PostingsList {
 			
 			Node<String> temp = tempHead.next;
 			tempHead.next = temp.next;
-			tempHead = temp;
+			tempHead = temp;			
 		}
 		
 		return newListHead;

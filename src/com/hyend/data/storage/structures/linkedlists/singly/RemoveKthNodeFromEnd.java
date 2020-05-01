@@ -1,11 +1,11 @@
 package com.hyend.data.storage.structures.linkedlists.singly;
 
-/**
- * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
- * 
+/** 
  * An Amazon interview question.
  * 
  * Remove the Kth node from the end of the linked list
+ * 
+ * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
  * 
  * @author gopi_karmakar
  */
@@ -30,7 +30,11 @@ public class RemoveKthNodeFromEnd {
 	 */
 	private static Node<Integer> removeKthNodeFromEnd(Node<Integer> head, int k) {
 		
-		// initializing
+		/*
+		 *  Starting with -1 null node since taking care of
+		 *  LinkedList size 1 and k = 1 in that case 
+		 *  the linked list should empty.
+		 */
 		Node<Integer> dummyHead = new Node<>(-1);
 		dummyHead.next = head;
 		

@@ -34,7 +34,7 @@ public class BSTNodeInsertion<K extends Comparable<K>, V> {
 	
 	public static Node<Integer, String> createDefault() {
 				
-		Integer[] keys = {19, 7, 43, 3, 11, 23, 47, 2, 5, 17, 37, 53, 13, 29, 41, 31};
+		Integer[] keys = {19, 7, 43, 3, 11, 23, 47, 2, 5, 17, 37, 53, 13, 29, 41, 31, 51};
 		
 		Node<Integer, String> tree = null;		
 		BSTNodeInsertion<Integer, String> bst = new BSTNodeInsertion<>();

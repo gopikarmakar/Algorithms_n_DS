@@ -8,6 +8,8 @@ import java.util.LinkedList;
 /**
  * LRU (Least Recently Used) cache implementation without LinkedHashMap. 
  * 
+ * An O(1) space but O(n) time complexity solution.
+ * 
  * @author gopi_karmakar
  */
 public class LRUCacheWithoutLinkedHashMap {		

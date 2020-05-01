@@ -33,6 +33,7 @@ public class RemoveANodeWithoutHeadPointer {
 		Node<Integer> next = node.next;
 		node.k = next.k;
 		node.next = next.next;
+		next = null;
 		
 		return node;
 	}
