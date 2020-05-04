@@ -19,7 +19,7 @@ public class IsItACyclicGraph {
 
 	public static void main(String[] args) {		
 		
-		UndirectedGraph<Integer> uGraph = BuildUndirectedGraph.buildDefaultGraph();
+		UndirectedGraph<Integer> uGraph = BuildUndirectedGraph.createDefault();
 		
 		System.out.println(isCyclic(uGraph, new boolean[2 * uGraph.vertices()], 
 				uGraph.getAllVertices().iterator().next()));

@@ -1,6 +1,5 @@
 package com.hyend.data.storage.structures.graphs.undirected;
 
-import java.util.Iterator;
 
 /**
  * Compute the degree of a vertex.
@@ -16,7 +15,7 @@ public class ComputeDegree<V> {
 	
 	public static void main(String[] args) {
 		
-		UndirectedGraph<Integer> uGraph = BuildUndirectedGraph.buildDefaultGraph();
+		UndirectedGraph<Integer> uGraph = BuildUndirectedGraph.createDefault();
 		
 		int source = 9;
 		System.out.println("Max Degree Of graph = " + getMaxDegreeOfGraph(uGraph));

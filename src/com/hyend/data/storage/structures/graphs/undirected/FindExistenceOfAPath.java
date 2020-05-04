@@ -26,7 +26,7 @@ public class FindExistenceOfAPath {
 		
 		FindPathFromSource<Integer> path = new FindPathFromSource<>();
 		
-		Set<Integer> visitedPath = path.bfsPathSearch(BuildUndirectedGraph.buildDefaultGraph(), source);			
+		Set<Integer> visitedPath = path.bfsPathSearch(BuildUndirectedGraph.createDefault(), source);			
 		
 		return visitedPath.contains(source) && visitedPath.contains(destination);
 	}

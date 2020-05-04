@@ -10,7 +10,7 @@ public class CountAllSelfLoops {
 
 	public static void main(String[] args) {
 		
-		int loops = countSelfLoops(BuildUndirectedGraph.buildDefaultGraph());
+		int loops = countSelfLoops(BuildUndirectedGraph.createDefault());
 		System.out.println("Total Loops = " + loops);
 	}
 	

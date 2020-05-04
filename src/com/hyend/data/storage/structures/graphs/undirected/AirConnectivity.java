@@ -27,7 +27,7 @@ public class AirConnectivity {
 		String delimeter = " ";
 		
 		List<List<String>> nodes = new AirConnectivity().parseFile(fileName, delimeter);				
-		UndirectedGraph<String> uGraph = new BuildUndirectedGraph<String>().buildGraph(nodes);
+		UndirectedGraph<String> uGraph = BuildUndirectedGraph.buildGraph(nodes);
 		
 		Scanner scanner = new Scanner(System.in);
 

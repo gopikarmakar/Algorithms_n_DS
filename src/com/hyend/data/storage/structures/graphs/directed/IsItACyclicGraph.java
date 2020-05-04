@@ -13,7 +13,7 @@ public class IsItACyclicGraph<V> {
 
 	public static void main(String[] args) {
 		
-		DirectedGraph<Integer> diGraph = BuildDirectedGraph.buildDefaultGraph();		
+		DirectedGraph<Integer> diGraph = BuildDirectedGraph.createDefault();		
 		
 		System.out.println(isCyclic(diGraph));
 	}

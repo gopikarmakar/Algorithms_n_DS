@@ -27,7 +27,7 @@ public class FindPathFromSource<V extends Comparable<V>> {
 		
 		//path.dfsPathSearch(BuildUndirectedGraph.buildDefaultGraph(), source);
 		
-		path.bfsPathSearch(BuildUndirectedGraph.buildDefaultGraph(), source);
+		path.bfsPathSearch(BuildUndirectedGraph.createDefault(), source);
 		
 		System.out.println(path.visitedPath);
 	}

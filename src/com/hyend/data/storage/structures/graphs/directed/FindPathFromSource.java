@@ -16,7 +16,7 @@ public class FindPathFromSource {
 		
 		Set<Integer> visited = new LinkedHashSet<>();
 		
-		DirectedGraph<Integer> diGraph = BuildDirectedGraph.buildDefaultGraph();
+		DirectedGraph<Integer> diGraph = BuildDirectedGraph.createDefault();
 		
 		Integer source = 2;
 		dfs(diGraph, visited, source);

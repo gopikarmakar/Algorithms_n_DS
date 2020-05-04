@@ -21,7 +21,7 @@ public class BuildUndirectedGraph<V extends Comparable<V>> {
 
 	public static void main(String[] args) {	
 		
-		UndirectedGraph<Integer> undiGraph = buildDefaultGraph();		
+		UndirectedGraph<Integer> undiGraph = createDefault();		
 		undiGraph.printGraph();
 	}
 	
@@ -31,13 +31,23 @@ public class BuildUndirectedGraph<V extends Comparable<V>> {
 	 * Time complexity is O(v + e) where v = number of vertices and
 	 * e = maximum degree of any vertex called edges. 
 	 */
-	public static UndirectedGraph<Integer> buildDefaultGraph() {
+	public static UndirectedGraph<Integer> createDefault() {
 		
 		Integer[][] graph = {{0, 5}, {4, 3}, {0, 1}, {9, 12}, {6, 4},
 						 	 {5, 4}, {0, 2}, {11, 12}, {9, 10}, {0, 6},
 						 	 {7, 8}, {9, 11}, {5, 3}};
 		
 		return buildGraph(graph);
+	}
+	
+	public static UndirectedGraph<Integer> defaultVertexGraph() {
+		
+		Integer[][] graph = {{0, 5}, {4, 3}, {0, 1}, {9, 12}, {6, 4},
+						 	 {5, 4}, {0, 2}, {11, 12}, {9, 10}, {0, 6},
+						 	 {7, 8}, {9, 11}, {5, 3}};
+		
+		
+		return buildVertexGraph(graph);
 	}
 	
 	/**

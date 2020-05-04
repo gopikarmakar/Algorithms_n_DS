@@ -19,7 +19,7 @@ public class BuildDirectedGraph<V extends Comparable<V>> {
 
 	public static void main(String[] args) {
 		
-		DirectedGraph<Integer> diGraph = buildDefaultGraph();
+		DirectedGraph<Integer> diGraph = createDefault();
 		diGraph.printGraph();
 	}
 	
@@ -29,7 +29,7 @@ public class BuildDirectedGraph<V extends Comparable<V>> {
 	 * Time complexity is O(v + e) where v = number of vertices and
 	 * e = maximum degree of any vertex called edges. 
 	 */	
-	public static DirectedGraph<Integer> buildDefaultGraph() {
+	public static DirectedGraph<Integer> createDefault() {
 		
 		Integer[][] data = {{0, 1, 5}, {2, 0, 3}, {3, 2, 5}, {4, 3, 2}, {5, 4},
 							{6, 0, 4, 9}, {7, 6, 8}, {8, 7, 9}, {9, 10, 11}, 
@@ -38,7 +38,7 @@ public class BuildDirectedGraph<V extends Comparable<V>> {
 		return BuildDirectedGraph.buildGraph(data);			
 	}
 	
-	public static DirectedGraph<Integer> buildDefaultVertexGraph() {
+	public static DirectedGraph<Integer> defaultVertexGraph() {
 		
 		Integer[][] data = {{0, 1, 5}, {2, 0, 3}, {3, 2, 5}, {4, 3, 2}, {5, 4},
 							{6, 0, 4, 9}, {7, 6, 8}, {8, 7, 9}, {9, 10, 11}, 
