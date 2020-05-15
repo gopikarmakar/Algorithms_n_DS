@@ -1,46 +1,59 @@
 package com.hyend.data.storage.structures.graphs.undirected;
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 import com.hyend.data.storage.structures.graphs.Vertex;
 
 /**
  * https://leetcode.com/problems/clone-graph/
- * 
+ * 				1		2		3		4
+ * for e.g: {{2, 4}, {1, 3}, {2, 4}, {1, 3}}
+ * 		
+ * 		1-------------2
+ * 		|			  |
+ * 		|			  |
+ * 		|			  |
+ * 		4-------------3
  * @author gopi_karmakar
  */
-public class CloneGraph {
+public class CloneGraph<V extends Comparable<V>> {
 
-	private static Map<Vertex<Integer>, Vertex<Integer>> map = new HashMap<>();
+	private Map<Vertex<V>, Vertex<V>> map = new HashMap<>();
+	
 	public static void main(String[] args) {
 		
-		int[][] adjList = {{2, 4}, {1, 3}, {2, 4}, {1, 3}};		
+		int[][] adjList = {{2, 4}, {1, 3}, {2, 4}, {1, 3}};				
 		
-		Vertex<Integer> v = createSampleGraph(adjList);
-		//dfs(v);
-		bfs(v);
-		System.out.println(map);		
+		CloneGraph<Integer> clone = new CloneGraph<>();
+		
+		Vertex<Integer> v = clone.createSampleGraph(adjList);
+		clone.dfs(v);
+		System.out.println("After DFS Clone : ");
+		System.out.println(clone.map);
+		clone.bfs(v);
+		System.out.println("After BFS Clone : ");
+		System.out.println(clone.map);		
 	}
 	
-	private static Vertex<Integer> bfs(Vertex<Integer> v) {
+	private Vertex<V> bfs(Vertex<V> v) {
 		
-		Vertex<Integer> clone = new Vertex<>(v.v);
+		Vertex<V> clone = new Vertex<>(v.v);
 		
-		Queue<Vertex<Integer>> q = new LinkedList<>();
+		Queue<Vertex<V>> q = new LinkedList<>();
 		q.add(v);
 		map.put(v, clone);
 		
 		while(!q.isEmpty()) {
 			
-			Vertex<Integer> node = q.poll();
-			Vertex<Integer> vCopy = map.getOrDefault(node, new Vertex<Integer>(node.v));
+			Vertex<V> node = q.poll();
+			Vertex<V> vCopy = map.getOrDefault(node, new Vertex<V>(node.v));
 			
-			for(Vertex<Integer> e : node.edges) {
+			for(Vertex<V> e : node.edges) {
 				
-				Vertex<Integer> eCopy = map.getOrDefault(e, new Vertex<Integer>(e.v));
+				Vertex<V> eCopy = map.getOrDefault(e, new Vertex<V>(e.v));
 				vCopy.edges.add(eCopy);
 				
 				if(!map.containsKey(e)) {
@@ -52,15 +65,15 @@ public class CloneGraph {
 		return clone;
 	}
 	
-	private static Vertex<Integer> dfs(Vertex<Integer> v) {
+	private Vertex<V> dfs(Vertex<V> v) {
 		
 		if(v == null)
 			return null;
 		
-		Vertex<Integer> clone = new Vertex<>(v.v);
+		Vertex<V> clone = new Vertex<>(v.v);
 		map.put(v, clone);
 		
-		for(Vertex<Integer> e : v.edges) {
+		for(Vertex<V> e : v.edges) {
 			
 			if(!map.containsKey(e)) {
 				clone.edges.add(dfs(e));
@@ -74,9 +87,9 @@ public class CloneGraph {
 	
 	//////////////////// Helper Methods ///////////////////
 	
-	private static Map<Integer, Vertex<Integer>> graph = new HashMap<>();
+	private Map<Integer, Vertex<Integer>> graph = new HashMap<>();
 	
-	private static Vertex<Integer> createSampleGraph(int[][] adjList) {				
+	private Vertex<Integer> createSampleGraph(int[][] adjList) {				
 				
 		int vertice = 1;     
 		for(int[] adj : adjList) {

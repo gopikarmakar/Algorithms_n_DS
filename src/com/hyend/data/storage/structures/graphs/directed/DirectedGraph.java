@@ -1,16 +1,12 @@
 package com.hyend.data.storage.structures.graphs.directed;
 
 import java.util.Set;
-
-import com.hyend.data.storage.structures.graphs.Vertex;
-
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import com.hyend.data.storage.structures.graphs.Vertex;
 
 /**
  * A Directed Graph Implementation
@@ -25,187 +21,111 @@ public class DirectedGraph<V extends Comparable<V>> {
 	
 	private int totalEdges = 0;
 	
-	private Graph mGraph = null;
+	private MapGraph<V> mapGraph = null;
 	
 	private Set<Vertex<V>> mVertexGraph = null;
 	
-	Map<V, Vertex<V>> mappedVertexGraph = null;
-	
-	private class Graph {
-
-		private Map<V, Set<V>> mapping = null;
+	private Set<Vertex<V>> mReversedVertexGraph = null;		
 		
-		public Graph() {
-			mapping = new LinkedHashMap<>();
-		}
-		
-		public Map<V, Set<V>> getGraph() {
-			return mapping;
-		}
-		
-		public void connectVertices(V v, V e) {			
-			
-			Set<V> setV = mapping.getOrDefault(v, new LinkedHashSet<>());
-			/**
-			 * Since it's diGraph so we are sure that there's a link b/w V -> E
-			 * but the vice versa isn't the case for diGraphs. 
-			 */
-			setV.add(e);
-			mapping.put(v, setV);
-			
-			// Since it's diGraph so V -> E is for sure but not E -> V.
-			/*if(!mapping.containsKey(e))				
-				mapping.put(e, new LinkedHashSet<>());*/
-		}				
-		
-		public void disconnectVertices(V v, V e) {
-			Set<V> set = mapping.get(v);
-			set.remove(e);
-			mapping.put(v, set);
-		}
-	}
-	
 	public DirectedGraph() {
-		mGraph = new Graph();	
-		mappedVertexGraph = new HashMap<>();
+		mapGraph = new MapGraph<>();			
 		mVertexGraph = new LinkedHashSet<>();		
+		mReversedVertexGraph = new LinkedHashSet<>();
 	}
 	
 	@Override
 	public String toString() {		
 		String message = "";
 		
-		for(V v : mGraph.getGraph().keySet()) {
+		for(V v : mapGraph.getMappedGraph().keySet()) {
 			
 			message += v + "\t->\t" + getAdjacencySet(v) + "\n";
 		}		
 		return message;
 	}
 	
-	public V addEdge(V v1, V v2) {
+	public V mapEdge(V v, V e) {
 		
-		mGraph.connectVertices(v1, v2);	
+		mapGraph.connectVertices(v, e);	
 		
 		totalEdges += 1;
-		return v1;
+		return v;
 	}
 	
-	public Vertex<V> addEdge(Vertex<V> v1, Vertex<V> v2) {
+	public Vertex<V> addEdge(Vertex<V> v, Vertex<V> e) {
 		
-		v1.edges.add(v2);
-		mVertexGraph.add(v1);
+		v.edges.add(e);
+		mVertexGraph.add(v);
 		
 		totalEdges += 1;
-		return v1;
+		return v;
+	}
+	
+	public Vertex<V> addReverseEdge(Vertex<V> e, Vertex<V> v) {
+		
+		e.edges.add(v);	
+		mReversedVertexGraph.add(e);
+		
+		totalEdges += 1;
+		return e;
 	}
 	
 	public void create(V[][] data) {				
 		for(V[] v : data) {						
 			for(int i = 1; i < v.length; ++i) {
-				mGraph.connectVertices(v[0], v[i]);
+				mapEdge(v[0], v[i]);
 				totalEdges += 1;
 			}
 		}		
 	}
 	
-	public void create(Vertex<V>[][] data) {		
-		for(Vertex<V>[] v : data) {
-			
-			Vertex<V> gv = v[0];			
-			for(int i = 1; i < v.length; ++i) {
-				
-				gv.edges.add(v[i]);
-				totalEdges += 1;
-			}				
-			mVertexGraph.add(gv);				
-		}		
-	}
-	
-	public void create(List<List<V>> list) {			
+	public void create(List<List<V>> list) {
 		list.forEach(v -> {			
 			for(int i = 1; i < v.size(); ++i) {											
-				mGraph.connectVertices(v.get(0), v.get(i));
+				mapEdge(v.get(0), v.get(i));
 				totalEdges += 1;
 			}
-		});
-	}
-	
-	public void createVertexGraph(List<List<Vertex<V>>> list) {			
-		list.forEach(v -> {
-			
-			Vertex<V> gv = v.get(0);
-			for(int i = 1; i < v.size(); ++i) {											
-				
-				gv.edges.add(v.get(i));
-				totalEdges += 1;
-			}
-			mVertexGraph.add(gv);
-		});
-	}
-	
-	public void create(Map<V, List<V>> map) {
-		
-		map.entrySet().forEach(entry -> {
-			
-			entry.getValue().forEach(e -> {
-								
-				mGraph.connectVertices(entry.getKey(), e);
-				totalEdges += 1;
-			});
 		});
 	}
 	
 	public void createMappedVertexGraph(V[][] data) {					
 		
 		for(V[] v : data) {
-			
-			Vertex<V> gv = mappedVertexGraph.getOrDefault(v[0], new Vertex<V>(v[0]));			
+								
 			for(int i = 1; i < v.length; ++i) {
 				
-				gv.edges.add(new Vertex<>(v[i]));
+				mapGraph.connectVertexes(v[0], v[i]);
 				totalEdges += 1;
 			}				
-			mappedVertexGraph.put(gv.v, gv);				
 		}
 	}
 	
-	public DirectedGraph<V> reverse() {
-		
-		DirectedGraph<V> diGraph = new DirectedGraph<>();
+	public void reverseMappedGraph() {
 		
 		getAllVertices().forEach(v -> {
 			
 			getAdjacencySet(v).forEach(e -> {
 				
-				mGraph.connectVertices(e, v);
+				mapEdge(e, v);
 				totalEdges += 1;
 			});
-		});
-		return diGraph;
+		});	
 	}
 	
-	public Collection<Vertex<V>> reverseVertexGraph() {
+	public Map<V, Vertex<V>> reverseMappedVertexGraph() {				
 		
-		
-		Map<V, Vertex<V>> map = new HashMap<>();
-		
-		mappedVertexGraph.values().forEach(v -> {
+		for(Vertex<V> v : getMappedVertexGraph().values()) {
 			
-			v.edges.forEach(e -> {
+			for(Vertex<V> e : v.edges) {
 				
-				Vertex<V> reversed = map.getOrDefault(e.v, new Vertex<>(e));
-				reversed.edges.add(v);
-				map.put(e.v, reversed);
-			});			
-			
-		});		
-		return map.values();
+				mapGraph.revereseConnectVertexes(e.v, v.v);
+			}
+		}				
+		return getReversedMappedVertexGraph();
 	}
 	
-	public DirectedGraph<V> disconnectVertices(V v, V e) {
-		
-		mGraph.disconnectVertices(v, e);		
-		return this;
+	public void disconnectVertices(V v, V e) {		
+		mapGraph.disconnectVertices(v, e);		
 	}
 	
 	/**
@@ -221,33 +141,40 @@ public class DirectedGraph<V extends Comparable<V>> {
 	}
 	
 	public int vertices() {
-		return mGraph.getGraph().size();
+		return mapGraph.getMappedGraph().size();
+	}
+	
+	public Collection<V> getAllVertices() {
+		return mapGraph.getMappedGraph().keySet();
+	}
+	
+	public Set<V> getAdjacencySet(V v) { 
+		return mapGraph.getMappedGraph().getOrDefault(v, new LinkedHashSet<>());
+	}
+	
+	public List<V> getAdjacencyList(V v) {	
+		return new ArrayList<V>(getGraph().getOrDefault(v, new LinkedHashSet<>()));
 	}
 	
 	public Map<V, Set<V>> getGraph() {
-		return mGraph.getGraph();
+		return mapGraph.getMappedGraph();
 	}
 	
 	public Set<Vertex<V>> getVertexGraph() {
 		return mVertexGraph;
 	}
 	
-	public Map<V, Vertex<V>> getMappedVertexGraph() {
-		
-		return mappedVertexGraph;
+	public Set<Vertex<V>> getReverseVertexGraph() {
+		return mReversedVertexGraph;
 	}
 	
-	public Collection<V> getAllVertices() {
-		return mGraph.getGraph().keySet();
+	public Map<V, Vertex<V>> getMappedVertexGraph() {		
+		return mapGraph.getMappedVertexGraph();
 	}
 	
-	public Set<V> getAdjacencySet(V v) { 
-		return mGraph.getGraph().getOrDefault(v, new LinkedHashSet<>());
-	}
-	
-	public List<V> getAdjacencyList(V v) {	
-		return new ArrayList<V>(getGraph().getOrDefault(v, new LinkedHashSet<>()));
-	}
+	public Map<V, Vertex<V>> getReversedMappedVertexGraph() {		
+		return mapGraph.getReverseMappedVertexGraph();
+	}	
 	
 	public void printGraph() {
 				
@@ -260,9 +187,21 @@ public class DirectedGraph<V extends Comparable<V>> {
 			System.out.println(v);
 	}
 	
+	public void printReversedVertexGraph() {
+		
+		for(Vertex<V> v: mReversedVertexGraph)
+			System.out.println(v);
+	}
+	
 	public void printMappedVertexGraph() {
 		
-		for(Vertex<V> v: mappedVertexGraph.values())
+		for(Vertex<V> v: getMappedVertexGraph().values())
+			System.out.println(v);
+	}
+	
+	public void printReverseMappedVertexGraph() {
+		
+		for(Vertex<V> v: getReversedMappedVertexGraph().values())
 			System.out.println(v);
 	}
 }

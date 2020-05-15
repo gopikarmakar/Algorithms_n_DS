@@ -7,10 +7,12 @@ import com.hyend.data.storage.structures.graphs.Vertex;
 
 /**
  * Find all the bridges in a connected undirected graph.
- * An edge in an undirected connected graph is a bridge if removing it disconnects the graph.
+ * An edge in an undirected connected graph is called a bridge 
+ * if removing it disconnects the whole graph.
  * 
- * For e.g: In the below graph C->D, D->E and F->H are the bridges because removing any edge out of 
- * those 3 edges will disconnects the entire graph in to two graphs.
+ * For e.g: In the below graph C->D, D->E and F->H are the bridges 
+ * because removing any edge out of those 3 edges will disconnects 
+ * the entire connected graph in to two connected graphs.
  *   
  * For e.g: 			A---|				H
  * 						|	|				|
@@ -29,7 +31,7 @@ public class FindAllBridges {
 	
 	public static void main(String[] args) {
 		
-		String[][] data = {{"A", "C", "B"}, {"C", "B", "D"}, {"D", "E"}, {"E", "F"}, {"F", "G", "H"}, {"G", "E"}};
+		String[][] data = {{"A", "B"}, {"B", "C"}, {"C", "A"}, {"C", "D"}, {"D", "E"}, {"E", "F"}, {"F", "H"}, {"F", "G"}, {"G", "E"}};
 		
 		//String[][] data = {{"A", "B"}, {"B", "C"}, {"C", "A"}, {"B", "D"}, {"B", "E"}, {"B", "G"}, {"D", "F"}, {"E", "F"}};
 		
@@ -67,14 +69,14 @@ public class FindAllBridges {
 		for(Vertex<String> e : v.edges) {
 			
 			if(!e.visited) {
-				
+				      
 				e.parent = v;
-				dfs(e, result);								
+   				dfs(e, result);								
 				
 				if(e.lowerTime > v.discoveryTime) {
 				
-					Vertex<String> edge = new Vertex<>(v);
-					edge.edges.add(e);
+					Vertex<String> edge = new Vertex<>(v.v);
+					edge.edges.add(new Vertex<>(e.v));
 					result.add(edge);								
 				}				
 				v.lowerTime = Math.min(v.lowerTime, e.lowerTime);

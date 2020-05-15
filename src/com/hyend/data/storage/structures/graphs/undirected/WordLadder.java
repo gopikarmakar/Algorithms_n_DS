@@ -31,7 +31,7 @@ public class WordLadder {
 		if(!wordsList.contains(end))
 			return 0;
 		
-		int step = 0;
+		int step = 1;
         Deque<String> dq = new ArrayDeque<>();
         dq.addLast(begin);
         
@@ -43,6 +43,7 @@ public class WordLadder {
         	
         	for(int i = 0; i < size; ++i) {
         		
+        		System.out.println(dq);
         		String next = dq.pollFirst();
         		if(next.equals(end)) {
         			return step;

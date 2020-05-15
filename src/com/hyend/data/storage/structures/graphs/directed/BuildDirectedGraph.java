@@ -75,12 +75,24 @@ public class BuildDirectedGraph<V extends Comparable<V>> {
 			for(int i = 1; i < v.length; ++i) {
 				
 				helper.convertToGraphVertex(v[0], v[i]);
-				//helper.convertToGraphVertex(v[i], v[i+1]);
 				diGraph.addEdge(helper.getGraphVertex(v[0]), helper.getGraphVertex(v[i]));
-				//diGraph.addEdge(helper.getGraphVertex(v[i]), helper.getGraphVertex(v[i+1]));
 			}
-		}
+		}		
+		return diGraph;
+	}
+	
+	public static <V  extends Comparable<V>> DirectedGraph<V> reverseVertexGraph(DirectedGraph<V> diGraph) {						
 		
+		BuildDirectedGraph<V> helper = new BuildDirectedGraph<V>();
+				
+		for(Vertex<V> v: diGraph.getVertexGraph()) {
+			
+			for(Vertex<V> e: v.edges) {
+				
+				helper.convertToGraphVertex(v.v, e.v);
+				diGraph.addReverseEdge(helper.getGraphVertex(e.v), helper.getGraphVertex(v.v));				
+			}
+		}		
 		return diGraph;
 	}
 	
@@ -93,11 +105,9 @@ public class BuildDirectedGraph<V extends Comparable<V>> {
 		return diGraph;
 	}
 	
-	public static <V  extends Comparable<V>> DirectedGraph<V> buildVertexGraph(List<List<Vertex<V>>> data) {
-		
-		DirectedGraph<V> diGraph = new DirectedGraph<>();
-		
-		diGraph.createVertexGraph(data);
+	public static <V  extends Comparable<V>> DirectedGraph<V> reverseMappedVertexGraph(DirectedGraph<V> diGraph) {
+						
+		diGraph.reverseMappedVertexGraph();
 		
 		return diGraph;
 	}

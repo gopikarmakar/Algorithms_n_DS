@@ -22,6 +22,7 @@ public class SeachPathInAMaze {
 		
 		color[][] mazeCopy = createSmapleMaze();
 				
+		System.out.println("Path Size = " + path.size());		
 		for(Coordinate c : path) {
 			mazeCopy[c.x][c.y] = color.X;
 			//System.out.print("x = " + c.x + " y = " + c.y + "\n");
@@ -41,7 +42,7 @@ public class SeachPathInAMaze {
 		@Override
 		public boolean equals(Object obj) {						
 			if(this == obj) return true;						
-			if(obj == null || getClass() != obj.getClass()) return false; 		
+			if(obj == null || !(obj instanceof Coordinate)) return false; 		
 			Coordinate that = (Coordinate) obj;
 			if(this.x != that.x || this.y != that.y) return false;
 			return true;			

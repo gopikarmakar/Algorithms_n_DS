@@ -89,7 +89,7 @@ public class FindArticulationPoints {
 		
 		/**
 		 * (v.parent == null && childCount == 2) condition for root vertex because  
-		 * we can start traversal from any vertex.
+		 * because the traversal can start from any vertex.
 		 */
 		if((v.parent == null && childCount == 2) || v.parent != null && isArticulationPoint)
 			result.add(v);

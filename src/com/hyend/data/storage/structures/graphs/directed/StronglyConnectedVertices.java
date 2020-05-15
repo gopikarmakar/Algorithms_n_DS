@@ -1,103 +1,108 @@
 package com.hyend.data.storage.structures.graphs.directed;
 
-import java.util.Collection;
-import java.util.Map;
+import java.util.List;
 import java.util.Stack;
+import java.util.ArrayList;
+
 import com.hyend.data.storage.structures.graphs.Vertex;
 
 /**
  * Kosaraju's algorithm to find strongly connected vertices in graph
  * 
+ * For explanation watch : https://www.youtube.com/watch?v=RpgcYiky7uw
+ * 
  * @author gopi_karmakar
  */
 public class StronglyConnectedVertices {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {			
 		
-		//Integer[][] data = {{1, 0}, {0, 2}, {2, 1}, {0, 3}, {3, 4}};
-		//DirectedGraph<Integer> diGraph = BuildDirectedGraph.buildVertexGraph(data);
+		/*Integer[][] data = {{0, 1}, {0, 5}, {2, 0}, {2, 3}, {3, 2}, {3, 5}, {4, 2},
+							{4, 3}, {5, 4}, {6, 0}, {6, 4}, {6, 9}, {7, 6}, {7, 8}, 
+							{8, 7}, {8, 9}, {9, 10}, {9, 11}, {10, 12}, {11, 4}, 
+							{11, 12}, {12, 9}};*/
 		
-		Integer[][] data = {{0, 1, 5}, {2, 0, 3}, {3, 2, 5}, {4, 3, 2}, {5, 4},
-							{6, 0, 4, 9}, {7, 6, 8}, {8, 7, 9}, {9, 10, 11}, 
-							{10, 12}, {11, 4, 12}, {12, 9}};
+		String[][] data = {{"A", "B"}, {"B", "C"}, {"B", "D"}, {"C", "A"},
+						   {"D", "E"}, {"E", "F"}, {"F", "D"}, {"G", "F"},
+		   				   {"G", "H"}, {"H", "I"}, {"I", "J"}, {"J", "G"},
+		   				   {"J", "K"}};
 		
-		DirectedGraph<Integer> diGraph = BuildDirectedGraph.buildMappedVertexGraph(data);		
+		StronglyConnectedVertices scv = new StronglyConnectedVertices();		
+		
+		DirectedGraph<String> diGraph = BuildDirectedGraph.buildMappedVertexGraph(data);
 		
 		System.out.println("Graph");
-		diGraph.printMappedVertexGraph();
+		diGraph.printMappedVertexGraph(); 
 		
-		Collection<Vertex<Integer>> reversedGraph = diGraph.reverseVertexGraph();
+		diGraph = BuildDirectedGraph.reverseMappedVertexGraph(diGraph);
 		
-		printReverseVertexGraph(reversedGraph);
+		System.out.println("Reverse Graph");
+		diGraph.printReverseMappedVertexGraph();
 		
-		Stack<Integer> stack = new Stack<>();
+		Stack<Vertex<String>> stack = new Stack<>();				
+		 
+		for(Vertex<String> v : diGraph.getMappedVertexGraph().values()) {
+			if(!v.visited) {
+				scv.dfs(v, stack);
+			}
+		}
 		
-		for(Vertex<Integer> v : reversedGraph) {
-			if(!v.visited)
-				dfs(v, stack);
-		}		
+		List<List<Vertex<String>>> cmps = new ArrayList<>();
 		
 		while(!stack.isEmpty()) {
 			
-			int e = stack.pop();
-			Vertex<Integer> v = diGraph.getMappedVertexGraph().getOrDefault(e, new Vertex<>(e));
-			if(!v.visited)
-				dfs(v, null);
+			Vertex<String> e = stack.pop();
+			Vertex<String> v = diGraph.getReversedMappedVertexGraph().get(e.v);
+			
+			if(!v.visited) {
+				List<Vertex<String>> list = new ArrayList<>();
+				scv.dfs(v, list);
+				cmps.add(list);
+			}
 		}
 		
-		printConnectedComponent(diGraph.getMappedVertexGraph());					
+		System.out.println("\nStrongly Connected Components Are : " + cmps.size());
+		
+		for(List<Vertex<String>> cmp : cmps) {
+			
+			for(Vertex<String> e : cmp) {
+				System.out.print(e.v + " ");
+			}
+			System.out.println();
+		}		
 	}
 	
 	/**
 	 * Runtime complexity - O(V + E)
 	 * Space complexity - O(V)
 	 */
-	private static void dfs(Vertex<Integer> v, Stack<Integer> stack) {
+	private void dfs(Vertex<String> v, Stack<Vertex<String>> stack) {
 		
-		v.visited = true;
+		if(v == null) return;
 		
-		for(Vertex<Integer> e : v.edges) {
+		v.visited = true;		
+		for(Vertex<String> e : v.edges) {
 			
-			if(!e.visited) {
-								
+			if(!e.visited) {								
 				dfs(e, stack);				
 			}
 		}
-		if(stack != null)
-			stack.push(v.v);
-	}
-	
-	private static void printReverseVertexGraph(Collection<Vertex<Integer>> reversedGraph) {
-		
-		System.out.println("\nReversed Graph");		
-		
-		for(Vertex<Integer> v : reversedGraph) {
-			
-			System.out.print(v.v + "\t->\t");
-			
-			v.edges.forEach(e -> {
-				
-				System.out.print(e.v + " ");
-			});	
-			System.out.println();
+		if(stack != null) {
+			stack.push(new Vertex<String>(v.v));
 		}
 	}
 	
-	private static void printConnectedComponent(Map<Integer, Vertex<Integer>> reversedGraph) {
+	private void dfs(Vertex<String> v, List<Vertex<String>> list) {
 		
-		System.out.println("\nStrongly Connected Components");
+		if(v == null) return;
 		
-		for(Vertex<Integer> v : reversedGraph.values()) {
+		v.visited = true;		
+		for(Vertex<String> e : v.edges) {
 			
-			if(v.visited)
-				System.out.print(v.v + "\t->\t");
-			
-			v.edges.forEach(e -> {
-				
-				if(e.visited)
-					System.out.print(e.v + " ");
-			});				
-			System.out.println();
+			if(!e.visited) {								
+				dfs(e, list);				
+			}
 		}
+		list.add(v);
 	}
 }

@@ -8,7 +8,7 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 import com.hyend.data.storage.structures.trees.BinaryTrees.BinaryTree;
 
 /**
- * Fins the LCA of two given binary nodes.
+ * Find the LCA of two given binary nodes.
  * 
  * @author gopi_karmakar
  */
@@ -22,8 +22,8 @@ public class FindLCA {
 		//Node<Integer> node1 = tree.left.right.right;
 		Node<Integer> node2 = tree.left.right.right.left;
 		//Node<Integer> node2 = tree.right.left.right;
-		
-		System.out.println("Common LCA = " + findLCA(node1, node2).key);		
+				
+		System.out.println("LCA for " + node1.key + " and " + node2.key + " = " + findLCA(node1, node2).key);
 	}
 	
 	/**
