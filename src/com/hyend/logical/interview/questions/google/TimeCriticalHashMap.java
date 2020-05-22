@@ -1,8 +1,8 @@
 package com.hyend.logical.interview.questions.google;
 
+import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A google telephonic screening phone interview question.
@@ -19,185 +19,126 @@ import java.util.concurrent.ConcurrentHashMap;
  * put and get of new objects.
  * 
  * 2: The existing object should update the access time.
- *   
+ * 
  * @author gopi_karmakar
  */
-public class TimeCriticalHashMap<K extends Comparable<K>, V> {
+public class TimeCriticalHashMap<K extends Comparable<K>, V>
+		extends LinkedHashMap<K, Element<K, V>> {
+	
+	public static void main(String[] args) {
+		
+		TimeCriticalHashMap<String, String> myMap = 
+				new TimeCriticalHashMap<>();
+		
+		myMap.put("1", "One");
+		myMap.put("2", "Two");
+		myMap.put("3", "Three");
+		myMap.put("4", "Four");
+		myMap.put("5", "Five");
+		
+		//print(myMap);		
+		
+		try {	
+			
+			Thread.sleep(2);
+			System.out.println(myMap.get("2"));
+			
+			Thread.sleep(1);
+			
+			//System.out.println("Current Time = " + System.currentTimeMillis());			
+			//print(myMap);
+			
+			System.out.println(myMap.get("1"));						
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}				
+		catch (NoSuchElementException nse) {
+			System.out.println(nse.getMessage());
+		}
+		
+		try {			
+			
+			//System.out.println("Current Time = " + System.currentTimeMillis());			
+			//print(myMap);
+			
+			Thread.sleep(3);
+			
+			System.out.println(myMap.get("2"));					
+		} 
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		catch (NoSuchElementException nse) {
+			System.out.println(nse.getMessage());
+		}
+		
+		try {			
+			System.out.println(myMap.get("3"));			
+		} 
+		catch (NoSuchElementException nse) {
+			System.out.println(nse.getMessage());
+		}
+	}
 
-	private int limit = 0;
-	private Entry head = null;
-	private Entry tail = null;
-	private ConcurrentMap<K, Entry> myMap;
+	/**
+	 * Default Serial Version UID 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	class Entry {							
-		
-		K key;
-		V value;
-		long time = 0;
-		
-		Entry next;
-		Entry prev;
-		
-		public Entry(K key, V value) {
-			setKey(key); 
-			setValue(value);
-			setCurrentTime();
-		}
-		
-		public void setKey(K key) { 
-			this.key = key;  
-		}
-		
-		public void setValue(V value) { 
-			this.value = value; 
-		}
-		
-		public void setCurrentTime() { 
-			this.time = System.currentTimeMillis();
-		}
-		
-		public K getKey() { 
-			return this.key; 
-		}
-		
-		public V getValue() { 
-			return this.value; 
-		}
-		
-		public long getSavedTime() { 
-			return time; 
-		}
-	}	
+	private int limit;
 	
+	public TimeCriticalHashMap() {
+		this(5);
+	}
+			
 	public TimeCriticalHashMap(int limit) {
+		super(16, 0.75f, false);
 		this.limit = limit;
-		myMap = new ConcurrentHashMap<K, Entry>();
 	}
 	
-	public V put(K key, V value) {
-		
-		invalidateExpiredElements();	
-		
-		Entry entry = myMap.get(key);
-		if(entry != null) {			
-			entry = myMap.put(key, updateAndMoveToFirst(entry));
-		}
-		else {
-			entry = myMap.put(key, addFirst(key, value));			
-		}
-		
-		return entry.value;
-	}	
-	
-	public V get(K key) throws NoSuchElementException {
-		
-		if(!myMap.containsKey(key))
-			throw new NoSuchElementException("Element Not Found");
-		
-		invalidateExpiredElements();
-		
-		Entry e = myMap.get(key);		
-		if(e != null && (getCurrentTime() - e.getSavedTime() > limit)) {
-			
-			remove(e);
-			myMap.remove(key);			
-			throw new NoSuchElementException("Element Expired");
-		}		
-		return e.getValue();		
+	@Override
+	protected boolean removeEldestEntry(Map.Entry<K, Element<K, V>> entry) {
+		System.out.println("Eldest Entry == " + entry.getValue().v);
+		return ((getCurrentTime() - entry.getValue().time) > limit);
 	}
 	
-	private synchronized void invalidateExpiredElements() {
+	public synchronized V put(K k, V v) {
 		
-		Entry e = getLast();
-		if(e != null && (getCurrentTime() - e.getSavedTime() > limit)) {
-			
-			removeLast();
-			myMap.remove(e.key);
-		}
+		Element<K, V> e = this.getOrDefault(k, new Element<>(k, v));
+		e.updateTime();
+		super.put(k, e);
+		return v;
 	}
 	
-	private synchronized Entry addFirst(K key, V value) {
+	public synchronized V get(K k) {
 		
-		Entry entry = new Entry(key, value);
+		if(k == null)
+			throw new NullPointerException("Key Can't Be Null");
 		
-		Entry temp = head;
-		head = entry;
+		Element<K, V> e = super.remove(k);
+		if(e == null)
+			throw new NoSuchElementException("Item removed since It was too old to be in the pool");									
 		
-		if(tail == null) {			
-			tail = head;
-			return head;
+		long diff = getCurrentTime() - e.time;
+		
+		if(diff > this.limit) {			
+			throw new NoSuchElementException("Item Expired");
 		}
-		temp.prev = head;
-		head.next = temp;
 		
-		return head;
-	}
-	
-	private synchronized Entry updateAndMoveToFirst(Entry entry) {		
-
-		remove(entry);		
-
-		entry.setCurrentTime();
-		
-		if(head == null) {
-			entry.prev = null;
-			entry.next = null;
-			head = tail = entry;			
-			return head;
-		}
-								
-		Entry temp = head;
-		head = entry;
-		head.prev = null;
-		entry = null;
-		
-		temp.prev = head;
-		head.next = temp;		
-
-		return head;
-	}		
-	
-	private synchronized Entry getLast() {
-		return tail;
-	}
-	
-	private synchronized Entry removeLast() {
-
-		Entry entry = tail;
-		
-		if(head == tail) {
-			head = tail = null;
-			return entry;
-		}
-				
-		tail = entry.prev;
-		tail.next = null;
-		
-		return entry;
-	}
-	
-	private synchronized void remove(Entry entry) {
-		
-		if(entry == head && head == tail) {
-			head = tail = null;
-		}			
-		else if(entry == head && entry.next != null) {
-			head = entry.next;
-			head.prev = null;
-		}
-		else if(entry == tail && entry.prev != null) {
-			tail = entry.prev;
-			tail.next = null;
-		}
-		else {
-		
-			entry.prev.next = entry.next;
-			entry.next.prev = entry.prev;
-		}		
-		entry = null;
+		return put(k, e.v);
 	}
 	
 	private synchronized long getCurrentTime() {
+		
 		return System.currentTimeMillis();
+	}
+	
+	private static <K extends Comparable<K>, V> void print(TimeCriticalHashMap<K, V> myMap) {
+		
+		for(Map.Entry<K, Element<K, V>> e : myMap.entrySet()) {
+			
+			System.out.println("Value = " + e.getValue().v + " Time = " + e.getValue().time);
+		}
 	}
 }

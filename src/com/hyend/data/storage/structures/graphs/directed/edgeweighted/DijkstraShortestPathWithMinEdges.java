@@ -36,11 +36,9 @@ public class DijkstraShortestPathWithMinEdges<V extends Comparable<V>> {
 			eDiGraph.addEdge(row[0], row[1], Integer.valueOf(row[2]));
 		}
 		
-		Set<VertexWithDistance<String>> graph = eDiGraph.getGraph();
-		
 		eDiGraph.printGraph();
 		
-		GraphVertex<?> v = ShortestPath.shortestPath(graph, eDiGraph.getGraphVertex("S"), eDiGraph.getGraphVertex("T"));
+		GraphVertex<?> v = ShortestPath.shortestPath(eDiGraph.getGraphVertex("S"), eDiGraph.getGraphVertex("T"));
 		
 		System.out.println("\nShortest Path With Minimum Edges:");
 		

@@ -1,6 +1,5 @@
 package com.hyend.data.storage.structures.graphs.directed.edgeweighted;
 
-import java.util.Set;
 import java.util.TreeSet;
 import java.util.SortedSet;
 
@@ -15,7 +14,7 @@ import java.util.SortedSet;
 public class ShortestPath<V extends Comparable<V>> {
 
 	public static <V  extends Comparable<V>> GraphVertex<V> shortestPath(
-			Set<VertexWithDistance<V>> graph, GraphVertex<V> s, GraphVertex<V> t) {
+		GraphVertex<V> s, GraphVertex<V> t) {
 		
 		SortedSet<GraphVertex<V>> bst = new TreeSet<>();
 		

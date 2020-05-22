@@ -3,8 +3,15 @@ package com.hyend.data.storage.structures.graphs.directed.edgeweighted;
 import java.util.Objects;
 
 /**
- * Required to initialize every self vertex distance with 0
- * an edge to other Vertex will have the distance.  
+ * This class is required because a GraphVertex can have many 
+ * incoming edges with different distances and if we maintain
+ * the distance in GraphVertex class then we can't maintain
+ * the multiple distances for the same GraphVertex instead it'll
+ * overwrite the distances with latest one and as a result it'll
+ * only hold only one lastly added distance. So to maintain the 
+ * multiple distances for the same GraphVertex we create new object 
+ * of this class for every new distance and add as a edges for the
+ * main GraphVertex.
  * 
  * @author gopi_karmakar
  */

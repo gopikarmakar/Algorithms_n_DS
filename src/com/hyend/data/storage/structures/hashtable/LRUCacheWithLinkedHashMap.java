@@ -1,6 +1,7 @@
 package com.hyend.data.storage.structures.hashtable;
 
 import java.util.Map;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 /**
@@ -43,12 +44,13 @@ public class LRUCacheWithLinkedHashMap {
 		int cacheSize = 0;
 		
 		public LRUCache(int cacheSize) {
-			this.cacheSize = cacheSize;
+			this.cacheSize = cacheSize;			
 		}
-		
+				
 		@SuppressWarnings("serial")
-		private Map<K, V> cache = new LinkedHashMap<K, V>(cacheSize, 0.75f, true) {
+		private Map<K, V> cache = new LinkedHashMap<K, V>(cacheSize, 0.75F, true) {
 						
+
 			//private static final long serialVersionUID = 1L;
 
 			@Override
