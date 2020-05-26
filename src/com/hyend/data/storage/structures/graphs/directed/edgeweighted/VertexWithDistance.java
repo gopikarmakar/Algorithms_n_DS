@@ -17,8 +17,8 @@ import java.util.Objects;
  */
 public class VertexWithDistance<V extends Comparable<V>> {
 	
-	int distance;
-	GraphVertex<V> vertex;
+	public int distance;
+	public GraphVertex<V> vertex;
 	
 	public VertexWithDistance(GraphVertex<V> vertex) {
 		this(vertex, 0);

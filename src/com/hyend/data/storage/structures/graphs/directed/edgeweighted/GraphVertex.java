@@ -4,6 +4,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ArrayList;
 
+/**
+ * Holds the every vertex and it's adjacency list
+ * with it's parent's added distance. 
+ * 
+ * @author gopi_karmakar
+ */
 public class GraphVertex<V extends Comparable<V>> implements Comparable<GraphVertex<V>> {
 
 	public V v; 
@@ -12,25 +18,25 @@ public class GraphVertex<V extends Comparable<V>> implements Comparable<GraphVer
 	public List<VertexWithDistance<V>> edges = null;
 	
  	// Required to start every source vertex with a initial value.
-	public DistanceWithFewestEdges distanceWithFewestEdges = 
+	public DistanceWithFewestEdges dwfe = 
 			new DistanceWithFewestEdges(Integer.MAX_VALUE, 0); 	
 	
 	public GraphVertex(V v) {
 		this.v = v;
-		edges = new ArrayList<>();
+		edges = new ArrayList<>();		
 	}
 
 	@Override
 	public int compareTo(GraphVertex<V> vertex) {
 					
-		if(distanceWithFewestEdges.distance != vertex.distanceWithFewestEdges.distance) {
+		if(dwfe.distance != vertex.dwfe.distance) {
 			
-			return Integer.compare(distanceWithFewestEdges.distance, vertex.distanceWithFewestEdges.distance);
+			return Integer.compare(dwfe.distance, vertex.dwfe.distance);
 		}
 		
-		if(distanceWithFewestEdges.minNumEdges != vertex.distanceWithFewestEdges.minNumEdges) {
+		if(dwfe.minNumEdges != vertex.dwfe.minNumEdges) {
 			
-			return Integer.compare(distanceWithFewestEdges.minNumEdges, vertex.distanceWithFewestEdges.minNumEdges);
+			return Integer.compare(dwfe.minNumEdges, vertex.dwfe.minNumEdges);
 		}
 		
 		return v.compareTo(vertex.v);
@@ -48,12 +54,12 @@ public class GraphVertex<V extends Comparable<V>> implements Comparable<GraphVer
 		@SuppressWarnings("unchecked")
 		GraphVertex<V> that = (GraphVertex<V>) obj;
 		return (this.v.equals(that.v) &&
-				this.distanceWithFewestEdges.distance == that.distanceWithFewestEdges.distance && 
-				this.distanceWithFewestEdges.minNumEdges == that.distanceWithFewestEdges.minNumEdges);					
+				this.dwfe.distance == that.dwfe.distance && 
+				this.dwfe.minNumEdges == that.dwfe.minNumEdges);					
 	}
 	
 	@Override
 	public int hashCode() {			
-		return Objects.hash(this.distanceWithFewestEdges.distance, this.distanceWithFewestEdges.minNumEdges);
+		return Objects.hash(this.dwfe.distance, this.dwfe.minNumEdges);
 	}
 }

@@ -4,14 +4,17 @@ import java.util.TreeSet;
 import java.util.SortedSet;
 
 /**
+ * It's a Dijkstra + Prim's algorithm. 
+ * Shortest path with least edges makes it a prim's algorithm. 
+ * 
  * The time complexity is that of the basic implementation of 
- * Dijkstra's algorithm, i.e., O((E + V)log(V)).
+ * Dijkstra's + Prim's algorithm, i.e., O((E + V)log(V)).
  * 
  * Space complexity is O(E + V)
  * 
  * @author gopi_karmakar
  */
-public class ShortestPath<V extends Comparable<V>> {
+public class ShortestPath {
 
 	public static <V  extends Comparable<V>> GraphVertex<V> shortestPath(
 		GraphVertex<V> s, GraphVertex<V> t) {
@@ -19,7 +22,7 @@ public class ShortestPath<V extends Comparable<V>> {
 		SortedSet<GraphVertex<V>> bst = new TreeSet<>();
 		
 		// Initializing the source vertex with 0 before begin the traversal.
-		s.distanceWithFewestEdges = new DistanceWithFewestEdges(0, 0);
+		s.dwfe = new DistanceWithFewestEdges(0, 0);
 		bst.add(s);				
 		
 		while(!bst.isEmpty()) {
@@ -32,18 +35,16 @@ public class ShortestPath<V extends Comparable<V>> {
 			
 			for(VertexWithDistance<V> e: v.edges) {
 				
-				int eDistance = v.distanceWithFewestEdges.distance + e.distance;
-				int eNumEdges = v.distanceWithFewestEdges.minNumEdges + 1;
+				int eDistance = v.dwfe.distance + e.distance;
+				int eNumEdges = v.dwfe.minNumEdges + 1;
 				
-				if(e.vertex.distanceWithFewestEdges.distance > eDistance ||
-					(e.vertex.distanceWithFewestEdges.distance == eDistance && 
-					e.vertex.distanceWithFewestEdges.minNumEdges > eNumEdges)) {
+				if(e.vertex.dwfe.distance > eDistance ||
+					(e.vertex.dwfe.distance == eDistance && 
+					e.vertex.dwfe.minNumEdges > eNumEdges)) {
 					
 					bst.remove(e.vertex);
 					e.vertex.parent = v;
-					//e.vertex.distanceWithFewestEdges = new DistanceWithFewestEdges(eDistance, eNumEdges);
-					e.vertex.distanceWithFewestEdges.distance = eDistance;
-					e.vertex.distanceWithFewestEdges.minNumEdges = eNumEdges;
+					e.vertex.dwfe = new DistanceWithFewestEdges(eDistance, eNumEdges);
 					bst.add(e.vertex);
 				}
 			}
