@@ -1,4 +1,7 @@
-package com.hyend.data.storage.search;
+package com.hyend.data.storage.arrays;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Find the longest consecutive sequence.
@@ -17,11 +20,45 @@ public class FindLongestConsecutiveSequence {
 	public static void main(String[] args) {
 		
 		int[] arr = {100, 4, 200, 98, 97, 2, 99, 3, 1, 0};
+		
+		System.out.println("Longest = " + search(arr));
+		
 		System.out.println("Longest = " + find(arr));
 	}	
 	
 	/**
+	 * This solution has been submitted to the Leetcode.
+	 * O(n) time and space complexity. 
+	 */
+	private static int search(int[] arr) {
+        
+        int max = 0;
+        
+        Set<Integer> set = new HashSet<>();
+        
+        for(int e : arr) {
+            set.add(e);            
+        }
+        
+        for(int e : set) {
+         
+            int count = 0;
+            
+            if(set.contains(e - 1)) continue;
+            
+            while(set.contains(e)) {
+                count++;
+                e++;
+            }
+            max = Math.max(max, count);
+        }
+        return max;
+    }
+	
+	/**
 	 * O(n) time and O(1) space complexity
+	 * NOTE: An very efficient solution but,
+	 * this solution won't work for -ve values.	 
 	 */
 	private static int find(int...arr) {
 		
