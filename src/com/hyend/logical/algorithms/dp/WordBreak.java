@@ -1,14 +1,19 @@
 package com.hyend.logical.algorithms.dp;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+/**
+ * https://leetcode.com/problems/word-break/
+ * 
+ * @author gopi_karmakar
+ */
 public class WordBreak {
 
 	public static void main(String[] args) {
 		
-		String s1 = "catsanddog";
+		String s1 = "catsandog";
 		
 		String[] words1 = {"cats", "dog", "sand", "and", "cat"};
 		
@@ -16,10 +21,14 @@ public class WordBreak {
 			
 		String[] words2 = {"apple", "pen"};		
 		
-		System.out.println(wordBreak(s1, new ArrayList<String>(Arrays.asList(words1))));
+		System.out.println(wordBreak(s1, new HashSet<String>(Arrays.asList(words1))));
 	}
 	
-    public static boolean wordBreak(String s, List<String> wordDict) {
+	/**
+	 * The time complexity will be somewhere around
+	 * O(n-w)*n where w is the length of the dictionary word.
+	 */
+    public static boolean wordBreak(String s, Set<String> wordDict) {
     	
         int n = s.length();        
         boolean[] dp = new boolean[n+1];
@@ -31,7 +40,9 @@ public class WordBreak {
             
             for(int j = i; j <= n; j++) {
             	
-                if(wordDict.contains(s.substring(i-1,j))){
+            	String sub = s.substring(i-1, j);
+            	
+                if(wordDict.contains(sub)){
                 
                 	dp[j]=true;
                 }

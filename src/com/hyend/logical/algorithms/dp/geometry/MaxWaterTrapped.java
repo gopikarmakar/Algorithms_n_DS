@@ -1,4 +1,4 @@
-package com.hyend.logical.algorithms;
+package com.hyend.logical.algorithms.dp.geometry;
 
 /**
  * 
@@ -8,7 +8,9 @@ public class MaxWaterTrapped {
 
 	public static void main(String[] args) {
 		
-		int[] blocks = {1, 2, 1, 3, 4, 4, 5, 1, 2, 0, 3};
+		//int[] blocks = {1, 2, 1, 3, 4, 4, 5, 1, 2, 0, 3};
+		
+		int[] blocks = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
 		
 		System.out.println(compute(blocks));
 	}

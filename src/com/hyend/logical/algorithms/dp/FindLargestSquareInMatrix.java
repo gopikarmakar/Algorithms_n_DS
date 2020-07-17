@@ -1,47 +1,55 @@
 package com.hyend.logical.algorithms.dp;
 
 /**
- * @author karmakargopi
- * 
  * 1 1 0 1 0
  *  |-----|
  * 0|1 1 1|0
  * 1|1 1 1|0
  * 0|1 1 1|1
  *  |-----|
- *  Problem: Find the largest square of 1's
- *  Solution: Take the minimal neighbor between
- *  matrix[i][j-1], matrix[i-1][j] & matrix[i-1][j-1] positions
- *  and add that with 1 and store to cache array. At the end of
- *  addition will return largest number of square of 1's.
+ * 
+ * Given a 2D binary matrix filled with 0's and 1's, 
+ * find the largest square containing only 1's and return its area.
+ * 
+ * Solution Accepted with 90%
+ * 
+ * https://leetcode.com/problems/maximal-square/
+ * 
+ * @author gopi_karmakar
  */
 public class FindLargestSquareInMatrix {
 	
 	public static void main(String[] args) {
 		
+		//int matrix[][] = {{1}};
+		//int matrix[][] = {{0}};
 		int matrix[][] = {{1,1,0,1,0}, {0,1,1,1,0}, {1,1,1,1,0}, {0,1,1,1,1}};
 		
-		System.out.println(findLargestSquare(matrix));
-	}
+		System.out.println(maximalSquare(matrix));
+	}	
 	
-	public static int findLargestSquare(int[][] matrix) {
+	public static int maximalSquare(int[][] matrix) {
 		
-		int cache[][] = matrix.clone();
+		if(matrix.length == 0)
+			return 0;								
 		
-		int i = 0, j = 0, largestSquare = 0;
+		int n = matrix.length + 1;
+		int m = matrix[0].length + 1;
+		int i = 0, j = 0, max = 0;
 		
-		for (i = 1; i < matrix.length; i++) {
+		int[][] dp = new int[n][m];
+		
+		for (i = 1; i < n; i++) {
 			
-			for(j = 1; j < matrix[i].length; j++) {
+			for(j = 1; j < m; j++) {
 
-				if(matrix[i][j] > 0) {
-					
-					cache[i][j] = 1 + (Math.min((Math.min(matrix[i][j-1], matrix[i-1][j])), matrix[i-1][j-1]));					
-				}
-				if(cache[i][j] > largestSquare)
-					largestSquare = cache[i][j];				
+				if(matrix[i-1][j-1] == 1) {
+															
+					dp[i][j] = 1 + Math.min(dp[i-1][j-1], Math.min(dp[i][j-1], dp[i-1][j]));
+					max = Math.max(max, dp[i][j]);
+				}				
 			}
-		}		
-		return largestSquare;
+		}				
+		return max*max;
 	}
 }

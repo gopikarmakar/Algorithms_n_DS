@@ -1,4 +1,4 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.logical.algorithms.dp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,8 @@ import java.util.List;
  * (12,11,13,9,12,8,14,13,15)
  * Compute the max profit by buying and selling the share at most twice.
  * 
+ * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
+ * 
  * @author gopi_karmakar
  */
 public class BuySellStockTwiceForMaxProfit {
@@ -18,17 +20,16 @@ public class BuySellStockTwiceForMaxProfit {
 	public static void main(String[] args) {
 		
 		double[] prices = {12,11,13,9,12,8,14,13,15};
-		System.out.println("Max Profit = " + buySellTwice(prices));		
+		//double[] prices = {3, 3, 5, 0, 0, 3, 1, 4};
+		//double[] prices = {1,2,3,4,5};
+		//double[] prices = {7,6,4,3,1};
+		System.out.println("Max Profit = " + buySellTwice(prices));	
+		
+		System.out.println("Max Profit = " + buySell(prices));
 	}
 	
 	/**
-	 * Solution: First we compute the profit by selling once.
-	 * Then we again calculate profit backwards over selling once's 
-	 * stock prices and combine these two. This yields the max profit
-	 * by selling a stock twice. 
-	 * 
-	 * @param prices
-	 * @return
+	 * Accepted in LeetCode with Memory Usage >86%
 	 */
 	public static double buySellTwice(double...prices) {
 		
@@ -45,7 +46,7 @@ public class BuySellStockTwiceForMaxProfit {
 		}
 		
 		/**
-		 * Compute Backwards
+		 * Compute Backwards		 
 		 */
 		double maxPriceSoFar = Double.MIN_VALUE;
 		for(int i = prices.length-1; i > 0; --i) {
@@ -55,5 +56,25 @@ public class BuySellStockTwiceForMaxProfit {
 		}
 				
 		return maxTotalProfit;
+	}
+	
+	/**
+	 * Accepted in LeetCode with Runtime >57%
+	 */
+	private static double buySell(double[] prices) {
+		
+		double profitOne = 0;
+		double profitTwo = 0;
+		double buyOne = Integer.MAX_VALUE;
+		double buyTwo = Integer.MAX_VALUE;
+		
+		for(double price : prices) {
+			
+			buyOne = Math.min(buyOne, price);
+			profitOne = Math.max(profitOne, (price - buyOne));
+			buyTwo = Math.min(buyTwo, (price - profitOne));
+			profitTwo = Math.max(profitTwo, (price - buyTwo));
+		}
+		return profitTwo;
 	}
 }

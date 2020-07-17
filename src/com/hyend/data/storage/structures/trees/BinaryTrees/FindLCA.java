@@ -18,9 +18,10 @@ public class FindLCA {
 		Node<Integer> tree = BinaryTree.buildDefault();
 		//BinaryTree.printBFS(tree, true);
 		
-		Node<Integer> node1 = tree.left.right.right;
+		Node<Integer> node1 = tree.left;
+		Node<Integer> node2 = tree.left.right.right;
 		//Node<Integer> node2 = tree.right.right;
-		Node<Integer> node2 = tree.left.left.right;
+		//Node<Integer> node2 = tree.left.left.right;
 		
 		FindLCA find = new FindLCA();
 

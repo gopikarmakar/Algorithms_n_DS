@@ -29,9 +29,7 @@ public class LongestIncreasingSubsequence {
 	/**
 	 * The time complexity is O(n^2) time complexity with O(n) extra space.
 	 * 
-	 * The time complexity can be reduced to O(n)Log(n) with Binary Search 
-	 *  
-	 * @param arr
+	 * The time complexity can be reduced to O(n)Log(n) with Binary Search.
 	 */
 	private static int findSubSequence(int...arr) {
 		

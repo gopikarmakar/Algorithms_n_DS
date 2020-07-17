@@ -19,15 +19,17 @@ public class PalindromePartitioning {
 	public static void main(String[] args) {
 		
 		String s = "aab";
-		String s2 = "aabbc";
+		String s2 = "aabbc";		
 		
 		Map<String, Integer> map = new HashMap<>();
 
-		partition(0, s2, new ArrayList<>(), map);
+		//partition(0, s2, new ArrayList<>(), map);
+		
+		System.out.println("Minimum Cuts Required = " + (dfs(s2, map)));		
 		
 		System.out.println(map);
 		
-		System.out.println("Minimum Cuts Required = " + Collections.min(map.values()));
+		//System.out.println("Minimum Cuts Required = " + (Collections.min(map.values()) - 1));
 	}
 	
 	/**
@@ -38,6 +40,8 @@ public class PalindromePartitioning {
 	 */
 	private static void partition(int offset, String s, List<String> partial, Map<String, Integer> map) {
 		
+		if(map.containsKey(partial.toString())) return;
+				
 		if(offset == s.length()) {
 						
 			map.putIfAbsent(partial.toString(), partial.size());
@@ -56,6 +60,27 @@ public class PalindromePartitioning {
 			}
 		}
 		return;
+	}
+	
+	private static int dfs(String s, Map<String, Integer> map) {
+		
+		if(map.containsKey(s)) 
+			return map.get(s);
+		
+		if(s.length() <= 1 || isPalindrome(s)) 
+			return 0;
+		
+		int res = s.length();
+		
+		for(int i = 0; i < s.length(); i++) {
+			String sub = s.substring(0, i + 1);
+			if(isPalindrome(sub)) {
+				System.out.println(sub);
+				res = Math.min(res, dfs(s.substring(i+1), map) + 1);
+			}
+		}
+		map.put(s, res);
+		return res;
 	}
 	
 	private static boolean isPalindrome(String s) {

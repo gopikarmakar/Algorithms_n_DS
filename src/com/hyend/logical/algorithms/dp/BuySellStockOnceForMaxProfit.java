@@ -1,4 +1,4 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.logical.algorithms.dp;
 
 /**
  * As an example, consider the following sequence of stock prices: 
@@ -6,6 +6,10 @@ package com.hyend.data.storage.arrays;
  * The maximum profit that can be made with one buy and one sell is 30.
  * Buy at 260 and sell at 290.
  * Note that 260 is not the lowest price, nor 290 the highest price.
+ * 
+ * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+ * 
+ * Solution Accepted with the 99.21% runtime.
  *
  * @author gopi_karmakar
  */
@@ -13,7 +17,7 @@ public class BuySellStockOnceForMaxProfit {
 	
 	public static void main(String...args) {	
 		
-		double[] stockPrices = {310,315,275,295,260,270,290,230,255,250};
+		double[] stockPrices = {310,315,275,295,260,270,290,230,255,250};		
 		printMSG("Max Profit = " + computeMaxProfit(stockPrices));
 	}
 	

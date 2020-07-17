@@ -16,7 +16,7 @@ public class JavaFlatMap {
 
 	public static void main(String[] args) {
 		integerArrayFlatMap();
-		stringArrayFlatMap();			
+		stringArrayFlatMap();	
 	}
 	
 	private static void integerArrayFlatMap() {

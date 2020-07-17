@@ -111,7 +111,7 @@ public class TimeCriticalHashMap<K extends Comparable<K>, V>
 		return v;
 	}
 	
-	public synchronized V get(K k) {
+	public synchronized V get(K k) {	
 		
 		if(k == null)
 			throw new NullPointerException("Key Can't Be Null");

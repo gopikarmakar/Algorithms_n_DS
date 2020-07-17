@@ -16,7 +16,7 @@ public class FindKthSmallestElement {
 	public static void main(String[] args) {
 		
 		int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5};
-		System.out.println("Smallest Kth Element = " + findKth(1, arr));
+		System.out.println("Smallest Kth Element = " + findKth(10, arr));
 	}
 	
 	/**
@@ -38,8 +38,7 @@ public class FindKthSmallestElement {
 		
 		while(l <= r) {
 			
-			int random = rand.nextInt(r - l + 1);
-			int pivotIdx = random + l;
+			int pivotIdx = l + rand.nextInt(r - l + 1);
 
 			//int newPivotIdx = partitionAroundPivot(arr, l, r, pivotIdx, Compare.Smaller_Than);
 			int newPivotIdx = partitionAroundPivot(arr, l, r, pivotIdx);

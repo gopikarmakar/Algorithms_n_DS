@@ -26,6 +26,12 @@ import java.util.PriorityQueue;
 public class HuffmanEncoding {
 
 	/**
+	 * Encoded Table:
+	 * A -> 011
+	 * B -> 10
+	 * C -> 11
+	 * D -> 00
+	 * E -> 010
 	 * This encoded tree table should be sent along with
 	 * the encoded message to decoded the message.
 	 * For e.g if the message = "BCCABBDDAECCBBAEDDCC" = 160 bits
@@ -65,6 +71,11 @@ public class HuffmanEncoding {
 		public CharWithFrequency(char c, int frequency) {
 			this.c = c;
 			this.frequency = frequency;			
+		}
+		
+		@Override
+		public String toString() {		
+			return "Char = " + c + " and Frequency = " + frequency;
 		}
 	}
 	
@@ -143,12 +154,10 @@ public class HuffmanEncoding {
 			}
 			else {
 				
-				code.append("0");
-				assignCode(tree.left, code, encodingTable);
+				assignCode(tree.left, code.append("0"), encodingTable);
 				code.setLength(code.length()-1);
-				
-				code.append("1");
-				assignCode(tree.right, code, encodingTable);
+								
+				assignCode(tree.right, code.append("1"), encodingTable);
 				code.setLength(code.length()-1);
 			}
 		}
@@ -173,10 +182,10 @@ public class HuffmanEncoding {
 		StringBuilder sb = new StringBuilder();		
 		
 		while(i < encodedMessage.length()) {						
-			
+						
 			BinaryTree tree = huffmanCodeTree;							
 			
-			while(tree.left != null && tree.right != null) {
+			while(tree.left != null || tree.right != null) {
 				
 				char c = encodedMessage.charAt(i);
 				
@@ -200,10 +209,10 @@ public class HuffmanEncoding {
 		
 		for(char c : message.toCharArray()) {
 			
-			CharWithFrequency cwf = map.getOrDefault(c, new CharWithFrequency(c, 1));
+			CharWithFrequency cwf = map.getOrDefault(c, new CharWithFrequency(c, 0));
 			cwf.frequency += 1;
 			map.put(c,  cwf);
-		}
+		}		
 		
 		return map.values();
 	}

@@ -1,6 +1,8 @@
 package com.hyend.logical.algorithms.dp.recursive;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +20,7 @@ import java.util.Set;
  * 
  * @author gopi_karmakar
  */
-public class WordBreak {
+public class WordBreak2 {
 
 	public static void main(String[] args) {
 		
@@ -29,14 +31,9 @@ public class WordBreak {
 		String[] words2 = {"cats", "dog", "sand", "and", "cat"};
 		
 		String s3 = "pineapplepenapple";
-		String[] words3 = {"apple", "pen", "applepen", "pine", "pineapple"};
-		
-		// For O(1) search
-		Set<String> wordsDict = new HashSet<>();
-		
-		for(String s : words1) {
-			wordsDict.add(s);
-		}
+		String[] words3 = {"apple", "pen", "applepen", "pine", "pineapple"};				
+				
+		Set<String> wordsDict = new HashSet<>(Arrays.asList(words3));		
 		
 		List<List<String>> result = new ArrayList<>();
 		
@@ -48,7 +45,7 @@ public class WordBreak {
 		
 		compute(0, s1, wordsDict, "", sentences);	
 		
-		System.out.println(sentences);
+		System.out.println(sentences);			
 	}
 	
 	/**
@@ -102,5 +99,5 @@ public class WordBreak {
 				partial = partial.substring(0, partial.length() - (prefix.length() + 1));
 			}
 		}
-	}
+	}	
 }
