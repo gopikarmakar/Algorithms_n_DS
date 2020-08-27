@@ -3,27 +3,22 @@ package com.hyend.logical.algorithms.dp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
- * A Google On Site Interview Question
+ * Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, 
+ * add spaces in s to construct a sentence where each word is a valid dictionary word. 
+ * Return all such possible sentences.
  * 
- * Given a word s without spaces and a dictionary dict, 
- * you have to find a way to split the word in such a way that,
- * 1) The number of splits should be the minimum
- * 2) It should contain all the dictionary words / letters.
- * If there're multiple solutions, return any of them.
+ * Note:
+ * The same word in the dictionary may be reused multiple times in the segmentation.
+ * You may assume the dictionary does not contain duplicate words.
  * 
- * For e.g: s = "bedbathandbeyond", dict = ["bed", "bath", "bat", "and", "hand", "beyond"]
- * output = ["bed", "bath", "and", "beyond"] or ["bed", "bat", "hand", "beyond"]
- * 
- * Here we can see how the above example uses all the dictionary words:
- * Output-1 doesn't contains "hand" separately but "bath" contains "h" within. 
- * Output-2 doesn't contains "and" separately but "hand" contains "and" within.
- * 
- * https://leetcode.com/discuss/interview-question/385870/Google-or-Onsite-or-Word-Break-III/347600
+ * https://leetcode.com/problems/word-break-ii/
  * 
  * @author gopi_karmakar
  */
@@ -31,96 +26,117 @@ public class WordBreak3 {
 
 	public static void main(String[] args) {
 		
-		String s = "bedbathandbeyond";
-		String[] dict = {"bed", "bath", "and", "bat", "hand", "beyond"};
+		String s1 = "catsanddog";
+		String[] words1 = {"cat", "cats", "and", "sand", "dog"};
 		
-		System.out.println(wordBreak(s, new HashSet<>(Arrays.asList(dict))));
-		System.out.println(decompose(s, new HashSet<>(Arrays.asList(dict))));
+		String s2 = "catsandog";
+		String[] words2 = {"cats", "dog", "sand", "and", "cat"};
+		
+		String s3 = "pineapplepenapple";
+		String[] words3 = {"apple", "pen", "applepen", "pine", "pineapple"};				
+				
+		Set<String> wordsDict = new HashSet<>(Arrays.asList(words1));
+		
+		Map<Integer, List<String>> map = new HashMap<>();
+		
+		map.put(0, Arrays.asList(""));
+		
+		wordBreak(s1, s1.length(), map, wordsDict);
+		
+		System.out.println(map.get(s1.length()));
+						
+		List<List<String>> result = new ArrayList<>();
+		
+		compute(0, s1, wordsDict, new ArrayList<>(), result);
+		
+		System.out.println(result);
+		
+		List<String> sentences = new ArrayList<>();
+		
+		compute(0, s1, wordsDict, "", sentences);	
+		
+		System.out.println(sentences);			
 	}
 	
 	/**
-	 * Let n be the length of the input string s. 
-	 * For each k < n we check for each j < k whether the 
-	 * substring s[j + 1 : k] is a dictionary word, and each such check 
-	 * requires O(k - j) time. This implies the time complexity is O(n^3). 
+	 * Leetcode accepted code.
 	 */
-	private static List<String> wordBreak(String s, Set<String> dict) {
+	private static void wordBreak(String s, int right, 
+			Map<Integer, List<String>> map, Set<String> dict) {
 		
-		int[] dp = new int[s.length()];
-		Arrays.fill(dp, -1);
+		map.putIfAbsent(right, new ArrayList<>());
 		
-		for(int i = 0; i < s.length(); ++i) {
+		for(int left = 0; left < right; left++) {
 			
-			String sub = s.substring(0, i+1);
-			if(dict.contains(sub))
-				dp[i] = i + 1;		
-		
-			if(dp[i] == -1) {
+			String suffix = s.substring(left, right);
+			
+			if(dict.contains(suffix)) {
 				
-				for(int j = 0; j < i; ++j) {
-			
-					String sub2 = s.substring(j+1, i+1);
-					if(dp[j] != -1 && dict.contains(sub2)) {
-						dp[i] = i - j;
-						break;
-					}
+				if(!map.containsKey(left)) {
+					wordBreak(s, left, map, dict);
 				}
-			}		
-		}
-		
-		List<String> decompositions = new ArrayList<>();
-		
-		if(dp[dp.length - 1] != -1) {
-			int idx = s.length()-1;
-			
-			while(idx >= 0) {
 				
-				String sub3 = s.substring(idx + 1 - dp[idx], idx + 1);
-				decompositions.add(sub3);
-				idx -= dp[idx];
+				for(String w: map.get(left)) {
+					
+					if(w.equals(""))
+						map.get(right).add(suffix);
+					else
+						map.get(right).add(w + " " + suffix);
+				}
 			}
-			Collections.reverse(decompositions);
 		}		
-		return decompositions;
 	}
 	
-	private static List<String> decompose(String s, Set<String> dict) {
-		
-		int n = s.length();
-		int[] dp = new int[n+1];
-		Arrays.fill(dp, -1);
-		dp[0] = 0;
-		
-		for(int i = 1; i <=n; i++) {
-			
-			if(dp[i-1] == -1) continue;
-			
-			for(int j = i; j <= n; j++) {
-				
-				String sub = s.substring(i-1, j);
-				
-				if(dict.contains(sub)) {
-					
-					dp[j] = j - i + 1;
-				}
-			}			
-			if(dp[n] != -1) break;				
-		}
-		
-		dp[0] = -1;
-		List<String> decompositions = new ArrayList<>();
-		
-		if(dp[dp.length - 1] != -1) {
-			int idx = s.length();
-			
-			while(idx > 0) {
-				
-				String sub3 = s.substring(idx - dp[idx], idx);
-				decompositions.add(sub3);
-				idx -= dp[idx];
-			}
-			Collections.reverse(decompositions);
+	/**
+	 * The worst-case time complexity is still O(n ^ 2), 
+	 * e.g., if the input string consists of n repetitions of a single character. 
+	 * However, the program has much better best-case time complexity than the
+	 * brute-force approach, e.g., when there are very few words.
+	 */
+	private static void compute(int offset, String s, Set<String> words, List<String> partial, List<List<String>> result) {
+
+		if(offset == s.length()) {
+
+			result.add(new ArrayList<>(partial));
+			return;
 		}		
-		return decompositions;		
+
+		for(int i = offset + 1; i <= s.length(); ++i) {
+
+			String prefix = s.substring(offset, i);
+
+			if(words.contains(prefix)) {
+
+				partial.add(prefix);
+
+				compute(i, s, words, partial, result);
+
+				partial.remove(partial.size() - 1);
+			}
+		}
 	}
+	
+	// Result as a sentence
+	private static void compute(int offset, String s, Set<String> words, String partial, List<String> sentences) {
+
+		if(offset == s.length()) {
+
+			sentences.add(partial.trim());
+			return;
+		}		
+
+		for(int i = offset + 1; i <= s.length(); ++i) {
+
+			String prefix = s.substring(offset, i);
+
+			if(words.contains(prefix)) {
+
+				partial += prefix + " ";
+
+				compute(i, s, words, partial, sentences);
+
+				partial = partial.substring(0, partial.length() - (prefix.length() + 1));
+			}
+		}
+	}	
 }

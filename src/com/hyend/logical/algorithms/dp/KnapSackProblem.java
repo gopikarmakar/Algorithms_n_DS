@@ -46,7 +46,7 @@ public class KnapSackProblem {
 			int withoutCurrentItem = optimumSubjectToCapacity(items, k - 1, capacity, cache);
 			
 			int withCurrentItem = (capacity < items.get(k).weight) ? 0 : 
-				items.get(k).value + optimumSubjectToCapacity(items, k - 1, capacity - items.get(k).weight, cache);
+				items.get(k).price + optimumSubjectToCapacity(items, k - 1, capacity - items.get(k).weight, cache);
 			
 			cache[k][capacity] = Math.max(withCurrentItem, withoutCurrentItem);
 		}
@@ -54,22 +54,22 @@ public class KnapSackProblem {
 	}
 	 
 	/////////////////////////////// Sample Data Creation /////////////////////////////
-	 
+	
 	private static class Item {
 		
-		public int value;
+		public int price;
 		public int weight;
 		
 		public Item(int price, int weight) {
-			this.value = price;
+			this.price = price;
 			this.weight = weight;
 		}
 		
 		@Override
 		public String toString() {			
-			return "Weight = " + this.weight + " Price = " + this.value;
+			return "Weight = " + this.weight + " Price = " + this.price;
 		}
-	}
+	} 
 	
 	/**
 	 * Let's says there're four items given with their price in USD and weight in KG  

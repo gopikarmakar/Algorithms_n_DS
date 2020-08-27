@@ -9,7 +9,7 @@ import java.util.Set;
  * 
  * @author gopi_karmakar
  */
-public class WordBreak {
+public class WordBreak1 {
 
 	public static void main(String[] args) {
 		
@@ -31,7 +31,7 @@ public class WordBreak {
     public static boolean wordBreak(String s, Set<String> wordDict) {
     	
         int n = s.length();        
-        boolean[] dp = new boolean[n+1];
+        boolean[] dp = new boolean[n];
         dp[0] = true;
         
         for(int i = 1; i <= n; i++) {
@@ -47,8 +47,8 @@ public class WordBreak {
                 	dp[j]=true;
                 }
             }
-            if(dp[n]) break;
+            if(dp[n-1]) break;
         }
-        return dp[n];        
+        return dp[n-1];        
     }
 }

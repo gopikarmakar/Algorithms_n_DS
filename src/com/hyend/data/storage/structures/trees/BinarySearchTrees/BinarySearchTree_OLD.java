@@ -135,7 +135,7 @@ public class BinarySearchTree_OLD {
 		 * After adding the values to tree
 		 * the tree will become like: 
 		 * 
-		 * @param value
+		 * @param price
 		 * @return
 		 */
 		public void put(int data) {

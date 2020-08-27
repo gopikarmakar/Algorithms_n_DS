@@ -9,6 +9,8 @@ import java.util.List;
  * {020", "44", "5", "1881"}, {"020", "44", "5", "1", "88", "1"} etc.
  * However, {"02044, "5", "1881"} is not a palindromic decomposition.
  * 
+ * https://leetcode.com/problems/palindrome-partitioning/
+ * 
  * @author gopi_karmakar
  */
 public class PalindromicDecompositions {
@@ -16,10 +18,11 @@ public class PalindromicDecompositions {
 	public static void main(String[] args) {
 		
 		String s = "0204451881";
-		//String s = "aab";
+		
+		String s2 = "aabbc";
 		
 		List<List<String>> result = new ArrayList<List<String>>();
-		decompositions(0, s, new ArrayList<>(), result);
+		decompositions(0, s2, new ArrayList<>(), result);
 		
 		for(List<String> list : result) {
 			System.out.println(list);
@@ -27,35 +30,37 @@ public class PalindromicDecompositions {
 	}
 	
 	/**
+	 * Solution accepted with the 100% runtime in LeetCode.
 	 * The worst-case time complexity is still O(n ^ 2), 
 	 * e.g., if the input string consists of n repetitions of a single character. 
 	 * However, the program has much better best-case time complexity than the
 	 * brute-force approach, e.g., when there are very few palindromic decompositions.
 	 */
-	private static void decompositions(int offset, String input, 
-			List<String> partialPartition, List<List<String>> result) {
+	private static void decompositions(int index, String s, 
+			List<String> current, List<List<String>> result) {
 		
-		if(offset == input.length()) {
-			result.add(new ArrayList<>(partialPartition));
+		if(index == s.length()) {
+			result.add(new ArrayList<>(current));
 			return;
 		}
 		
-		for(int i = offset+1; i <= input.length(); ++i) {
+		for(int i = index; i < s.length(); ++i) {			
 			
-			String prefix = input.substring(offset, i);
-			
-			if(isPalindrome(prefix)) {
+			if(isPalindrome(s, index, i)) {
 				
-				partialPartition.add(prefix);
-				decompositions(i, input, partialPartition, result);
-				partialPartition.remove(partialPartition.size()-1);
+				String prefix = s.substring(index, i+1);
+				current.add(prefix);
+				decompositions(i+1, s, current, result);
+				current.remove(current.size()-1);
 			}
 		}
 	}
 	
-	private static boolean isPalindrome(String prefix) {		
-		for(int i = 0, j = prefix.length()-1; i < j; ++i, --j) {			
-			if(prefix.charAt(i) != prefix.charAt(j)) 
+	private static boolean isPalindrome(String s, int start, int end) {	
+		
+		for(; start < end; ++start, --end) {
+			
+			if(s.charAt(start) != s.charAt(end)) 
 				return false;
 		}
 		return true;
