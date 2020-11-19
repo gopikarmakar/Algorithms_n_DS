@@ -23,7 +23,7 @@ public class LongestCommonPrefixAndSuffixOfTwoStrings {
 		
 		Node<Character, String> trie = TernaryTrieDictionary.createSuffixTrie(B, false); 
 		
-		int length = LongestCommonPrefix.find(trie, A);
+		int length = TrieDictionaryTraversals.longestPrefixLength(trie, A, 0, 0);
 		//System.out.println(length);
 		
 		return length;

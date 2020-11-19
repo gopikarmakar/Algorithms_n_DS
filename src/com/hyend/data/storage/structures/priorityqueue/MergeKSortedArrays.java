@@ -16,45 +16,46 @@ import java.util.PriorityQueue;
  * 
  * @author gopi_karmakar
  */
-public class MergeKSortedArrays {
+public class MergeKSortedArrays<K extends Comparable<K>> { 
 	
 	public static void main(String[] args) {
 		
-		Integer[][] files = {{3, 5, 7}, {0, 6}, {0, 6, 8}};		
+		Integer[][] files = {{3, 5, 7}, {0, 6}, {0, 6, 8}};	
 		
-		for(int x: mergeSortedArray(files)) {
-			System.out.println(x);
-		}
+		MergeKSortedArrays<Integer> merge = new MergeKSortedArrays<>();
+		
+		System.out.println(merge.mergeKSortedArray(files));			
 	}
 
-	private static class Entry {		
-		public int key;
+	private class Entry {	
+		public K k;
 		public int ri = 0;
 		public int ci = 0;
-		public Entry(int key, int rIndex, int cIndex) {					
-			this.key = key;
+		
+		public Entry(K key, int rIndex, int cIndex) {					
+			this.k = key;
 			this.ri = rIndex;
 			this.ci = cIndex;
 		}
 		
-		public int getKey() {
-			return key;
-		}
+		public K getKey() {
+			return k;
+		}	
 	}
-	
+
 	/**
 	 * Merge Sorted Arrays
 	 * An O(n log k) time complexity solution.
 	 */
-	public static List<Integer> mergeSortedArray(Integer[][] files) {
+	public List<K> mergeKSortedArray(K[][] files) {
 		
-		List<List<Integer>> lists = new ArrayList<>();
+		List<List<K>> lists = new ArrayList<>();
 		
-		for(Integer[] list : files) {
+		for(K[] list : files) {
 			lists.add(Arrays.asList(list));
 		}
 		
-		List<Integer> merged = mergeSortedLists(lists);
+		List<K> merged = mergeKSortedLists(lists);
 
 		return merged;
 	}
@@ -63,9 +64,9 @@ public class MergeKSortedArrays {
 	 * Merge Sorted Lists
 	 * An O(n log k) time complexity solution
 	 */
-	public static List<Integer> mergeSortedLists(List<List<Integer>> lists) {
+	public List<K> mergeKSortedLists(List<List<K>> lists) {
 		
-		List<Integer> merged = new ArrayList<>();
+		List<K> merged = new ArrayList<>();
 		
 		/*PriorityQueue<Entry> minPQ = new PriorityQueue<>(lists.size(), new Comparator<Entry>() {
 			@Override
@@ -73,16 +74,16 @@ public class MergeKSortedArrays {
 				return Integer.compare(e1.key, e2.key);
 			}
 		});*/
-		
+							
 		PriorityQueue<Entry> minPQ = new PriorityQueue<>(lists.size(), Comparator.comparing(Entry::getKey));
 		
 		for(int i = 0; i < lists.size(); ++i) {
 			minPQ.add(new Entry(lists.get(i).get(0), i, 0));
-		}
+		}				
 		
 		while(!minPQ.isEmpty()) {
 			Entry entry = minPQ.remove();
-			merged.add(entry.key);
+			merged.add(entry.k);
 			
 			if(entry.ci < lists.get(entry.ri).size()-1) {
 				minPQ.add(new Entry(lists.get(entry.ri).get(++entry.ci), entry.ri, entry.ci));

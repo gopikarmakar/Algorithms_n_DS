@@ -1,16 +1,30 @@
 package com.hyend.logical.algorithms.strings;
 
+/**
+ * @author gopi_karmakar
+ */
 public class LongestCommonSubstring {
 	
-	public int getLCS(String str1, String str2) {
+	public static void main(String[] args) {
+		
+		// Longest Common Substring is 'eeksfor' of len 7
+		String s1 = "geeksforskeeg";
+		String s2 = "skeeggggeeeeksfor";
+		
+		System.out.println(getLCS(s1, s2));
+	}
 	
-		int n1 = str1.length(); 
-		int n2 = str2.length();		
+	public static int getLCS(String s1, String s2) {
+	
+		int n1 = s1.length(); 
+		int n2 = s2.length();		
 		int x = 0, length = 0, maxLength = 0;
+		
 		for(int i = 0; i < n1; i++) {			
 			x = i;
-			for(int j = 0; j < n2 && x < n1; j++) {			
-				if(str2.charAt(j) == str1.charAt(x)) {
+			for(int j = 0; j < n2 && x < n1; j++) {	
+				
+				if(s2.charAt(j) == s1.charAt(x)) {
 					x++;
 					length += 1;					
 				}
@@ -22,7 +36,7 @@ public class LongestCommonSubstring {
 					 * str1 = geeksforskeeg
 					 * str2 = skeeggggeeksfor
 					 */
-					if(x > 0 && str2.charAt(j) == str1.charAt(x-1))
+					if(x > 0 && s2.charAt(j) == s1.charAt(x-1))
 						length = 1;
 					else length = 0;
 					i = x;

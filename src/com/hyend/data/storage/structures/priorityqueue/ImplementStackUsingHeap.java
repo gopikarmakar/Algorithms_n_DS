@@ -36,7 +36,8 @@ public class ImplementStackUsingHeap {
 	 */
 	private static class HeapStack<K> {
 		
-		PriorityQueue<Entry<K>> maxPQ = new PriorityQueue<>(16, Compare.CMP_ENTRY);
+		//PriorityQueue<Entry<K>> maxPQ = new PriorityQueue<>(16, Compare.CMP_ENTRY);
+		PriorityQueue<Entry<K>> maxPQ = new PriorityQueue<>(16, (a, b) -> b.timeStamp - a.timeStamp);
 		
 		int timeStamp = 0;
 		
@@ -59,10 +60,10 @@ public class ImplementStackUsingHeap {
 	
 	private static class Entry<K> {	
 		K k;
-		int rank;		
-		public Entry(K k, int rank) {
+		int timeStamp;		
+		public Entry(K k, int timeStamp) {
 			this.k = k;
-			this.rank = rank;
+			this.timeStamp = timeStamp;
 		}
 	}
 	
@@ -72,7 +73,7 @@ public class ImplementStackUsingHeap {
 	private static class Compare implements Comparator<Entry<?>> {		
 		@Override
 		public int compare(Entry<?> e1, Entry<?> e2) {
-			return Integer.compare(e2.rank, e1.rank);
+			return Integer.compare(e2.timeStamp, e1.timeStamp);
 		}		
 		public static final Compare CMP_ENTRY = new Compare();
 	}

@@ -35,7 +35,7 @@ import com.hyend.data.storage.structures.trie.TrieDictionary.Node;
 import com.hyend.logical.algorithms.dp.FindLargestSquareInMatrix;
 import com.hyend.logical.algorithms.dp.greedy.AmountInWords;
 import com.hyend.logical.algorithms.dp.recursive.Fibonacci;
-import com.hyend.logical.algorithms.dp.recursive.Staircase;
+import com.hyend.logical.algorithms.dp.recursive.ClimbingStairs;
 import com.hyend.logical.algorithms.dp.recursive.StudentAttendance;
 import com.hyend.logical.algorithms.strings.FindFirstUniqueChar;
 import com.hyend.logical.algorithms.strings.HasStringAllUniqueChars;

@@ -4,12 +4,12 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
+ * https://leetcode.com/problems/longest-substring-without-repeating-characters/
+ * 
  * Find Longest substring containing all distinct entries.
  * For e.g: s = ADOBECODEBANC return "CODEBAN" or "ODEBANC" 
  * s = "ADOBECODEBANK" return "CODEBANK"
  * Since both SubStrings are the longest and unique. 
- * 
- * https://leetcode.com/problems/longest-substring-without-repeating-characters/
  * 
  * @author gopi_karmakar
  */
@@ -18,11 +18,11 @@ public class LongestUniqueSubString {
 	public static void main(String[] args) {
 		
 		//String s = "ADOBECODEBANC";
-		//String s = "ADOBECODEBANK";
+		String s = "ADOBECODEBANK";
 		//String s = "abcabcbb";
 		//String s = "bbbbb";
 		//String s = "pwwkew";
-		String s = "abba";
+		//String s = "abba";
 				
 		SubArray subArray = find(s);
 		System.out.println(fetchSubStr(s, subArray.start, subArray.end));

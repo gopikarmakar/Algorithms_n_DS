@@ -19,6 +19,7 @@ public class GroupOfAnagrams {
 		
 		String[] paragraph = {"debitcard", "elvis", "silent", "badcredit", "lives", "freedom", "listen", "levis",
 								"money", "eleven plus two", "algorithmic", "twelve plus one", "logarithmic"};
+		
 		find(paragraph);
 	}
 	
@@ -29,50 +30,21 @@ public class GroupOfAnagrams {
 	 */
 	private static void find(String[] words) {
 		
-		Map<String, Anagrams> map = new HashMap<>();		
+		Map<String, List<String>> anagrams = new HashMap<>();
+		
 		for(String word : words) {
 			
 			char[] wordInChars = word.toCharArray();
 			Arrays.sort(wordInChars);
 			String sortedWord = new String(wordInChars);
 			
-			Anagrams anagram = map.getOrDefault(sortedWord, new Anagrams());
-			map.put(sortedWord, anagram.add(word));	
-		}		
+			List<String> list = anagrams.getOrDefault(sortedWord, new ArrayList<>());
+			list.add(word);
+			anagrams.put(sortedWord, list);
+		}			
 		
-		for(Anagrams anagrams : map.values()) {
-			if(anagrams.size() > 1) {				
-				System.out.println(anagrams);
-			}
-		}		
-	}
-	
-	private static class Anagrams {
-		
-		private List<String> list;			
-		
-		public Anagrams() {
-			list = new ArrayList<>();
-		}
-		
-		public Anagrams add(String word) {
-			list.add(word);	
-			return this;
-		}
-		
-		public int size() {
-			return list.size();
-		}
-		
-		@Override
-		public String toString() {
-			super.toString();
-			String msg = "{ ";
-			for(String word : list) {
-				msg += word + " ";				
-			}
-			msg += "}";
-			return msg;			
-		}
+		anagrams.values().forEach(e -> {
+			System.out.println(e);
+		});		
 	}
 }

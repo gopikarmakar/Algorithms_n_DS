@@ -21,11 +21,11 @@ public class ComputeAllStringDecompositions {
 	
 	public static void main(String[] args) {
 		
-		//String s = "barfoothefoobarman";
-		//String[] words = {"foo", "bar"};
+		String s = "barfoothefoobarman";
+		String[] words = {"foo", "bar"};
 				
-		String s = "amanaplanacanal";
-		String[] words = {"can", "apl", "ana"};
+//		String s = "amanaplanacanal";
+//		String[] words = {"can", "apl", "ana"};
 		
 		for(int i : findSubstring(s, words)) {			
 			System.out.println(s.substring(i, i+(words[0].length() * words.length)));
@@ -48,7 +48,7 @@ public class ComputeAllStringDecompositions {
 		Map<String, Integer> allWordsFreq = new HashMap<String, Integer>();
         for(String w : words) {
         	mapWordFrequency(w, allWordsFreq);
-        }
+        }        
         
         int tsl = s.length();        
         int owl = words[0].length();

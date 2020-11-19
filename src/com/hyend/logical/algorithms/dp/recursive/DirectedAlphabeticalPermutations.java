@@ -53,7 +53,7 @@ public class DirectedAlphabeticalPermutations {
 		int n = word.length();
 		if(n == 0) {
 			perms.add(prefix);
-			return;
+			//return;
 		}
 		
 		for(int i = 0; i < n; ++i) {

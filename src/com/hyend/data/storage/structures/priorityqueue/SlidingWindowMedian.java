@@ -22,10 +22,7 @@ public class SlidingWindowMedian {
 	private static PriorityQueue<Item> minPQ;
 	private static PriorityQueue<Item> maxPQ;
 	
-	public SlidingWindowMedian() {
-		
-		
-	}
+	public SlidingWindowMedian() {}
 
 	public static void main(String[] args) {
 		
@@ -44,19 +41,18 @@ public class SlidingWindowMedian {
 		
 		int i = 0;
 		for(int x : nums) {
-						
-		
+					
 			add(new Item(i, x));
 			//Item item = new Item(i, x);
 			//minPQ.add(item);
 			//maxPQ.add(item);
 			
-			if(!minPQ.isEmpty() && minPQ.peek().index <= i - window) {
-				minPQ.poll();
-			}
-			else if(!maxPQ.isEmpty() && maxPQ.peek().index <= i - window) {
+			if(!maxPQ.isEmpty() && maxPQ.peek().index <= i - window) {
 				maxPQ.poll();
 			}
+			else if(!minPQ.isEmpty() && minPQ.peek().index <= i - window) {
+				minPQ.poll();
+			}			
 			
 			if(i + 1 >= window) {
 								

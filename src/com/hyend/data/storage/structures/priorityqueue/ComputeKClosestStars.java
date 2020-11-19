@@ -28,7 +28,7 @@ public class ComputeKClosestStars {
 	 */
 	private static List<Star> computeKClosestStars(int k, List<Star> stars) {
 		
-		PriorityQueue<Star> maxPQ = new PriorityQueue<>(k, Collections.reverseOrder());
+		PriorityQueue<Star> maxPQ = new PriorityQueue<>(k, Collections.reverseOrder());		
 		
 		for(Star star : stars) {
 			
@@ -39,7 +39,7 @@ public class ComputeKClosestStars {
 			}			
 		}
 		
-		List<Star> orderedStars = new ArrayList<>(maxPQ);
+		List<Star> orderedStars = new ArrayList<>(maxPQ);		
 		
 		//Since the Sortedness isn't guaranteed in MaxPQ
 		Collections.sort(orderedStars);

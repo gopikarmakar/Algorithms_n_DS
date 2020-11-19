@@ -1,17 +1,17 @@
 package com.hyend.data.storage.structures.graphs.directed;
 
 import java.util.Set;
-
 import com.hyend.data.storage.structures.graphs.Vertex;
 import com.hyend.data.storage.structures.graphs.Vertex.Color;
+
 
 /**
  * https://leetcode.com/problems/course-schedule/
  * 
  * High performance database systems use multiple processes and resource locking.
  * These systems may not provide mechanisms to avoid or prevent deadlock.
- * A situation in which two or more competing actions are each waiting for
- * the other to finish, which precludes all these actions from progressing.
+ * A situation in which two or more competing actions are waiting for each other
+ * to finish, which precludes all these actions from progressing.
  * Such systems must support a mechanism to detect deadlocks.
  * 
  * Given a state of processes like P1->P2 implies P1 is waiting for P2 to finish. 
@@ -27,8 +27,8 @@ import com.hyend.data.storage.structures.graphs.Vertex.Color;
  * 
  * @author gopi_karmakar
  */
-public class DeadlockDetection {
-
+public class DeadlockDetection {	
+	
 	public static void main(String[] args) {
 		
 		/**
@@ -69,8 +69,9 @@ public class DeadlockDetection {
 					
 		for(Vertex<String> v : set) {
 			
-			if(v.color == Color.WHITE && hasCycle(v))
-				return true;						
+			if(v.color == Color.WHITE && hasCycle(v)) {
+				return true;
+			}									
 		}
 		return false;
 	}

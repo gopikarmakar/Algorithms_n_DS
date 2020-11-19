@@ -28,7 +28,7 @@ public class HasRepeats {
 		Integer[] nums3 = {1,2,3,4}, q3 = {2,2};
 		Integer[] nums4 = {1,2,3,4,4}, q4 = {1,2};
 		Integer[] nums5 = {1,1,1,1,1}, q5 = {2,2};
-		Integer[] nums6 = {1,2,3,4,4}, q6 = {1,2};
+		Integer[] nums6 = {1,2,3,4,4}, q6 = {2,1};
 		
 		System.out.println(hasRepeats(Arrays.asList(nums4), Arrays.asList(q4)));
 	}
@@ -60,7 +60,7 @@ public class HasRepeats {
 			if(entry.getValue() < 0)
 				return false;
 			
-			maxPQ.offer(entry);
+			maxPQ.add(entry);
 		}			
 		
 		return true;

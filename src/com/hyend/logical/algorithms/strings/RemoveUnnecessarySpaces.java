@@ -21,9 +21,9 @@ public class RemoveUnnecessarySpaces {
 	private  static String remove(String s) {
 		
 		boolean flag = false;
-		StringBuilder sb = new StringBuilder();
+		StringBuilder result = new StringBuilder();
 		
-		for(char c : s.toCharArray()) {
+		/*for(char c : s.toCharArray()) {
 			
 			if(c != ' ') {
 				flag = false;
@@ -35,7 +35,20 @@ public class RemoveUnnecessarySpaces {
 					flag = true;
 				}
 			}
+		}*/
+		for(char c : s.toCharArray()) {
+
+			if(c == ' ') flag = true;
+			else {
+
+				if(flag) {
+					result.append(' ');
+					flag = false;
+				}
+				result.append(c);
+			}
 		}
-		return sb.toString();
+		
+		return result.toString();
 	}
 }

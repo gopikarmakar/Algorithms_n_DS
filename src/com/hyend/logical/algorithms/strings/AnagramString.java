@@ -7,8 +7,16 @@ import java.util.Arrays;
  */
 public class AnagramString {
 	
-	public static void main(String[] args) {		
-		boolean val = isItAnagramString("debitcard", "badcredit");
+	public static void main(String[] args) {	
+		
+//		String s1 = "debitcard";
+//		String s2 = "badcredit";
+		
+		String s1 = "INTEGRAL";
+		String s2 = "TRIANGLE";
+		
+		boolean val = isItAnagramString(s1, s2);
+		
 		if(val)
 			System.out.println("It's An Anagram!");
 		else
@@ -53,6 +61,7 @@ public class AnagramString {
 		for(int i = 0; i < str1length; i++) {
 			
 			index = str1chars[i] % str1length;
+			System.out.println("" + (int)str1chars[i] + " = " + index);
 			letters[index] = !letters[index];
 			
 			index = str2chars[i] % str1length;

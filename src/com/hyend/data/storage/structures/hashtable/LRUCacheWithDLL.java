@@ -3,6 +3,8 @@ package com.hyend.data.storage.structures.hashtable;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.hyend.data.storage.structures.linkedlists.doubly.Node;
+
 /**
  * https://leetcode.com/problems/lru-cache/
  * 
@@ -24,19 +26,13 @@ public class LRUCacheWithDLL<K, V> {
 	
 	public static void main(String[] args) {
 		
-		LRUCacheWithDLL<Integer, String> lruCache = new LRUCacheWithDLL<>(1);	
-		lruCache.add(2, "One");
-		lruCache.get(2);
-		lruCache.add(3, "Two");
-		lruCache.get(2);
-		lruCache.get(3);
-		lruCache.printCache();
-		/*lruCache.add(1, "One");
+		LRUCacheWithDLL<Integer, String> lruCache = new LRUCacheWithDLL<>(5);	
+		lruCache.add(1, "One");
 		lruCache.add(2, "Two");
 		lruCache.add(3, "Three");
 		lruCache.add(4, "Four");
-		lruCache.add(5, "Five");
-		lruCache.get(3);
+		lruCache.add(5, "Five");		
+		lruCache.get(3);		
 		lruCache.printCache();
 		lruCache.add(6, "Six");		
 		lruCache.add(7, "Seven");
@@ -45,7 +41,7 @@ public class LRUCacheWithDLL<K, V> {
 		lruCache.add(8, "Eight");
 		lruCache.get(3);
 		lruCache.add(9, "Nine");
-		lruCache.printCache();*/
+		lruCache.printCache();
 	}
 	
 	class Node {
@@ -106,9 +102,9 @@ public class LRUCacheWithDLL<K, V> {
 			tail = head;
 			return head;
 		}
-		temp.prev = head;
 		head.next = temp;
-		
+		temp.prev = head;
+				
 		return head;
 	}
 	
@@ -152,7 +148,7 @@ public class LRUCacheWithDLL<K, V> {
 		
 		Node node = head;
 		
-		System.out.println("Printing Cache");
+		System.out.println("Printing Cache = " + cache.size());
 		
 		while(node != null) {
 			

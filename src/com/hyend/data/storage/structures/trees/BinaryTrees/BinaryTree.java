@@ -13,7 +13,7 @@ import java.util.List;
  * left and right child that's why it's called binary tree.
  * A complete family with parent and child called subtree.
  * 
- * 								341
+ * 								314
  * 				6								6
  * 		271				561 			2	 			271
  * 	28   	0 				3  				 1 				28

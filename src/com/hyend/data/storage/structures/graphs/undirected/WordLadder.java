@@ -45,6 +45,8 @@ public class WordLadder {
         		
         		System.out.println(dq);
         		String next = dq.pollFirst();
+        		System.out.println(next);
+        		
         		if(next.equals(end)) {
         			return step;
         		}        			

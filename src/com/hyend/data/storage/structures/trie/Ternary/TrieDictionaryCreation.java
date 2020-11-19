@@ -105,9 +105,9 @@ public class TrieDictionaryCreation<K, V> {
 			node = new Node<>(ch, (saveEveryValue) ? prefix+ch : null);
 		}
 				
-		if(ch < node.k) 				node.left = createPrefixTrie(node.left, prefix, key, d, saveEveryValue);
+		if(ch < node.k) 				node.left = createPrefixTrie(node.left, node.v, key, d, saveEveryValue);
 			
-		else if(ch > node.k)			node.right = createPrefixTrie(node.right, prefix, key, d, saveEveryValue);			
+		else if(ch > node.k)			node.right = createPrefixTrie(node.right, node.v, key, d, saveEveryValue);			
 			
 		else if(d < key.length()-1)	{
 			

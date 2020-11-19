@@ -20,14 +20,16 @@ public class QuickSort {
 	
 	public static void main(String[] args) {
 		
-		int[] arr = {3, 1, 5, 2, 7, 4, 8, 6, 9, 0};		
+		int[] arr = {3, 1, 5, 2, 7, 4, 8, 6, 9, 0};	
+		
+		int[] arr2 = {3, 1, 0, 5, 2, 0, 7, 0, 0, 1, 4, 2, 0, 8, 6, 0, 9, 0};	
 		
 		Random random = new Random(0);
 		
 		//QuickSort qs = new QuickSort();
-		sort(arr, 0, arr.length-1, random);
+		sort(arr2, 0, arr2.length-1, random);
 		
-		for(int x : arr)
+		for(int x : arr2)
 			System.out.println(x);
 	}
 

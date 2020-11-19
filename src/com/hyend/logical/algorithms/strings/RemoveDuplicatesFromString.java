@@ -21,7 +21,6 @@ public class RemoveDuplicatesFromString {
 	
 	public void removeDuplicates(char[] str) {
 		
-		
 		if(str == null) return;
 		
 		int len = str.length;

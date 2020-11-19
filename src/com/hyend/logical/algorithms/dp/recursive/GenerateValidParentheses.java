@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * https://leetcode.com/problems/generate-parentheses/
+ * 
  * Given a number of pairs. Generate all valid pairs of parentheses.
  * for e.g: numPairs = 2 then valid pair of parens are (()), ()()
  * 

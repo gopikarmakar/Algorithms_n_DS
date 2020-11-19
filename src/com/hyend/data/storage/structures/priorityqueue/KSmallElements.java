@@ -1,8 +1,10 @@
 package com.hyend.data.storage.structures.priorityqueue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.PriorityQueue;
 import com.hyend.data.storage.search.FindKthSmallestElement;
 
@@ -38,7 +40,9 @@ public class KSmallElements {
 			if(maxPQ.size() > k)
 				maxPQ.remove();					
 		}		
-		return maxPQ;
+		List<Integer> list = new ArrayList<>(maxPQ);
+		Collections.sort(list);
+		return list;
 	}
 	
 	/**

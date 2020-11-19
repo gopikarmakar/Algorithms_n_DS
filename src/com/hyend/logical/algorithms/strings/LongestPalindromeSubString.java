@@ -9,8 +9,8 @@ public class LongestPalindromeSubString {
 	
 	public static void main(String[] args) {
 		
-		String s = "babad";
-		//String s = "forgeeksskeegfor";
+		//String s = "babad";
+		String s = "forgeeksskeegfor";
 		System.out.println(palindromicSubString(s));
 	}
 	
@@ -29,7 +29,6 @@ public class LongestPalindromeSubString {
 		
 		for(int i = 1; i < length; i++) {
 					
-			
 			/**
 			 * Find the longest even length palindrome with
 			 * center points as i-1 and i.
@@ -38,9 +37,9 @@ public class LongestPalindromeSubString {
 			high = i;
 			while(low >= 0 && high < length && s.charAt(low) == s.charAt(high)) {
 				
-				if((high-low)+1 > totalLength) {
+				if((high-low) + 1 > totalLength) {
 					start = low;
-					totalLength = high-low+1; 
+					totalLength = high-low + 1; 
 				}
 				--low;
 				++high;

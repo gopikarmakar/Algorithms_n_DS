@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
+ * https://leetcode.com/problems/permutations-ii/
+ * 
  * Asked by Google, Microsoft and FaceBook
  * 
  * Compute all unique permutations, when the given array 
@@ -20,8 +22,9 @@ public class ComputeAllUniquePermutations {
 
 	public static void main(String[] args) {
 		
-		//Integer[] arr = {2,2,3,0};
+		//Integer[] arr = {1, 1};
 		Integer[] arr = {1, 1, 2};
+		//Integer[] arr = {2,2,3,0};		
 		
 		for(List<Integer> perm : uniquePermutations(Arrays.asList(arr))) {
 			System.out.println(perm);
@@ -43,9 +46,29 @@ public class ComputeAllUniquePermutations {
 		do {
 			//Adding first permutation
 			perms.add(new ArrayList<>(perm));
-			perm = ComputeNextPermutaion.nextPermutation(perm);
+			perm = nextPermutation(perm);
 			
 		} while(!perm.isEmpty());
 		return perms;
+	}
+	
+	public static List<Integer> nextPermutation(List<Integer> nums) {
+		
+		int k = nums.size()-2;			
+		while(k >= 0 && (nums.get(k) >= nums.get(k+1))) {
+			k--;
+		}
+		if(k < 0) {
+			return Collections.emptyList();
+		}
+		for(int i = nums.size()-1; i > k; --i) {
+			
+			if(nums.get(i) > nums.get(k)) {
+				Collections.swap(nums, i, k);
+				break;
+			}
+		}		
+		Collections.reverse(nums.subList(k+1, nums.size()));
+		return nums;
 	}
 }

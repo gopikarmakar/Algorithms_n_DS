@@ -28,6 +28,10 @@ public class SequenceGeneration {
 		
 		DirectedGraph<Integer> diGraph = BuildDirectedGraph.buildVertexGraph(sequence3);
 		
+		diGraph.getVertexGraph().forEach(e -> {
+			System.out.println(e);
+		});
+		
 		List<Integer> list = new ArrayList<>();
 		for(Vertex<Integer> v : diGraph.getVertexGraph()) {
 			

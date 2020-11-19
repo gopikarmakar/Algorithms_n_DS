@@ -24,8 +24,10 @@ public class ComputeNextPermutaion {
 
 	public static void main(String[] args) {
 		
-		Integer[] arr = {1, 0, 3, 2};
-		System.out.println("Next Permutation  = " + nextPermutation(Arrays.asList(arr)));
+		Integer[] nums = {3, 2, 1};
+		//Integer[] nums = {5, 1, 1};
+		//Integer[] nums = {1, 0, 3, 2};
+		System.out.println("Next Permutation  = " + nextPermutation(Arrays.asList(nums)));
 	}
 	
 	/**	 
@@ -33,26 +35,31 @@ public class ComputeNextPermutaion {
 	 * so the time complexity is O(n)
 	 * We used few local variables, so the additional space complexity is O(1).
 	 * 
-	 * @param perm
+	 * @param nums
 	 * @return
 	 */
-	public static List<Integer> nextPermutation(List<Integer> perm) {
+	public static List<Integer> nextPermutation(List<Integer> nums) {
 		
-		int k = perm.size()-2;			
-		while(k >= 0 && (perm.get(k) >= perm.get(k+1))) {
+		if(nums.size() < 2) return nums;
+		
+		int k = nums.size()-2;			
+		while(k >= 0 && (nums.get(k) >= nums.get(k+1))) {
 			k--;
 		}
-		if(k < 0) {
-			return Collections.emptyList();
+		
+		if(k >= 0) {
+			for(int i = nums.size()-1; i > k; --i) {
+				
+				if(nums.get(i) > nums.get(k)) {
+					Collections.swap(nums, i, k);
+					break;
+				}
+			}		
+			Collections.reverse(nums.subList(k+1, nums.size()));
 		}
-		for(int i = perm.size()-1; i > k; --i) {
-			
-			if(perm.get(i) > perm.get(k)) {
-				Collections.swap(perm, i, k);
-				break;
-			}
-		}		
-		Collections.reverse(perm.subList(k+1, perm.size()));
-		return perm;
+		else {
+			Collections.reverse(nums);
+		}
+		return nums;			
 	}
 }

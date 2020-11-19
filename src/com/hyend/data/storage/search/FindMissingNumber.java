@@ -14,11 +14,15 @@ public class FindMissingNumber {
 		int[] arr = {0,1};
 		int[] arr1 = {3, 0, 1};
 		int[] arr2 = {9,6,4,2,3,5,7,0,1};
+		int[] arr4 = {0, 1, 2, 3};
+		int[] arr5 = {-1, -3};
+		int[] arr3 = {1, 3, 6, 4, 1, 2, 0};
 		
-		System.out.println(find(arr));
+		System.out.println(find(arr5));
 		
-		System.out.println(missingNumber(arr));
+		System.out.println(missingNumber(arr3));
 	}
+	
 	/**
 	 * 1st solution: Faster than 28.45% and Memory usage
 	 * less than 11.36% of Java submissions on LeetCode.
@@ -38,7 +42,7 @@ public class FindMissingNumber {
 			}
 			else i++;
 		}	
-		for(i = 0; i < arr.length; i++) {
+		for(i = 1; i < arr.length; i++) {
 			
 			if(arr[i] != i)
 				return i;

@@ -15,8 +15,8 @@ public class FindNearestRepeatedEntry {
 		
 		String[] paragraph = {"All", "work", "and", "no", "play", "makes", "for", "no", "work", "no", "fun", "and", "no", "results"};
 		
-		NearestRepeated nr = findNearestRepetetion(paragraph);
-		System.out.println("For = " + nr.word + " Nearest Repeated Distance = " + nr.distance);
+		NearestRepeated nrw = findNearestRepetetion(paragraph);
+		System.out.println(nrw.word + " Is the nearest Repeated Distance = " + nrw.distance);
 	}
 	
 	public static class NearestRepeated {

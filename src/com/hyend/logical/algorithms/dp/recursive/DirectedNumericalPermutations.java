@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * https://leetcode.com/problems/permutations/
+ * 
  * Compute all the permutations of a given integer array in dictionary order.
  * For e.g: {1,2,3} = {{1,2,3}, {1,3,2}, {2,1,3}, {2,3,1}, {3,1,2}, {3,2,1}} 
  * 
@@ -15,11 +17,12 @@ public class DirectedNumericalPermutations {
 
 	public static void main(String[] args) {
 		
-		Integer[] arr = {1, 2, 3, 4};
-		List<List<Integer>> perms = new ArrayList<>();
-		permutations(0, Arrays.asList(arr), perms);
+		Integer[] nums = {1, 2, 3};
 		
-		for(List<Integer> perm : perms) {
+		List<List<Integer>> result = new ArrayList<>();
+		permutations(0, Arrays.asList( nums), result);
+		
+		for(List<Integer> perm : result) {
 			System.out.println(perm);
 		}
 	}
@@ -32,22 +35,22 @@ public class DirectedNumericalPermutations {
 	 * computation per call outside of the recursive calls and
 	 * permutations of any n takes n! time.
 	 */
-	public static void permutations(int i, List<Integer> perm, 
-			List<List<Integer>> perms) {
+	public static void permutations(int offset, List<Integer> nums, 
+			List<List<Integer>> result) {
 		
-		if(i == perm.size()-1) {
-			perms.add(new ArrayList<>(perm));
+		if(offset == nums.size()-1) {
+			result.add(new ArrayList<>(nums));			
 			return;
 		}
 		
 		//Try every possibility for A[i].
-		for(int j = i; j < perm.size(); ++j) {
+		for(int i = offset; i < nums.size(); ++i) {
 			
-			Collections.swap(perm, i, j);
+			Collections.swap(nums, offset, i);
 			
-			permutations(i+1, perm, perms);
+			permutations(offset+1, nums, result);
 			
-			Collections.swap(perm, i, j);
+			Collections.swap(nums, offset, i);
 		}
 	}
 }

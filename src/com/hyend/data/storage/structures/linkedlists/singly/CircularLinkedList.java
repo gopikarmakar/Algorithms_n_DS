@@ -53,19 +53,19 @@ public class CircularLinkedList {
 		
 		SinglyLinkedList<Integer> sll = new SinglyLinkedList<>();
 		
-		/*for(int i = 1; i <= 10; ++i) {
+		for(int i = 1; i <= 10; ++i) {
 			
 			sll.add(i);
 		}
 		// Creating cycle
-		sll.tail.next = sll.head.next.next.next.next;*/
+		sll.tail.next = sll.head.next.next.next.next;
 		
-		for(int i = 1; i <= 4; ++i) {
+		/*for(int i = 1; i <= 4; ++i) {
 			
 			sll.add(i);
 		}
 		// Creating cycle
-		sll.tail.next = sll.head.next;
+		sll.tail.next = sll.head.next;*/
 		
 		return sll;
 	}

@@ -45,8 +45,7 @@ public class BuildUndirectedGraph<V extends Comparable<V>> {
 		Integer[][] graph = {{0, 5}, {4, 3}, {0, 1}, {9, 12}, {6, 4},
 						 	 {5, 4}, {0, 2}, {11, 12}, {9, 10}, {0, 6},
 						 	 {7, 8}, {9, 11}, {5, 3}};
-		
-		
+				
 		return buildVertexGraph(graph);
 	}
 	
@@ -91,7 +90,7 @@ public class BuildUndirectedGraph<V extends Comparable<V>> {
 		return uGraph;
 	}	
 	
-	public static <V  extends Comparable<V>> UndirectedGraph<V> buildVertexGraph(V[][] data) {
+	public static <V extends Comparable<V>> UndirectedGraph<V> buildVertexGraph(V[][] data) {
 		
 		UndirectedGraph<V> uDiGraph = new UndirectedGraph<>();
 		BuildUndirectedGraph<V> helper = new BuildUndirectedGraph<V>();

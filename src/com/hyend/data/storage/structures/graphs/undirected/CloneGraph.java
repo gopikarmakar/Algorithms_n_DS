@@ -30,12 +30,18 @@ public class CloneGraph<V extends Comparable<V>> {
 		CloneGraph<Integer> clone = new CloneGraph<>();
 		
 		Vertex<Integer> v = clone.createSampleGraph(adjList);
+		
 		clone.dfs(v);
 		System.out.println("After DFS Clone : ");
-		System.out.println(clone.map);
+		clone.map.values().forEach(e -> {
+			System.out.println(e);
+		});
+		
 		clone.bfs(v);
 		System.out.println("After BFS Clone : ");
-		System.out.println(clone.map);		
+		clone.map.values().forEach(e -> {
+			System.out.println(e);
+		});		
 	}
 	
 	private Vertex<V> bfs(Vertex<V> v) {
@@ -94,7 +100,7 @@ public class CloneGraph<V extends Comparable<V>> {
 		int vertice = 1;     
 		for(int[] adj : adjList) {
 			
-			Vertex<Integer> v = graph.getOrDefault(vertice, new Vertex<Integer>(vertice));						
+			Vertex<Integer> v = graph.getOrDefault(vertice, new Vertex<Integer>(vertice));									
 			for(int i = 0; i < adj.length; ++i) {		
 				
 				Vertex<Integer> e = graph.getOrDefault(adj[i], new Vertex<Integer>(adj[i]));
@@ -102,12 +108,13 @@ public class CloneGraph<V extends Comparable<V>> {
 				e.edges.add(v);
 				graph.put(e.v, e);
 			}
-			graph.put(v.v, v);
+			//graph.put(v.v, v);
 			vertice++;
 		}
 
 		Vertex<Integer> v = graph.entrySet().iterator().next().getValue();
-		System.out.println(graph);
+		//System.out.println(graph.size());
+		System.out.println(graph);		
 		return v;
 	}
 }

@@ -27,8 +27,10 @@ public class RemoveANodeWithoutHeadPointer {
 	 */
 	private static Node<Integer> remove(Node<Integer> node) {
 		
-		if(node == null || node.next == null)
+		if(node == null || node.next == null) {
+			node = null;
 			return null;
+		}
 		
 		Node<Integer> next = node.next;
 		node.k = next.k;

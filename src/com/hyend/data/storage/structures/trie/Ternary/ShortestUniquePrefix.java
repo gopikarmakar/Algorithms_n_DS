@@ -42,7 +42,7 @@ public class ShortestUniquePrefix {
 							
 		int length = crawlTrie(trie, query, 0, 0);
 		
-		return (length == query.length()) ? "" : query.substring(0, length+1);
+		return (length == query.length()-1) ? "N.A" : query.substring(0, length+2);
 	}
 	
 	private static int crawlTrie(Node<Character, String> node, String query, int d, int length) {
@@ -57,7 +57,7 @@ public class ShortestUniquePrefix {
 							
 		else if(ch > node.k)				return crawlTrie(node.right, query, d, length);
 			
-		else if(d < query.length()-1)		return crawlTrie(node.mid, query, d+1, length+1);
+		else if(d < query.length()-1)		return crawlTrie(node.mid, query, d+1, length);
 			
 		else 								return length;
 	}

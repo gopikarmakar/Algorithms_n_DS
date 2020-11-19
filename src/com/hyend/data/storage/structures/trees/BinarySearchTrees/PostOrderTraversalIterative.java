@@ -25,7 +25,6 @@ public class PostOrderTraversalIterative {
 		Stack<Node<?, ?>> stack = new Stack<>();
 		stack.add(tree);
 		
-		//Stack<Node<?, ?>> nodes = new Stack<>();
 		List<Node<?, ?>> nodes = new ArrayList<>();
 		
 		while(!stack.isEmpty()) {
@@ -34,19 +33,13 @@ public class PostOrderTraversalIterative {
 			
 			if(current != null) {
 				
-				nodes.add(current);				
+				nodes.add(0, current);	// Reversing the list.			
 				stack.add(current.left);
 				stack.add(current.right);
 			}
 		}
 		
-		/*while(!nodes.isEmpty()) {
-			
-			Node<?, ?> node = nodes.pop();
-			BinarySearchTree.print(node, withParent);
-		}*/		
-		
-		Collections.reverse(nodes);
+		//Collections.reverse(nodes);
 		
 		for(int i = 0; i < nodes.size(); ++i) {
 			BinarySearchTree.print(nodes.get(i), withParent);

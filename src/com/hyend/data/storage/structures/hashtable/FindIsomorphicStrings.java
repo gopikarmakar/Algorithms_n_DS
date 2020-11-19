@@ -34,14 +34,10 @@ public class FindIsomorphicStrings {
 		//String[] input = {"foo", "paper", "egg", "bar", "title", "add"};
 		String[] input = {"banana", "paper", "egg", "foo", "apple", "cat", 
 						  "apply", "bat", "add", "title", "bar"};
-		
+				
 		findIsomorphic(input).forEach(e -> {
 			
-			e.forEach(x -> {
-				
-				System.out.print(x + " ");
-			});
-			System.out.println();
+			System.out.println("\n" + e);
 		});
 	}
 

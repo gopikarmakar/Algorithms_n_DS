@@ -12,12 +12,48 @@ package com.hyend.logical.algorithms.strings;
  */
 public class KMPSubstringPatternSearch {
 	
+	public static void main(String[] args) {
+		
+		String s = "abcxabcdabcdabcy";
+		String pattern = "abcdabcy";
+		
+		System.out.println(isKMPPatternFound(s, pattern));
+	}
+	
+	/**
+	 * "abcxabcdabcdabcy"
+	 * @param text
+	 * @param pattern
+	 * @return
+	 */
+	public static boolean isKMPPatternFound(String text, String pattern) {
+		
+		boolean status = false;		
+		int[] lps = createSuffixArray(pattern);
+		
+		int i = 0, j = 0;
+		while((i < text.length() && j< pattern.length())) {
+			
+			if(text.charAt(i) == pattern.charAt(j)) {
+				i+=1; j+=1;
+			}
+			else {
+				if(j != 0) j = lps[j-1];
+				else i+=1;			
+			}
+		}
+		if(j == pattern.length())
+			status = true;
+		
+		return status;
+	}
+	
 	/**
      * Compute temporary array to maintain size of suffix which is same as prefix
      * Time/space complexity is O(n) where n = size of pattern.     
      * "abcdabcy"
      */
-	private int[] createSuffixArray(String pattern) {
+	private static int[] createSuffixArray(String pattern) {
 	
 		int[] lps = new int[pattern.length()];
 		int index = 0;
@@ -39,33 +75,5 @@ public class KMPSubstringPatternSearch {
 			}
 		}
 		return lps;
-	}
-	
-	/**
-	 * "abcxabcdabcdabcy"
-	 * @param text
-	 * @param pattern
-	 * @return
-	 */
-	public boolean isKMPPatternFound(String text, String pattern) {
-		
-		boolean status = false;		
-		int[] lps = createSuffixArray(pattern);
-		
-		int i = 0, j = 0;
-		while((i < text.length() && j< pattern.length())) {
-			
-			if(text.charAt(i) == pattern.charAt(j)) {
-				i+=1; j+=1;
-			}
-			else {
-				if(j != 0) j = lps[j-1];
-				else i+=1;			
-			}
-		}
-		if(j == pattern.length())
-			status = true;
-		
-		return status;
 	}
 }

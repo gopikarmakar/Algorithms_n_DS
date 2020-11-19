@@ -1,12 +1,23 @@
 package com.hyend.logical.algorithms.strings;
 
+/**
+ * @author gopi_karmakar
+ */
 public class HasStringAllUniqueChars {
 	
-	public boolean areAllCharsUnique(String str) {
+	public static void main(String[] args) {
+		
+		String s = "education";
+		//String s = "a man, a plan, a canal: Panama.";
+		System.out.println(areAllCharsUnique(s));
+	}
+	
+	public static boolean areAllCharsUnique(String s) {
 	
 		boolean char_set[] = new boolean[256];
-		char word[] = str.toCharArray();
-		for (char ch : word) {
+		
+		for (char ch : s.toCharArray()) {
+			
 			int val = ch;
 			if(char_set[val]) return false;
 			char_set[val] = true;
@@ -14,3 +25,4 @@ public class HasStringAllUniqueChars {
 		return true;
 	}
 }
+

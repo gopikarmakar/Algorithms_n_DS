@@ -1,7 +1,8 @@
 package com.hyend.logical.algorithms.dp.recursive;
 
-/**
- * You are climbing stairs. You can advance 1 to k steps at a time. Your destination is exactly n steps up.
+/** 
+ * You are climbing stairs. You can advance 1 to k steps at a time. 
+ * Your destination is exactly n steps up.
  * 
  * Write a program which takes as inputs n and k and returns the number of ways 
  * in which you can get to your destination. For example, if n = 4 and k = 2, 
@@ -14,11 +15,12 @@ package com.hyend.logical.algorithms.dp.recursive;
  * 
  * @author gopi_karmakar
  */
-public class Staircase {
-	
+public class ClimbingStairsII {
+
 	public static void main(String[] args) {
 		
-		int result = numberOfWays(4, 2, new int[4 + 1]);
+		int n = 3, k = 3;
+		int result = numberOfWays(n, k, new int[n + 1]);
 		
 		System.out.println(result);
 	}

@@ -12,8 +12,8 @@ public class FindLongestConsecutiveSequence {
 
 	public static void main(String[] args) {
 		
-		//int[] arr = {100, 4, 200, 1, 3, 2};
-		int[] arr = {-1, 0};
+		int[] arr = {100, 4, 200, 1, 3, 2};
+		//int[] arr = {-1, 0};
 		System.out.println(find(arr));
 	}
 	

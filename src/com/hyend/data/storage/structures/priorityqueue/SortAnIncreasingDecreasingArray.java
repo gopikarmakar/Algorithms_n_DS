@@ -55,6 +55,6 @@ public class SortAnIncreasingDecreasingArray {
 								SubArrayType.DECREASING : SubArrayType.INCREASING;
 			}
 		}		
-		return MergeKSortedArrays.mergeSortedLists(lists);
+		return new MergeKSortedArrays<Integer>().mergeKSortedLists(lists);
 	}		
 }

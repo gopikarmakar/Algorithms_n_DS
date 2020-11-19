@@ -11,8 +11,7 @@ public class TestStrings {
 		//System.out.println(isRotation.isRotation("waterbottle", "erbottlewat"));
 		
 		//AnagramString anagram = new AnagramString();
-		//boolean val = anagram.isItAnagramString("INTEGRAL", "TRIANGLE");¥
-		
+		//boolean val = anagram.isItAnagramString("INTEGRAL", "TRIANGLE");
 		
 		//System.out.println(new ZigZagConversion().convert("paypalishiring", 4));
 		

@@ -78,7 +78,7 @@ public class StronglyConnectedVertices {
 	 */
 	private void dfs(Vertex<String> v, Stack<Vertex<String>> stack) {
 		
-		if(v == null) return;
+		//if(v == null) return;
 		
 		v.visited = true;		
 		for(Vertex<String> e : v.edges) {
@@ -94,7 +94,7 @@ public class StronglyConnectedVertices {
 	
 	private void dfs(Vertex<String> v, List<Vertex<String>> list) {
 		
-		if(v == null) return;
+		//if(v == null) return;
 		
 		v.visited = true;		
 		for(Vertex<String> e : v.edges) {

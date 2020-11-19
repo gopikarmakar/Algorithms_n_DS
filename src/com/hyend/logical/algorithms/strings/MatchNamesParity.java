@@ -10,7 +10,8 @@ import java.util.List;
  */
 public class MatchNamesParity {
 	
-	public List<Integer> prefix(List<String> inputs) {		
+	public List<Integer> prefix(List<String> inputs) {	
+		
 		List<Integer> list = new ArrayList<>();
 		List<Integer> total = new ArrayList<>();		
 		for(String str : inputs) {

@@ -19,7 +19,7 @@ public class LongestContainedInterval {
 
 	public static void main(String[] args) {
 		
-		Integer[] arr = {3, -2, 7, 9, 8, 1, 2, 0, -1, 5, 8};
+		Integer[] arr = {3, -2, 7, 9, 8, 1, 2, 0, -1, 5, 8};		
 		System.out.println("Maximum Length = " + find(arr));		
 	}
 	

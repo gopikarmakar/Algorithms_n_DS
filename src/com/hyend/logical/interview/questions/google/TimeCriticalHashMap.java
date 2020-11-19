@@ -107,7 +107,7 @@ public class TimeCriticalHashMap<K extends Comparable<K>, V>
 		
 		Element<K, V> e = this.getOrDefault(k, new Element<>(k, v));
 		e.updateTime();
-		super.put(k, e);
+		this.put(k, e);
 		return v;
 	}
 	
@@ -118,7 +118,7 @@ public class TimeCriticalHashMap<K extends Comparable<K>, V>
 		
 		Element<K, V> e = super.remove(k);
 		if(e == null)
-			throw new NoSuchElementException("Item removed since It was too old to be in the pool");									
+			throw new NoSuchElementException("Either the Key is not found or the item has been removed since It was too old to be in the pool");									
 		
 		long diff = getCurrentTime() - e.time;
 		

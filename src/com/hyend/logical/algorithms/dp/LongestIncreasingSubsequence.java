@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
+ * https://leetcode.com/problems/longest-increasing-subsequence/
+ * 
  * Solution: Find the longest increasing or non decreasing subsequence for a given array.
  *  
  * for e.g: There are some longest increasing sub sequences from the below array are:
@@ -12,8 +14,6 @@ import java.util.Collections;
  * {0,2,10,14} {0,2,6,9} {0,12,14} {0,10,14} {0,6,9}.
  * 
  * Therefore the longest subsequence length is of 4 so should return 4.
- * 
- * https://leetcode.com/problems/longest-increasing-subsequence/
  * 
  * @author gopi_karmakar
  */

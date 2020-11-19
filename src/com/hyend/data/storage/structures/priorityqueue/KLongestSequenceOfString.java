@@ -36,7 +36,8 @@ public class KLongestSequenceOfString {
 		});*/
 
 		// Using primitive data type lambda comparator. 
-		PriorityQueue<String> pq = new PriorityQueue<>(k, Comparator.comparing(String::length));
+		//PriorityQueue<String> pq = new PriorityQueue<>(k, Comparator.comparing(String::length));
+		PriorityQueue<String> pq = new PriorityQueue<>(k, (a, b)-> a.length() - b.length());
 		for(String s : seq) {
 			
 			pq.add(s);				

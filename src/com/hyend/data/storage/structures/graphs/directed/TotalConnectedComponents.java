@@ -21,7 +21,7 @@ public class TotalConnectedComponents {
 	
 	private static void dfs(Vertex<Integer> v) {
 		
-		if(v == null) return;
+		//if(v == null) return;
 		
 		v.visited = true;
 		for(Vertex<Integer> e : v.edges) {

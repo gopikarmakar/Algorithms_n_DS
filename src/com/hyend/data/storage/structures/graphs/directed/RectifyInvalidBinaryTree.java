@@ -68,8 +68,10 @@ public class RectifyInvalidBinaryTree<V> {
 					 * Since the ConcurrentModificationException can occur if we modify 
 					 * graph while traversing else take the copy of graph and modify the copy and return.
 					 */
-					diGraph.disconnectVertices(v, e);					
-					return diGraph;					
+					if(v != e) {
+						diGraph.disconnectVertices(v, e);					
+						return diGraph;
+					}
 				}
 			}
 		}

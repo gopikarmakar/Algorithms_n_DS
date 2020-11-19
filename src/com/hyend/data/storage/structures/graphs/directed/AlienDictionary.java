@@ -35,6 +35,7 @@ public class AlienDictionary {
 			if(v.color == Color.WHITE && aDict.hasCycle(v, s))
 				System.out.println("Not Possible");
 		}		
+		System.out.println();
 		while(!s.isEmpty()) {
 			System.out.println(s.pop().v);
 		}
@@ -79,7 +80,9 @@ public class AlienDictionary {
 				}
 			}
 		}
-		System.out.println(graph);
+		graph.forEach(e -> {
+			System.out.println(e);
+		});
 		return graph;
 	}
 	

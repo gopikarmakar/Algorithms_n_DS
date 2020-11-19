@@ -4,10 +4,11 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 
 /**
+ * A Google India Interview Question
+ * 
  * Compute the running median of a stream of numbers
  * 
  * @author gopi_karmakar
- *
  */
 public class MedianFromOnlineDataStream {
 	

@@ -9,6 +9,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 import com.hyend.data.storage.structures.graphs.Vertex;
+import com.hyend.data.storage.structures.graphs.Vertex.Color;
 
 /**
  * Given a list of academic programs sort the list in precedence order.
@@ -42,11 +43,11 @@ public class TopologicalSort {
 		
 		Stack<Vertex<String>> stack = new Stack<>();
 		
-		for(Vertex<String> v : diGraph.getVertexGraph()) {						
-				
-			if(!v.visited)
-				topologicalSort(v, stack);
-		}		
+		for(Vertex<String> v : diGraph.getVertexGraph()) {
+			
+			if(v.color == Color.WHITE) 
+				topological(v, stack);				
+		}
 		
 		System.out.println();
 		
@@ -58,17 +59,21 @@ public class TopologicalSort {
 	/**
 	 * The topological ordering computation is O(V + E) and dominates the computation time.
 	 */
-	public static void topologicalSort(Vertex<String> v, Stack<Vertex<String>> stack) {
-
-		v.visited = true;
+	private static boolean topological(Vertex<String> v, Stack<Vertex<String>> stack) {
 		
-		for(Vertex<String> e: v.edges) {					
-			
-			if(!e.visited) {
-				
-				topologicalSort(e, stack);
+		if(v.color == Color.GRAY)
+			return true;
+		
+		v.color = Color.GRAY;
+		
+		for(Vertex<String> e : v.edges) {			
+			if(e.color != Color.BLACK) {
+				if(topological(e, stack))
+					return true;
 			}
-		}		
+		}
+		v.color = Color.BLACK;
 		stack.push(v);
-	}	
+		return false;
+	}
 }

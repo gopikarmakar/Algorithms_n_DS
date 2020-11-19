@@ -2,8 +2,6 @@ package com.hyend.logical.algorithms.strings;
 
 import java.util.Arrays;
 
-import junit.framework.Assert;
-
 /**
  * Print the Sinusoidally (Snake/ZigZag) string of the given string under given rows. 
  * 
@@ -29,10 +27,6 @@ public class ZigZagConversion {
 	/**
 	 * O(n) time complexity solution with,
 	 * O(n) extra space 
-	 * 
-	 * @param s
-	 * @param numRows
-	 * @return
 	 */
 	private static String convert(String s, int numRows) {
 		
