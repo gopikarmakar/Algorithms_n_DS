@@ -15,8 +15,9 @@ public class AreThreeBSTNodesTotallyOrdered {
 		Node<Integer, ?> node1 = tree.left;
 		Node<Integer, ?> middle = tree.left.right;
 		//Node<Integer, ?> middle = tree.left.left;
-		Node<Integer, ?> node2 = tree.left.right.left.left;
+		Node<Integer, ?> node2 = tree.left.right.right;
 		
+		System.out.println("Node1 = " + node1.key + " Middle = " +  middle.key + " Node2 = " + node2.key);
 		System.out.println(areOrdered(node1, node2, middle));
 		
 	}
@@ -58,11 +59,11 @@ public class AreThreeBSTNodesTotallyOrdered {
 		 * lie between either of node1 or node2, now we just need to find  
 		 * from which node has a path to middle node.		 
 		 */
-		return (search1 == middle) ? searhTarget(middle, node2) : searhTarget(middle, node1);
+		return (search1 == middle) ? searchTarget(middle, node2) : searchTarget(middle, node1);
 								
 	}
 	
-	private static boolean searhTarget(Node<Integer, ?> from, Node<Integer, ?> target) {
+	private static boolean searchTarget(Node<Integer, ?> from, Node<Integer, ?> target) {
 		
 		while(from != null &&  from != target) {
 			from = (from.key < target.key) ? from.right : from.left;

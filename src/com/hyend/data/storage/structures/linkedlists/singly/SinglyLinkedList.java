@@ -29,6 +29,16 @@ public class SinglyLinkedList<K> {
 		
 		return linkedList;
 	}
+	
+	public static <K> SinglyLinkedList<K> create(K[] keys) {
+		
+		SinglyLinkedList<K> linkedList = new SinglyLinkedList<>();
+		
+		for(K k : keys)
+			linkedList.add(k);
+		
+		return linkedList;
+	}
 						
 	public void add(K k) {		
 		size += 1;
@@ -54,7 +64,7 @@ public class SinglyLinkedList<K> {
 		}
 	}
 	
-	public void print(Node<K> head) {
+	public static <K> void print(Node<K> head) {
 		
 		Node<K> node = head;
 		while(node != null) {						

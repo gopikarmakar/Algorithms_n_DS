@@ -1,4 +1,4 @@
-package com.hyend.data.storage.sort;
+package com.hyend.data.storage.structures.hashtable;
 
 import java.util.ArrayList;
 import java.util.Collections;

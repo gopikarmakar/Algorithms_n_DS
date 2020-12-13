@@ -21,8 +21,10 @@ public class PalindromicDecompositions {
 		
 		String s2 = "aabbc";
 		
+		String s3 = "aaa";
+		
 		List<List<String>> result = new ArrayList<List<String>>();
-		decompositions(0, s2, new ArrayList<>(), result);
+		decompositions(0, s3, new ArrayList<>(), result);
 		
 		for(List<String> list : result) {
 			System.out.println(list);

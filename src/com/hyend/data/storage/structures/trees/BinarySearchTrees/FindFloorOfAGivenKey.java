@@ -16,7 +16,7 @@ public class FindFloorOfAGivenKey {
 		
 		Node<Integer, ?> bst = BinarySearchTree.createDefault();
 		
-		System.out.println("Floor " + findFloor(bst, 37));
+		System.out.println("Floor " + findFloor(bst, 17));
 	}
 	
 	/**

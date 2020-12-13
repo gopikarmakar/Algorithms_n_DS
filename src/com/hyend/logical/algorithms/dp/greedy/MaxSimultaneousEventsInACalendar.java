@@ -1,7 +1,6 @@
-package com.hyend.data.storage.sort;
+package com.hyend.logical.algorithms.dp.greedy;
 
 import java.util.List;
-import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,16 +16,14 @@ public class MaxSimultaneousEventsInACalendar {
 
 	public static void main(String[] args) {
 		
-		//int[][] intervals = {{10, 12}, {11, 12}, {12, 14}};
-		int[][] intervals = {{10, 20}, {50, 60}, {10, 40}, {5, 15}, {5, 10}, {25, 55}};
+		int[][] intervals = {{10, 12}, {11, 12}, {12, 14}};
+		//int[][] intervals = {{10, 20}, {50, 60}, {10, 40}, {5, 15}, {5, 10}, {25, 55}};
 		//int[][] intervals = {{6, 10}, {9, 17}, {8, 9}, {4, 5}, {1, 5}, {12, 15}, {11, 13}, {2, 7}, {14, 15}};		
 		
-		MaxSimultaneousEventsInACalendar events = new MaxSimultaneousEventsInACalendar();
-		
-		System.out.println(events.find(intervals));			
+		System.out.println(find(intervals));			
 	}
 	
-	private class EndPoint implements Comparable<EndPoint> {
+	private static class EndPoint implements Comparable<EndPoint> {
 		
 		int time;
 		boolean isStart;
@@ -51,7 +48,7 @@ public class MaxSimultaneousEventsInACalendar {
 		}
 	}
 	
-	private int find(int[][] intervals) {
+	private static int find(int[][] intervals) {
 		
 		List<EndPoint> list = new ArrayList<>();
 		
@@ -68,13 +65,14 @@ public class MaxSimultaneousEventsInACalendar {
 	 * the sorted array takes 0(n) time, yielding an 0(n log n) time complexity 
 	 * The space complexity is 0(n), which is the size of the endpoint array.
 	 */
-	int maxParallelEvents = 0, parallelEventsRunning = 0;
-	private int compute(List<EndPoint> list) {
+	
+	private static int compute(List<EndPoint> list) {			
 		
 		Collections.sort(list);
 		System.out.println(list);
+		
+		int maxParallelEvents = 0, parallelEventsRunning = 0;
 				
-		HashMap<Integer, Integer> map = new HashMap<>();
 		for(EndPoint ep : list) {
 			
 			if(ep.isStart) {

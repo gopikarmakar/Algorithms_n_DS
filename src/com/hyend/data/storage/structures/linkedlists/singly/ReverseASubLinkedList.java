@@ -3,7 +3,7 @@ package com.hyend.data.storage.structures.linkedlists.singly;
 /**
  * Reverse a sub linked list.
  * 
- * @author gopi_karmakar PHR000900917336
+ * @author gopi_karmakar
  */
 public class ReverseASubLinkedList {
 
@@ -23,24 +23,27 @@ public class ReverseASubLinkedList {
 		
 		Node<Integer> dummyHead = new Node<Integer>(head);
 		
-		Node<Integer> current = dummyHead;
+		Node<Integer> subListHead = dummyHead;
 		
 		int k = 1;
 		
 		while(k++ < start) {
 			
-			current = current.next;
+			subListHead = subListHead.next;
 		}
 		
-		Node<Integer> prev = current.next;
+		//1->2->3->4->5->6->7->8->9->10		
+		
+		Node<Integer> prev = subListHead.next;
 		
 		while(++start < end) {
 						
 			Node<Integer> next = prev.next;
 			prev.next = next.next;
-			next.next = current.next;
-			current.next = next;	
+			next.next = subListHead.next;
+			subListHead.next = next;	
 		}
+				
 		return dummyHead.next;
 	}	
 }

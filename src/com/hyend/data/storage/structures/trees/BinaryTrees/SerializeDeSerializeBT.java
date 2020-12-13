@@ -4,68 +4,106 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 			5
+ * Facebook and Amazon Interview Question
+ * https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
+ *  
+ * 			1
  * 	2				3
- *				2		4
- *			3		1 
+ *				4		5
+ *			
  * @author gopi_karmakar
  */
 public class SerializeDeSerializeBT {
 
+	/**
+	 * Solution Accepted in Leetcode.	 
+	 */
 	public static void main(String[] args) {
 		
-		Integer[] keys = {5, 2, 3, null, null, 2, 4, 3, 1};
+		Integer[] keys = {1, 2, 3, null, null, 4, 5};
 				
 		Node<Integer> bt = BinaryTree.build(BinaryTree.SHORT_HEIGHTED, keys);
+		BinaryTree.printBFS(bt, true);
 		
 		String data = serialize(bt);
 		
 		System.out.println(data);
 		
-		BinaryTree.printBFS(deSerialize(data), false);
+		BinaryTree.printBFS(deSerialize(data), true);
 	}
 	
-	public static String serialize(Node<Integer> root) {
+	/**
+	 * Encoding tree with BFS
+	 */
+	public static String serialize(Node<Integer> root) {				
+
+		if(root == null) return "";
+		
+		StringBuilder sb = new StringBuilder();
 		
 		Queue<Node<Integer>> q = new LinkedList<>();
-		
-		String data = "";
-		
 		q.add(root);
 		
 		while(!q.isEmpty()) {
 			
-			Node<Integer> node = q.poll();					
+			int size = q.size();						
 			
-			if(node != null) {								
+			for(int i = 0; i < size; i++) {
 				
-				data += node.key + ",";
+				Node<Integer> node = q.poll();
 				
-				q.add(node.left);
-				q.add(node.right);
-			}
-			else {
-				data += node + ",";
+				if(node == null) {
+					sb.append("null");
+				}
+				else {
+					
+					sb.append("" + node.key);
+					q.add(node.left);
+					q.add(node.right);
+				}
+				sb.append(",");
 			}
 		}
-
-		return data.substring(0, data.length()-1);
+		
+		sb.deleteCharAt(sb.length()-1);
+		
+		return sb.toString();
 	}
 	
+	/**
+	 * Reconstructing tree with BFS.
+	 */
 	public static Node<Integer> deSerialize(String data) {
 		
-		String[] str = data.split(",");
-		Integer[] keys = new Integer[str.length];
+		if(data.length() == 0) return null;
 		
-		int i = 0;
-		for(String s : str) {
-						
-			//System.out.println((s.equals("null")) ? s : "s");
-			keys[i++] = s.equals("null") ? null : Integer.parseInt(s);
-		}
+		String[] keys = data.split(",");
 		
-		Node<Integer> root = BinaryTree.build(BinaryTree.SHORT_HEIGHTED, keys);
+		Node<Integer> root = new Node<>(Integer.parseInt(keys[0]));
 		
-		return root;
+		Queue<Node<Integer>> q = new LinkedList<>();
+		q.add(root);
+		
+		for(int i = 1; i < keys.length; i++) {
+			
+			Node<Integer> parent = q.poll();
+			
+			if(!keys[i].equals("null")) {
+				
+				Node<Integer> left = new Node<>(Integer.parseInt(keys[i]));
+				parent.left = left;
+				left.parent = parent;
+				q.add(left);
+			}
+			
+			if(!keys[++i].equals("null")) {
+				
+				Node<Integer> right = new Node<>(Integer.parseInt(keys[i]));
+				parent.right = right;
+				right.parent = parent;
+				q.add(right);
+			}
+		}		
+		return root;				
 	}
 }

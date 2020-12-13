@@ -2,7 +2,6 @@ package com.hyend.logical.algorithms.dp.greedy;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -52,40 +51,35 @@ public class IntervalCovering {
 	public static List<Integer> findMinimumVisits(int[][] tasks) {
 		
 		List<Interval> intervals = new ArrayList<>();
+		
 		for(int i = 0; i < tasks.length; i++) {
+			
 			intervals.add(new Interval(tasks[i][0], tasks[i][1]));			
 		}
 		
 		if(intervals.isEmpty())
 			return Collections.emptyList();
 		
-		sort(intervals);
+		Collections.sort(intervals, (a, b)-> Integer.compare(a.right, b.right));
+		
 		System.out.println(intervals);		
 		
 		int lastVisitTime = intervals.get(0).right;		
+		
 		List<Integer> OptimumVisits = new ArrayList<>();
+		
 		OptimumVisits.add(lastVisitTime);
 		
 		for(Interval interval : intervals) {
+			
 			 // The current right end point lastVisitTime, 
 			 // will not cover any more intervals
-			if(interval.left > lastVisitTime) {					 
+			if(interval.left > lastVisitTime) {		
+				
 				lastVisitTime = interval.right;
 				OptimumVisits.add(lastVisitTime);
 			}
 		}		
 		return OptimumVisits;
-	}
-	
-	private static void sort(List<Interval> intervals) {
-		
-		/*Collections.sort(intervals, new Comparator<Interval>() {
-			
-			@Override
-			public int compare(Interval i1, Interval i2) {
-				return Integer.compare(i1.right, i2.right);
-			}
-		});*/
-		Collections.sort(intervals, (a, b)-> Integer.compare(a.right, b.right));
 	}
 }

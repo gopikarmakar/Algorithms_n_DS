@@ -3,41 +3,44 @@ package com.hyend.data.storage.structures.trees.BinaryTrees;
 import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
+ * https://leetcode.com/problems/diameter-of-binary-tree/
+ * 
  * Calculate the diameter of the Binary Tree.
  * 
  * @author gopi_karmakar
  */
 public class DiameterOfABinaryTree {
 
+	private static int diameter = 0;
+	
 	public static void main(String[] args) {
 			
 		//Node<Integer> tree = BinaryTree.build(BinaryTree.RIGHT_LEANING);
 		Node<Integer> tree = BinaryTree.buildDefault();
+		
 		BinaryTree.printBFS(tree);
-		System.out.println("\nDiameter = " + diameter(tree, new Height()));
-	}
-	
-	private static class Height {
-		int height;
+		
+		diameter(tree);
+		
+		System.out.println("\nDiameter = " + diameter);
 	}
 	
 	/**
-	 * An O(h) time complexity solution
+	 * Get the length of right subtree and left subtree
+	 * compare total height of both subtrees to diameter
+	 * return max length left/right subtree to parent.
 	 * 
-	 * @param node
-	 * @param height
-	 * @return
-	 */
-	private static int diameter(Node<Integer> node, Height height) {
+	 * O(h) time complexity solution.
+	 */	
+	private static int diameter(Node<Integer> node) {
 		
 		if(node == null) return 0;
 				
-		Height lh = new Height();
-		Height rh = new Height();
-		int lDia = diameter(node.left, lh);
-		int rDia = diameter(node.right, rh);
+		int lh = diameter(node.left); 
+		int rh = diameter(node.right);
 		
-		height.height = Math.max(lh.height, rh.height) + 1;
-		return Math.max(Math.max(lDia, rDia), ((lh.height + rh.height) + 1)); 
+		diameter = Math.max(diameter, (lh + rh));
+		
+		return 1 + Math.max(lh, rh);
 	}
 }

@@ -8,7 +8,7 @@ import java.util.Collections;
 /**
  * https://leetcode.com/problems/permutations-ii/
  * 
- * Asked by Google, Microsoft and FaceBook
+ * A Google, Microsoft and FaceBook interview question
  * 
  * Compute all unique permutations, when the given array 
  * may have duplicates but the Permutations shouldn't repeat.
@@ -34,9 +34,6 @@ public class ComputeAllUniquePermutations {
 	/**
 	 * The time complexity is O(n X n!), since there are n! 
 	 * permutations and we spend O(n) time to store each one.
-	 * 
-	 * @param perm
-	 * @return
 	 */
 	private static List<List<Integer>> uniquePermutations(List<Integer> perm) {
 		

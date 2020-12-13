@@ -27,4 +27,9 @@ public class Node<K> {
 		this.next = next;
 		this.jump = jump;
 	}
+	
+	@Override
+	public String toString() {		
+		return "Key = " + k;
+	}
 }

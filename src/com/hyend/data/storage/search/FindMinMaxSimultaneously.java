@@ -21,6 +21,21 @@ public class FindMinMaxSimultaneously {
 		System.out.println("Min = " + minMax.min + " and Max = " + minMax.max);
 	}
 	
+	private static class MinMax {
+		
+		public int min, max;
+		
+		public MinMax(int min, int max) {
+			this.min = min;
+			this.max = max;
+		}
+		
+		public static MinMax minMax(int min, int max) {
+			
+			return (Integer.compare(max, min) < 0) ? new MinMax(max, min) : new MinMax(min, max);
+		}			
+	}
+	
 	/**
 	 * It's a streaming style implemented solution
 	 * with O(n) time complexity, O(1) extra space and
@@ -53,18 +68,5 @@ public class FindMinMaxSimultaneously {
 		return globalMinMax;				
 	}
 	
-	private static class MinMax {
-		
-		public int min, max;
-		
-		public MinMax(int min, int max) {
-			this.min = min;
-			this.max = max;
-		}
-		
-		public static MinMax minMax(int min, int max) {
-			
-			return (Integer.compare(max, min) < 0) ? new MinMax(max, min) : new MinMax(min, max);
-		}			
-	}
+	
 }

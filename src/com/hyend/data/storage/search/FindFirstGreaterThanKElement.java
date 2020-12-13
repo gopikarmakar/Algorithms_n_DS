@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 public class FindFirstGreaterThanKElement {
 
 	public static void main(String[] args) {
+		
 		int[] keys = {108, -14, 2, 285, 108, 401, 285, 243, -10, 285};
 		System.out.println(find(keys, -13));
 	}
@@ -26,7 +27,9 @@ public class FindFirstGreaterThanKElement {
 	 * but if the array is already sorted then the time complexity only be O(log n).
 	 */
 	private static int find(int[] keys, int k) {
+		
 		Arrays.sort(keys);
+		
 		if(k <= keys[0]) return keys[0];
 		else if(k >= keys[keys.length-1]) throw new NoSuchElementException();
 		else {
@@ -43,7 +46,7 @@ public class FindFirstGreaterThanKElement {
 			int mid = l + (r - l) / 2;			
 			
 			// If it equals then nothing to the left of mid can be the last right occurrence of k.
-			if(arr[mid] <= k) l = mid + 1; 
+			if(k >= arr[mid]) l = mid + 1; 
 				
 			else r = mid - 1;			
 		}		

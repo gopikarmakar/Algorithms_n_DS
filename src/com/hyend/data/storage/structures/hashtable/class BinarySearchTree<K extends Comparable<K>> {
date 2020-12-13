@@ -1,0 +1,133 @@
+class BinarySearchTree<K extends Comparable<K>> {
+	
+	private Node root == null;
+
+	public static void mian(String[] args) {
+
+		BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+		Integer[] keys = {19, 7, 43, 3, 11, 23, 47, 2, 5, 17, 37, 53, 13, 29};
+
+		for(int k : keys) {
+			root = bst.create(root, null, k);
+		}
+	}
+
+	class Node {
+
+		K k;
+		Node left;
+		Node right;
+		Node parent;
+
+		public Node(K k) {
+			this.k = k;
+		}
+
+		public Node(Node parent, K k) {
+			this.k = k;
+			this.parent = parent;
+		}
+	}
+	
+	public Node create(Node node, node parent, K k) {
+
+		if(node == null) {
+
+			node = new Node(parent, k);
+			return node;
+		}
+
+		parent = node;
+
+		ibt cmp = k.compareTo(node.k);
+
+		if(cmp < 0)  node.left = create(node.left, parent, k);
+		else if(cmp > 0) node.right = create(node.right, parent, k);
+		else  node.k = k;
+
+		return node;
+	}
+
+	public Node convertDLLToBSt(LinkedList<K> dll) {
+
+		return convert(dll, 0, dll.size());
+	}
+
+	private Node convert(LinkedList<K> dll, int start, int end) {
+
+		if(start >= end) 
+			return null;
+
+		int mid = start + (end - start) / 2;
+
+		Node.left = convert(dll, start, mid);
+
+		Node current = new Node(k);
+
+		current.left = left;
+
+		if(current.left != null)
+			current.left.parent = current;
+
+		current.right = convert(dll, mid+1, end);
+
+		if(current.right != null)
+			current.right.parent = current;
+
+		return current;
+	}
+
+	public void convertBSTToSortedDLL(Node root) {
+
+		if(root == null) return;
+
+		convertBSTToSortedDLL(root.left)
+
+		add(root);
+
+		convertBSTToSortedDLL(root.right);
+
+	}
+
+	private Node head;
+	private Node tail;
+	private void addNode(Node node) {
+
+		Node temp = tail;
+		tail = node;
+
+		if(head == null) {
+			head = tail;
+			return;
+		}
+
+		temp.right = tail;
+		tail.left = temp;
+	}
+
+	public List<List<Node>> printBFS(Node root) {
+
+		Queue<Node> q = new LinkedList<>();
+		q.add(root);
+
+		List<List<Node>> result = new ArrayList<>():
+
+		while(!q.isEmpty()) {
+
+			int size = q.size();
+			List<Node> list = new ArrayList<>();
+
+			for(int i = 0; i < size; i++) {
+
+				Node e = q.poll();
+				list.add(e);
+
+				if(e.left != null) q.add(e.left);
+
+				if(e.right != null) q.add(e.right);
+			}
+			result.add(list);
+		}
+		return result;
+	} 
+}

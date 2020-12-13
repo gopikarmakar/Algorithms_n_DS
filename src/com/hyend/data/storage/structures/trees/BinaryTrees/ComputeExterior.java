@@ -59,8 +59,7 @@ public class ComputeExterior {
 			rightBoundaryAndLeaves(node.right, isBoundary, rightResult);
 			
 			if(isBoundary || isLeaf(node))
-				rightResult.add(node);
-						
+				rightResult.add(node);						
 		}		
 		return;		 
 	}

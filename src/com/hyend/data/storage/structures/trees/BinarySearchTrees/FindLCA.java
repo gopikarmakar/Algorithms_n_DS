@@ -12,13 +12,14 @@ public class FindLCA {
 
 	public static void main(String[] args) {
 		
-		Node<Integer, ?> tree = BinarySearchTree.createDefault();
+		Node<Integer, ?> root = BinarySearchTree.createDefault();
 		
-		Node<Integer, ?> node1 = tree.left.left.right;
-		//System.out.println(node1.key);
+		//Node<Integer, ?> node1 = root.left.left.right;
+		Node<Integer, ?> node1 = root.left.right;
+		System.out.println(node1.key);
 		
-		Node<Integer, ?> node2 = tree.left.right.right;
-		//System.out.println(node2.key);
+		Node<Integer, ?> node2 = root.left.right.right;
+		System.out.println(node2.key);
 				
 		Node<Integer, ?> lca = null;
 		
@@ -31,18 +32,18 @@ public class FindLCA {
 		/**
 		 * The basic four cases for a LCA in BST.
 		 */
-		if(node1.key == tree.key || node2.key == tree.key) {
-			lca = tree;			
+		if(node1.key == root.key || node2.key == root.key) {
+			lca = root;			
 		}
-		else if((node1.key < tree.key && node2.key > tree.key) ||
-				(node2.key < tree.key && node1.key > tree.key)) {
-			lca = tree;
+		else if((node1.key < root.key && node2.key > root.key) ||
+				(node2.key < root.key && node1.key > root.key)) {
+			lca = root;
 		}
-		else if(node1.key < tree.key && node2.key < tree.key) {
-			tree = tree.left;
+		else if(node1.key < root.key && node2.key < root.key) {
+			root = root.left;
 		}
-		else if(node1.key > tree.key && node2.key > tree.key) {
-			tree = tree.right;
+		else if(node1.key > root.key && node2.key > root.key) {
+			root = root.right;
 		}
 		
 		/**
@@ -52,7 +53,7 @@ public class FindLCA {
 		 * always will be, node1 <= node2.
 		 */
 		if(lca == null)			
-			lca = findLCA(tree, node1, node2);
+			lca = findLCA(root, node1, node2);
 		
 		System.out.println("LCA = " + lca.key);		
 	}
@@ -60,10 +61,10 @@ public class FindLCA {
 	/**
 	 * Time complexity will is O(h) where h is the height of the BST.
 	 */
-	private static Node<Integer, ?> findLCA(Node<Integer, ?> tree, 
+	private static Node<Integer, ?> findLCA(Node<Integer, ?> root, 
 											Node<Integer, ?> node1,
 											Node<Integer, ?> node2) {				
-		Node<Integer, ?> p = tree;
+		Node<Integer, ?> p = root;
 				
 		while(p.key < node1.key || p.key > node2.key) {
 			

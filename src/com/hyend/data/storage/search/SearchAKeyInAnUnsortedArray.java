@@ -8,7 +8,9 @@ package com.hyend.data.storage.search;
 public class SearchAKeyInAnUnsortedArray {
 	
 	public static void main(String[] args) {
+		
 		int[] arr = {3, 1, -1, 2, 7, 10, 4, 9, -3, -5};	
+		
 		System.out.println(linearSearch(arr, 0, arr.length, 7));
 		System.out.println(recursiveSearch(arr, 0, arr.length-1, 7));
 	}

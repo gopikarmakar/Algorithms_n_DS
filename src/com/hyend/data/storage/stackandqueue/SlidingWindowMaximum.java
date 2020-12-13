@@ -1,5 +1,6 @@
 package com.hyend.data.storage.stackandqueue;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -7,6 +8,9 @@ import java.util.List;
 
 /**
  * A Google Interview Question:
+ * 
+ * https://leetcode.com/problems/sliding-window-maximum/
+ * 
  * Sliding Window Maximum (Variant: Maximum from SubArrays of size k) 
  * For e.g:
  * Input arr[] : {1, 2, 3, 1, 4, 5, 2, 3, 6}
@@ -24,7 +28,7 @@ public class SlidingWindowMaximum {
 		//int arr[] = {1,3,-1,-3,5,3,2,7};
 		//int arr[] = {1, 2, 3, 1, 4, 5, 2, 3, 6};
 
-		//maxInSubArrayWindow(3, arr.length, arr);
+		maxInSubArrayWindow(3, arr.length, arr);
 		System.out.println(); 
 		System.out.println(maxInSlidingWindow(3, arr));
 	}
@@ -37,16 +41,16 @@ public class SlidingWindowMaximum {
 	public static List<Integer> maxInSlidingWindow(int w, int...arr) {
 		
 		List<Integer> list = new ArrayList<>();
-		Deque<Integer> deque = new LinkedList<>();
+		Deque<Integer> deque = new ArrayDeque<>();
 		
 		if(w == 0 || w > arr.length) return list;
 		
-	    for(int i = 0; i < arr.length; ++i){
+	    for(int i = 0; i < arr.length; i++){
 	    	
 	    	// Checking and removing the index from head which are out 
 	    	// Of this window boundary. In short when DQ.head < i+w
 	        if(!deque.isEmpty() && deque.peek() == i - w) 
-	            deque.poll();
+	            deque.removeFirst();
 	 
 	        while(!deque.isEmpty() && arr[deque.peekLast()] < arr[i]){
 	            deque.removeLast();
@@ -55,7 +59,7 @@ public class SlidingWindowMaximum {
 	        deque.addLast(i);
 	        
 	        if(i >= w-1)
-	        	list.add(arr[deque.peek()]);	        	       
+	        	list.add(arr[deque.peek()]);   	       
 	    }
 	    return list;
 	}

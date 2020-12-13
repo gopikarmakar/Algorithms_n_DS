@@ -63,4 +63,24 @@ public class BuildABinaryTreeInLevelOrder<K> {
 		}
 		return node;
 	}
+	
+	/**
+	 * Construct by expanding from center.
+	 */
+	public Node<K> build(K[] keys, Node<K> parent, int low, int high) {
+	    
+		if(low > high){
+	        return null;
+	    }
+		
+		double mid = Math.floor((low + high)/2);
+		int iMid = (int)mid;
+		
+		Node<K> node = new Node<>(keys[iMid], parent);
+		
+		node.left = build(keys, parent, low, iMid-1);
+		node.right = build(keys, parent, iMid+1, high);
+		
+		return node;
+	}
 }

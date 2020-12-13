@@ -16,18 +16,24 @@ import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
  */
 public class IsItHeightBalanced {
 	
+	private static int max = Integer.MIN_VALUE;
+	
 	public static void main(String[] args) {
 		
-		Node<Integer> tree = BinaryTree.buildDefault();
+		Node<Integer> root = BinaryTree.buildDefault();
 		
-		System.out.println("Is Height Balanced = " + (isHeightBalanced(tree) >= 0));
+		isHeightBalanced(root);
+		System.out.println("Is Height Balanced = " + (max < 2));
 
-		boolean status = isBalanced(tree);
+		boolean status = isBalanced(root);
 		System.out.println("Is It Balanced = " + status);
 	}
-	
+		
 	/**
-	 * An O(n) time complexity solution. 
+	 * An Efficient O(h) time complexity solution.
+	 *  
+	 * Accepted in Leetcode with 0ms 100% runtime and
+	 * 74% less memory usage among all Leetcode submissions.  
 	 */
 	private static int isHeightBalanced(Node<Integer> node) {
 		
@@ -36,21 +42,22 @@ public class IsItHeightBalanced {
 		}
 		
 		int lh = isHeightBalanced(node.left);
-		if(lh < 0) 
-			return -1;
 		
-		int rh = isHeightBalanced(node.right);
-		if(rh < 0)
-			return -1;
+		int rh = isHeightBalanced(node.right);		
 		
-		int diff = Math.abs(lh - rh);
-		return (diff <= 1) ? (lh + rh) + 1 : -1; 
+		max = Math.max(max, Math.abs(lh - rh));
+		
+		return Math.max(lh, rh) + 1; 
 	}
+		
 	
-	//#####################################################################################
+//##########################################################################################
 	/**
-	 * An another quite better Solution.
+	 * Another quite better Solution.
 	 * Since we cache the intermediate results. 
+	 * 
+	 * Accepted in Leetcode with 0ms 100% runtime but uses li'l more 
+	 * space as it's 9% less memory usage among all Leetcode submissions.
 	 */
 	private static boolean isBalanced(Node<Integer> root) {
 		return checkBalance(root).balanced;

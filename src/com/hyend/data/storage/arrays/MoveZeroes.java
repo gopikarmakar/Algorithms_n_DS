@@ -17,7 +17,9 @@ public class MoveZeroes {
 			System.out.println(e);
 	}
 	
-	// {0, 1, 0, 3, 12}
+	/**
+	 * Accepted in Leetcode with 0ms 100% runtime	 
+	 */
 	private static void move(int[] nums) {
 		
 		int left = 0;

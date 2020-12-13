@@ -3,12 +3,12 @@ package com.hyend.data.storage.structures.linkedlists.singly;
 /**
  * Google India Interview Question
  * 
+ * https://leetcode.com/problems/copy-list-with-random-pointer/
+ * 
  * A postings list is a singly linked list with an additional "jump" field at each node. 
  * The jump field can point to any other node.
  * 
  * Variant: Clone a linked list when a node's reference is also a value of any random node.  
- * 
- * https://leetcode.com/problems/copy-list-with-random-pointer/
  * 
  * @author gopi_karmakar
  */

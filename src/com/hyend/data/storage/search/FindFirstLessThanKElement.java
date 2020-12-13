@@ -46,7 +46,7 @@ public class FindFirstLessThanKElement {
 			int mid = l + (r - l) / 2;
 			
 			// If it equals then nothing to the right of mid can be the first left occurrence of k.
-			if(keys[mid] >= k) r = mid - 1;								
+			if(k <= keys[mid]) r = mid - 1;								
 			
 			else l = mid + 1; 						
 

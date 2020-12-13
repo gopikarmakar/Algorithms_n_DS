@@ -23,6 +23,7 @@ public class FindTripletsForMaximumProduct {
 	 * Time complexity will be dominated by sort O(n log n)
 	 */
 	public static List<Integer> maxProduct(int...arr) {		
+		
 		List<Integer> list = new ArrayList<>();
 		List<Integer> headList = new ArrayList<>();
 		List<Integer> tailList = new ArrayList<>();				
@@ -30,9 +31,11 @@ public class FindTripletsForMaximumProduct {
 		if(arr.length > 3) {
 			
 			Arrays.sort(arr);
+			
 			int headMax = 1, tailMax = 1;		
 			
 			for(int i = 0; i < 3-1; i++) {
+				
 				headMax *= arr[i];
 				headList.add(arr[i]);					
 			}				

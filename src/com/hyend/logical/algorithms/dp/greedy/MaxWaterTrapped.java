@@ -1,8 +1,7 @@
 package com.hyend.logical.algorithms.dp.greedy;
 
 /**
- * Given an array of heights of vertical lines Compute
- * the max water trapped by a pair of vertical lines.
+ * https://leetcode.com/problems/trapping-rain-water/
  * 
  * @author gopi_karmakar
  */
@@ -10,29 +9,56 @@ public class MaxWaterTrapped {
 
 	public static void main(String[] args) {
 		
-		int[] heights = {1,2,1,3,4,4,5,6,2,1,3,1,3,2,1,2,4,1};
-		System.out.println("Max Water Trapped = " + getMaxWaterTrapped(heights));
+		//int[] blocks = {1, 2, 1, 3, 4, 4, 5, 1, 2, 0, 3};
+		
+		int[] blocks = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+		
+		System.out.println(compute(blocks));
 	}
 	
-	public static int getMaxWaterTrapped(int...heights) {
+	private static int compute(int...blocks) {
 		
-		int maxWater = 0;		
-		int i = 0, j = heights.length-1, width = 0;
+		int maxWater = 0;
 		
-		while(i < j) {
+		int maxHeightIdx = getMaxHeightIndex(blocks);
+		
+		int left = blocks[0];
+		int right = blocks[blocks.length-1];
+		
+		for(int i = 1; i < maxHeightIdx; ++i) {
 			
-			width = j - i;
-			
-			maxWater = Math.max(maxWater, width * Math.min(heights[i], heights[j]));
-			
-			if(heights[i] < heights[j])			i++;
-			else if(heights[i] > heights[j])	j--;
-			else {
-				// heights[i] == heights[j]
-				i++;
-				j--;
+			if(blocks[i] >= left) {
+				left = blocks[i];
+			}
+			else {				
+				maxWater += left - blocks[i];
 			}
 		}
+		
+		for(int i = blocks.length-2; i > maxHeightIdx; --i) {
+			
+			if(blocks[i] >= right) {
+				right = blocks[i];
+			}
+			else {
+				maxWater += right - blocks[i];
+			}
+		}
+		
 		return maxWater;
+	}
+	
+	private static int getMaxHeightIndex(int...blocks) {
+		
+		int max = blocks[0], index = 0;
+		
+		for(int i = 1; i < blocks.length; ++i) {
+			
+			if(blocks[i] > max) {
+				max = blocks[i];
+				index = i;
+			}
+		}
+		return index;
 	}
 }

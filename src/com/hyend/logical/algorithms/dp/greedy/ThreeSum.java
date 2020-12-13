@@ -27,6 +27,7 @@ public class ThreeSum {
 	 */
 	public static boolean hasThreeSum(int sum, int...arr) {
 		
+		// In case if the array isn't sorted.
 		Arrays.sort(arr);
 		
 		for(int x : arr) {

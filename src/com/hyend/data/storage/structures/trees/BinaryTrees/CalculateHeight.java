@@ -3,6 +3,8 @@ package com.hyend.data.storage.structures.trees.BinaryTrees;
 import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
 
 /**
+ * https://leetcode.com/problems/maximum-depth-of-binary-tree/
+ * 
  * Calculate the height of a given binary tree
  * 
  * @author gopi_karmakar
@@ -17,6 +19,9 @@ public class CalculateHeight {
 	}
 	
 	/**
+	 * An efficient solution
+	 * Accepted in Leetcode with 0ms 100% runtime.  
+	 * 
 	 * An O(h) time complexity PostOrder traversal   
 	 * algorithm to calculate the height of a Binary Tree.	 
 	 */
@@ -29,8 +34,6 @@ public class CalculateHeight {
 		
 		int RSTH = compute(node.right);
 		
-		return (1 + Math.max(LSTH, RSTH));
-		
-		//return height;
+		return Math.max(LSTH, RSTH) + 1;
 	}
 }

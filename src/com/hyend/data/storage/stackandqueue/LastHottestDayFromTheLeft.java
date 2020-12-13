@@ -1,9 +1,13 @@
-package com.hyend.data.storage.arrays;
+package com.hyend.data.storage.stackandqueue;
 
-import java.util.Arrays;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * A Google, Amazon interview question:
+ * 
+ * It's a variation of below problem:
+ * https://leetcode.com/problems/daily-temperatures/
  * 
  * Given temperatures of a whole week in Celcius
  * return the hottest day from the left for each passing day
@@ -20,11 +24,11 @@ public class LastHottestDayFromTheLeft {
 
 	public static void main(String[] args) {
 		
-		int[] temperatures = {70, 60, 40, 50, 35, 90, 10};
+		int[] T = {70, 60, 40, 50, 35, 90, 10};
 		//int[] temperatures = {70, 60, 45, 40, 50, 35, 90, 10};
 		//int[] temperatures = {30, 60, 40, 50, 35, 90, 10};
 		
-		int[] result = hottestDays(temperatures);
+		int[] result = hottestDays(T);
 		
 		for(int x: result)
 			System.out.println(x);
@@ -33,23 +37,21 @@ public class LastHottestDayFromTheLeft {
 	/**
 	 * An O(n) solution
 	 */
-	private static int[] hottestDays(int...temperatures) {
+	private static int[] hottestDays(int...T) {
 		
-		int[] result = new int[temperatures.length];
-		Arrays.fill(result, -1);
+		int[] result = new int[T.length];
+		Deque<Integer> dq = new ArrayDeque<>();
 		
-		int max = temperatures[0];
-		for(int i = 1; i < temperatures.length; i++) {					
-					
-			if(max > temperatures[i-1] && temperatures[i-1] > temperatures[i]) {
-				max = temperatures[i-1];				
-			}			
+		for(int i = 0; i < T.length; i++) {
 			
-			if(max >= temperatures[i])
-				result[i] = max;
-			else 
-				max = temperatures[i];
-		}		
+			while(!dq.isEmpty() && T[i] >= dq.peekLast())
+				dq.pollLast();
+			
+			result[i] = (dq.isEmpty()) ? -1 : dq.peekLast();
+			
+			dq.addLast(T[i]);
+		}
+
 		return result;
 	}
 }

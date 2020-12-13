@@ -16,6 +16,11 @@ public class Node<K extends Comparable<K>, V> {
 	public Node<K, V> right;
 	public Node<K, V> parent;
 	
+	public Node(Node<K, V> node) {
+		this.key = node.key;
+		this.value = node.value;			
+	}
+	
 	public Node(K key, V value) {
 		this.key = key;
 		this.value = value;			

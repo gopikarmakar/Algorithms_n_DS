@@ -23,9 +23,9 @@ public class FindCeilOfAGivenKey {
 	 * The time complexity is O(h) where h is the height of the tree
 	 * Space complexity is O(1)
 	 */
-	private static Node<Integer, ?> findCeil(Node<Integer, ?> bst, int key) {
+	private static Node<Integer, ?> findCeil(Node<Integer, ?> node, int key) {
 		
-		Node<Integer, ?> subTree = bst, firstSoFar = null;
+		Node<Integer, ?> subTree = node, firstSoFar = null;
 		
 		while(subTree != null) {
 			

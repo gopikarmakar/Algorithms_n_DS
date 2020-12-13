@@ -1,6 +1,7 @@
 package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A concrete balanced Binary Search Tree Implementation.
@@ -47,8 +48,18 @@ public class BinarySearchTree {
 	 *    
 	 * Traversal Order : All nodes of each level.
 	 */
-	public static void printLevelOrder(Node<?, ?> tree, boolean... withParent) {
-		BFSOrLevelOrderTraversal.print(tree, withParent);
+	public static void printLevelOrder(Node<?, ?> tree, boolean withParent) {
+		
+		List<List<Node<?, ?>>> nodes = BFSOrLevelOrderTraversal.bfs(tree, withParent);
+		
+		nodes.forEach(l -> {
+			
+			l.forEach(e -> {
+				
+				print(e, withParent);
+			});
+			System.out.println();
+		});
 	}
 	
 	/**

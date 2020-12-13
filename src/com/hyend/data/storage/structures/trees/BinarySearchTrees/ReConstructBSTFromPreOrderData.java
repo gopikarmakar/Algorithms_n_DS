@@ -23,7 +23,7 @@ public class ReConstructBSTFromPreOrderData {
 		BinarySearchTree.printPreOrder(BinarySearchTree.RECURSIVELY, tree);
 		
 		System.out.println("\nLevel Order Traversal");
-		BinarySearchTree.printLevelOrder(tree);
+		BinarySearchTree.printLevelOrder(tree, false);
 	}
 	
 	private int index = 0;

@@ -12,11 +12,11 @@ public class RangeLookUp {
 
 	public static void main(String[] args) {
 		
-		Node<Integer, ?> bst = BinarySearchTree.createDefault();
+		Node<Integer, ?> root = BinarySearchTree.createDefault();
 		
 		List<Integer> list = new ArrayList<>();
 		
-		range(bst, new Interval(16, 31), list);
+		range(root, new Interval(16, 31), list);
 		
 		System.out.println(list);
 	}
@@ -33,34 +33,38 @@ public class RangeLookUp {
 	}	
 	
 	/**
-	 * The nodes can be partitioned into three subsets. Nodes on the search path to 16, 
-	 * nodes on the search path to 42, and the rest. The traversal spends O(h) time 
-	 * visiting the first two subsets, and O(m) time traversing the third subset.
-	 * Each edge is visited twice, once downwards and once upwards. Therefore the 
-	 * total time complexity is O(m + h), which is much better than O(n)
-	 * brute-force approach when the tree is balanced, and very few keys he in the specified range.
+	 * The nodes can be partitioned into three subsets. 
+	 * Nodes on the search path to 16, 
+	 * nodes on the search path to 42, and the rest. 
+	 * The traversal spends O(h) time 
+	 * visiting the first two subsets, 
+	 * and O(m) time traversing the third subset.
+	 * Each edge is visited twice, once downwards and once upwards. 
+	 * i.e the total time complexity is O(m + h), 
+	 * which is much better than O(n) brute-force approach 
+	 * when the tree is balanced, and very few keys he in the specified range.
 	 */
-	private static void range(Node<Integer, ?> bst, Interval interval, List<Integer> list) {
+	private static void range(Node<Integer, ?> root, Interval interval, List<Integer> list) {
 		
-		if(bst == null)
+		if(root == null)
 			return;
 		
 		//if(interval.left <= bst.key && interval.right >= bst.key) {
-		if(bst.key >= interval.left && bst.key <= interval.right) {
+		if(root.key >= interval.left && root.key <= interval.right) {
 			
-			range(bst.left, interval, list);
+			range(root.left, interval, list);
 			
-			list.add(bst.key);
+			list.add(root.key);
 			
-			range(bst.right, interval, list);
+			range(root.right, interval, list);
 		}
-		else if(interval.left > bst.key) {
+		else if(interval.left > root.key) {
 			
-			range(bst.right, interval, list);
+			range(root.right, interval, list);
 		}
 		else {
 			
-			range(bst.left, interval, list);	
+			range(root.left, interval, list);	
 		}
 	}
 }

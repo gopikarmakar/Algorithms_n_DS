@@ -3,19 +3,22 @@ package com.hyend.logical.algorithms.dp.greedy;
 import java.util.Arrays;
 
 /**
+ * https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+ * 
  * Find if there're two values in the given array
  * which adds up to a given sum!  
  * 
  * @author gopi_karmakar
- *
  */
 public class TwoSum {
 
 	public static void main(String[] args) {
-		
+				
 		int[] arr = {3, -1, -2, 5, 7, 4};
 		
+		// In case if array is not sorted.
 		Arrays.sort(arr);
+		
 		System.out.println(hasTwoSum(13, arr));
 	}
 	

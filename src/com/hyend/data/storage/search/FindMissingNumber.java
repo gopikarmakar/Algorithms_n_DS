@@ -5,26 +5,48 @@ package com.hyend.data.storage.search;
  * 
  * Find the first missing number.
  * 
+ * Note: All the numbers of nums are unique.
+ * 
  * @author gopi_karmakar
  */
 public class FindMissingNumber {
 
 	public static void main(String[] args) {
 		
-		int[] arr = {0,1};
-		int[] arr1 = {3, 0, 1};
-		int[] arr2 = {9,6,4,2,3,5,7,0,1};
-		int[] arr4 = {0, 1, 2, 3};
-		int[] arr5 = {-1, -3};
-		int[] arr3 = {1, 3, 6, 4, 1, 2, 0};
+		int[] arr1 = {0, 1};
+		int[] arr2 = {-1, -3};
+		int[] arr3 = {3, 0, 1};		
+		int[] arr4 = {0, 1, 2, 3};		
+		int[] arr5 = {1, 3, 6, 4, 2, 0};
+		int[] arr6 = {9, 6, 4, 2, 3, 5, 7, 0, 1};
 		
 		System.out.println(find(arr5));
 		
-		System.out.println(missingNumber(arr3));
+		System.out.println(missingNumber(arr5));
 	}
 	
 	/**
-	 * 1st solution: Faster than 28.45% and Memory usage
+	 * 1st solution: An efficient and easy to understand
+	 * 
+	 * Faster than 100% and Memory usage less than 
+	 * 71.06% Java submissions on LeetCode.
+	 * 
+	 * Time complexity O(n)
+	 * Space Complexity O(1)
+	 */
+	public static int missingNumber(int[] arr) {
+		
+        int sum  = (arr.length * (arr.length + 1)) / 2;
+        
+        for(int i = 0; i < arr.length; i++){
+            sum = sum - arr[i];
+        }
+        
+        return sum;
+    }
+	
+	/**
+	 * 2nd solution: Faster than 28.45% and Memory usage
 	 * less than 11.36% of Java submissions on LeetCode.
 	 * 
 	 * Time complexity O(n)
@@ -49,24 +71,4 @@ public class FindMissingNumber {
 		}		
 		return arr[arr.length-1] + 1;
 	}
-	
-	/**
-	 * More efficient and easy to understand 2nd Solution:
-	 * 
-	 * Faster than 100% and Memory usage less than 
-	 * 71.06% Java submissions on LeetCode.
-	 * 
-	 * Time complexity O(n)
-	 * Space Complexity O(1)
-	 */
-	public static int missingNumber(int[] arr) {
-		
-        int sum  = (arr.length * (arr.length + 1)) / 2;
-        
-        for(int i = 0; i < arr.length; i++){
-            sum = sum - arr[i];
-        }
-        
-        return sum;
-    }
 }

@@ -1,6 +1,4 @@
-package com.hyend.data.storage.structures.trees.BinaryTrees;
-
-import com.hyend.data.storage.structures.trees.BinaryTrees.Node;
+package com.hyend.data.storage.structures.trees.BinarySearchTrees;
 
 /**
  * The successor of a node in a binary tree is the node that
@@ -12,11 +10,15 @@ public class FindInOrderSuccessorOfAGivenNode {
 
 	public static void main(String[] args) {		
 
-		Node<Integer> tree = BinaryTree.buildDefault();
+		Node<Integer, ?> root = BinarySearchTree.createDefault();
 		
-		BinaryTree.printBFS(tree, true);
-		Node<Integer> successor = findSuccessor(tree.left.right);
-		System.out.println("The Successor Is = " + successor.key);
+		BinarySearchTree.printLevelOrder(root, true);
+		
+		Node<Integer, ?> node = root.right.left.right.right;
+		
+		Node<Integer, ?> successor = findSuccessor(node);
+		
+		System.out.println("\nThe Successor of " + node.key + " Is = " + successor.key);
 	}
 	
 	/**
@@ -25,9 +27,9 @@ public class FindInOrderSuccessorOfAGivenNode {
 	 * Since the number of edges followed cannot be more than the tree height, 
 	 * the time complexity is O(h), where h is the height of the tree
 	 */
-	private static Node<Integer> findSuccessor(Node<Integer> node) {
+	private static Node<Integer, ?> findSuccessor(Node<Integer, ?> node) {
 		
-		Node<Integer> current = node;
+		Node<Integer, ?> current = node;
 		
 		if(current.right != null) {
 			//Find the left most element in node’s right subtree.

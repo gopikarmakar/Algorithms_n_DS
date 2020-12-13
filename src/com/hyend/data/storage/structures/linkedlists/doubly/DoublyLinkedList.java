@@ -30,8 +30,13 @@ public class DoublyLinkedList<K> {
 			dll.add(i);
 		
 		return dll;
-	}		
-
+	}
+	
+	public void add(K k) {		
+		Node<K> node = new Node<>(k);
+		addNode(node);
+	}
+	
 	private void addNode(Node<K> node) {
 		size += 1;
 		Node<K> temp = tail;
@@ -42,11 +47,6 @@ public class DoublyLinkedList<K> {
 		}
 		temp.next = tail;
 		tail.prev = temp;
-	}
-	
-	public void add(K k) {		
-		Node<K> node = new Node<>(k);
-		addNode(node);
 	}
 	
 	public int size() {		

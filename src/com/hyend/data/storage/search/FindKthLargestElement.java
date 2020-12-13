@@ -4,12 +4,12 @@ import java.util.Random;
 import java.util.Comparator;
 
 /**
+ * https://leetcode.com/problems/kth-largest-element-in-an-array/
+ * 
  * Find Kth Largest Element in an unsorted array.
  * For e.g : {3, 1, -1, 2, 7, 10, 4, 9, -3, -5} 
  * K = 5
  * {10, 9, 7, 4, 3, 2, 1, -1, -3, -5} = return 3
- * 
- * https://leetcode.com/problems/kth-largest-element-in-an-array/
  * 
  * @author gopi_karmakar
  */
@@ -60,18 +60,18 @@ public class FindKthLargestElement {
 	//private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx, Comparator<Integer> cmp) {
 	private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx) {
 		
-		int newPivotIdx = l;
+		int leftIdx = l;
 		int pivotValue = arr[pivotIdx];	
 		
 		swap(arr, pivotIdx, r);		
 		for(int i = l; i < r; ++i) {
 			
 			if(Integer.compare(arr[i], pivotValue) > 0) {
-				swap(arr, i, newPivotIdx++);
+				swap(arr, i, leftIdx++);
 			}
 		}
-		swap(arr, r, newPivotIdx);		
-		return newPivotIdx;
+		swap(arr, r, leftIdx);		
+		return leftIdx;
 	}
 	
 	private static class Compare {		

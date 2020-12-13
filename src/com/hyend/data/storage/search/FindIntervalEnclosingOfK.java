@@ -3,6 +3,8 @@ package com.hyend.data.storage.search;
 import java.util.Arrays;
 
 /**
+ * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+ * 
  * Find interval enclosing of K in a sorted list such that 
  * l is starting left and r is the ending right index of k.
  * For e.g: {1,2,2,4,4,4,7,11,11,11,11,11,13,14,15,15} k = 11  
@@ -15,6 +17,7 @@ public class FindIntervalEnclosingOfK {
 	public static void main(String[] args) {
 		
 		 int[] arr = {1,2,2,4,4,4,7,11,11,11,11,11,13,14,15,15};
+		 
 		 findEnclosing(11, arr);
 	}
 	

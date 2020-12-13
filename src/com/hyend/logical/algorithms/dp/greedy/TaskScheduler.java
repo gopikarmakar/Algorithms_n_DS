@@ -8,14 +8,19 @@ import java.util.Arrays;
  * 
  * https://leetcode.com/problems/task-scheduler/
  * 
- * Given a char array representing tasks CPU need to do. It contains capital letters A to Z 
- * where different letters represent different tasks. Tasks could be done without original order. 
- * Each task could be done in one interval. For each interval, CPU could finish one task or just be idle.
+ * Given a char array representing tasks CPU need to do. 
+ * It contains capital letters A to Z 
+ * where different letters represent different tasks. 
+ * Tasks could be done without original order. 
+ * Each task could be done in one interval. For each interval, 
+ * CPU could finish one task or just be idle.
  *
- * However, there is a non-negative cooling interval n that means between two same tasks, there must be 
+ * However, there is a non-negative cooling interval n 
+ * that means between two same tasks, there must be 
  * at least n intervals that CPU are doing different tasks or just be idle.
  *
- * Need to return the least number of intervals the CPU will take to finish all the given tasks.
+ * Need to return the least number of intervals the CPU will take 
+ * to finish all the given tasks.
  * 
  * for e.g: {'A', 'A', 'A', 'B', 'B', 'B'}  n = 2
  * 			A -> B -> Idle -> A -> B -> Idle A->B
@@ -27,8 +32,15 @@ public class TaskScheduler {
 	public static void main(String[] args) {	
 		
 		//char[] tasks = {'A', 'A', 'A', 'B', 'B', 'B'};
-		char[] tasks = {'A', 'A', 'B'};
-		System.out.println("Least Interval = " + leastInterval(1, tasks));
+		//int coolingTime = 2;
+		
+		//char[] tasks = {'A', 'A', 'B'};
+		//int coolingTime = 1;
+		
+		char[] tasks = {'A', 'A', 'A', 'A','A', 'A', 'B', 'C', 'D', 'E', 'F', 'G'};
+		int coolingTime = 2;
+		
+		System.out.println("Least Interval = " + leastInterval(coolingTime, tasks));
 	}
 	
 	/**
@@ -45,8 +57,8 @@ public class TaskScheduler {
         
         for (char c: tasks) {
         	
-        	//map[c - 'A']++;
-            map[c - 'A'] += 1;
+        	map[c - 'A']++; // Same as below statement.
+            //map[c - 'A'] += 1; 
         }               
         
         Arrays.sort(map);

@@ -60,7 +60,7 @@ public class FindKthSmallestElement {
 	//private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx, Comparator<Integer> cmp) {
 	private static int partitionAroundPivot(int[] arr, int l, int r, int pivotIdx) {
 		
-		int newPivotIdx = l;
+		int leftIdx = l;
 		int pivotValue = arr[pivotIdx];
 		
 		swap(arr, r, pivotIdx);		
@@ -71,12 +71,12 @@ public class FindKthSmallestElement {
 			}*/
 			
 			if(Integer.compare(arr[i], pivotValue) < 0) {
-				swap(arr, i, newPivotIdx++);
+				swap(arr, i, leftIdx++);
 			}			
 		}
-		swap(arr, r, newPivotIdx);
+		swap(arr, r, leftIdx);
 		
-		return newPivotIdx;
+		return leftIdx;
 	}
 	
 	private static void swap(int[] arr, int a, int b) {

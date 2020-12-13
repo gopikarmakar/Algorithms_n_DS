@@ -32,29 +32,12 @@ public class OptimumTaskAssignments {
 	
 	public static void main(String[] args) {
 		
-		int[] durations = {5, 2, 1, 6, 4, 4};
-		OptimumTaskAssignments tasks = new OptimumTaskAssignments();
-		List<PairedTasks> assignments = tasks.optimumTaskAssignment(durations);
+		int[] durations = {5, 2, 1, 6, 4, 4};			
 		
-		for(PairedTasks pairs : assignments) {		
-			System.out.println(pairs.toString());
+		for(int[] t : optimumTaskAssignment(durations)) {
+			
+			System.out.println("{" + t[0] + ", " + t[1] + "}");
 		}				
-	}
-	
-	private class PairedTasks {
-		public int task1;
-		public int task2;
-		
-		public PairedTasks(int task1, int task2) {
-			this.task1 = task1;
-			this.task2 = task2; 
-		}
-		
-		@Override
-		public String toString() {
-			String msg = "[" + task1 + ", " + task2 + "]";
-			return msg;
-		}
 	}
 
 	/**
@@ -66,19 +49,17 @@ public class OptimumTaskAssignments {
 	 * and the pairings are (1,6), (2,5), and (4,4).
 	 * 
 	 * The time complexity is dominated by the Sort time On(log n)
-	 *  
-	 * @param durations
-	 * @return
 	 */
-	public List<PairedTasks> optimumTaskAssignment(int...durations) {
+	public static int[][] optimumTaskAssignment(int...durations) {
 		
 		Arrays.sort(durations);
 		
-		List<PairedTasks> assignments = new ArrayList<>();
+		List<int[]> assignments = new ArrayList<>();
 		
 		for(int i = 0, j = durations.length-1; i < j; ++i,--j)
-			assignments.add(new PairedTasks(durations[i], durations[j]));
 			
-		return assignments;
+			assignments.add(new int[] {durations[i], durations[j]});
+			
+		return assignments.toArray(new int[assignments.size()][1]);
 	}
 }

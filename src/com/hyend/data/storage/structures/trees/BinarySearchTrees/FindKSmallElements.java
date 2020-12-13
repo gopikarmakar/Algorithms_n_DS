@@ -21,10 +21,12 @@ public class FindKSmallElements {
 		
 		System.out.println(list);
 		
-		System.out.println(findKth(bst, 3));
+		System.out.println(find(bst, 4));
 	}
 	
 	/**
+	 * Recursive Approach
+	 * 
 	 * The time complexity is O(h + k) 
 	 */
 	private static void find(Node<Integer, ?> node, List<Integer> list, int k) {
@@ -42,10 +44,13 @@ public class FindKSmallElements {
 		}
 	}
 	
-	private static int findKth(Node<Integer, ?> root, int k) {
+	/**
+	 * Iterative Approach
+	 */
+	private static List<Integer> find(Node<Integer, ?> root, int k) {
         
         Stack<Node<Integer, ?>> s = new Stack<>();
-        List<Integer> l = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
         
         Node<Integer, ?> e = root;
         
@@ -58,13 +63,13 @@ public class FindKSmallElements {
             }
             else {
                 e = s.pop();
-                if(l.size() == k) {
-                	return l.get(k-1);                	                    
+                if(result.size() >= k) {
+                	return result;                	                    
                 }                
-                l.add(e.key); 
+                result.add(e.key); 
                 e = e.right; 
             }            
         }
-        return l.get(k-1);
+        return result;
     }
 }

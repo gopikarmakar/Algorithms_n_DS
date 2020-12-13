@@ -8,7 +8,8 @@ import java.util.NoSuchElementException;
  * cyclically shift its entries so that it becomes sorted. 
  * For e.g, the below array is cyclically sorted—acyclic 
  * left shift by 4 leads to a sorted array.
- * NOYE: Assume all the entries are distinct
+ * 
+ * NOTE: Assume all the entries are distinct
  * 
  * e.g: {378, 478, 550, 631, 103, 203, 220, 234, 279, 368}
  * return 103

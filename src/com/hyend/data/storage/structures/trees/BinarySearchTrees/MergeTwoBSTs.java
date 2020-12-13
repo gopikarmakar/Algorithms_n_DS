@@ -33,7 +33,7 @@ public class MergeTwoBSTs<K extends Comparable<K>, V> {
 		
 		Node<Integer, ?> bst = MergeTwoBSTs.mergeBSTs(bst1, bst2);
 		
-		BinarySearchTree.printLevelOrder(bst);
+		BinarySearchTree.printLevelOrder(bst, false);
 	}
 	
 	public static Node<Integer, ?> mergeBSTs(Node<Integer, ?> bst1, Node<Integer, ?> bst2) {

@@ -13,14 +13,19 @@ public class FindKthElementInTwoSortedArrays {
 
 	public static void main(String[] args) {
 		
-		//int[] arr1 = {2, 3, 7, 8};
-		//int[] arr2 = {1, 4, 6, 9, 10};
+		int[] a = {2, 3, 7, 8};		
+		int[] b = {1, 4, 6, 9, 10};
+		int k = 5;
+		
 		//int[] a = {1, 3, 4, 9, 11};
 		//int[] b = {2, 5, 6, 8};
+		//int k = 4;
 		
-		int[] a = {1, 3};
-		int[] b = {2};
-		System.out.println("Kth Element = " + findKth(a, b, 1));
+		//int[] a = {1, 3, 4};
+		//int[] b = {2};
+		//int k = 2;
+		
+		System.out.println("Kth Element = " + findKth(a, b, k));
 	}	
 	
 	/**
@@ -38,9 +43,13 @@ public class FindKthElementInTwoSortedArrays {
 		while(l < u) {
 			
 			int x = l + ((u - l)/2); //Adding of l is to be under b.length
+			
 			int ax1 = (x <= 0) ? Integer.MIN_VALUE : a[x-1];
+			
 			int ax = (x >= a.length) ? Integer.MAX_VALUE : a[x];
+			
 			int bkx1 = (k-x <= 0) ? Integer.MIN_VALUE : b[k-x-1];
+			
 			int bkx = (k-x >= b.length) ? Integer.MAX_VALUE : b[k-x];
 			
 			if(ax < bkx1) {

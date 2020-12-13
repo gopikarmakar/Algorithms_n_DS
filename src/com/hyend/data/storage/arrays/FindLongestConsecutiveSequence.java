@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * https://leetcode.com/problems/longest-consecutive-sequence/
+ * 
  * Find the longest consecutive sequence.
  * for e.g: arr = {100. 4, 200, 1, 3, 2}
  * Then the longest consecutive sequence is:
@@ -21,19 +23,21 @@ public class FindLongestConsecutiveSequence {
 		
 		int[] arr = {100, 4, 200, 98, 97, 2, 99, 3, 1, 0};
 		
+		//int[] arr = {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
+		
 		System.out.println("Longest = " + search(arr));
 		
 		System.out.println("Longest = " + find(arr));
 	}	
 	
 	/**
-	 * This solution has been submitted to the Leetcode.
+	 * Solution has been accepted in Leetcode.
 	 * O(n) time and space complexity. 
 	 */
 	private static int search(int[] arr) {
         
         int max = 0;
-        
+                
         Set<Integer> set = new HashSet<>();
         
         for(int e : arr) {

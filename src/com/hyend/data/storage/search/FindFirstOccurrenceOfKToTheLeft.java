@@ -13,6 +13,7 @@ public class FindFirstOccurrenceOfKToTheLeft {
 	public static void main(String[] args) {
 		
 		int[] keys = {-14,-10,2,108,108,243,285,285,285,401};
+		
 		System.out.println("First Occurrence At = " + find(keys, 108));
 	}
 		

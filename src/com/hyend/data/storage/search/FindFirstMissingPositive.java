@@ -32,6 +32,8 @@ public class FindFirstMissingPositive {
 	/**
 	 * Solution 1: A full proof and most efficient O(n) solution.
 	 * 
+	 * Accepted in Leetcode with 0ms 100% runtime. 
+	 * 
 	 * The time complexity is O(n)
 	 */
 	private static int findFirstMissingPositive(int...arr) {
@@ -58,16 +60,6 @@ public class FindFirstMissingPositive {
 		return arr.length+1;
 	}
 	
-	private static int getMax(int[] arr) {
-		int max = 0;
-		
-		for(int x = 0; x < arr.length; x++) {			
-			max = (arr[x] > max) ? arr[x] : max;					
-		}
-		System.out.println("Max = " + max);
-		return max;
-	}
-	
 	/**
 	 * Solution 2: A huge space consuming inefficient O(n) solution  
 	 */	 
@@ -87,6 +79,16 @@ public class FindFirstMissingPositive {
 			}			
 		}				
 		return min;		
+	}
+	
+	private static int getMax(int[] arr) {
+		int max = 0;
+		
+		for(int x = 0; x < arr.length; x++) {			
+			max = (arr[x] > max) ? arr[x] : max;					
+		}
+		System.out.println("Max = " + max);
+		return max;
 	}
 	
 	/**

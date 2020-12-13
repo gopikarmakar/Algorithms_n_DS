@@ -15,13 +15,16 @@ public class BFSOrLevelOrderTraversal {
 	public static void main(String[] args) {
 		
 		Node<?, ?> tree = BinarySearchTree.createDefault();
-		print(tree, false);
+		
+		boolean withParent = false;
+		print(bfs(tree, withParent), withParent);
 	}
 	
 	/**
 	 * Takes O(n) time and space complexity
+	 * @param withParent TODO
 	 */
-	public static void print(Node<?, ?> tree, boolean... withParent) {
+	public static List<List<Node<?, ?>>> bfs(Node<?, ?> tree, boolean withParent) {
 	
 		Queue<Node<?, ?>> queue = new LinkedList<>();
 		queue.add(tree);
@@ -44,17 +47,17 @@ public class BFSOrLevelOrderTraversal {
 			}
 			nodes.add(list);
 		}
-		print(nodes, withParent);
+		return nodes;
 	}
 	
-	private static void print(List<List<Node<?, ?>>> nodes, boolean... withParent) {
+	private static void print(List<List<Node<?, ?>>> nodes, boolean withParent) {
 	
 		nodes.forEach(l -> {
 			
 			l.forEach(e -> {
 				
 				System.out.print("[" +e.key + 
-					((withParent.length > 0 && withParent[0]) ? ((e.parent!= null) ? 
+					((withParent) ? ((e.parent!= null) ? 
 					"\tParent = " + e.parent.key : "\tIt's Root") : "") + "] ");
 			});
 			System.out.println();
