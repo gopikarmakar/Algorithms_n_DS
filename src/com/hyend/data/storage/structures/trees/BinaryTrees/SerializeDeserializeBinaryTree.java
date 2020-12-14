@@ -5,6 +5,7 @@ import java.util.Queue;
 
 /**
  * Facebook and Amazon Interview Question
+ * 
  * https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
  *  
  * 			1
@@ -13,7 +14,7 @@ import java.util.Queue;
  *			
  * @author gopi_karmakar
  */
-public class SerializeDeSerializeBT {
+public class SerializeDeserializeBinaryTree {
 
 	/**
 	 * Solution Accepted in Leetcode.	 
@@ -22,10 +23,10 @@ public class SerializeDeSerializeBT {
 		
 		Integer[] keys = {1, 2, 3, null, null, 4, 5};
 				
-		Node<Integer> bt = BinaryTree.build(BinaryTree.SHORT_HEIGHTED, keys);
-		BinaryTree.printBFS(bt, true);
+		Node<Integer> root = BinaryTree.build(BinaryTree.SHORT_HEIGHTED, keys);
+		BinaryTree.printBFS(root, true);
 		
-		String data = serialize(bt);
+		String data = serialize(root);
 		
 		System.out.println(data);
 		

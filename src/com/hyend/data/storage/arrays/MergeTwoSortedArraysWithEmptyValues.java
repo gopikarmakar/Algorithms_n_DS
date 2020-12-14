@@ -1,6 +1,8 @@
 package com.hyend.data.storage.arrays;
 
 /**
+ * https://leetcode.com/problems/merge-sorted-array/
+ * 
  * Merge two sorted arrays which can contain empty entries:
  * For e.g:
  * a[] = {5, 13, 17, 19, 0, 0, 0, 0}
@@ -14,40 +16,53 @@ public class MergeTwoSortedArraysWithEmptyValues {
 
 	public static void main(String[] args) {
 		
-		int[] a = {5, 13, 17, 19, 0, 0, 0, 0};
-		int[] b = {3, 7, 11, 0};
-		for(int x : merge(a, b)) 
-			System.out.print(x+ " ");
+		//int[] nums1 = {5, 13, 17, 19, 0, 0, 0, 0};
+		//int[] nums2 = {3, 7, 11, 0};
+		
+		int[] nums1 = {4, 5, 6, 0, 0, 0};
+		int[] nums2 = {1, 2, 3};
+		
+		//int[] nums1 = {0};
+		//int[] nums2 = {1};
+		
+		merge(nums1, nums2);
+		
+		for(int e : nums1) 
+			System.out.print(e+ " ");
 	}
 	
 	/**
+	 * Accepted in Leetcode with 0ms 100% runtime.
 	 * O(n) time complexity
 	 */
-	private static int[] merge(int[] a, int[] b) {		
+	private static void merge(int[] nums1, int[] nums2) {			
 		
-		int n = a.length-1, m = b.length-1;		
-		for(int i = n; i >= 0; --i) {
-			if(a[i] != 0) break;
-			n--;
-		}	
-		for(int j = m; j >= 0; --j) {
-			if(b[j] != 0) break;
-			m--;
-		}
+		int p1 = getNonZeroElementsLen(nums1);
+		int p2 = getNonZeroElementsLen(nums2);
 		
-		int i = n, j = m, writeIdx = n + m + 1;
+		int writeIdx = p1 + p2 + 1;
 		
-		while(i >= 0 && j >= 0) {			
+		while(p1 >= 0 && p2 >= 0) {			
 			
-			a[writeIdx--] = ((a[i] < b[j])) ? b[j--] : a[i--];			
+			nums1[writeIdx--] = ((nums1[p1] > nums2[p2])) ? nums1[p1--] : nums2[p2--];			
 		}
 		
-		int x = (m < n) ? j : i;
-		
-		while(x >= 0) {
+		// if we have elements remaining in nums2 array, copy those!
+		while(p2 >= 0) {
 			
-			a[writeIdx--] =  (m < n) ? b[x--] : a[x--];
+			nums1[writeIdx--] = nums2[p2--];
 		}
-		return a;
-	}			
+	}
+	
+	private static int getNonZeroElementsLen(int[] arr) {
+		
+		int l = arr.length-1;
+		
+		for(int i = l; i >= 0; --i) {
+			
+			if(arr[i] != 0) break;
+			l--;
+		}
+		return l;
+	}
 }

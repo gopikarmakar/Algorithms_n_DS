@@ -1,5 +1,7 @@
 package com.hyend.data.storage.structures.linkedlists.singly;
 
+import java.util.Objects;
+
 public class Node<K> {
 
 	public K k;
@@ -26,6 +28,26 @@ public class Node<K> {
 		this.k = k;
 		this.next = next;
 		this.jump = jump;
+	}
+	
+	@Override	
+	public boolean equals(Object obj) {
+		
+		if(obj == null || !(obj instanceof Node))
+			return false;
+		
+		if(obj == this)
+			return true;
+		
+		@SuppressWarnings("unchecked")
+		Node<K> that = (Node<K>) obj;		
+					
+		return this.k.equals(that.k) && this.next.equals(that.next);
+	}
+	
+	@Override
+	public int hashCode() {		
+		return Objects.hash(this.k);
 	}
 	
 	@Override
